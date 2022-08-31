@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Float, DateTime, Date, Time
 from flask_login import UserMixin
+import time
 # from app.models import User, Reservation, Review
 
 class Restaurant(db.Model, UserMixin):
@@ -43,8 +44,9 @@ class Restaurant(db.Model, UserMixin):
             'state':self.state,
             'zip_code':self.zip_code,
             'description':self.description,
-            'open_time':self.open_time,
-            'close_time':self.close_time,
+            'capacity':self.capacity,
+            'open_time':self.open_time.strftime('%H:%M'),
+            'close_time':self.close_time.strftime('%H:%M'),
             'cuisine':self.cuisine,
             'owner_id': self.owner_id,
         }

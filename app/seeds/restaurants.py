@@ -12,7 +12,7 @@ def seed_restaurants():
         city='San Mateo', 
         state='CA',
         zip_code=94401,
-        description=" You’re always welcome at San Mateo Tomatina, our family-friendly Italian restaurant at the corner of 4th and B Streets in the heart of downtown San Mateo just off Highway 101. ",
+        description=" You're always welcome at San Mateo Tomatina, our family-friendly Italian restaurant at the corner of 4th and B Streets in the heart of downtown San Mateo just off Highway 101. ",
         open_time=datetime.strptime('12:00',"%H:%M").time(),
         close_time=datetime.strptime('20:00',"%H:%M").time(),
         cuisine='Italian',
