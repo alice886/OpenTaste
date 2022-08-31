@@ -1,8 +1,8 @@
-"""test01
+"""empty message
 
-Revision ID: 00bf71799f87
+Revision ID: f7e6728fc474
 Revises: 
-Create Date: 2022-08-30 14:39:15.669204
+Create Date: 2022-08-30 22:04:07.500031
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '00bf71799f87'
+revision = 'f7e6728fc474'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,10 +35,9 @@ def upgrade():
     sa.Column('city', sa.String(length=30), nullable=False),
     sa.Column('state', sa.String(length=20), nullable=False),
     sa.Column('zip_code', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(length=200), nullable=True),
-    sa.Column('open_time', sa.Time(), nullable=False),
-    sa.Column('close_time', sa.Time(), nullable=False),
-    sa.Column('close_date', sa.Date(), nullable=False),
+    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('open_time', sa.DateTime(), nullable=False),
+    sa.Column('close_time', sa.DateTime(), nullable=False),
     sa.Column('cuisine', sa.String(length=20), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
@@ -46,7 +45,7 @@ def upgrade():
     )
     op.create_table('favorites',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.Time(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
@@ -64,10 +63,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('party_size', sa.Integer(), nullable=False),
     sa.Column('date', sa.Date(), nullable=False),
-    sa.Column('reserve_time', sa.Time(), nullable=False),
+    sa.Column('reserve_time', sa.DateTime(), nullable=False),
     sa.Column('occasion', sa.String(length=20), nullable=True),
     sa.Column('special_request', sa.String(length=200), nullable=True),
-    sa.Column('created_at', sa.Time(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('confirmation_number', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
@@ -79,8 +78,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('review_body', sa.String(length=200), nullable=True),
-    sa.Column('created_at', sa.Time(), nullable=False),
-    sa.Column('updated_at', sa.Time(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),

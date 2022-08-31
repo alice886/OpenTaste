@@ -11,10 +11,10 @@ class Reservation(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     party_size = db.Column(db.Integer, nullable=False)
     date = db.Column(db.Date, nullable=False)
-    reserve_time = db.Column(db.Time, nullable=False)
+    reserve_time = db.Column(db.DateTime, nullable=False)
     occasion = db.Column(db.String(20))
     special_request = db.Column(db.String(200))
-    created_at = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
     confirmation_number = db.Column(db.Integer, nullable=False)
 
     user_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)

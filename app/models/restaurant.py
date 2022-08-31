@@ -15,10 +15,9 @@ class Restaurant(db.Model, UserMixin):
     city = db.Column(db.String(30), nullable=False)
     state = db.Column(db.String(20), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.String(200))
-    open_time = db.Column(db.Time, nullable=False)
-    close_time = db.Column(db.Time, nullable=False)
-    close_date = db.Column(db.Date, nullable=False)
+    description = db.Column(db.String(500))
+    open_time = db.Column(db.DateTime, nullable=False)
+    close_time = db.Column(db.DateTime, nullable=False)
     cuisine = db.Column(db.String(20), nullable=False)
 
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
@@ -45,7 +44,6 @@ class Restaurant(db.Model, UserMixin):
             'description':self.description,
             'open_time':self.open_time,
             'close_time':self.close_time,
-            'close_date':self.close_date,
             'cuisine':self.cuisine,
             'owner_id': self.owner_id,
         }

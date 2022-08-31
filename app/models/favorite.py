@@ -9,7 +9,7 @@ class Favorite(db.Model, UserMixin):
     __tablename__ = 'favorites'
 
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)

@@ -11,8 +11,8 @@ class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     review_body = db.Column(db.String(200))
-    created_at = db.Column(db.Time, nullable=False)
-    updated_at = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
 
     user_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)
