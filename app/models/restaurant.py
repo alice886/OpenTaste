@@ -17,8 +17,8 @@ class Restaurant(db.Model, UserMixin):
     zip_code = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(500))
     capacity = db.Column(db.Integer,nullable=False)
-    open_time = db.Column(db.DateTime, nullable=False)
-    close_time = db.Column(db.DateTime, nullable=False)
+    open_time = db.Column(db.Time, nullable=False)
+    close_time = db.Column(db.Time, nullable=False)
     cuisine = db.Column(db.String(20), nullable=False)
 
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
