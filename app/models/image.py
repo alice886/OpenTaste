@@ -9,7 +9,7 @@ class Image(db.Model, UserMixin):
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
-    img=db.Column(db.String)
+    img=db.Column(db.String(300))
 
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
 
