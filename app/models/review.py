@@ -19,7 +19,7 @@ class Review(db.Model, UserMixin):
 
     user = db.relationship('User',back_populates='reviews',foreign_keys=[user_id])
     restaurant = db.relationship('Restaurant',back_populates='reviews',foreign_keys=[restaurant_id])
-    tags = db.relationship('Tag',back_populates='review',cascade='all,delete')
+    tags = db.relationship('Tag',back_populates='review')
 
     @property
     def review_details(self):

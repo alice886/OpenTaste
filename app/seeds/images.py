@@ -1,14 +1,14 @@
-from app.models import db, Reservation
-from datetime import datetime, date, timedelta
+from app.models import db, User
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    reser1 = Reservation(
-        party_size=2, date=datetime.strptime('17:00',"%H:%M"), password='password')
+    t1 = User(
+        username='Demo', email='demo@aa.io', password='password')
     
 
+    db.session.add(t1)
 
-    db.session.add(demo)
 
     db.session.commit()
 

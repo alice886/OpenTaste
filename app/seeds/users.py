@@ -4,24 +4,24 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', first_name='Demo',last_name='Lition',email='demo@aa.io', password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', first_name='Marnie',last_name='Armani',email='marnie@aa.io', password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie',first_name='Bobbie',last_name='Axelrod', email='bobbie@aa.io', password='password')
     lucas = User(
-        username='lucas', email='lucas@aa.io', password='password')
+        username='lucas', first_name='Lucas',last_name='H',email='lucas@aa.io', password='password')
     remi = User(
-        username='remi', email='remi@aa.io', password='password')
-    grace = User(
-        username='99', email='99@aa.io', password='password')
+        username='remi', first_name='Remi',last_name='H',email='remi@aa.io', password='password')
+    jiu = User(
+        username='99j',first_name='jiujiu',last_name='Z', email='99j@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(lucas)
     db.session.add(remi)
-    db.session.add(grace)
+    db.session.add(jiu)
 
     db.session.commit()
 

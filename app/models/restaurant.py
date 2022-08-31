@@ -16,6 +16,7 @@ class Restaurant(db.Model, UserMixin):
     state = db.Column(db.String(20), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(500))
+    capacity = db.Column(db.Integer,nullable=False)
     open_time = db.Column(db.DateTime, nullable=False)
     close_time = db.Column(db.DateTime, nullable=False)
     cuisine = db.Column(db.String(20), nullable=False)
@@ -25,7 +26,7 @@ class Restaurant(db.Model, UserMixin):
     user = db.relationship('User',back_populates='restaurants',foreign_keys=[owner_id])
     reservations = db.relationship('Reservation',back_populates='restaurant')
     reviews = db.relationship('Review',back_populates='restaurant',cascade='all,delete')
-    favorite = db.relationship('Favorite',back_populates='restaurant',cascade='all,delete')
+    favorite = db.relationship('Favorite',back_populates='restaurants')
     images = db.relationship('Image',back_populates='restaurant',cascade='all,delete')
 
     @property
