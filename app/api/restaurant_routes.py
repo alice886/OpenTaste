@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
+from sqlalchemy.orm import joinedload, Load
 from app.models import db, Restaurant
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
@@ -11,19 +12,27 @@ restaurant_routes = Blueprint('restaurants', __name__)
 @restaurant_routes.route('/',methods=['GET'])
 @restaurant_routes.route('',methods=['GET'])
 def all_restaurants():
-    restaurants = db.session.query(Restaurant).all()
-    # restaurants = db.session.query(Restaurant).options(db.joinedloaded(Restaurant.reviews,Restaurant.images)).all()
+    # restaurants = db.session.query(Restaurant).all()
+    restaurants = db.session.query(Restaurant).options(joinedload(Restaurant.images)).all()
     if restaurants is not None and len(restaurants) > 0:
-        return {'all_restaurants': [restaurant.to_dict() for restaurant in restaurants]}
+        restaurant_details = []
+        for each in restaurants:
+            images = [i.to_dict() for i in each.images]
+            each = each.to_dict()
+            each['images']=images
+            restaurant_details.append(each)
+        return {'restaurants': restaurant_details}
     else:
         return {'errors':['No restaurants not found.']},404
 
 
 @restaurant_routes.route('/<int:id>',methods=['GET'])
 def restaurant_details(id):
-    restaurant = db.session.query(Restaurant).get(id)
+    # restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).filter(Restaurant.id == id).all()
+    # restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).filter_by(Restaurant.id=id).all()
+    restaurant = Restaurant.query.options(joinedload(Restaurant.images)).get(id)
     if restaurant is not None:
-        return restaurant.to_dict()
+        return  restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
 
