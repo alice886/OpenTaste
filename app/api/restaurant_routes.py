@@ -53,24 +53,44 @@ def restaurant_create():
         return restaurant.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)},400
 
+
+@restaurant_routes.route('/<int:id>/',methods=['PUT'])
 @restaurant_routes.route('/<int:id>',methods=['PUT'])
 @login_required
 def restaurant_edit(id):
-    restaurant = db.session.query(Restaurant).get(id)
-    restaurant = restaurant.to_dict()
+    restaurant = Restaurant.query.get(id)
     if restaurant is not None:
-        if current_user.id != restaurant['owner_id']:
+        restaurant_dict = restaurant.to_dict()
+        if current_user.id != restaurant_dict['owner_id']:
             return {'errors':["You cannot edit the restaurant that doesn't belong to you."]},403
         form = RestaurantForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         for i in form.data:
             if not form.data[i]:
-                form[i].data = restaurant[i]
+                form[i].data = restaurant_dict[i]
         if form.validate_on_submit():
             for i in form.data:
-                restaurant[i] = form.data[i]
-            # db.session.commit()
-            return restaurant
-        return {'errors':validation_errors_to_error_messages(form.errors)},400
+                if i != 'csrf_token':
+                    # restaurant_dict[i] = form.data[i] -> doesnot work, not a dict
+                    setattr(restaurant,i,form.data[i])
+            db.session.commit()
+            return restaurant.to_dict()
+        return {'errors':validation_errors_to_error_messages(form.errors)}
     else:
         return {'errors': ['Restaurant is not found.']},404
+
+
+@restaurant_routes.route('/<int:id>/',methods=['DELETE'])
+@restaurant_routes.route('/<int:id>',methods=['DELETE'])
+@login_required
+def restaurant_delete(id):
+    restaurant = db.session.query(Restaurant).get(id)
+    if restaurant is not None:
+        restaurant_dict = restaurant.to_dict()
+        if current_user.id != restaurant_dict['owner_id']:
+            return {'errors':["You cannot delete the restaurant that doesn't belong to you."]},403
+        db.session.delete(restaurant)
+        db.session.commit()
+        return restaurant.to_dict()
+    else:
+        return {'errors':['Restaurant not found.']},404
