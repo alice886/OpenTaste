@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1206.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

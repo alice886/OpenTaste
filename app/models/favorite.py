@@ -9,13 +9,13 @@ class Favorite(db.Model, UserMixin):
     __tablename__ = 'favorites'
 
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)
 
-    user = db.relationship('User',back_populates='reviews',foreign_keys=[owner_id])
-    restaurant = db.relationship('Restaurant',back_populates='reviews',foreign_keys=[restaurant_id])
+    user = db.relationship('User',back_populates='favorite',foreign_keys=[owner_id])
+    restaurants = db.relationship('Restaurant',back_populates='favorite',foreign_keys=[restaurant_id])
 
     @property
     def favorite_details(self):

@@ -11,15 +11,15 @@ class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     review_body = db.Column(db.String(200))
-    created_at = db.Column(db.Time, nullable=False)
-    updated_at = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
 
     user_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)
 
     user = db.relationship('User',back_populates='reviews',foreign_keys=[user_id])
     restaurant = db.relationship('Restaurant',back_populates='reviews',foreign_keys=[restaurant_id])
-    tags = db.relationship('Tag',back_populates='review',cascade='all,delete')
+    tags = db.relationship('Tag',back_populates='review')
 
     @property
     def review_details(self):
