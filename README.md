@@ -1,4 +1,4 @@
-*Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
+* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
 
 ## Helpful commands
 |    Command            |    Purpose    |
