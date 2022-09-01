@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getAllRestaurantThunk } from '../../store/restaurant';
+import ListNewRestaurant from './Restaurant_Create'
 
 function Home() {
     const dispatch = useDispatch();
@@ -21,15 +22,15 @@ function Home() {
             </div>
             <div className='restaurants-container'>
                 <h3>Available for you ... </h3>
-                {restaurants.map(restaurant => {
+                {restaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>🧂{restaurant.cuisine}</div>
                     </div>
                 })
                 }
-
             </div>
+            <ListNewRestaurant />
 
         </div>
     )

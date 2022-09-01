@@ -17,6 +17,7 @@ function RestaurantDetails() {
     console.log('therestaurant print --2', therestaurant)
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
+
     return loaded && (
         <div className='res-left-container'>
             <div className='res-left-name'>{therestaurant.name}</div>
