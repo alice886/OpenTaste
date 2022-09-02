@@ -24,6 +24,12 @@ export default function ListNewRestaurant() {
 
     const sessionUser = useSelector(state => state.session.user);
 
+    const states = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+        'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+        'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+        'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
     const newErrors = [];
 
     useEffect(() => {
@@ -120,6 +126,7 @@ export default function ListNewRestaurant() {
                         <div>
                             <label>Price Range</label>
                             <select className='create-res-input' onChange={e => setPriceRange(e.target.value)} required>
+                                <option value={''} selected disabled hidden> pick a price range here </option>
                                 <option value={1} onClick={e => setPriceRange(e.target.value)}>$30 and under</option>
                                 <option value={2} onClick={e => setPriceRange(e.target.value)}> $31 to $50</option>
                                 <option value={3} onClick={e => setPriceRange(e.target.value)}> $50 to $100</option>
@@ -152,21 +159,18 @@ export default function ListNewRestaurant() {
                         </div>
                         <div>
                             <label>State</label>
-                            <input
-                                type='text'
-                                placeholder='Please enter the state here.'
-                                onChange={e => setState(e.target.value)}
-                                value={state}
-                                maxLength={30}
-                                className='create-res-input'
-                                required
-                            ></input>
+                            <select className='create-res-input' required>
+                                <option value={''} disabled >Please choose the state here</option>
+                                {states.map(state => (
+                                    <option onClick={e => setState(e.target.value)}>{state}</option>
+                                ))}
+                            </select>
                         </div>
                         <div>
                             <label>Zip Code</label>
                             <input
                                 type='text'
-                                placeholder='Please enter the zip_code here.'
+                                placeholder='Please enter the zip code here.'
                                 onChange={e => setZipCode(e.target.value)}
                                 value={zip_code}
                                 maxLength={30}
