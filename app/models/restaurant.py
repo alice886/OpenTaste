@@ -18,8 +18,8 @@ class Restaurant(db.Model, UserMixin):
     zip_code = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(500))
     capacity = db.Column(db.Integer,nullable=False)
-    open_time = db.Column(db.Time, nullable=False)
-    close_time = db.Column(db.Time, nullable=False)
+    open_time = db.Column(db.String(5), nullable=False)
+    close_time = db.Column(db.String(5), nullable=False)
     cuisine = db.Column(db.String(20), nullable=False)
     cover = db.Column(db.String(300), nullable=False)
 
@@ -46,8 +46,10 @@ class Restaurant(db.Model, UserMixin):
             'zip_code':self.zip_code,
             'description':self.description,
             'capacity':self.capacity,
-            'open_time':self.open_time.strftime('%H:%M'),
-            'close_time':self.close_time.strftime('%H:%M'),
+            'open_time':self.open_time,
+            'close_time':self.close_time,
+            # 'open_time':self.open_time.strftime('%H:%M'),
+            # 'close_time':self.close_time.strftime('%H:%M'),
             'cuisine':self.cuisine,
             'cover':self.cover,
             'owner_id': self.owner_id,

@@ -57,10 +57,10 @@ def restaurant_create():
             zip_code = form.data['zip_code'],
             description = form.data['description'],
             capacity = form.data['capacity'],
-            # open_time = datetime.strptime('08:00',"%H:%M").time(),
-            # close_time = datetime.strptime('12:00',"%H:%M").time(),
-            open_time = datetime.strptime(form.data['open_time'],"%H:%M").time(),
-            close_time = datetime.strptime(form.data['close_time'],"%H:%M").time(),
+            # open_time = datetime.strptime(form.data['open_time'],"%H:%M").time(),
+            # close_time = datetime.strptime(form.data['close_time'],"%H:%M").time(),
+            open_time = form.data['open_time'],
+            close_time = form.data['close_time'],
             cuisine = form.data['cuisine'],
             cover = form.data['cover'],
             owner_id = current_user.id
@@ -86,11 +86,6 @@ def restaurant_edit(id):
         form = RestaurantForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         for i in form.data:
-            if i == 'open_time' or i == 'close_time':
-                if len(form.data[i])>0:
-                    form.data[i] = datetime.strptime(form.data[i],"%H:%M").time()
-                else:
-                    form.data[i]= None
             if not form.data[i]:
                 form[i].data = restaurant_dict[i]
         if form.validate_on_submit():
