@@ -106,6 +106,8 @@ export const editRestaurantThunk = restaurant => async dispatch => {
         dispatch(editARestaurant(editRestaurant));
     } else {
         const data = await response.json();
+        console.log('whats not working - 01', data)
+        console.log('whats not working - 01', data.errors)
         return data.errors;
     }
 }
@@ -121,11 +123,11 @@ export const removeRestaurantThunk = (id) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(removeARestaurant(id));
-        console.log('ok',id)
+        console.log('ok', id)
         return data;
     } else {
         const data = await response.json();
-        console.log('not ok',data)
+        console.log('not ok', data)
         return data.errors;
     }
 }

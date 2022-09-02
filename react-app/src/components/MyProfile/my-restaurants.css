@@ -1,0 +1,8 @@
+div .myrestaurants-container {
+    display: flex;
+}
+
+/* .myrestaurant-cover {
+    max-height: 300px;
+    object-fit: cover;
+} */

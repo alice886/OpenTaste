@@ -31,12 +31,12 @@ export default function MyRestaurants() {
             {showModal && (<Modal onClose={() => setShowModal(false)}>
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
-            <div className='restaurants-container'>
+            <div className='myrestaurants-container'>
                 <h3>- My Restaurants -</h3>
                 {myrestaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
-                            <img src={restaurant.cover} alt='restaurant img' />
+                            <img src={restaurant.cover} alt='restaurant img' height={'300px'}/>
                         </div>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>📍{restaurant.city}, {restaurant.state} {restaurant.zip_code}</div>

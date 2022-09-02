@@ -4,6 +4,7 @@ from sqlalchemy.orm import joinedload, Load, subqueryload
 from app.models import db, Restaurant
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
+import time
 from .auth_routes import validation_errors_to_error_messages
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -58,12 +59,15 @@ def restaurant_create():
             capacity = form.data['capacity'],
             # open_time = datetime.strptime('08:00',"%H:%M").time(),
             # close_time = datetime.strptime('12:00',"%H:%M").time(),
-            open_time = form.data['open_time'],
-            close_time = form.data['close_time'],
+            open_time = datetime.strptime(form.data['open_time'],"%H:%M").time(),
+            close_time = datetime.strptime(form.data['close_time'],"%H:%M").time(),
             cuisine = form.data['cuisine'],
             cover = form.data['cover'],
             owner_id = current_user.id
         )
+        # print('open time backend --',form.data['open_time'])
+        # print('close time backend --',form.data['close_time'])
+        # print('demo time --',datetime.strptime('08:00',"%H:%M").time())
         db.session.add(restaurant)
         db.session.commit()
         return restaurant.to_dict()
@@ -82,6 +86,11 @@ def restaurant_edit(id):
         form = RestaurantForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         for i in form.data:
+            if i == 'open_time' or i == 'close_time':
+                if len(form.data[i])>0:
+                    form.data[i] = datetime.strptime(form.data[i],"%H:%M").time()
+                else:
+                    form.data[i]= None
             if not form.data[i]:
                 form[i].data = restaurant_dict[i]
         if form.validate_on_submit():

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { createRestaurantThunk } from '../../store/restaurant'
+import './create.css'
 
 export default function ListNewRestaurant() {
     const dispatch = useDispatch();
@@ -15,6 +16,9 @@ export default function ListNewRestaurant() {
     const [description, setDescription] = useState();
     const [capacity, setCapacity] = useState();
     const [cuisine, setCuisine] = useState();
+    const [cover, setCover] = useState();
+    const [open_time, setOpenTime] = useState();
+    const [close_time, setCloseTime] = useState();
     const [errors, setErrors] = useState([])
     const [isDisabled, setIsDisabled] = useState(true)
 
@@ -51,11 +55,12 @@ export default function ListNewRestaurant() {
             description,
             capacity,
             cuisine,
+            open_time,
+            close_time,
+            cover,
         }
         const newRestaurant = await dispatch(createRestaurantThunk(payload));
-        console.log('what is the new restaurant', newRestaurant.payload['id'])
-        // console.log('what is the new restaurant02', newRestaurant.restaurant)
-        // console.log('what is the new restaurant id', newRestaurant.id)
+        // console.log('what is the new restaurant', newRestaurant.payload['id'])
         // history.push(`/restaurants/${newRestaurant.id}`)
     }
 
@@ -64,7 +69,7 @@ export default function ListNewRestaurant() {
         <>
             <form className='create-new-restaurant'>
                 <div>List Your Business</div>
-                <div>
+                <div className='create-restaurant-container'>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
                     ))}
@@ -79,15 +84,17 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>Price Range</label>
-                    <input
-                        type='text'
-                        placeholder='Please enter the price_range here.'
-                        onChange={e => setPriceRange(e.target.value)}
-                        value={price_range}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
+                    <select className='create-res-input' onChange={e => setPriceRange(e.target.value)}>
+                        <option value={1} onClick={e => setPriceRange(e.target.value)}>$30 and under</option>
+                        <option value={2} onClick={e => setPriceRange(e.target.value)}> $31 to $50</option>
+                        <option value={3} onClick={e => setPriceRange(e.target.value)}> $50 to $100</option>
+                        <option value={4} onClick={e => setPriceRange(e.target.value)}> $101 and over</option>
+                    </select>
+                </div >
+                <div>
                     <label>Address</label>
                     <input
                         type='text'
@@ -97,6 +104,8 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>City</label>
                     <input
                         type='text'
@@ -106,6 +115,8 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>State</label>
                     <input
                         type='text'
@@ -115,6 +126,8 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>Zip Code</label>
                     <input
                         type='text'
@@ -124,15 +137,19 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>Description</label>
                     <input
                         type='textarea'
                         placeholder='Please enter the description here.'
                         onChange={e => setDescription(e.target.value)}
                         value={description}
-                        maxLength={30}
+                        maxLength={300}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>Capacity</label>
                     <input
                         type='text'
@@ -142,6 +159,8 @@ export default function ListNewRestaurant() {
                         max={200}
                         className='create-res-input'
                     ></input>
+                </div>
+                <div>
                     <label>Cuisine</label>
                     <input
                         type='text'
@@ -151,11 +170,38 @@ export default function ListNewRestaurant() {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
-                    {/* <label>open_at</label>
-                    <label>close_at</label> */}
-                    <button onClick={handleSubmit}>Submit</button>
                 </div>
-            </form>
+                <div>
+                    <label>Business Hours: Open At</label>
+                    <input
+                        type='time'
+                        onChange={e => setOpenTime(e.target.value)}
+                        value={open_time}
+                        className='create-res-input'
+                    ></input>
+                </div>
+                <div>
+                    <label>Business Hours: Close At</label>
+                    <input
+                        type='time'
+                        onChange={e => setCloseTime(e.target.value)}
+                        value={close_time}
+                        className='create-res-input'
+                    ></input>
+                </div>
+                <div>
+                    <label>Cove Picture</label>
+                    <input
+                        type='text'
+                        placeholder='Please add the cover picture link here.'
+                        onChange={e => setCover(e.target.value)}
+                        value={cover}
+                        maxLength={300}
+                        className='create-res-input'
+                    ></input>
+                </div>
+                <button onClick={handleSubmit}>Submit</button>
+            </form >
         </>
 
     )
