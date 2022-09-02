@@ -4,6 +4,7 @@ from sqlalchemy.orm import joinedload, Load, subqueryload
 from app.models import db, Restaurant
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
+import time
 from .auth_routes import validation_errors_to_error_messages
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -56,14 +57,17 @@ def restaurant_create():
             zip_code = form.data['zip_code'],
             description = form.data['description'],
             capacity = form.data['capacity'],
-            # open_time = datetime.strptime('08:00',"%H:%M").time(),
-            # close_time = datetime.strptime('12:00',"%H:%M").time(),
+            # open_time = datetime.strptime(form.data['open_time'],"%H:%M").time(), 12:00 ==> 12:00:00:000000
+            # close_time = datetime.strptime(form.data['close_time'],"%H:%M").time(),
             open_time = form.data['open_time'],
             close_time = form.data['close_time'],
             cuisine = form.data['cuisine'],
             cover = form.data['cover'],
             owner_id = current_user.id
         )
+        # print('open time backend --',form.data['open_time'])
+        # print('close time backend --',form.data['close_time'])
+        # print('demo time --',datetime.strptime('08:00',"%H:%M").time())
         db.session.add(restaurant)
         db.session.commit()
         return restaurant.to_dict()

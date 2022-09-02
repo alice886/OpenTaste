@@ -1,15 +1,18 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { removeRestaurantThunk } from "../../store/restaurant";
 import './deleteConfirmation.css'
 
-export default function DeleteRestaurant ({ setShowDelete, resId , setShowModal}) {
+export default function DeleteRestaurant({ setShowDelete, resId, setShowModal }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const handleDelete = async e => {
         e.preventDefault()
         await dispatch(removeRestaurantThunk(resId))
         setShowDelete(false)
         setShowModal(false)
+        history.push('/myrestaurants')
         console.log('delete modal , id is ', resId)
     }
 

@@ -27,7 +27,7 @@ function Home() {
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <div className='home-res-cover'>
-                            <img src={restaurant.cover} alt='restaurant img' />
+                            <img src={restaurant.cover} alt='restaurant img' height={'200px'}/>
                         </div>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>🧂{restaurant.cuisine}</div>

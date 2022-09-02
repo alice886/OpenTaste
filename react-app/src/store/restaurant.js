@@ -86,8 +86,11 @@ export const createRestaurantThunk = restaurant => async dispatch => {
     if (response.ok) {
         const newRestaurant = await response.json();
         dispatch(createARestaurant(newRestaurant));
+        return newRestaurant;
     } else {
         const data = await response.json();
+        // console.log('what is the matter -01', data)
+        // console.log('what is the matter -02', data.errors)
         return data.errors;
     }
 }
@@ -104,6 +107,7 @@ export const editRestaurantThunk = restaurant => async dispatch => {
     if (response.ok) {
         const editRestaurant = await response.json();
         dispatch(editARestaurant(editRestaurant));
+        return editRestaurant;
     } else {
         const data = await response.json();
         return data.errors;
@@ -121,11 +125,11 @@ export const removeRestaurantThunk = (id) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(removeARestaurant(id));
-        console.log('ok',id)
+        console.log('ok', id)
         return data;
     } else {
         const data = await response.json();
-        console.log('not ok',data)
+        console.log('not ok', data)
         return data.errors;
     }
 }
@@ -150,8 +154,7 @@ const restaurantReducer = (state = {}, action) => {
             return newState;
         }
         case EDIT_RESTAURANT: {
-            const newState = { ...state, [action.payload.id]: action.payload }
-            return newState;
+            return { ...state, [action.payload.id]: action.payload };
         }
         case DELETE_RESTAURANT: {
             const newState = { ...state }
