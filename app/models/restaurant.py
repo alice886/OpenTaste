@@ -21,6 +21,7 @@ class Restaurant(db.Model, UserMixin):
     open_time = db.Column(db.Time, nullable=False)
     close_time = db.Column(db.Time, nullable=False)
     cuisine = db.Column(db.String(20), nullable=False)
+    cover = db.Column(db.String(300), nullable=False)
 
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
 
@@ -48,5 +49,6 @@ class Restaurant(db.Model, UserMixin):
             'open_time':self.open_time.strftime('%H:%M'),
             'close_time':self.close_time.strftime('%H:%M'),
             'cuisine':self.cuisine,
+            'cover':self.cover,
             'owner_id': self.owner_id,
         }

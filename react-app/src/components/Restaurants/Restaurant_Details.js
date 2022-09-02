@@ -13,8 +13,8 @@ function RestaurantDetails() {
         dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
     }, [dispatch])
 
-    console.log('therestaurant print --1', restaurantId)
-    console.log('therestaurant print --2', therestaurant)
+    console.log('therestaurant id is --', restaurantId)
+    console.log('therestaurant detail is --', therestaurant)
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
 
@@ -24,10 +24,10 @@ function RestaurantDetails() {
             <div className='res-left-info'>
                 <div>price_range: {therestaurant.price_range}</div>
                 <div>cuisine: {therestaurant.cuisine}</div>
-                <div>reviews: {therestaurant.reviews}</div>
-                <div>star: {therestaurant.star}</div>
+                <div>reviews: -- {therestaurant.reviews}</div>
+                <div>star: -- {therestaurant.star}</div>
             </div>
-            <div className='res-left-des'>{therestaurant.description}</div>
+            <div className='res-left-des'>description: {therestaurant.description}</div>
             <div className='res-right-info'>
                 <div>address:{therestaurant.address}</div>
                 <div>city:{therestaurant.city}</div>

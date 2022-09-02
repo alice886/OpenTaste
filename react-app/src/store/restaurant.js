@@ -44,6 +44,21 @@ export const getAllRestaurantThunk = () => async dispatch => {
     }
 }
 
+export const getMyRestaurantThunk = () => async dispatch => {
+    const response = await fetch('/api/users/myrestaurants', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        const allMyRestaurant = await response.json();
+        dispatch(getAllRestaurant(allMyRestaurant));
+    } else {
+        const data = await response.json();
+        return data.errors;
+    }
+}
+
 export const getRestaurantDetailThunk = id => async dispatch => {
     const response = await fetch(`/api/restaurants/${id}`, {
         headers: {
@@ -106,9 +121,11 @@ export const removeRestaurantThunk = (id) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(removeARestaurant(id));
+        console.log('ok',id)
         return data;
     } else {
         const data = await response.json();
+        console.log('not ok',data)
         return data.errors;
     }
 }
@@ -123,11 +140,13 @@ const restaurantReducer = (state = {}, action) => {
         }
         case GET_ONERESTAURANT: {
             const newState = {};
-            newState.restaurant= action.payload
+            newState.restaurant = action.payload
             return newState;
         }
         case POST_RESTAURANT: {
-            const newState = { ...action.payload, [action.payload.id]: action.payload }
+            // const newState = { ...action.payload, [action.payload.id]: action.payload }
+            const newState = { ...state }
+            newState[action.payload.id] = action.payload
             return newState;
         }
         case EDIT_RESTAURANT: {

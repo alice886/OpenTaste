@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
+import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
+import MyRestaurants from './components/MyProfile/My_Restaurants'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -13,6 +13,8 @@ import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [showLogin, setShowLogin] = useState(false)
+  const [showSignup, setShowSignUp] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,19 +30,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar/>
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path='/' exact={true}>
+          <Home />
         </Route>
         <Route path='/restaurants/:restaurantId' >
           <RestaurantDetails />
         </Route>
-        <Route path='/' exact={true}>
-          <Home />
+        <Route path='/listnewrestaurant' >
+          <ListNewRestaurant />
+        </Route>
+        <Route path='/myrestaurants' >
+          <MyRestaurants />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from sqlalchemy.orm import joinedload, Load
+from sqlalchemy.orm import joinedload, Load, subqueryload
 from app.models import db, Restaurant
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
@@ -28,11 +28,15 @@ def all_restaurants():
 
 @restaurant_routes.route('/<int:id>',methods=['GET'])
 def restaurant_details(id):
-    # restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).filter(Restaurant.id == id).all()
-    # restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).filter_by(Restaurant.id=id).all()
-    restaurant = Restaurant.query.options(joinedload(Restaurant.images)).get(id)
+    restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).get(id) #this worked
     if restaurant is not None:
-        return  restaurant.to_dict()
+        # restaurant_details = []
+        # images = restaurant['images'].to_dict()
+        # restaurant = restaurant.to_dict()
+        # restaurant['images']=images
+        # restaurant_details.append(restaurant)
+        # return  restaurant_details
+        return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
 
@@ -52,9 +56,12 @@ def restaurant_create():
             zip_code = form.data['zip_code'],
             description = form.data['description'],
             capacity = form.data['capacity'],
-            open_time = datetime.strptime('08:00',"%H:%M").time(),
-            close_time = datetime.strptime('12:00',"%H:%M").time(),
+            # open_time = datetime.strptime('08:00',"%H:%M").time(),
+            # close_time = datetime.strptime('12:00',"%H:%M").time(),
+            open_time = form.data['open_time'],
+            close_time = form.data['close_time'],
             cuisine = form.data['cuisine'],
+            cover = form.data['cover'],
             owner_id = current_user.id
         )
         db.session.add(restaurant)

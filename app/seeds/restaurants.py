@@ -16,6 +16,7 @@ def seed_restaurants():
         open_time=datetime.strptime('12:00',"%H:%M").time(),
         close_time=datetime.strptime('20:00',"%H:%M").time(),
         cuisine='Italian',
+        cover='https://secdn.azureedge.net/-/media/tomatina/images/content/locations/location-walnutcreek.ashx',
         capacity=80,
         )
 
@@ -31,6 +32,7 @@ def seed_restaurants():
         open_time=datetime.strptime('12:00',"%H:%M").time(),
         close_time=datetime.strptime('22:00',"%H:%M").time(),
         cuisine='Filipino',
+        cover='https://images.otstatic.com/prod1/29407152/1/huge.jpg',
         capacity=80,
         )
 
@@ -46,6 +48,7 @@ def seed_restaurants():
         open_time=datetime.strptime('17:30',"%H:%M").time(),
         close_time=datetime.strptime('22:30',"%H:%M").time(),
         cuisine='Japanese',
+        cover='http://d20aeo683mqd6t.cloudfront.net/articles/title_images/000/034/440/medium/grilled-chicken-yakitori-japan.jpg?2020',
         capacity=60,
         )
         
@@ -61,6 +64,7 @@ def seed_restaurants():
         open_time=datetime.strptime('17:00',"%H:%M").time(),
         close_time=datetime.strptime('21:00',"%H:%M").time(),
         cuisine='Continental',
+        cover='https://images.squarespace-cdn.com/content/v1/5c775eb2e8ba44133a189651/1563183445551-T5MW50BV4BN6V1NXF87H/DR_Detail.jpg?format=2500w',
         capacity=80,
         )
 
@@ -76,6 +80,7 @@ def seed_restaurants():
         open_time=datetime.strptime('17:30',"%H:%M").time(),
         close_time=datetime.strptime('20:30',"%H:%M").time(),
         cuisine='French',
+        cover='https://resizer.otstatic.com/v2/photos/wide-huge/1/28411463.jpg',
         capacity=60,
         )
 
