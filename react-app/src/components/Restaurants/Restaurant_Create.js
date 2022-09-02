@@ -53,7 +53,10 @@ export default function ListNewRestaurant() {
             cuisine,
         }
         const newRestaurant = await dispatch(createRestaurantThunk(payload));
-        history.push(`/restaurants/${newRestaurant.id}`)
+        console.log('what is the new restaurant', newRestaurant.payload['id'])
+        // console.log('what is the new restaurant02', newRestaurant.restaurant)
+        // console.log('what is the new restaurant id', newRestaurant.id)
+        // history.push(`/restaurants/${newRestaurant.id}`)
     }
 
 

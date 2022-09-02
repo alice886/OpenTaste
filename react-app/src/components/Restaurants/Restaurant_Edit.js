@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
+import DeleteRestaurant from '../DeleteRestaurant/Delete_Modal'
 import { getRestaurantDetailThunk, editRestaurantThunk } from '../../store/restaurant'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
@@ -19,6 +20,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [errors, setErrors] = useState([])
     const [isDisabled, setIsDisabled] = useState(true)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [showDelete, setShowDelete] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const theRestaurant = useSelector(state => state.restaurant.restaurant)
 
@@ -67,12 +69,19 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         setShowModal(false);
     }
 
+    const handleDelete = async e => {
+        e.preventDefault();
+        setShowDelete(true)
+    }
+    console.log('what to pass in prop', resId)
 
     return sessionUser && isLoaded && (
         <>
             <div>Edit Your Business</div>
             <form className='edit-restaurant'>
                 <button onClick={handleBack}>X</button>
+                <button onClick={handleDelete}>Delete The Restaurant</button>
+                {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} /></Modal>}
                 <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
@@ -80,7 +89,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 </div>
                 <div>
                     <label>Name</label>
-                    <label>{theRestaurant.name}</label>
+                    <label>{theRestaurant?.name}</label>
                     <input
                         type='text'
                         placeholder='Please update the name here.'
@@ -90,7 +99,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Price Range</label>
-                    <label>{theRestaurant.price_range}</label>
+                    <label>{theRestaurant?.price_range}</label>
                     <input
                         type='text'
                         placeholder='Please update the price_range here.'
@@ -100,7 +109,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Address</label>
-                    <label>{theRestaurant.address}</label>
+                    <label>{theRestaurant?.address}</label>
                     <input
                         type='text'
                         placeholder='Please update the address here.'
@@ -110,7 +119,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>City</label>
-                    <label>{theRestaurant.city}</label>
+                    <label>{theRestaurant?.city}</label>
                     <input
                         type='text'
                         placeholder='Please update the city here.'
@@ -120,7 +129,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>State</label>
-                    <label>{theRestaurant.state}</label>
+                    <label>{theRestaurant?.state}</label>
                     <input
                         type='text'
                         placeholder='Please update the state here.'
@@ -130,7 +139,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Zip Code</label>
-                    <label>{theRestaurant.zip_code}</label>
+                    <label>{theRestaurant?.zip_code}</label>
                     <input
                         type='text'
                         placeholder='Please update the zip_code here.'
@@ -140,7 +149,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Description</label>
-                    <label>{theRestaurant.description}</label>
+                    <label>{theRestaurant?.description}</label>
                     <input
                         type='textarea'
                         placeholder='Please update the description here.'
@@ -150,7 +159,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Capacity</label>
-                    <label>{theRestaurant.capacity}</label>
+                    <label>{theRestaurant?.capacity}</label>
                     <input
                         type='text'
                         placeholder='Please update the capacity here.'
@@ -160,7 +169,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                     <label>Cuisine</label>
-                    <label>{theRestaurant.cuisine}</label>
+                    <label>{theRestaurant?.cuisine}</label>
                     <input
                         type='text'
                         placeholder='Please update the cuisine here.'

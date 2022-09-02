@@ -15,7 +15,7 @@ export default function MyRestaurants() {
 
     useEffect(() => {
         dispatch(getMyRestaurantThunk()).then(() => setLoaded(true))
-    }, [dispatch])
+    }, [dispatch, showModal])
 
     // console.log('therestaurant id is --', restaurantId)
     // console.log('therestaurant detail is --', therestaurant)
@@ -32,7 +32,7 @@ export default function MyRestaurants() {
         <div>
             <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
             <div className='restaurants-container'>
-                <h3>Restaurants you listed ... </h3>
+                <h3>- My Restaurants -</h3>
                 {myrestaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>

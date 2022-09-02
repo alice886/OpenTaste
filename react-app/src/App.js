@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import Home from './components/Restaurants/Home';
-import { Modal } from './components/context/Modal';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
 import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
 import MyRestaurants from './components/MyProfile/My_Restaurants'
@@ -33,17 +30,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar/>
       <Switch>
-        <Route path='/login' exact={true}>
-          <Modal onClose={() => setShowLogin(false)}>
-            <LoginForm setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} />
-          </Modal>
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <Modal onClose={() => setShowSignUp(false)}>
-            <SignUpForm setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} />
-          </Modal>
+        <Route path='/' exact={true}>
+          <Home />
         </Route>
         <Route path='/restaurants/:restaurantId' >
           <RestaurantDetails />
@@ -53,9 +43,6 @@ function App() {
         </Route>
         <Route path='/myrestaurants' >
           <MyRestaurants />
-        </Route>
-        <Route path='/' exact={true}>
-          <Home />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
