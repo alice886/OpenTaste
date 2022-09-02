@@ -10,7 +10,7 @@ export default function MyRestaurants() {
     const dispatch = useDispatch();
     const myrestaurants = useSelector(state => state.restaurant.restaurants)
     const [loaded, setLoaded] = useState(false)
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState()
     const [resId, setResId] = useState()
 
     useEffect(() => {
@@ -22,16 +22,15 @@ export default function MyRestaurants() {
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
         e.preventDefault();
-        showModal ? setShowModal(false) : setShowModal(true)
-        setResId(id);
+        // showModal ? setShowModal(false) : setShowModal(true)
         setShowModal(true);
+        setResId(id);
     }
     console.log('click and valus is ', resId)
+    console.log('showmodal valus is ', showModal)
     return loaded && (
         <div>
             <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
-            <div className='your-res'>
-            </div>
             <div className='restaurants-container'>
                 <h3>Restaurants you listed ... </h3>
                 {myrestaurants?.map(restaurant => {
@@ -39,14 +38,13 @@ export default function MyRestaurants() {
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>📍{restaurant.city}, {restaurant.state} {restaurant.zip_code}</div>
                         <button onClick={(e) => handleEdit(e, restaurant.id)}>Edit Details</button>
-                        {/* {showModal && (<Modal>
-                            <EditRestaurant restaurantId={restaurant.id} />
-                        </Modal>)} */}
                     </div>
                 })
                 }
-                {showModal && (<EditRestaurant resId={resId} />)}
             </div>
+            {showModal && (<Modal onClose={() => setShowModal(false)}>
+                <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
+            </Modal>)}
 
         </div >
     )

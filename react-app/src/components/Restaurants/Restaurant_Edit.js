@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { Modal } from '../context/Modal'
 import { getRestaurantDetailThunk, editRestaurantThunk } from '../../store/restaurant'
 
-export default function EditRestaurant({ resId }) {
+export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState();
@@ -61,11 +62,17 @@ export default function EditRestaurant({ resId }) {
         history.push(`/myrestaurants`)
     }
 
+    const handleBack = async e => {
+        e.preventDefault();
+        setShowModal(false);
+    }
+
 
     return sessionUser && isLoaded && (
         <>
+            <div>Edit Your Business</div>
             <form className='edit-restaurant'>
-                <div>Edit Your Business</div>
+                <button onClick={handleBack}>X</button>
                 <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
@@ -162,8 +169,6 @@ export default function EditRestaurant({ resId }) {
                         maxLength={30}
                         className='create-res-input'
                     ></input>
-                    {/* <label>open_at</label>
-                    <label>close_at</label> */}
                     <button onClick={handleSubmit}>Submit</button>
                 </div>
             </form>
