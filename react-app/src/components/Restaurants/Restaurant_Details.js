@@ -25,25 +25,25 @@ function RestaurantDetails() {
         setShowModal(true);
     }
 
+    const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
+
     return loaded && (
         <div className='res-left-container'>
             <div className='res-left-name'>{therestaurant.name}</div>
-                <img src={therestaurant.cover} height={'500px'}/>
+            <img src={therestaurant.cover} height={'500px'} />
             <div className='res-left-info'>
-                <div>price_range: {therestaurant.price_range}</div>
-                <div>cuisine: {therestaurant.cuisine}</div>
-                <div>reviews: -- {therestaurant.reviews}</div>
-                <div>star: -- {therestaurant.star}</div>
+                <div>Price range: {dollarSigns[therestaurant.price_range]}</div>
+                <div>Cuisine: {therestaurant.cuisine}</div>
             </div>
             <div className='res-left-des'>description: {therestaurant.description}</div>
             <div className='res-right-info'>
-                <div>address:{therestaurant.address}</div>
-                <div>city:{therestaurant.city}</div>
-                <div>state:{therestaurant.state}</div>
-                <div>zip_code:{therestaurant.zip_code}</div>
-                <div>capacity:{therestaurant.capacity}</div>
-                <div>open_time:{therestaurant.open_time}</div>
-                <div>close_time:{therestaurant.close_time}</div>
+                <div>Address:{therestaurant.address}</div>
+                <div>City:{therestaurant.city}</div>
+                <div>State:{therestaurant.state}</div>
+                <div>Zip code:{therestaurant.zip_code}</div>
+                <div>Capacity:{therestaurant.capacity}</div>
+                <div>Open at:{therestaurant.open_time}</div>
+                <div>Close at:{therestaurant.close_time}</div>
             </div>
             {therestaurant.owner_id == sessionUser?.id && (
                 <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
