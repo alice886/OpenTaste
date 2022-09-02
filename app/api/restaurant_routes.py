@@ -56,9 +56,12 @@ def restaurant_create():
             zip_code = form.data['zip_code'],
             description = form.data['description'],
             capacity = form.data['capacity'],
-            open_time = datetime.strptime('08:00',"%H:%M").time(),
-            close_time = datetime.strptime('12:00',"%H:%M").time(),
+            # open_time = datetime.strptime('08:00',"%H:%M").time(),
+            # close_time = datetime.strptime('12:00',"%H:%M").time(),
+            open_time = form.data['open_time'],
+            close_time = form.data['close_time'],
             cuisine = form.data['cuisine'],
+            cover = form.data['cover'],
             owner_id = current_user.id
         )
         db.session.add(restaurant)

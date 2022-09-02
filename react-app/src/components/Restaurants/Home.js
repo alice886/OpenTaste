@@ -26,6 +26,9 @@ function Home() {
                 <h3>Browse restaurants on OpenTaste ... </h3>
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
+                        <div className='home-res-cover'>
+                            <img src={restaurant.cover} alt='restaurant img' />
+                        </div>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>🧂{restaurant.cuisine}</div>
                         <div>📍{restaurant.city} {restaurant.zip_code}</div>
