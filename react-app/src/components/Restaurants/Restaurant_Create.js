@@ -41,43 +41,48 @@ export default function ListNewRestaurant() {
 
     const newErrors = [];
 
+    const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
 
     useEffect(() => {
-        // if (!sessionUser) {
-        //     newErrors.push('Please log in')
-        // }
-        if (name === undefined) {
-            newErrors.push('* Please enter the name of your restaurant.')
-        }
-        if (price_range === undefined) {
-            newErrors.push('* Please select a Price Range.')
-        }
-        if (address === undefined || city === undefined || state === undefined) {
-            newErrors.push('* Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
-        }
-        if (zip_code === undefined || zip_code > 99999 || zip_code < 10000 || (typeof zip_code !== 'integer')) {
-            newErrors.push('* Please enter valid 5 digits zip code')
-        }
-        if (description && description.length > 500) {
-            newErrors.push('* You may only enter descriptions in 500 character.')
-        }
-        if (capacity === undefined) {
-            newErrors.push('* Please select a capacity for your restaurant.')
-        }
-        if (cuisine === undefined) {
-            newErrors.push('* Please select a cuisine type for your restaurant.')
-        }
-        if (cover === undefined) {
-            newErrors.push('* Please upload a valid cover picture for your restaurant.')
-            newErrors.push('* Horizontal picture is recommended.')
-        }
-        if (open_time === undefined || close_time) {
-            newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
+        if (!sessionUser) {
+            newErrors.push('Please log in')
+        } else {
+            if (name === undefined) {
+                newErrors.push('* Please enter the name of your restaurant.')
+            }
+            if (price_range === undefined) {
+                newErrors.push('* Please select a Price Range.')
+            }
+            if (address === undefined || city === undefined || state === undefined) {
+                newErrors.push('* Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
+            }
+            if (!zip_code?.match(zipcodeRegex)) {
+                newErrors.push('* Please enter valid 5 digits zip code')
+            }
+            if (description && description.length > 500) {
+                newErrors.push('* You may only enter descriptions in 500 character.')
+            }
+            if (capacity === undefined) {
+                newErrors.push('* Please select a capacity for your restaurant.')
+            }
+            if (cuisine === undefined) {
+                newErrors.push('* Please select a cuisine type for your restaurant.')
+            }
+            if (cover === undefined || !cover?.match(coverRegex)) {
+                newErrors.push('* Please upload a valid cover picture for your restaurant.')
+                newErrors.push('* Horizontal picture is recommended.')
+            }
+            if (open_time === undefined || close_time === undefined) {
+                newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
+            }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, name, price_range, address, city, state, zip_code, description?.length, capacity, cuisine, cover, open_time, close_time, dispatch])
+    }, [errors.length, newErrors.length, name, price_range,
+        address, city, state, zip_code, description?.length,
+        capacity, cuisine, cover, open_time, close_time])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -109,7 +114,8 @@ export default function ListNewRestaurant() {
     console.log(name)
     console.log(price_range)
     console.log(capacity)
-    console.log(cuisine)
+    console.log('open time', open_time)
+    console.log('type of zip', typeof zip_code)
 
     return sessionUser && (
         <>
@@ -193,7 +199,7 @@ export default function ListNewRestaurant() {
                     <div className='right-create'>
                         <div>
                             <label>Capacity</label>
-                            <select  className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
+                            <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
                                 <option value={''} selected disabled hidden>Please select the capacity</option>
                                 {capacity_count.map(each => (
                                     <option value={each} >{each}  people</option>
@@ -246,11 +252,12 @@ export default function ListNewRestaurant() {
                             <label>Description</label>
                             <input
                                 type='textarea'
-                                placeholder='Please enter the description here.'
+                                placeholder='Please enter the description here. &#10; You may leave this field empty.'
                                 onChange={e => setDescription(e.target.value)}
                                 value={description}
                                 maxLength={300}
                                 className='create-res-input'
+                                height={'300px'}
                             ></input>
                         </div>
                     </div>
