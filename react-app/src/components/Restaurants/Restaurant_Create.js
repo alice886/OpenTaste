@@ -30,46 +30,54 @@ export default function ListNewRestaurant() {
         'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
         'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
+    const capacity_count = []
+    for (let i = 10; i < 301; i += 10) {
+        capacity_count.push(i)
+    }
+
+    const cuisine_count = ['American', 'Italian', 'Steakhouse', 'Seafood', 'French', 'Indian', 'Mexico',
+        'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
+        'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese']
+
     const newErrors = [];
 
+
     useEffect(() => {
-        if (!sessionUser) {
-            newErrors.push('Please log in')
+        // if (!sessionUser) {
+        //     newErrors.push('Please log in')
+        // }
+        if (name === undefined) {
+            newErrors.push('* Please enter the name of your restaurant.')
         }
-        else {
-            if (name == undefined) {
-                newErrors.push('* Please enter the name of your restaurant.')
-            }
-            if (price_range == undefined) {
-                newErrors.push('* Please select a Price Range.')
-            }
-            if (address == undefined || city == undefined || state == undefined) {
-                newErrors.push('* Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
-            }
-            if (zip_code == undefined || zip_code > 99999 || zip_code < 10000) {
-                newErrors.push('* Please enter valid 5 digits zip code')
-            }
-            if (description && description.length > 500) {
-                newErrors.push('* You may only enter descriptions in 500 character.')
-            }
-            if (capacity == undefined) {
-                newErrors.push('* Please select a capacity for your restaurant.')
-            }
-            if (cuisine == undefined) {
-                newErrors.push('* Please select a cuisine type for your restaurant.')
-            }
-            if (cover == undefined) {
-                newErrors.push('* Please upload a valid cover picture for your restaurant.')
-                newErrors.push('* Horizontal picture is recommended.')
-            }
-            if (open_time == undefined || close_time) {
-                newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
-            }
+        if (price_range === undefined) {
+            newErrors.push('* Please select a Price Range.')
+        }
+        if (address === undefined || city === undefined || state === undefined) {
+            newErrors.push('* Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
+        }
+        if (zip_code === undefined || zip_code > 99999 || zip_code < 10000 || (typeof zip_code !== 'integer')) {
+            newErrors.push('* Please enter valid 5 digits zip code')
+        }
+        if (description && description.length > 500) {
+            newErrors.push('* You may only enter descriptions in 500 character.')
+        }
+        if (capacity === undefined) {
+            newErrors.push('* Please select a capacity for your restaurant.')
+        }
+        if (cuisine === undefined) {
+            newErrors.push('* Please select a cuisine type for your restaurant.')
+        }
+        if (cover === undefined) {
+            newErrors.push('* Please upload a valid cover picture for your restaurant.')
+            newErrors.push('* Horizontal picture is recommended.')
+        }
+        if (open_time === undefined || close_time) {
+            newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, isDisabled])
+    }, [errors.length, newErrors.length, name, price_range, address, city, state, zip_code, description?.length, capacity, cuisine, cover, open_time, close_time, dispatch])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -98,7 +106,10 @@ export default function ListNewRestaurant() {
             setIsDisabled(true)
         }
     }
-
+    console.log(name)
+    console.log(price_range)
+    console.log(capacity)
+    console.log(cuisine)
 
     return sessionUser && (
         <>
@@ -126,11 +137,11 @@ export default function ListNewRestaurant() {
                         <div>
                             <label>Price Range</label>
                             <select className='create-res-input' onChange={e => setPriceRange(e.target.value)} required>
-                                <option value={''} selected disabled hidden> pick a price range here </option>
-                                <option value={1} onClick={e => setPriceRange(e.target.value)}>$30 and under</option>
-                                <option value={2} onClick={e => setPriceRange(e.target.value)}> $31 to $50</option>
-                                <option value={3} onClick={e => setPriceRange(e.target.value)}> $50 to $100</option>
-                                <option value={4} onClick={e => setPriceRange(e.target.value)}> $101 and over</option>
+                                <option value={''} selected disabled hidden> Choose a price range </option>
+                                <option value={1} >$30 and under</option>
+                                <option value={2} > $31 to $50</option>
+                                <option value={3} > $50 to $100</option>
+                                <option value={4} > $101 and over</option>
                             </select>
                         </div >
                         <div>
@@ -159,10 +170,10 @@ export default function ListNewRestaurant() {
                         </div>
                         <div>
                             <label>State</label>
-                            <select className='create-res-input' required>
-                                <option value={''} disabled >Please choose the state here</option>
+                            <select className='create-res-input' onChange={e => setState(e.target.value)} required >
+                                <option value={''} selected disabled hidden>Choose the state</option>
                                 {states.map(state => (
-                                    <option onClick={e => setState(e.target.value)}>{state}</option>
+                                    <option value={state}>{state}</option>
                                 ))}
                             </select>
                         </div>
@@ -173,7 +184,7 @@ export default function ListNewRestaurant() {
                                 placeholder='Please enter the zip code here.'
                                 onChange={e => setZipCode(e.target.value)}
                                 value={zip_code}
-                                maxLength={30}
+                                maxLength={5}
                                 className='create-res-input'
                                 required
                             ></input>
@@ -182,27 +193,22 @@ export default function ListNewRestaurant() {
                     <div className='right-create'>
                         <div>
                             <label>Capacity</label>
-                            <input
-                                type='text'
-                                placeholder='Please enter the capacity here.'
-                                onChange={e => setCapacity(e.target.value)}
-                                value={capacity}
-                                max={200}
-                                className='create-res-input'
-                                required
-                            ></input>
+                            <select  className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
+                                <option value={''} selected disabled hidden>Please select the capacity</option>
+                                {capacity_count.map(each => (
+                                    <option value={each} >{each}  people</option>
+                                ))}
+                                <option value={999} >300 + people</option>
+                            </select>
                         </div>
                         <div>
                             <label>Cuisine</label>
-                            <input
-                                type='text'
-                                placeholder='Please enter the cuisine here.'
-                                onChange={e => setCuisine(e.target.value)}
-                                value={cuisine}
-                                maxLength={30}
-                                className='create-res-input'
-                                required
-                            ></input>
+                            <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
+                                <option value={''} selected disabled hidden>Please select the cuisine</option>
+                                {cuisine_count.map(each => (
+                                    <option value={each} >{each}</option>
+                                ))}
+                            </select>
                         </div>
                         <div>
                             <label>Business Hours: Open At</label>

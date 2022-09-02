@@ -28,7 +28,7 @@ class RestaurantForm(FlaskForm):
     state = StringField('state',validators=[validate_string,DataRequired(),Length(min=2,max=20)])
     zip_code = IntegerField('zip_code',validators=[validate_integer,DataRequired(),NumberRange(min=10000,max=99999)])
     description = TextAreaField('description',validators=[Length(max=500)])
-    capacity = IntegerField('capacity',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=300)])
+    capacity = IntegerField('capacity',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=999)])
     open_time = StringField('open_time',validators=[validate_string, DataRequired()])
     close_time = StringField('close_time',validators=[validate_string, DataRequired()])
     cuisine = StringField('cuisine',validators=[validate_string,DataRequired(),Length(min=1,max=20)])
