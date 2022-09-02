@@ -28,6 +28,7 @@ function RestaurantDetails() {
     return loaded && (
         <div className='res-left-container'>
             <div className='res-left-name'>{therestaurant.name}</div>
+                <img src={therestaurant.cover} height={'500px'}/>
             <div className='res-left-info'>
                 <div>price_range: {therestaurant.price_range}</div>
                 <div>cuisine: {therestaurant.cuisine}</div>
@@ -48,7 +49,7 @@ function RestaurantDetails() {
                 <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
             )}
             {showModal && (<Modal onClose={() => setShowModal(false)}>
-nt.id} showModal={showModal} setShowModal={setShowModal} />
+                <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
         </div>
     )

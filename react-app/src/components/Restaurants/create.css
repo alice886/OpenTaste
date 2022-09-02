@@ -1,4 +1,4 @@
-div .create-new-restaurant>div {
+.create-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,4 +15,11 @@ input .create-res-input {
 #root>form>div>input {
     width: 350px;
     height: 20px;
+}
+
+
+.create-new-restaurant {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
 }

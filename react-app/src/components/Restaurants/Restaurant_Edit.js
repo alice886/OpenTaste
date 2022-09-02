@@ -71,7 +71,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         const newRestaurant = await dispatch(editRestaurantThunk(payload));
         console.log('what the newres', newRestaurant)
         history.push(`/restaurants/${newRestaurant?.id}`)
-        // setShowModal(false)
+        setShowModal(false)
     }
 
     const handleBack = async e => {
