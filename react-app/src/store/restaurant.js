@@ -44,6 +44,21 @@ export const getAllRestaurantThunk = () => async dispatch => {
     }
 }
 
+export const getMyRestaurantThunk = () => async dispatch => {
+    const response = await fetch('/api/users/myrestaurants', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        const allMyRestaurant = await response.json();
+        dispatch(getAllRestaurant(allMyRestaurant));
+    } else {
+        const data = await response.json();
+        return data.errors;
+    }
+}
+
 export const getRestaurantDetailThunk = id => async dispatch => {
     const response = await fetch(`/api/restaurants/${id}`, {
         headers: {

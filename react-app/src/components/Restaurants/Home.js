@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getAllRestaurantThunk } from '../../store/restaurant';
-import ListNewRestaurant from './Restaurant_Create'
 
 function Home() {
     const dispatch = useDispatch();
@@ -17,20 +16,26 @@ function Home() {
 
     return loaded && (
         <div>
+            <NavLink to='/listnewrestaurant'> List Your Restaurant</NavLink>
+            <br></br>
+            <NavLink to='/myrestaurants'> My Restaurants</NavLink>
             <div className='find-your-table'>
                 <h2>Find your table for any occasion</h2>
             </div>
             <div className='restaurants-container'>
-                <h3>Available for you ... </h3>
+                <h3>Browse restaurants on OpenTaste ... </h3>
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>🧂{restaurant.cuisine}</div>
+                        <div>📍{restaurant.city} {restaurant.zip_code}</div>
+                        <button>18:00</button>
+                        <button>18:30</button>
+                        <button>19:00</button>
                     </div>
                 })
                 }
             </div>
-            <ListNewRestaurant />
 
         </div>
     )

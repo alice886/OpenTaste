@@ -6,6 +6,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
+import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
+import MyRestaurants from './components/MyProfile/My_Restaurants'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -38,6 +40,12 @@ function App() {
         </Route>
         <Route path='/restaurants/:restaurantId' >
           <RestaurantDetails />
+        </Route>
+        <Route path='/listnewrestaurant' >
+          <ListNewRestaurant />
+        </Route>
+        <Route path='/myrestaurants' >
+          <MyRestaurants />
         </Route>
         <Route path='/' exact={true}>
           <Home />
