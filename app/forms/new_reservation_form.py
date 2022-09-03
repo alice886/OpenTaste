@@ -21,10 +21,15 @@ class ReservationForm(FlaskForm):
         if field.data and field.data != int(field.data):
             raise StopValidation('This input must be an integer.')
 
-    user_id = IntegerField('user_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
+    def validate_length(form,field):
+        if len(field.data) != 6:
+            raise StopValidation('This confirmation number should be 6 digit.')
+
     party_size = IntegerField('party_size',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
-    date = DateField('date',validators[DataRequired()])
+    reserve_date = DateField('reserve_date',validators=[DataRequired()])
     reserve_time = TimeField('reserve_time',validators=[DataRequired()])
     occasion = StringField('occasion',validators=[validate_string,Length(min=1,max=30)])
     special_request = StringField('state',validators=[validate_string,Length(min=1,max=200)])
-    confirmation_number = TextAreaField('description',validators=[Length(max=500)])
+    user_id = IntegerField('user_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
+    restaurant_id = IntegerField('restaurant_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
+    confirmation_number = StringField('description',validators=[DataRequired()])

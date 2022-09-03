@@ -57,6 +57,7 @@ def restaurant_create():
             zip_code = form.data['zip_code'],
             description = form.data['description'],
             capacity = form.data['capacity'],
+            availability = form.data['capacity'],
             # open_time = datetime.strptime(form.data['open_time'],"%H:%M").time(), 12:00 ==> 12:00:00:000000
             # close_time = datetime.strptime(form.data['close_time'],"%H:%M").time(),
             open_time = form.data['open_time'],

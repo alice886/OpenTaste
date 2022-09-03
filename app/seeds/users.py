@@ -14,7 +14,11 @@ def seed_users():
     remi = User(
         username='remi', first_name='Remi',last_name='H',email='remi@aa.io', password='password')
     jiu = User(
-        username='99j',first_name='jiujiu',last_name='Z', email='99j@aa.io', password='password')
+        username='99',first_name='jiujiu',last_name='Z', email='99@aa.io', password='password')
+    grace = User(
+        username='grace',first_name='grace',last_name='C', email='grace@aa.io', password='password')
+    alice = User(
+        username='alice',first_name='alice',last_name='L', email='alice@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
@@ -22,6 +26,8 @@ def seed_users():
     db.session.add(lucas)
     db.session.add(remi)
     db.session.add(jiu)
+    db.session.add(grace)
+    db.session.add(alice)
 
     db.session.commit()
 
