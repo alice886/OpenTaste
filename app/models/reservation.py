@@ -14,7 +14,7 @@ class Reservation(db.Model, UserMixin):
     occasion = db.Column(db.String(20))
     special_request = db.Column(db.String(200))
     created_at = db.Column(db.DateTime, nullable=False)
-    confirmation_number = db.Column(db.String(6), nullable=False)
+    # confirmation_number = db.Column(db.String(6), nullable=False)
 
     user_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)
@@ -35,7 +35,7 @@ class Reservation(db.Model, UserMixin):
             'occasion':self.occasion,
             'special_request':self.special_request,
             'created_at':self.created_at,
-            'confirmation_number':self.confirmation_number,
+            # 'confirmation_number':self.confirmation_number,
             'user_id':self.user_id,
             'restaurant_id':self.restaurant_id,
         }

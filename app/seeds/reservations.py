@@ -14,7 +14,7 @@ def seed_reservations():
         occasion='Anniversary',
         special_request='Will the restaurant be able to provide a peony bouquet?',
         created_at=today,
-        confirmation_number='R1T3KX',
+        # confirmation_number='R1T3KX',
         user_id=2,
         restaurant_id=4,
         )
@@ -24,7 +24,7 @@ def seed_reservations():
         occasion='Family/Friend Gathering',
         special_request='Please call me at 888-999-0000 to confirm.',
         created_at=today,
-        confirmation_number='1AF9DI',
+        # confirmation_number='1AF9DI',
         user_id=5,
         restaurant_id=1,
         )
@@ -34,7 +34,7 @@ def seed_reservations():
         occasion='Birthday',
         special_request='Can I also place an order for a birthday cake for my mom? She likes red velvet chocolate lava with extra extra cocoa & cinnamon powder sprinkle on top!! And Could it be diary free and gluten free?',
         created_at=today,
-        confirmation_number='XXW7SG',
+        # confirmation_number='XXW7SG',
         user_id=4,
         restaurant_id=6,
         )
@@ -44,7 +44,7 @@ def seed_reservations():
         occasion='Business',
         special_request='My client has allergy to tree nuts and peanuts. Please make sure our meal is free the the aforementioned.',
         created_at=today,
-        confirmation_number='TFW9QR',
+        # confirmation_number='TFW9QR',
         user_id=3,
         restaurant_id=5,
         )
@@ -55,7 +55,7 @@ def seed_reservations():
         occasion='Celebration/Graduation',
         special_request='Can we get a large table for the 10 of us?',
         created_at=today,
-        confirmation_number='K9Y9RY',
+        # confirmation_number='K9Y9RY',
         user_id=1,
         restaurant_id=2,
         )

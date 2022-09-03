@@ -72,7 +72,7 @@ def upgrade():
     sa.Column('occasion', sa.String(length=20), nullable=True),
     sa.Column('special_request', sa.String(length=200), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('confirmation_number', sa.Integer(), nullable=False),
+    # sa.Column('confirmation_number', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
