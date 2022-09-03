@@ -130,10 +130,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 <div>
                     <label>Price Range</label>
                     <select className='create-res-input' onChange={e => setPriceRange(e.target.value)}>
-                        <option value={1} onClick={e => setPriceRange(e.target.value)}>$30 and under</option>
-                        <option value={2} onClick={e => setPriceRange(e.target.value)}> $31 to $50</option>
-                        <option value={3} onClick={e => setPriceRange(e.target.value)}> $50 to $100</option>
-                        <option value={4} onClick={e => setPriceRange(e.target.value)}> $101 and over</option>
+                        <option value={''} selected disabled hidden> Choose a price range </option>
+                        <option value={1} >$30 and under</option>
+                        <option value={2} > $31 to $50</option>
+                        <option value={3} > $50 to $100</option>
+                        <option value={4} > $101 and over</option>
                     </select>
                 </div>
                 <div>

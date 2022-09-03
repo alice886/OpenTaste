@@ -1,8 +1,8 @@
-"""test08
+"""test09
 
-Revision ID: f48aeebd0642
+Revision ID: 07d0df6c5285
 Revises: 
-Create Date: 2022-09-02 08:30:16.033711
+Create Date: 2022-09-03 00:04:35.706211
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f48aeebd0642'
+revision = '07d0df6c5285'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,6 +40,7 @@ def upgrade():
     sa.Column('zip_code', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('capacity', sa.Integer(), nullable=False),
+    sa.Column('availability', sa.Integer(), nullable=True),
     sa.Column('open_time', sa.String(length=5), nullable=False),
     sa.Column('close_time', sa.String(length=5), nullable=False),
     sa.Column('cuisine', sa.String(length=20), nullable=False),
@@ -67,8 +68,7 @@ def upgrade():
     op.create_table('reservations',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('party_size', sa.Integer(), nullable=False),
-    sa.Column('date', sa.Date(), nullable=False),
-    sa.Column('reserve_time', sa.DateTime(), nullable=False),
+    sa.Column('reserve_dattime', sa.DateTime(), nullable=False),
     sa.Column('occasion', sa.String(length=20), nullable=True),
     sa.Column('special_request', sa.String(length=200), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),

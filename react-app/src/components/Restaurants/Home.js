@@ -12,6 +12,8 @@ function Home() {
         dispatch(getAllRestaurantThunk()).then(() => setLoaded(true))
     }, [dispatch])
 
+    const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
+
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
     return loaded && (
@@ -30,8 +32,7 @@ function Home() {
                             <img src={restaurant.cover} alt='restaurant img' height={'200px'}/>
                         </div>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
-                        <div>🧂{restaurant.cuisine}</div>
-                        <div>📍{restaurant.city} {restaurant.zip_code}</div>
+                        <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                         <button>18:00</button>
                         <button>18:30</button>
                         <button>19:00</button>
