@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload, Load, subqueryload
-from app.models import db, Restaurant
+from app.models import db, Restaurant, Reservation
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
 import time
@@ -40,6 +40,14 @@ def restaurant_details(id):
         return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
+
+# @restaurant_routes.route('/<int:id>/reserve',methods=['GET'])
+# def restaurant_reserve_details(id):
+#     restaurant = db.session.query(Reservation).filter(Reservation.restaurant_id == id).all()
+#     if restaurant is not None:
+#         return restaurant.to_dict()
+#     else:
+#         return {'errors':['Restaurant not found.']},404
 
 @restaurant_routes.route('/',methods=['POST'])
 @restaurant_routes.route('',methods=['POST'])

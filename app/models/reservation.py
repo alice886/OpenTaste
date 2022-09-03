@@ -30,12 +30,12 @@ class Reservation(db.Model, UserMixin):
         return{
             'id':self.id,
             'party_size':self.party_size,
-            'date':self.date,
-            'reserve_time':self.reserve_time,
+            'reserve_dattime':self.reserve_dattime,
             'occasion':self.occasion,
             'special_request':self.special_request,
             'created_at':self.created_at,
-            # 'confirmation_number':self.confirmation_number,
             'user_id':self.user_id,
             'restaurant_id':self.restaurant_id,
+            # 'date':self.date,
+            # 'confirmation_number':self.confirmation_number,
         }
