@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload, Load, subqueryload
-from app.models import db, Restaurant, Reservation
+from app.models import db, Restaurant, Reservation, User, Image
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
 import time
@@ -40,6 +40,29 @@ def restaurant_details(id):
         return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
+
+
+@restaurant_routes.route('/<int:id>/reservations',methods=['GET'])
+@login_required
+def restaurant_reservation_details(id):
+    # reservations = db.session.query(Reservation).filter(Reservation.restaurant_id == id).all()
+    restaurant = db.session.query(Restaurant).get(id)
+    # reservations = db.session.query(Reservation).join(User).filter(Reservation.restaurant_id == id).all()
+    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).all()
+    if current_user.id != restaurant.owner_id:
+        return {'errors': ['Only the restaurant owner has access to reservation detials.']}
+    reservations_list=[]
+    # if reservations is not None and len(reservations) > 0:
+    if reservations is not None:
+        for each in reservations:
+            # user = [i.to_dict() for i in each.user]
+            user = each.user.to_dict()
+            each = each.to_dict()
+            each['user'] = user
+            reservations_list.append(each)
+        return {'reservations':reservations_list}
+    else:
+        return {'errors':['There is no reservation yet.']},404
 
 @restaurant_routes.route('/',methods=['POST'])
 @restaurant_routes.route('',methods=['POST'])

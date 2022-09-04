@@ -49,15 +49,6 @@ def reservation_create():
         return reservation.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)},400
 
-# {
-#     "party_size":8,
-#     "occasion":"Family/Friend Gathering",
-#     "special_request":"We will be there 10 minutes early",
-#     "restaurant_id":6,
-#     "reserve_date":"2022-09-28",
-#     "reserve_time":"18:00"
-# }
-
 @reservation_routes.route('/<int:id>/',methods=['PUT'])
 @reservation_routes.route('/<int:id>',methods=['PUT'])
 @login_required

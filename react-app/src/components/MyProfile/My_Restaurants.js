@@ -23,6 +23,10 @@ export default function MyRestaurants() {
         setShowModal(true);
         setResId(id);
     }
+
+    const handleReservations = (e) => {
+        e.preventDefault();
+    }
     // console.log('click and valus is ', resId)
     // console.log('showmodal valus is ', showModal)
     return loaded && (
@@ -41,6 +45,7 @@ export default function MyRestaurants() {
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>📍{restaurant.city}, {restaurant.state} {restaurant.zip_code}</div>
                         <button onClick={(e) => handleEdit(e, restaurant.id)}>Edit Details</button>
+                        <button onClick={handleReservations}>Edit Details</button>
                     </div>
                 })
                 }

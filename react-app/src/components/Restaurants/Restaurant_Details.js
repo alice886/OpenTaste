@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
+import ReservationDetails from '../Reservations/Business_Reservation'
 
 function RestaurantDetails() {
     const dispatch = useDispatch();
@@ -25,33 +26,44 @@ function RestaurantDetails() {
         setShowModal(true);
     }
 
+    const userCheck = therestaurant?.owner_id === sessionUser?.id
+
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     return loaded && (
-        <div className='res-left-container'>
-            <div className='res-left-name'>{therestaurant.name}</div>
-            <img src={therestaurant.cover} height={'500px'} />
-            <div className='res-left-info'>
-                <div>Price range: {dollarSigns[therestaurant.price_range]}</div>
-                <div>Cuisine: {therestaurant.cuisine}</div>
-            </div>
-            <div className='res-left-des'>description: {therestaurant.description}</div>
-            <div className='res-right-info'>
-                <div>Address:{therestaurant.address}</div>
-                <div>City:{therestaurant.city}</div>
-                <div>State:{therestaurant.state}</div>
-                <div>Zip code:{therestaurant.zip_code}</div>
-                <div>Capacity:{therestaurant.capacity}</div>
-                <div>Open at:{therestaurant.open_time}</div>
-                <div>Close at:{therestaurant.close_time}</div>
-            </div>
-            {therestaurant.owner_id == sessionUser?.id && (
-                <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
+        <>
+            {userCheck && (
+                <div>
+                    <button>Check Reservations</button>
+                    <ReservationDetails />
+                </div>
             )}
-            {showModal && (<Modal onClose={() => setShowModal(false)}>
-                <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
-            </Modal>)}
-        </div>
+            <div className='res-left-container'>
+                <div className='res-left-name'>{therestaurant.name}</div>
+                <img src={therestaurant.cover} height={'300px'} />
+                <div className='res-left-info'>
+                    <div>Price range: {dollarSigns[therestaurant.price_range]}</div>
+                    <div>Cuisine: {therestaurant.cuisine}</div>
+                </div>
+                <div className='res-left-des'>description: {therestaurant.description}</div>
+                <div className='res-right-info'>
+                    <div>Address:{therestaurant.address}</div>
+                    <div>City:{therestaurant.city}</div>
+                    <div>State:{therestaurant.state}</div>
+                    <div>Zip code:{therestaurant.zip_code}</div>
+                    <div>Capacity:{therestaurant.capacity}</div>
+                    <div>Open at:{therestaurant.open_time}</div>
+                    <div>Close at:{therestaurant.close_time}</div>
+                </div>
+                {therestaurant.owner_id == sessionUser?.id && (
+                    <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
+                )}
+                {showModal && (<Modal onClose={() => setShowModal(false)}>
+                    <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
+                </Modal>)}
+
+            </div>
+        </>
     )
 }
 
