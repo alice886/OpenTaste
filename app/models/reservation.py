@@ -36,6 +36,5 @@ class Reservation(db.Model, UserMixin):
             'created_at':self.created_at,
             'user_id':self.user_id,
             'restaurant_id':self.restaurant_id,
-            # 'date':self.date,
             # 'confirmation_number':self.confirmation_number,
         }

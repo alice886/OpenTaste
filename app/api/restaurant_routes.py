@@ -41,14 +41,6 @@ def restaurant_details(id):
     else:
         return {'errors':['Restaurant not found.']},404
 
-# @restaurant_routes.route('/<int:id>/reserve',methods=['GET'])
-# def restaurant_reserve_details(id):
-#     restaurant = db.session.query(Reservation).filter(Reservation.restaurant_id == id).all()
-#     if restaurant is not None:
-#         return restaurant.to_dict()
-#     else:
-#         return {'errors':['Restaurant not found.']},404
-
 @restaurant_routes.route('/',methods=['POST'])
 @restaurant_routes.route('',methods=['POST'])
 @login_required
