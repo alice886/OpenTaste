@@ -1,27 +1,27 @@
-const GET_RESERVATION = 'restaurant/GET_RESERVATION';
-const GET_ONERESERVATION = 'restaurant/GET_ONERESERVATION';
-const POST_RESERVATION = 'restaurant/POST_RESERVATION';
-const EDIT_RESERVATION = 'restaurant/EDIT_RESERVATION';
-const DELETE_RESERVATION = 'restaurant/DELETE_RESERVATION';
+const GET_RESERVATION = 'reservation/GET_RESERVATION';
+const GET_ONERESERVATION = 'reservation/GET_ONERESERVATION';
+const POST_RESERVATION = 'reservation/POST_RESERVATION';
+const EDIT_RESERVATION = 'reservation/EDIT_RESERVATION';
+const DELETE_RESERVATION = 'reservation/DELETE_RESERVATION';
 
-const getAllReservations = restaurants => ({
+const getAllReservations = reservations => ({
     type: GET_RESERVATION,
-    payload: restaurants
+    payload: reservations
 });
 
-const getReservationDetail = restaurant => ({
+const getReservationDetail = reservation => ({
     type: GET_ONERESERVATION,
-    payload: restaurant
+    payload: reservation
 });
 
-const createAReservation = restaurant => ({
+const createAReservation = reservation => ({
     type: POST_RESERVATION,
-    payload: restaurant
+    payload: reservation
 })
 
-const editAReservation = restaurant => ({
+const editAReservation = reservation => ({
     type: EDIT_RESERVATION,
-    payload: restaurant
+    payload: reservation
 })
 
 const removeAReservation = id => ({
@@ -36,8 +36,8 @@ export const getAllReservationsThunk = (id) => async dispatch => {
         }
     });
     if (response.ok) {
-        const allRestaurant = await response.json();
-        dispatch(getAllReservations(allRestaurant));
+        const allReservations = await response.json();
+        dispatch(getAllReservations(allReservations));
     } else {
         const data = await response.json();
         return data.errors;
@@ -75,7 +75,7 @@ export const getReservationDetailThunk = id => async dispatch => {
 }
 
 export const createReservationThunk = reservation => async dispatch => {
-    const response = await fetch(`/api/reservations/`, {
+    const response = await fetch(`/api/reservations`, {
         method: 'POST',
         body: JSON.stringify(reservation),
         headers: {
@@ -86,11 +86,11 @@ export const createReservationThunk = reservation => async dispatch => {
     if (response.ok) {
         const newReservation = await response.json();
         dispatch(createAReservation(newReservation));
+        console.log('its ok -01', newReservation)
         return newReservation;
     } else {
         const data = await response.json();
-        // console.log('what is the matter -01', data)
-        // console.log('what is the matter -02', data.errors)
+        console.log('its not ok -02', data.errors)
         return data.errors;
     }
 }
@@ -144,7 +144,7 @@ const reservationReducer = (state = {}, action) => {
         }
         case GET_ONERESERVATION: {
             const newState = {};
-            newState.restaurant = action.payload
+            newState.reservation = action.payload
             return newState;
         }
         case POST_RESERVATION: {

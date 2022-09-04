@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
-import { createRestaurantThunk } from '../../store/restaurant'
+import { createReservationThunk } from '../../store/reservation'
 
 export default function MakeReservation({ therestaurant }) {
     const dispatch = useDispatch();
@@ -66,16 +66,16 @@ export default function MakeReservation({ therestaurant }) {
     const handleSubmit = async e => {
         e.preventDefault();
         const payload = {
-            reserve_date:reserveDate,
-            reserve_time:reserveTime,
-            party_size:partySize,
+            party_size: partySize,
             occasion,
-            special_request:specialRequest,
+            special_request: specialRequest,
             restaurant_id,
+            reserve_date: reserveDate,
+            reserve_time: reserveTime,
         }
 
         console.log('what is the payload', payload)
-        const newRestaurant = await dispatch(createRestaurantThunk(payload));
+        const newRestaurant = await dispatch(createReservationThunk(payload));
 
         if (newRestaurant) {
             history.push(`/restaurants/${newRestaurant.id}`)
@@ -131,6 +131,7 @@ export default function MakeReservation({ therestaurant }) {
                             ))}
                         </select>
                     </div>
+                    <button>Find a Table</button>
                     <div>
                         <label>Occasion</label>
                         <select required className='create-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
