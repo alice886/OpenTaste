@@ -5,6 +5,7 @@ import { Modal } from '../context/Modal'
 import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
+import MakeReservation from '../Reservations/Reservation_Create'
 
 function RestaurantDetails() {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function RestaurantDetails() {
     const reservationToggle = e => {
         e.preventDefault();
         showReservations ? setShowReservations(false) : setShowReservations(true)
-        buttontitle =='see reservations'?setButtontitle('hide reservations'):setButtontitle('see reservations')
+        buttontitle == 'see reservations' ? setButtontitle('hide reservations') : setButtontitle('see reservations')
     }
 
     const userCheck = therestaurant?.owner_id === sessionUser?.id
@@ -67,7 +68,9 @@ function RestaurantDetails() {
                 {showModal && (<Modal onClose={() => setShowModal(false)}>
                     <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
                 </Modal>)}
-
+                <div className='res-right-container'>
+                    <MakeReservation therestaurant={therestaurant}/>
+                </div>
             </div>
         </>
     )
