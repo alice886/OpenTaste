@@ -30,14 +30,18 @@ def all_restaurants():
 @restaurant_routes.route('/<int:id>',methods=['GET'])
 def restaurant_details(id):
     restaurant = db.session.query(Restaurant).options(db.joinedload(Restaurant.images)).get(id) #this worked
+    # restaurant = db.session.query(Restaurant).options(db.joinedload(Restaurant.images)).filter(Restaurant.id == id)
+    restaurant_details = []
     if restaurant is not None:
-        # restaurant_details = []
-        restaurant = restaurant.to_dict()
-        # images = restaurant.images.to_dict()
-        # restaurant['images']=images
-        # # restaurant_details.append(restaurant)
-        return  restaurant
-        # return restaurant.to_dict()
+        # if restaurant.images is not None:
+        #     images = restaurant.images.to_dict()
+        #     restaurant = restaurant.to_dict()
+        #     restaurant['images']=images
+        # else:
+        #     restaurant = restaurant.to_dict()
+        # restaurant_details.append(restaurant)
+        # return  {'restaurant': restaurant_details}
+        return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
 
@@ -46,7 +50,6 @@ def restaurant_details(id):
 @login_required
 def restaurant_reservation_details(id):
     restaurant = db.session.query(Restaurant).get(id)
-    # reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).all()
     reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).filter(Reservation.restaurant_id == id)
     if current_user.id != restaurant.owner_id:
         return {'errors': ['Only the restaurant owner has access to reservation detials.']}

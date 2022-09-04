@@ -17,7 +17,7 @@ function ReservationDetails() {
         dispatch(getAllReservationsThunk(restaurantId)).then(() => setLoaded(true))
     }, [dispatch])
 
-    console.log('reservations detail is --', reservations)
+    // console.log('reservations detail is --', reservations)
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
     return loaded && (
@@ -28,7 +28,8 @@ function ReservationDetails() {
             <div className='b-reservation-right'>
                 {reservations?.map(reservation => {
                     return <div className='b-reservation-each'>
-                        <div>Reserved at: {reservation.created_at}</div>
+                        <div>Customer Name: {reservation.user.username}</div>
+                        <div>Reserved At: {reservation.created_at}</div>
                         <div>Reserve Date/Time: {reservation.reserve_datetime}</div>
                         <div>Party Size: {reservation.party_size}</div>
                         <div>Occasion: {reservation.occasion}</div>

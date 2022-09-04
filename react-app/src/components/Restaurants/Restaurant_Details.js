@@ -13,29 +13,35 @@ function RestaurantDetails() {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState();
     const [loaded, setLoaded] = useState(false)
+    const [showReservations, setShowReservations] = useState(false);
+    const [buttontitle, setButtontitle] = useState('see reservations');
 
     useEffect(() => {
         dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
     }, [dispatch, showModal])
 
-    // console.log('therestaurant id is --', restaurantId)
-    // console.log('therestaurant detail is --', therestaurant)
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
+
     const handleEdit = (e, id) => {
         e.preventDefault();
         setShowModal(true);
     }
 
-    const userCheck = therestaurant?.owner_id === sessionUser?.id
+    const reservationToggle = e => {
+        e.preventDefault();
+        showReservations ? setShowReservations(false) : setShowReservations(true)
+        setButtontitle('hide reservations')
+    }
 
+    const userCheck = therestaurant?.owner_id === sessionUser?.id
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     return loaded && (
         <>
             {userCheck && (
                 <div>
-                    <button>Check Reservations</button>
-                    <ReservationDetails />
+                    <button onClick={reservationToggle}>{buttontitle}</button>
+                    {showReservations && <ReservationDetails />}
                 </div>
             )}
             <div className='res-left-container'>
