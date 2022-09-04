@@ -29,15 +29,15 @@ def all_restaurants():
 
 @restaurant_routes.route('/<int:id>',methods=['GET'])
 def restaurant_details(id):
-    restaurant = db.session.query(Restaurant).options(joinedload(Restaurant.images)).get(id) #this worked
+    restaurant = db.session.query(Restaurant).options(db.joinedload(Restaurant.images)).get(id) #this worked
     if restaurant is not None:
         # restaurant_details = []
-        # images = restaurant['images'].to_dict()
-        # restaurant = restaurant.to_dict()
+        restaurant = restaurant.to_dict()
+        # images = restaurant.images.to_dict()
         # restaurant['images']=images
-        # restaurant_details.append(restaurant)
-        # return  restaurant_details
-        return restaurant.to_dict()
+        # # restaurant_details.append(restaurant)
+        return  restaurant
+        # return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
 
@@ -45,18 +45,16 @@ def restaurant_details(id):
 @restaurant_routes.route('/<int:id>/reservations',methods=['GET'])
 @login_required
 def restaurant_reservation_details(id):
-    # reservations = db.session.query(Reservation).filter(Reservation.restaurant_id == id).all()
     restaurant = db.session.query(Restaurant).get(id)
-    # reservations = db.session.query(Reservation).join(User).filter(Reservation.restaurant_id == id).all()
-    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).all()
+    # reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).all()
+    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.user)).filter(Reservation.restaurant_id == id)
     if current_user.id != restaurant.owner_id:
         return {'errors': ['Only the restaurant owner has access to reservation detials.']}
     reservations_list=[]
     # if reservations is not None and len(reservations) > 0:
     if reservations is not None:
         for each in reservations:
-            # user = [i.to_dict() for i in each.user]
-            user = each.user.to_dict()
+            user = each.user.to_dict()  # dont need to iterate, many-to-one relationship
             each = each.to_dict()
             each['user'] = user
             reservations_list.append(each)
