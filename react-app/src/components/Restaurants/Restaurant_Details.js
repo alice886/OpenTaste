@@ -30,7 +30,7 @@ function RestaurantDetails() {
     const reservationToggle = e => {
         e.preventDefault();
         showReservations ? setShowReservations(false) : setShowReservations(true)
-        setButtontitle('hide reservations')
+        buttontitle =='see reservations'?setButtontitle('hide reservations'):setButtontitle('see reservations')
     }
 
     const userCheck = therestaurant?.owner_id === sessionUser?.id
