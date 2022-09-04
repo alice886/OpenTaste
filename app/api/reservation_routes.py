@@ -10,6 +10,21 @@ from .auth_routes import validation_errors_to_error_messages
 reservation_routes = Blueprint('reservations', __name__)
 today = date.today()
 
+@reservation_routes.route('/<int:id>/',methods=['GET'])
+@reservation_routes.route('/<int:id>',methods=['GET'])
+@login_required
+def reservation_details(id):
+    uid = current_user.id
+    reservation = db.session.query(Reservation).get(id)
+    if reservation is not None:
+        reservation_dict = reservation.to_dict()
+        if current_user.id != reservation_dict['user_id']:
+                return {'errors':["This reservation doesn't belong to you."]},403
+        return reservation_dict
+    else:
+        return {'errors':['Reservation not found.']},404
+
+
 @reservation_routes.route('/',methods=['POST'])
 @reservation_routes.route('',methods=['POST'])
 @login_required
@@ -21,8 +36,8 @@ def reservation_create():
         # time_obj = datetime.strptime(form.data['reserve_time'],'%H:%M').time()
         reservation = Reservation(
             party_size=form.data['party_size'],
-            # reserve_dattime=datetime.combine(date_obj,time_obj),
-            reserve_dattime=datetime.combine(form.data['reserve_date'],form.data['reserve_time']),
+            # reserve_datetime=datetime.combine(date_obj,time_obj),
+            reserve_datetime=datetime.combine(form.data['reserve_date'],form.data['reserve_time']),
             occasion=form.data['occasion'],
             special_request=form.data['special_request'],
             created_at=today,
@@ -58,13 +73,13 @@ def reservation_edit(id):
             if not form.data[i]:
                 form[i].data = reservation_dict[i]
         updated_datetime=datetime.combine(form.data['reserve_date'],form.data['reserve_time'])
-        print('updated time --', updated_datetime)
+        # print('updated time --', updated_datetime)
         if form.validate_on_submit():
             for i in form.data:
                 if i != 'csrf_token' and i != 'reserve_date' and i != 'csrf_token':
                     # reservation_dict[i] = form.data[i] -> doesnot work, not a dict
                     setattr(reservation,i,form.data[i])
-                setattr(reservation,'reserve_dattime',updated_datetime)
+                setattr(reservation,'reserve_datetime',updated_datetime)
             db.session.commit()
             return reservation.to_dict()
         return {'errors':validation_errors_to_error_messages(form.errors)}
@@ -76,13 +91,14 @@ def reservation_edit(id):
 @reservation_routes.route('/<int:id>',methods=['DELETE'])
 @login_required
 def reservation_delete(id):
+    uid = current_user.id
     reservation = db.session.query(Reservation).get(id)
     if reservation is not None:
         reservation_dict = reservation.to_dict()
-        if current_user.id != reservation_dict['owner_id']:
-            return {'errors':["You cannot delete the reservation that doesn't belong to you."]},403
+        if current_user.id != reservation_dict['user_id']:
+                return {'errors':["You could not delete a reservation that doesn't belong to you."]},403
         db.session.delete(reservation)
         db.session.commit()
-        return reservation.to_dict()
+        return reservation_dict
     else:
-        return {'errors':['reservation not found.']},404
+        return {'errors':['Reservation not found.']},404
