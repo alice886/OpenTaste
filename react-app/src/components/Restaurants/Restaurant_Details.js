@@ -58,7 +58,7 @@ function RestaurantDetails() {
                     <div>City:{therestaurant.city}</div>
                     <div>State:{therestaurant.state}</div>
                     <div>Zip code:{therestaurant.zip_code}</div>
-                    <div>Capacity:{therestaurant.capacity}</div>
+                    {/* <div>Capacity:{therestaurant.capacity}</div> */}
                     <div>Open at:{therestaurant.open_time}</div>
                     <div>Close at:{therestaurant.close_time}</div>
                 </div>
@@ -69,7 +69,7 @@ function RestaurantDetails() {
                     <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
                 </Modal>)}
                 <div className='res-right-container'>
-                    <MakeReservation therestaurant={therestaurant}/>
+                    <MakeReservation therestaurant={therestaurant} />
                 </div>
             </div>
         </>

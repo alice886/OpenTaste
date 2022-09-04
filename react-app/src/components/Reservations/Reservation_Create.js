@@ -6,34 +6,6 @@ import { createRestaurantThunk } from '../../store/restaurant'
 export default function MakeReservation({ therestaurant }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [name, setName] = useState();
-    const [price_range, setPriceRange] = useState();
-    const [address, setAddress] = useState();
-    const [city, setCity] = useState();
-    const [state, setState] = useState();
-    const [zip_code, setZipCode] = useState();
-    const [description, setDescription] = useState();
-    const [capacity, setCapacity] = useState();
-    const [cuisine, setCuisine] = useState();
-    const [cover, setCover] = useState();
-    const [open_time, setOpenTime] = useState();
-    const [close_time, setCloseTime] = useState();
-    const [errors, setErrors] = useState([])
-    const [isDisabled, setIsDisabled] = useState(true)
-
-    const sessionUser = useSelector(state => state.session.user);
-
-    const capacity_count = []
-    for (let i = 1; i < 21; i++) {
-        capacity_count.push(i)
-    }
-
-    const occasion_count = ['Anniversary', 'Family/Friend Gathering', 'Birthday', 'Business', 'Celebration/Graduation', 'Proposal', 'Other Occasion','Nothing Special']
-
-    const newErrors = [];
-
-    const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
-    const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
 
     // to get today's dates
     const d = new Date()
@@ -45,58 +17,66 @@ export default function MakeReservation({ therestaurant }) {
     for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
         availableHour_count.push(i + ':00')
     }
-    console.log('business hour is ', typeof availableHour_count)
-    console.log('business hour is ', availableHour_count)
-    availableHour_count.map(each => {
-        console.log(each)
-    })
 
+    const [reserveDate, setReserveDate] = useState(todayString);
+    const [reserveTime, setReserveTime] = useState();
+    const [partySize, setPartySize] = useState();
+    const [occasion, setOccasion] = useState();
+    const [specialRequest, setSpecialRequest] = useState();
+    const [errors, setErrors] = useState([])
+    const [isDisabled, setIsDisabled] = useState(true)
+
+    const sessionUser = useSelector(state => state.session.user);
+    const user_id = sessionUser.id;
+    const restaurant_id = therestaurant.id;
+
+    const capacity_count = []
+    for (let i = 1; i < 21; i++) {
+        capacity_count.push(i)
+    }
+
+    const occasion_count = ['Anniversary', 'Family/Friend Gathering', 'Birthday', 'Business',
+        'Celebration/Graduation', 'Proposal', 'Other Occasion', 'Nothing Special']
+
+    const newErrors = [];
 
 
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
         } else {
-            if (description && description.length > 500) {
-                newErrors.push('* You may only enter descriptions in 500 character.')
+            if (reserveDate === undefined) {
+                newErrors.push('* Please select a date')
             }
-            if (capacity === undefined) {
-                newErrors.push('* Please select a capacity for your restaurant.')
+            if (reserveTime === undefined) {
+                newErrors.push('* Please select a time')
             }
-            if (cuisine === undefined) {
-                newErrors.push('* Please select a cuisine type for your restaurant.')
+            if (partySize === undefined) {
+                newErrors.push('* Please select a party size of the visit.')
             }
-            if (open_time === undefined || close_time === undefined) {
-                newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
+            if (specialRequest && specialRequest.length > 200) {
+                newErrors.push('* You may only enter descriptions in 200 character.')
             }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, name, price_range,
-        address, city, state, zip_code, description?.length,
-        capacity, cuisine, cover, open_time, close_time])
+    }, [errors.length, newErrors.length, reserveDate, reserveTime, partySize, occasion, specialRequest])
 
     const handleSubmit = async e => {
         e.preventDefault();
         const payload = {
-            name,
-            price_range,
-            address,
-            city,
-            state,
-            zip_code,
-            description,
-            capacity,
-            cuisine,
-            open_time,
-            close_time,
-            cover,
+            reserve_date:reserveDate,
+            reserve_time:reserveTime,
+            party_size:partySize,
+            occasion,
+            special_request:specialRequest,
+            restaurant_id,
         }
 
         console.log('what is the payload', payload)
         const newRestaurant = await dispatch(createRestaurantThunk(payload));
-        // console.log('what is the new restaurant', newRestaurant.payload['id'])
+
         if (newRestaurant) {
             history.push(`/restaurants/${newRestaurant.id}`)
         }
@@ -104,6 +84,12 @@ export default function MakeReservation({ therestaurant }) {
             setIsDisabled(true)
         }
     }
+
+    console.log(reserveDate)
+    console.log(reserveTime)
+    console.log(partySize)
+    console.log(occasion)
+    console.log(specialRequest)
 
     return sessionUser && (
         <>
@@ -119,30 +105,36 @@ export default function MakeReservation({ therestaurant }) {
                 <form className='create-new-reservation'>
                     <div>
                         <label>Date</label>
-                        <input type='date' value={todayString} min={todayString} max='2023-12-31'></input>
+                        <input
+                            type='date'
+                            value={reserveDate}
+                            min={todayString}
+                            max='2023-12-31'
+                            onChange={e => setReserveDate(e.target.value)}
+                        ></input>
                     </div>
                     <div>
                         <label>Time</label>
-                        <select className='create-res-input' required>
+                        <select className='create-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                             <option value={''} selected disabled hidden>Select the hour</option>
                             {availableHour_count.map(each => {
-                                return <option value={each}>{each}</option>
+                                return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
                             })}
                         </select>
                     </div >
                     <div>
                         <label>Party Size</label>
-                        <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
-                            <option value={''} selected disabled hidden>Please select the capacity</option>
+                        <select className='create-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
+                            <option value={''} selected disabled hidden>Please select the party size</option>
                             {capacity_count.map(each => (
-                               <option value={each} >{each}  people</option>
+                                <option value={each} >{each}  people</option>
                             ))}
                         </select>
                     </div>
                     <div>
                         <label>Occasion</label>
-                        <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
-                            <option value={''} selected disabled hidden>Please Select the Applicable Occasion</option>
+                        <select required className='create-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
+                            <option value={''} selected disabled hidden>Please Select Your Occasion</option>
                             {occasion_count.map(each => (
                                 <option value={each} >{each}</option>
                             ))}
@@ -153,11 +145,10 @@ export default function MakeReservation({ therestaurant }) {
                         <input
                             type='textarea'
                             placeholder='Please enter your special request here.'
-                            onChange={e => setDescription(e.target.value)}
-                            value={description}
-                            maxLength={300}
+                            onChange={e => setSpecialRequest(e.target.value)}
+                            value={specialRequest}
+                            maxLength={201}
                             className='create-res-input'
-                            height={'300px'}
                         ></input>
                     </div>
 
