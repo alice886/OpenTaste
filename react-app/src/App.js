@@ -8,7 +8,7 @@ import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
 import MyRestaurants from './components/MyProfile/My_Restaurants'
 import MyReservations from './components/MyProfile/My_Reservations'
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+import MyProfile from './components/MyProfile/index';
 import User from './components/User';
 import { authenticate } from './store/session';
 
@@ -48,8 +48,8 @@ function App() {
         <Route path='/myreservations' >
           <MyReservations />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
+        <ProtectedRoute path='/myprofile' exact={true} >
+          <MyProfile />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

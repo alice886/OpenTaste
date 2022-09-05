@@ -55,7 +55,11 @@ export default function MakeReservation({ therestaurant }) {
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
-        } else {
+        }
+        if (sessionUser.id === therestaurant.owner_id) {
+            newErrors.push('You may not reserve your own restaurant.')
+        }
+        else {
             if (reserveDate === undefined) {
                 newErrors.push('* Please select a date')
             }
@@ -100,8 +104,6 @@ export default function MakeReservation({ therestaurant }) {
         <>
             <div className='create-container'>
                 <h3>Make a Reservation</h3>
-                <div>Please contact the restaurant if your party size is over 20 people,</div>
-                <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
                 <div className='create-error'>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
@@ -162,6 +164,8 @@ export default function MakeReservation({ therestaurant }) {
                     </div>
 
                 </form >
+                <div>Please contact the restaurant if your party size is over 20 people,</div>
+                <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
                 <button onClick={handleSubmit} disabled={isDisabled}>Submit</button>
             </div>
         </>

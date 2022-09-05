@@ -18,11 +18,6 @@ function Home() {
 
     return loaded && (
         <div>
-            <NavLink to='/listnewrestaurant'> List Your Restaurant</NavLink>
-            <br></br>
-            <NavLink to='/myrestaurants'> My Restaurants</NavLink>
-            <br></br>
-            <NavLink to='/myreservations'> My Reservations</NavLink>
             <div className='find-your-table'>
                 <h2>Find your table for any occasion</h2>
             </div>

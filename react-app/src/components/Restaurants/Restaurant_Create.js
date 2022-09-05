@@ -37,7 +37,7 @@ export default function ListNewRestaurant() {
 
     const cuisine_count = ['American', 'Italian', 'Steakhouse', 'Seafood', 'French', 'Indian', 'Mexican',
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
-        'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese','Other']
+        'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese', 'Other']
 
     const newErrors = [];
 
@@ -47,7 +47,8 @@ export default function ListNewRestaurant() {
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
-        } else {
+        }
+        else {
             if (name === undefined) {
                 newErrors.push('* Please enter the name of your restaurant.')
             }
@@ -70,8 +71,9 @@ export default function ListNewRestaurant() {
                 newErrors.push('* Please select a cuisine type for your restaurant.')
             }
             if (cover === undefined || !cover?.match(coverRegex)) {
-                newErrors.push('* Please upload a valid cover picture for your restaurant.')
-                newErrors.push('* Horizontal picture is recommended.')
+                newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
+                newErrors.push('* E.g. "https://example.com/image.jpg/"')
+                newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
             }
             if (open_time === undefined || close_time === undefined) {
                 newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
