@@ -6,6 +6,8 @@ import { createReservationThunk } from '../../store/reservation'
 export default function MakeReservation({ therestaurant }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const closeHour = Number(therestaurant.close_time.slice(0, 2))
+    const openHour = Number(therestaurant.open_time.slice(0, 2))
 
     // to get today's dates
     const d = new Date()
@@ -14,12 +16,21 @@ export default function MakeReservation({ therestaurant }) {
     const nowHour = d.getHours();
     // to get available hours
     const availableHour_count = []
-    for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
-        availableHour_count.push(i + ':00')
-    }
-
+    // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(todayString);
     const [reserveTime, setReserveTime] = useState();
+    if (new Date(reserveDate) > d) {
+        const startCount = closeHour - openHour
+        for (let i = openHour + 1; i < closeHour; i++) {
+            availableHour_count.push(i + ':00')
+        }
+    }
+    else {
+        for (let i = nowHour + 1; i < closeHour; i++) {
+            availableHour_count.push(i + ':00')
+        }
+    }
+
     const [partySize, setPartySize] = useState();
     const [occasion, setOccasion] = useState();
     const [specialRequest, setSpecialRequest] = useState();
@@ -85,11 +96,11 @@ export default function MakeReservation({ therestaurant }) {
         }
     }
 
-    console.log(reserveDate)
-    console.log(reserveTime)
-    console.log(partySize)
-    console.log(occasion)
-    console.log(specialRequest)
+    // console.log(reserveDate)
+    // console.log(reserveTime)
+    // console.log(partySize)
+    // console.log(occasion)
+    // console.log(specialRequest)
 
     return sessionUser && (
         <>

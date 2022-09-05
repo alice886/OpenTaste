@@ -26,8 +26,7 @@ export default function MyReservations() {
     const handleReservations = (e) => {
         e.preventDefault();
     }
-    // console.log('click and valus is ', resId)
-    // console.log('showmodal valus is ', showModal)
+
     return loaded && (
         <div>
             <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
@@ -38,9 +37,17 @@ export default function MyReservations() {
                 <h3>- My Reservations -</h3>
                 {myReservations?.map(reservation => {
                     return <div className='home-restaurant' key={reservation.id}>
-                        <div>restaurant Id :{reservation.restaurant_id}</div>
-                        <div>Date :{reservation.reserve_datetime.slice(0, 16)}</div>
-                        <div>Time :{reservation.reserve_datetime.slice(16, 22)}</div>
+                        <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
+                        <div>
+                            <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
+                        </div>
+                        <div>{reservation.restaurant.address}</div>
+                        <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
+                        <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
+                        <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
+                        <div>Party Size : {reservation.party_size}</div>
+                        <div>Occasion: {reservation.occasion}</div>
+                        <div>My Requests: {reservation.special_request}</div>
                         <button onClick={handleReservations}>Edit Details</button>
                     </div>
                 })
