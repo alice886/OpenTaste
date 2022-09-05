@@ -28,7 +28,7 @@ class ReservationForm(FlaskForm):
     party_size = IntegerField('party_size',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
     reserve_date = DateField('reserve_date',validators=[DataRequired()])
     reserve_time = TimeField('reserve_time',validators=[DataRequired()])
-    occasion = StringField('occasion',validators=[validate_string,Length(min=1,max=25)])
+    occasion = StringField('occasion',validators=[validate_string,Length(min=1,max=30)])
     special_request = StringField('state',validators=[validate_string,Length(min=1,max=200)])
     restaurant_id = IntegerField('restaurant_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
     # confirmation_number = StringField('description',validators=[DataRequired()])
