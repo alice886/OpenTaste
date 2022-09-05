@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { removeRestaurantThunk } from "../../store/restaurant";
 import './deleteConfirmation.css'
 
-export default function DeleteRestaurant({ setShowDelete, resId, setShowModal }) {
+export default function DeleteRestaurant({ setShowDelete, resId, setShowModal, object }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const handleDelete = async e => {
@@ -18,7 +18,7 @@ export default function DeleteRestaurant({ setShowDelete, resId, setShowModal })
 
     return (
         <div className='delete-confirmation-modal'>
-            <h1 className='delete-confirmation-question'>Are you sure you want to delete this Restaurant?</h1>
+            <h1 className='delete-confirmation-question'>Are you sure you want to delete this {object}?</h1>
             <button className='delete-confirmation-yes' onClick={handleDelete}>Yes</button>
             <button className='delete-confirmation-no' onClick={() => setShowDelete(false)}>No</button>
         </div>

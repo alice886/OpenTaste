@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
-import DeleteRestaurant from '../DeleteRestaurant/Delete_Modal'
+import DeleteRestaurant from '../DeleteModals/Delete_Modal'
 import { getRestaurantDetailThunk, editRestaurantThunk, getMyRestaurantThunk } from '../../store/restaurant'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
@@ -20,10 +20,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [cover, setCover] = useState();
     const [open_time, setOpenTime] = useState('');
     const [close_time, setCloseTime] = useState('');
-    const [errors, setErrors] = useState([])
-    const [isDisabled, setIsDisabled] = useState(true)
-    const [isLoaded, setIsLoaded] = useState(false)
-    const [showDelete, setShowDelete] = useState(false)
+    const [errors, setErrors] = useState([]);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const theRestaurant = useSelector(state => state.restaurant?.restaurant);
     const myrestaurants = useSelector(state => state.restaurant.restaurants);
@@ -92,7 +92,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             <form className='edit-restaurant'>
                 <button onClick={handleBack}>X</button>
                 <button onClick={handleDelete}>Delete The Restaurant</button>
-                {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} /></Modal>}
+                {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>

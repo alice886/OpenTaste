@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom';
-import { createReservationThunk } from '../../store/reservation'
+import { useHistory } from 'react-router-dom';
+import { Modal } from '../context/Modal'
+import { getReservationDetailThunk, editReservationThunk } from '../../store/reservation';
 
-export default function MakeReservation({ therestaurant }) {
+export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const closeHour = Number(therestaurant.close_time.slice(0, 2))
-    const openHour = Number(therestaurant.open_time.slice(0, 2))
+    const [showDelete, setShowDelete] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const sessionUser = useSelector(state => state.session.user);
+    const user_id = sessionUser.id;
+    const myReservations = useSelector(state => state.reservation.reservations);
+
+    let theReservation;
+    for (let i of myReservations) {
+        if (i.id == resId) {
+            theReservation = i
+        }
+    }
+    const closeHour = Number(theReservation.restaurant.close_time.slice(0, 2))
+    const openHour = Number(theReservation.restaurant.open_time.slice(0, 2))
 
     // to get today's dates
     const d = new Date()
@@ -34,12 +48,7 @@ export default function MakeReservation({ therestaurant }) {
     const [partySize, setPartySize] = useState();
     const [occasion, setOccasion] = useState();
     const [specialRequest, setSpecialRequest] = useState();
-    const [errors, setErrors] = useState([])
     const [isDisabled, setIsDisabled] = useState(true)
-
-    const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser.id;
-    const restaurant_id = therestaurant.id;
 
     const capacity_count = []
     for (let i = 1; i < 21; i++) {
@@ -51,20 +60,10 @@ export default function MakeReservation({ therestaurant }) {
 
     const newErrors = [];
 
-
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
         } else {
-            if (reserveDate === undefined) {
-                newErrors.push('* Please select a date')
-            }
-            if (reserveTime === undefined) {
-                newErrors.push('* Please select a time')
-            }
-            if (partySize === undefined) {
-                newErrors.push('* Please select a party size of the visit.')
-            }
             if (specialRequest && specialRequest.length > 200) {
                 newErrors.push('* You may only enter descriptions in 200 character.')
             }
@@ -72,42 +71,32 @@ export default function MakeReservation({ therestaurant }) {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, reserveDate, reserveTime, partySize, occasion, specialRequest])
+    }, [errors.length, newErrors.length, specialRequest])
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const payload = {
-            party_size: partySize,
-            occasion,
-            special_request: specialRequest,
-            restaurant_id,
-            reserve_date: reserveDate,
-            reserve_time: reserveTime,
-        }
 
-        console.log('what is the payload', payload)
-        const newReservation = await dispatch(createReservationThunk(payload));
 
-        if (newReservation) {
-            history.push(`/myreservations`)
-        }
-        else {
-            setIsDisabled(true)
-        }
-    }
-
-    return sessionUser && (
+    return (
         <>
-            <div className='create-container'>
-                <h3>Make a Reservation</h3>
-                <div>Please contact the restaurant if your party size is over 20 people,</div>
-                <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
-                <div className='create-error'>
+            <button onClick={() => setShowEditReser(false)}>x</button>
+            <h1>Edit Reservation </h1>
+            <div>
+                <img src={theReservation.restaurant.cover} height={'70px'}></img>
+                <div>{theReservation.restaurant.name}</div>
+                <div>{theReservation.restaurant.address}</div>
+                <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
+                <div>Date: {theReservation.reserve_datetime.slice(0, 16)}</div>
+                <div>Time: {theReservation.reserve_datetime.slice(16, 22)}</div>
+                <div>Reserved for party of {theReservation.party_size}</div>
+                <div>Occasion: {theReservation.occasion}</div>
+                <div>Special request: {theReservation.special_request}</div>
+            </div>
+            <div>
+                <div className='edit-error'>
                     {errors.map((error, ind) => (
-                        <div className='create-res-error' key={ind}>{error}</div>
+                        <div className='edit-res-error' key={ind}>{error}</div>
                     ))}
                 </div>
-                <form className='create-new-reservation'>
+                <form className='edit-reservation'>
                     <div>
                         <label>Date</label>
                         <input
@@ -120,26 +109,28 @@ export default function MakeReservation({ therestaurant }) {
                     </div>
                     <div>
                         <label>Time</label>
-                        <select className='create-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
+                        <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                             <option value={''} selected disabled hidden>Select the hour</option>
-                            {availableHour_count.map(each => {
-                                return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
-                            })}
+                            {(availableHour_count.length > 0) ?
+                                availableHour_count.map(each => {
+                                    return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
+                                })
+                                : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
+                            }
                         </select>
                     </div >
                     <div>
                         <label>Party Size</label>
-                        <select className='create-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
+                        <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
                             <option value={''} selected disabled hidden>Please select the party size</option>
                             {capacity_count.map(each => (
                                 <option value={each} >{each}  people</option>
                             ))}
                         </select>
                     </div>
-                    <button>Find a Table</button>
                     <div>
                         <label>Occasion</label>
-                        <select required className='create-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
+                        <select required className='edit-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
                             <option value={''} selected disabled hidden>Please Select Your Occasion</option>
                             {occasion_count.map(each => (
                                 <option value={each} >{each}</option>
@@ -154,14 +145,17 @@ export default function MakeReservation({ therestaurant }) {
                             onChange={e => setSpecialRequest(e.target.value)}
                             value={specialRequest}
                             maxLength={201}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                     </div>
 
                 </form >
-                <button onClick={handleSubmit} disabled={isDisabled}>Submit</button>
-            </div>
-        </>
 
+                <div>Please contact the restaurant if your party size is over 20 people,</div>
+                <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+            </div>
+            <button>Update This Reservation</button>
+            <button>Cancel This Reservation</button>
+        </>
     )
 }
