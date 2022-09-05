@@ -10,7 +10,7 @@ class Reservation(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     party_size = db.Column(db.Integer, nullable=False)
-    reserve_dattime = db.Column(db.DateTime, nullable=False)
+    reserve_datetime = db.Column(db.DateTime, nullable=False)
     occasion = db.Column(db.String(20))
     special_request = db.Column(db.String(200))
     created_at = db.Column(db.DateTime, nullable=False)
@@ -30,12 +30,11 @@ class Reservation(db.Model, UserMixin):
         return{
             'id':self.id,
             'party_size':self.party_size,
-            'date':self.date,
-            'reserve_time':self.reserve_time,
+            'reserve_datetime':self.reserve_datetime,
             'occasion':self.occasion,
             'special_request':self.special_request,
             'created_at':self.created_at,
-            # 'confirmation_number':self.confirmation_number,
             'user_id':self.user_id,
             'restaurant_id':self.restaurant_id,
+            # 'confirmation_number':self.confirmation_number,
         }

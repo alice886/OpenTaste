@@ -6,6 +6,7 @@ import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
 import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
 import MyRestaurants from './components/MyProfile/My_Restaurants'
+import MyReservations from './components/MyProfile/My_Reservations'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/myrestaurants' >
           <MyRestaurants />
+        </Route>
+        <Route path='/myreservations' >
+          <MyReservations />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />

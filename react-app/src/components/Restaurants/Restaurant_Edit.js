@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
-import DeleteRestaurant from '../DeleteRestaurant/Delete_Modal'
-import { getRestaurantDetailThunk, editRestaurantThunk, getMyRestaurantThunk } from '../../store/restaurant'
+import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
+import { editRestaurantThunk, getRestaurantDetailThunk, getAllRestaurantThunk } from '../../store/restaurant'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const dispatch = useDispatch();
@@ -20,16 +20,23 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [cover, setCover] = useState();
     const [open_time, setOpenTime] = useState('');
     const [close_time, setCloseTime] = useState('');
-    const [errors, setErrors] = useState([])
-    const [isDisabled, setIsDisabled] = useState(true)
-    const [isLoaded, setIsLoaded] = useState(false)
-    const [showDelete, setShowDelete] = useState(false)
+    const [errors, setErrors] = useState([]);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
-    const theRestaurant = useSelector(state => state.restaurant?.restaurant);
+    // const theRestaurant = useSelector(state => state.restaurant?.restaurant);
     const myrestaurants = useSelector(state => state.restaurant.restaurants);
 
+    let theRestaurant;
+    for (let i of myrestaurants) {
+        if (i.id === resId) {
+            theRestaurant = i
+        }
+    }
+
     useEffect(() => {
-        dispatch(getRestaurantDetailThunk(resId)).then(() => setIsLoaded(true))
+        dispatch(getAllRestaurantThunk()).then(() => setIsLoaded(true))
     }, [dispatch, theRestaurant?.id])
 
     const newErrors = [];
@@ -89,10 +96,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     return sessionUser && isLoaded && (
         <>
             <div>Edit Your Business</div>
+            <h1>test test</h1>
             <form className='edit-restaurant'>
                 <button onClick={handleBack}>X</button>
                 <button onClick={handleDelete}>Delete The Restaurant</button>
-                {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} /></Modal>}
+                {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>

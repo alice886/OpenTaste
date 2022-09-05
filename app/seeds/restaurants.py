@@ -35,14 +35,14 @@ def seed_restaurants():
         open_time='12:00',
         close_time='22:00',
         cuisine='Filipino',
-        cover='https://images.otstatic.com/prod1/29407152/1/huge.jpg',
+        cover='https://i0.wp.com/post.greatist.com/wp-content/uploads/sites/2/2020/02/GRT-filipino-food-dishes-1296x728-header.jpg?w=1155&h=1528',
         capacity=80,
         availability=80,
         )
 
     rest3 = Restaurant(
         name='Kokko', 
-        owner_id=4,
+        owner_id=3,
         price_range=2, 
         address='509 2nd Ave', 
         city='San Mateo', 
@@ -59,7 +59,7 @@ def seed_restaurants():
         
     rest4 = Restaurant(
         name="Selby's", 
-        owner_id=5,
+        owner_id=1,
         price_range=3, 
         address='3001 El Camino Real', 
         city='Redwood City', 
@@ -76,7 +76,7 @@ def seed_restaurants():
 
     rest5 = Restaurant(
         name="O' by Claude Le Tohic", 
-        owner_id=6,
+        owner_id=2,
         price_range=4, 
         address='165 Ofarrell St', 
         city='San Francisco', 
@@ -93,8 +93,8 @@ def seed_restaurants():
 
     rest6 = Restaurant(
         name="Paul Martin's", 
-        owner_id=8,
-        price_range=3, 
+        owner_id=3,
+        price_range=2, 
         address='101 Hillsdale Shopping Center', 
         city='San Mateo', 
         state='CA',
@@ -109,7 +109,7 @@ def seed_restaurants():
         )
     rest7 = Restaurant(
         name="The Rotunda at Neiman Marcus", 
-        owner_id=4,
+        owner_id=1,
         price_range=3, 
         address='150 Stockton St Level Four', 
         city='San Francisco', 
@@ -126,8 +126,8 @@ def seed_restaurants():
 
     rest8 = Restaurant(
         name="The Village Bakery and Cafe", 
-        owner_id=7,
-        price_range=3, 
+        owner_id=2,
+        price_range=2, 
         address='3052 Woodside Rd', 
         city='Woodside', 
         state='CA',
@@ -141,6 +141,74 @@ def seed_restaurants():
         availability=60,
         )
 
+    rest9 = Restaurant(
+        name="St. Francis Winery & Vineyards", 
+        owner_id=3,
+        price_range=3, 
+        address='100 Pythian Rd', 
+        city='Santa Rosa', 
+        state='CA',
+        zip_code=95409,
+        description="Enjoy a nationally acclaimed, epicurean wine experience, surrounded by panoramic mountain and vineyard views. Executive Chef Peter Janiak presents an assortment of masterfully crafted, culinary wine pairings that highlight our award-winning wine collections and the bounty of Sonoma County.",
+        open_time='10:00',
+        close_time='17:00',
+        cuisine='Winery',
+        cover='https://www.worldclassweddingvenues.com/Images/worldclassweddingvenues/User_2159907/Venue_10217/8.jpg',
+        capacity=800,
+        availability=800,
+        )
+
+    rest10 = Restaurant(
+        name="Sterling Vineyards", 
+        owner_id=1,
+        price_range=3, 
+        address='1111 W Dunaweal Ln', 
+        city='Calistoga', 
+        state='CA',
+        zip_code=94515,
+        description="Sterling Vineyards is a winery near Calistoga, California, owned by Treasury Wine Estates. The winery achieved international recognition when its wine won first place in the Ottawa Wine Tasting of 1981.",
+        open_time='10:00',
+        close_time='17:00',
+        cuisine='Winery',
+        cover='https://3oly5t3jec7npg6my2x2pb41-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/250_Sterling-Vineyards_Featured.jpg',
+        capacity=900,
+        availability=900,
+        )
+
+    rest11 = Restaurant(
+        name="Reposado Restaurant", 
+        owner_id=2,
+        price_range=3, 
+        address='236 Hamilton Ave', 
+        city='Palo Alto', 
+        state='CA',
+        zip_code=94301,
+        description="Reposado offers a unique experience with exceptional Mexican cuisine which will challenge the imagination and seduce the palate.",
+        open_time='16:00',
+        close_time='20:00',
+        cuisine='Mexican',
+        cover='https://northwooddp.com/wp-content/uploads/Portfolio/Reposado/1-1024x689.jpg',
+        capacity=100,
+        availability=100,
+        )
+
+    rest12 = Restaurant(
+        name="Broadway Masala", 
+        owner_id=3,
+        price_range=2, 
+        address='2397 Broadway', 
+        city='Redwood City', 
+        state='CA',
+        zip_code=94063,
+        description="Broadway Masala invites you try our ever evolving Indian cuisine along with personalized service and beautiful ambiance. Our menu is carefully crafted with fresh seasonal and local produce and offering the diversity of regional Indian fare.",
+        open_time='12:00',
+        close_time='20:00',
+        cuisine='Indian',
+        cover='https://duyt4h9nfnj50.cloudfront.net/resized/22bf9fec1d37813856f1d8e7151ac189-w2880-42.jpg',
+        capacity=90,
+        availability=90,
+        )
+
     db.session.add(rest1)
     db.session.add(rest2)
     db.session.add(rest3)
@@ -149,6 +217,10 @@ def seed_restaurants():
     db.session.add(rest6)
     db.session.add(rest7)
     db.session.add(rest8)
+    db.session.add(rest9)
+    db.session.add(rest10)
+    db.session.add(rest11)
+    db.session.add(rest12)
 
     db.session.commit()
 

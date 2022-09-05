@@ -21,6 +21,8 @@ function Home() {
             <NavLink to='/listnewrestaurant'> List Your Restaurant</NavLink>
             <br></br>
             <NavLink to='/myrestaurants'> My Restaurants</NavLink>
+            <br></br>
+            <NavLink to='/myreservations'> My Reservations</NavLink>
             <div className='find-your-table'>
                 <h2>Find your table for any occasion</h2>
             </div>
@@ -29,7 +31,7 @@ function Home() {
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurant' key={restaurant.id}>
                         <div className='home-res-cover'>
-                            <img src={restaurant.cover} alt='restaurant img' height={'200px'}/>
+                            <img src={restaurant.cover} alt='restaurant img' height={'200px'} />
                         </div>
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                         <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
