@@ -7,7 +7,6 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const dispatch = useDispatch();
     const history = useHistory();
     const restaurants = useSelector(state => state.restaurant.restaurants)
-    console.log('waht is the resTime', resTime)
 
     let therestaurant;
     for (let i of restaurants) {
@@ -109,14 +108,56 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
         }
     }
 
+    // const countDown = (timeLeft) => {
+    //     const minutes = Math.floor(timeLeft / 60);
+    //     const seconds = timeLeft % 60;
+    //     if (timeLeft > 0) {
+    //         if (seconds < 10) {
+    //             seconds = `0${seconds}`;
+    //         }
+    //         return `We’re holding this table for you for ${minutes}:${seconds}`
+    //     }
+    //     if (minutes == 0 && seconds <= 0) {
+    //         return 'You can still try to complete your reservation, but this table may no longer be available. Please refresh your page.'
+    //     }
+    // }
+    // const startTimer = (time) => {
+    //     let timePassed = 0;
+    //     let timeLeft = time;
+    //     const timerInternal = setInterval(() => {
+    //         timePassed = timePassed += 60;
+    //         timeLeft = time - timePassed;
+    //         const result = countDown(timeLeft)
+    //         if (timeLeft == 0) {
+    //             console.log('You can still try to complete your reservation, but this table may no longer be available. Please refresh your page.')
+    //             clearInterval(timerInternal);
+    //         }
+    //         console.log(result);
+    //     }, 1000)
+    // }
+
+    // const countDownNote = startTimer(300);
+    // console.log('countdown is ----', countDown)
+
+    let reserveNote = 'You can still try to complete your reservation, we will hold this table for 5 minutes.';
+    const changeReserveNote = () => {
+        const countDown = setInterval(() => {
+            setShowHomeReserve(false)
+            clearInterval(countDown);
+        }, 300000)
+    }
+    changeReserveNote();
+
     return sessionUser && (
         <>
             <div className='create-container'>
                 <button onClick={() => setShowHomeReserve(false)}>x</button>
+                <div id='timer-label' className='timer-label'>{reserveNote}</div>
                 <h3>Make a Reservation at </h3>
                 <div className='homeres-restaurant-container'>
                     <div>{therestaurant.name}</div>
                     <img src={therestaurant.cover} height={'100px'}></img>
+                    <div>Business Hours: {therestaurant.open_time} - {therestaurant.close_time}</div>
                 </div>
                 <div className='create-error'>
                     {errors.map((error, ind) => (

@@ -28,7 +28,6 @@ export default function MyReservations() {
 
     return loaded && sessionUser && (
         <div>
-            <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
             {showEditReser && (<Modal onClose={() => setShowEditReser(false)}>
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}

@@ -7,6 +7,7 @@ import SignUpForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
 // import profileicon from './icons/profile-icon.jpeg';
 import Profileicon from '../icons/Profileicon.jpeg';
+import Logo from '../icons/Logo.jpg';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -39,7 +40,7 @@ const NavBar = () => {
           <ul>
             <li>
               <NavLink to='/' exact={true} >
-                Home
+                <img src={Logo} alt='logo' height={'20px'} />
               </NavLink>
             </li>
             <li>

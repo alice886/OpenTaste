@@ -1,1 +1,25 @@
 /* TODO Add site wide styles */
+html {
+    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+}
+
+/* body {
+    margin: 0%;
+} */
+
+.content.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header {
+    width: 100%;
+    width: 100vw;
+    padding: 0;
+}
+
+#root > nav > ul {
+    list-style: none
+}
