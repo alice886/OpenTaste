@@ -95,8 +95,8 @@ export const createReservationThunk = reservation => async dispatch => {
     }
 }
 
-export const editReservationThunk = reservation => async dispatch => {
-    const response = await fetch(`/api/reservations/${reservation.id}`, {
+export const editReservationThunk = (reservation, id) => async dispatch => {
+    const response = await fetch(`/api/reservations/${id}`, {
         method: 'PUT',
         body: JSON.stringify(reservation),
         headers: {
@@ -107,9 +107,11 @@ export const editReservationThunk = reservation => async dispatch => {
     if (response.ok) {
         const editReservation = await response.json();
         dispatch(editAReservation(editReservation));
+        console.log('ok')
         return editReservation;
     } else {
         const data = await response.json();
+        console.log('NOT ok', data.errors)
         return data.errors;
     }
 }

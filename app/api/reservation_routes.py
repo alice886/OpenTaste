@@ -61,7 +61,7 @@ def reservation_edit(id):
         form = ReservationForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         for i in form.data:
-            if not form.data[i]:
+            if not form.data[i] and i != 'reserve_date' and i !='reserve_time' :
                 form[i].data = reservation_dict[i]
         updated_datetime=datetime.combine(form.data['reserve_date'],form.data['reserve_time'])
         # print('updated time --', updated_datetime)

@@ -31,7 +31,7 @@ function RestaurantDetails() {
     const reservationToggle = e => {
         e.preventDefault();
         showReservations ? setShowReservations(false) : setShowReservations(true)
-        buttontitle == 'see reservations' ? setButtontitle('hide reservations') : setButtontitle('see reservations')
+        buttontitle === 'see reservations' ? setButtontitle('hide reservations') : setButtontitle('see reservations')
     }
 
     const userCheck = therestaurant?.owner_id === sessionUser?.id
@@ -62,7 +62,7 @@ function RestaurantDetails() {
                     <div>Open at:{therestaurant.open_time}</div>
                     <div>Close at:{therestaurant.close_time}</div>
                 </div>
-                {therestaurant.owner_id == sessionUser?.id && (
+                {therestaurant.owner_id === sessionUser?.id && (
                     <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
                 )}
                 {showModal && (<Modal onClose={() => setShowModal(false)}>

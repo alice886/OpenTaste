@@ -122,9 +122,12 @@ export default function MakeReservation({ therestaurant }) {
                         <label>Time</label>
                         <select className='create-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                             <option value={''} selected disabled hidden>Select the hour</option>
-                            {availableHour_count.map(each => {
-                                return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
-                            })}
+                            {(availableHour_count.length > 0) ?
+                                availableHour_count.map(each => {
+                                    return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
+                                })
+                                : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
+                            }
                         </select>
                     </div >
                     <div>

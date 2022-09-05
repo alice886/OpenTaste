@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { Modal } from '../context/Modal'
-import { getReservationDetailThunk, editReservationThunk } from '../../store/reservation';
+import { editReservationThunk } from '../../store/reservation';
 
 export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
     const dispatch = useDispatch();
@@ -22,6 +21,12 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     }
     const closeHour = Number(theReservation.restaurant.close_time.slice(0, 2))
     const openHour = Number(theReservation.restaurant.open_time.slice(0, 2))
+    let maydate = new Date(theReservation.reserve_datetime)
+    const parsedDate = maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate()
+    const parsedTime = (maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0
+
+    // console.log(maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate())
+    // console.log((maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0)
 
     // to get today's dates
     const d = new Date()
@@ -31,8 +36,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     // to get available hours
     const availableHour_count = []
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
-    const [reserveDate, setReserveDate] = useState(todayString);
-    const [reserveTime, setReserveTime] = useState();
+    const [reserveDate, setReserveDate] = useState(parsedDate);
+    const [reserveTime, setReserveTime] = useState(parsedTime);
     if (new Date(reserveDate) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
@@ -73,6 +78,23 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         else setIsDisabled(true)
     }, [errors.length, newErrors.length, specialRequest])
 
+    const handleEditSubmit = async e => {
+        e.preventDefault();
+        const payload = {
+            party_size: partySize,
+            occasion,
+            special_request: specialRequest,
+            reserve_date: reserveDate,
+            reserve_time: reserveTime,
+        }
+        const editedReservation = await dispatch(editReservationThunk(payload, resId))
+        if (editedReservation) {
+            history.push(`/myreservations`)
+        }
+        else {
+            setIsDisabled(true)
+        }
+    }
 
 
     return (
@@ -110,10 +132,10 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>
                         <label>Time</label>
                         <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
-                            <option value={''} selected disabled hidden>Select the hour</option>
+                            <option defaultValue={''} selected disabled hidden>Update the hour here</option>
                             {(availableHour_count.length > 0) ?
                                 availableHour_count.map(each => {
-                                    return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
+                                    return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
                                 })
                                 : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
                             }
@@ -122,18 +144,18 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>
                         <label>Party Size</label>
                         <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
-                            <option value={''} selected disabled hidden>Please select the party size</option>
+                            <option defaultValue={''} selected disabled hidden>Update the party size here</option>
                             {capacity_count.map(each => (
-                                <option value={each} >{each}  people</option>
+                                <option key={each} value={each} >{each}  people</option>
                             ))}
                         </select>
                     </div>
                     <div>
                         <label>Occasion</label>
                         <select required className='edit-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
-                            <option value={''} selected disabled hidden>Please Select Your Occasion</option>
+                            <option defaultValue={''} selected disabled hidden>Update Your Occasion Here</option>
                             {occasion_count.map(each => (
-                                <option value={each} >{each}</option>
+                                <option key={each} value={each} >{each}</option>
                             ))}
                         </select>
                     </div>
@@ -154,7 +176,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                 <div>Please contact the restaurant if your party size is over 20 people,</div>
                 <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
             </div>
-            <button>Update This Reservation</button>
+            <button onClick={handleEditSubmit}>Update This Reservation</button>
             <button>Cancel This Reservation</button>
         </>
     )
