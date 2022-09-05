@@ -164,7 +164,7 @@ export default function MakeReservation({ therestaurant }) {
                     </div>
 
                 </form >
-                <div>Please contact the restaurant if your party size is over 20 people,</div>
+                <div>* Please contact the restaurant if your party size is over 20 people,</div>
                 <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
                 <button onClick={handleSubmit} disabled={isDisabled}>Submit</button>
             </div>
