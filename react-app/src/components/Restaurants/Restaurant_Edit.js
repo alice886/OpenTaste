@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
-import DeleteRestaurant from '../DeleteModals/Delete_Modal'
+import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
 import { getRestaurantDetailThunk, editRestaurantThunk, getMyRestaurantThunk } from '../../store/restaurant'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {

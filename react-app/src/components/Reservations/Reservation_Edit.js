@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { Modal } from '../context/Modal'
 import { editReservationThunk } from '../../store/reservation';
+import DeleteReservation from '../DeleteModals/Delete_Reservation';
 
 export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [showDelete, setShowDelete] = useState(false);
+    const [showDeleteReserv, setShowDeleteReserv] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState([]);
     const sessionUser = useSelector(state => state.session.user);
@@ -90,10 +92,16 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         const editedReservation = await dispatch(editReservationThunk(payload, resId))
         if (editedReservation) {
             history.push(`/myreservations`)
+            setShowEditReser(false)
         }
         else {
             setIsDisabled(true)
         }
+    }
+
+    const handleDeleteReser = async e => {
+        e.preventDefault();
+        setShowDeleteReserv(true);
     }
 
 
@@ -101,6 +109,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         <>
             <button onClick={() => setShowEditReser(false)}>x</button>
             <h1>Edit Reservation </h1>
+            {showDeleteReserv && <Modal><DeleteReservation setShowDeleteReserv={setShowDeleteReserv} resId={resId} setShowEditReser={setShowEditReser} object='reservation' /></Modal>}
             <div>
                 <img src={theReservation.restaurant.cover} height={'70px'}></img>
                 <div>{theReservation.restaurant.name}</div>
@@ -177,7 +186,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                 <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
             </div>
             <button onClick={handleEditSubmit}>Update This Reservation</button>
-            <button>Cancel This Reservation</button>
+            <button onClick={handleDeleteReser}>Cancel This Reservation</button>
         </>
     )
 }
