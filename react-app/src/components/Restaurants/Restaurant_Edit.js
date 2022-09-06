@@ -9,15 +9,24 @@ import './restaurant_edit.css'
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [name, setName] = useState();
-    const [price_range, setPriceRange] = useState();
-    const [address, setAddress] = useState();
-    const [city, setCity] = useState();
-    const [state, setState] = useState();
-    const [zip_code, setZipCode] = useState();
-    const [description, setDescription] = useState();
-    const [capacity, setCapacity] = useState();
-    const [cuisine, setCuisine] = useState();
+
+    const myrestaurants = useSelector(state => state.restaurant.restaurants);
+    let theRestaurant;
+    for (let i of myrestaurants) {
+        if (i.id === resId) {
+            theRestaurant = i
+        }
+    }
+
+    const [name, setName] = useState(theRestaurant?.name);
+    const [price_range, setPriceRange] = useState(theRestaurant?.price_range);
+    const [address, setAddress] = useState(theRestaurant?.address);
+    const [city, setCity] = useState(theRestaurant?.city);
+    const [state, setState] = useState(theRestaurant?.state);
+    const [zip_code, setZipCode] = useState(theRestaurant?.zip_code);
+    const [description, setDescription] = useState(theRestaurant?.description);
+    const [capacity, setCapacity] = useState(theRestaurant?.capacity);
+    const [cuisine, setCuisine] = useState(theRestaurant?.cuisine);
     const [cover, setCover] = useState();
     const [open_time, setOpenTime] = useState('');
     const [close_time, setCloseTime] = useState('');
@@ -27,14 +36,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [showDelete, setShowDelete] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     // const theRestaurant = useSelector(state => state.restaurant?.restaurant);
-    const myrestaurants = useSelector(state => state.restaurant.restaurants);
 
-    let theRestaurant;
-    for (let i of myrestaurants) {
-        if (i.id === resId) {
-            theRestaurant = i
-        }
-    }
 
     useEffect(() => {
         dispatch(getAllRestaurantThunk()).then(() => setIsLoaded(true))
@@ -107,25 +109,8 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                     ))}
                 </div>
                 <div>
-                    <label> { }{theRestaurant?.name}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.price_range}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.address}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.city}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.state}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.zip_code}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.description}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.capacity}</label>
-                    <br></br>
-                    <label> { }{theRestaurant?.cuisine}</label>
+                    <img src={theRestaurant?.cover} height={'150px'} />
                 </div>
-                <br></br>
                 <div>
                     <label>Name</label>
                     <input
@@ -226,7 +211,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                     ></input>
                 </div>
                 <div>
-                    <label>Business Hours: Open At</label>
+                    <div>Current Opentime: {theRestaurant?.open_time}</div>
+                </div>
+                <div>
+                    <label>Update Business Hours: Open At</label>
                     <input
                         type='time'
                         onChange={e => setOpenTime(e.target.value)}
@@ -236,7 +224,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                     ></input>
                 </div>
                 <div>
-                    <label>Business Hours: Close At</label>
+                    <div>Current Closetime: {theRestaurant?.close_time}</div>
+                </div>
+                <div>
+                    <label>Update Business Hours: Close At</label>
                     <input
                         type='time'
                         onChange={e => setCloseTime(e.target.value)}

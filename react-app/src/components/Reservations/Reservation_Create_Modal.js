@@ -46,7 +46,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const [isDisabled, setIsDisabled] = useState(true)
 
     const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser.id;
+    const user_id = sessionUser?.id;
     const restaurant_id = therestaurant.id;
 
     const capacity_count = []
@@ -62,9 +62,9 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
 
     useEffect(() => {
         if (!sessionUser) {
-            newErrors.push('Please log in')
+            newErrors.push('Please log in to complete your reservation.')
         }
-        if (sessionUser.id === therestaurant.owner_id) {
+        if (sessionUser?.id === therestaurant.owner_id) {
             newErrors.push('You may not reserve your own restaurant.')
         }
         else {
@@ -148,7 +148,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     }
     changeReserveNote();
 
-    return sessionUser && (
+    return (
         <>
             <div className='create-reservation-container-modal'>
                 <button onClick={() => setShowHomeReserve(false)}>x</button>

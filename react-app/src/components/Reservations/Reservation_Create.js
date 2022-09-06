@@ -38,7 +38,7 @@ export default function MakeReservation({ therestaurant }) {
     const [isDisabled, setIsDisabled] = useState(true)
 
     const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser.id;
+    const user_id = sessionUser?.id;
     const restaurant_id = therestaurant.id;
 
     const capacity_count = []
@@ -54,9 +54,9 @@ export default function MakeReservation({ therestaurant }) {
 
     useEffect(() => {
         if (!sessionUser) {
-            newErrors.push('Please log in')
+            newErrors.push('Please log in to complete your reservation.')
         }
-        if (sessionUser.id === therestaurant.owner_id) {
+        if (sessionUser?.id === therestaurant.owner_id) {
             newErrors.push('You may not reserve your own restaurant.')
         }
         else {
@@ -100,7 +100,7 @@ export default function MakeReservation({ therestaurant }) {
         }
     }
 
-    return sessionUser && (
+    return (
         <>
             <div className='create-reservation-container'>
                 <h3>Make a Reservation</h3>
