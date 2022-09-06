@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllRestaurantThunk } from '../../store/restaurant';
 import { Modal } from '../context/Modal'
 import MakeReservationModal from '../Reservations/Reservation_Create_Modal'
+import HomeSearch from '../Search/home_search'
 import './home.css'
 
 function Home() {
@@ -56,7 +57,9 @@ function Home() {
     return loaded && (
         <div >
             <div className='find-your-table'>
-                <div className='find-banner'>Find your table for any occasion</div>
+                <div className='find-banner'>Find your table for any occasion
+                <HomeSearch />
+                </div>
             </div>
             <h3>Reserve a table now </h3>
             <div className='home-all-container'>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
 
+
 export default function MakeReservation({ therestaurant }) {
     const dispatch = useDispatch();
     const history = useHistory();
