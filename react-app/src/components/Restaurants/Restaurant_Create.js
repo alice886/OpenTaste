@@ -40,10 +40,11 @@ export default function ListNewRestaurant() {
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
         'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese', 'Other']
 
-    const newErrors = [];
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
+    
+    const newErrors = [];
 
     useEffect(() => {
         if (!sessionUser) {

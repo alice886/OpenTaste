@@ -42,20 +42,41 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         dispatch(getAllRestaurantThunk()).then(() => setIsLoaded(true))
     }, [dispatch, theRestaurant?.id])
 
+    const states = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+        'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+        'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+        'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
+    const capacity_count = []
+    for (let i = 10; i < 301; i += 10) {
+        capacity_count.push(i)
+    }
+
+    const cuisine_count = ['American', 'Italian', 'Steakhouse', 'Seafood', 'French', 'Indian', 'Mexican',
+        'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
+        'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese', 'Other']
+
+
+    const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
+
     const newErrors = [];
 
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
         }
-        // else {
-        //     if (price_range == undefined) {
-        //         newErrors.push('* Please give this product a price range.')
-        //     }
-        //     if (description.length > 500) {
-        //         newErrors.push('You may only enter description in 500 characters.')
-        //     }
-        // }
+        else {
+            if (cover && !cover?.match(coverRegex)) {
+                newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
+                newErrors.push('* E.g. "https://example.com/image.jpg/"')
+                newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
+            }
+            if (description.length > 500) {
+                newErrors.push('You may only enter description in 500 characters.')
+            }
+        }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
@@ -100,7 +121,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         <>
             <button className='cancel-restaurant-edit' onClick={handleBack}>x</button>
             <form className='edit-restaurant'>
-                <h3>Edit Your Business</h3>
+                <div className='edit-restaurant-title'>Edit Your Business</div>
                 <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
@@ -109,75 +130,109 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                     ))}
                 </div>
                 <div>
-                    <img src={theRestaurant?.cover} height={'150px'} />
+                    <img src={theRestaurant?.cover} height={'80px'} />
                 </div>
-                <div>
-                    <label>Name</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the name here.'
-                        onChange={e => setName(e.target.value)}
-                        value={name}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>Price Range</label>
-                    <select className='create-res-input' onChange={e => setPriceRange(e.target.value)}>
-                        <option value={''} selected disabled hidden> Choose a price range </option>
-                        <option value={1} >$30 and under</option>
-                        <option value={2} > $31 to $50</option>
-                        <option value={3} > $50 to $100</option>
-                        <option value={4} > $101 and over</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Address</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the address here.'
-                        onChange={e => setAddress(e.target.value)}
-                        value={address}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>City</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the city here.'
-                        onChange={e => setCity(e.target.value)}
-                        value={city}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>State</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the state here.'
-                        onChange={e => setState(e.target.value)}
-                        value={state}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>Zip Code</label>
+                <div className='edit-restaurant-grid'>
+                    <div className='edit-restaurant-left'>
+                        <label>Name</label>
+                        <input
+                            type='text'
+                            placeholder='Please update the name here.'
+                            onChange={e => setName(e.target.value)}
+                            value={name}
+                            maxLength={30}
+                            className='create-res-input'
+                        ></input>
+                        <label>Price Range</label>
+                        <select className='create-res-input' onChange={e => setPriceRange(e.target.value)}>
+                            <option value={''} selected disabled hidden> Choose a price range </option>
+                            <option value={1} >$30 and under</option>
+                            <option value={2} > $31 to $50</option>
+                            <option value={3} > $50 to $100</option>
+                            <option value={4} > $101 and over</option>
+                        </select>
+                        <label>Address</label>
+                        <input
+                            type='text'
+                            placeholder='Please update the address here.'
+                            onChange={e => setAddress(e.target.value)}
+                            value={address}
+                            maxLength={30}
+                            className='create-res-input'
+                        ></input>
+                        <label>City</label>
+                        <input
+                            type='text'
+                            placeholder='Please update the city here.'
+                            onChange={e => setCity(e.target.value)}
+                            value={city}
+                            maxLength={30}
+                            className='create-res-input'
+                        ></input>
+                        <label>State</label>
+                        <select className='create-res-input' onChange={e => setState(e.target.value)} required >
+                            <option value={''} selected disabled hidden>Choose the state</option>
+                            {states.map(state => (
+                                <option value={state}>{state}</option>
+                            ))}
+                        </select>
+                        <label>Zip Code</label>
 
-                    <input
-                        type='text'
-                        placeholder='Please update the zip_code here.'
-                        onChange={e => setZipCode(e.target.value)}
-                        value={zip_code}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
+                        <input
+                            type='text'
+                            placeholder='Please update the zip_code here.'
+                            onChange={e => setZipCode(e.target.value)}
+                            value={zip_code}
+                            maxLength={30}
+                            className='create-res-input'
+                        ></input>
+                    </div>
+                    <div className='edit-restaurant-right'>
+                        <label>Capacity</label>
+                        <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
+                            <option value={''} selected disabled hidden>Please select the capacity</option>
+                            {capacity_count.map(each => (
+                                <option value={each} >{each}  people</option>
+                            ))}
+                            <option value={999} >300 + people</option>
+                        </select>
+                        <label>Cuisine</label>
+                        <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
+                            <option value={''} selected disabled hidden>Please select the cuisine</option>
+                            {cuisine_count.map(each => (
+                                <option value={each} >{each}</option>
+                            ))}
+                        </select>
+                        <div>Current Opentime: {theRestaurant?.open_time}</div>
+                        <label>Update Business Hours: Open At</label>
+                        <input
+                            type='time'
+                            onChange={e => setOpenTime(e.target.value)}
+                            value={open_time}
+                            className='create-res-input'
+                            defaultValue={''}
+                        ></input>
+                        <div>Current Closetime: {theRestaurant?.close_time}</div>
+                        <label>Update Business Hours: Close At</label>
+                        <input
+                            type='time'
+                            onChange={e => setCloseTime(e.target.value)}
+                            value={close_time}
+                            className='create-res-input'
+                            defaultValue={''}
+                        ></input>
+                        <label>Cover Picture</label>
+                        <input
+                            type='text'
+                            placeholder='Please update the cover picture link here.'
+                            onChange={e => setCover(e.target.value)}
+                            value={cover}
+                            maxLength={300}
+                            className='create-res-input'
+                        ></input>
+                    </div>
                 </div>
-                <div>
+                <div className='edit-restaurant-description'>
                     <label>Description</label>
                     <input
                         type='textarea'
@@ -186,65 +241,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         value={description}
                         maxLength={30}
                         className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>Capacity</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the capacity here.'
-                        onChange={e => setCapacity(e.target.value)}
-                        value={capacity}
-                        max={200}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <label>Cuisine</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the cuisine here.'
-                        onChange={e => setCuisine(e.target.value)}
-                        value={cuisine}
-                        maxLength={30}
-                        className='create-res-input'
-                    ></input>
-                </div>
-                <div>
-                    <div>Current Opentime: {theRestaurant?.open_time}</div>
-                </div>
-                <div>
-                    <label>Update Business Hours: Open At</label>
-                    <input
-                        type='time'
-                        onChange={e => setOpenTime(e.target.value)}
-                        value={open_time}
-                        className='create-res-input'
-                        defaultValue={''}
-                    ></input>
-                </div>
-                <div>
-                    <div>Current Closetime: {theRestaurant?.close_time}</div>
-                </div>
-                <div>
-                    <label>Update Business Hours: Close At</label>
-                    <input
-                        type='time'
-                        onChange={e => setCloseTime(e.target.value)}
-                        value={close_time}
-                        className='create-res-input'
-                        defaultValue={''}
-                    ></input>
-                </div>
-                <div>
-                    <label>Cove Picture</label>
-                    <input
-                        type='text'
-                        placeholder='Please update the cover picture link here.'
-                        onChange={e => setCover(e.target.value)}
-                        value={cover}
-                        maxLength={300}
-                        className='create-res-input'
+                        rows="5"
                     ></input>
                 </div>
                 <button onClick={handleSubmit} className='edit-restaurant-submit'>Submit Changes</button>
