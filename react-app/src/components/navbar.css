@@ -6,12 +6,11 @@ div.nav-user-container {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 0 2%;
+    padding: 10px 1% 0px;
     height: 50px;
     text-decoration: none;
     font-family: 'DM Sans', sans-serif;
     background-color: none;
-    padding-top: 20px;
 }
 
 .nav-logo {
@@ -22,7 +21,7 @@ div.nav-user-container {
     box-sizing: border-box;
     border-right: 2px #f0f0f5 solid;
     padding: 0 30px;
-    margin: 20px;
+    margin: 10px;
 }
 
 div.nav-user-container>div.nav-logo>a>img {
@@ -43,8 +42,10 @@ div.nav-user-container>div.nav-logo>a>img {
 .nav-button-container {
     height: 100%;
     margin: 10px 0px;
-    padding: 8px 9%;
+    padding: 20px 9%;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .nav-user-dropdown {
@@ -104,9 +105,9 @@ div.nav-user-container>div.nav-logo>a>img {
     max-height: 2em;
 }
 
-#root > div.nav-user-container > div.nav-button-container > button{
-    height: 80%;
-    padding-top: 9px;
+#root>div.nav-user-container>div.nav-button-container>button {
+    height: fit-content;
+
 }
 
 button {
@@ -117,4 +118,50 @@ button {
 ul,
 nav {
     list-style-type: none;
+}
+
+button.login {
+    padding: 0px 15px;
+    margin: 5px;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid #dddbda;
+    color: #0070d2;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+
+
+}
+
+button.signup {
+    padding: 0px 15px;
+    margin: 5px;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    background-color: #0070d2;
+    border-radius: 0.25rem;
+    border: 1px solid #dddbda;
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+    height: fit-content;
+
+
+}
+
+button.login:hover {
+    background-color: #D6D9DE;
+}
+
+button.signup:hover {
+    background-color: #489EEA;
+
 }

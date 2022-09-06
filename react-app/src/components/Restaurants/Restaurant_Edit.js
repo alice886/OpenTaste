@@ -28,15 +28,14 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [capacity, setCapacity] = useState(theRestaurant?.capacity);
     const [cuisine, setCuisine] = useState(theRestaurant?.cuisine);
     const [cover, setCover] = useState();
-    const [open_time, setOpenTime] = useState('');
-    const [close_time, setCloseTime] = useState('');
+    const [open_time, setOpenTime] = useState(theRestaurant?.open_time);
+    const [close_time, setCloseTime] = useState(theRestaurant?.close_time);
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     // const theRestaurant = useSelector(state => state.restaurant?.restaurant);
-
 
     useEffect(() => {
         dispatch(getAllRestaurantThunk()).then(() => setIsLoaded(true))
@@ -91,7 +90,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length])
+    }, [errors.length,open_time,close_time, description,cover])
 
     const handleSubmit = async e => {
         e.preventDefault();
