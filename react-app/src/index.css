@@ -1,6 +1,8 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
 html {
-    font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     text-decoration: none;
 }
 

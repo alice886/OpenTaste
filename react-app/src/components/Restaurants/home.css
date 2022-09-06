@@ -1,6 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+.home-all-container {
+    padding: 0 3%;
+    display: grid;
+    grid-template-columns: repeat(4, 22%);
+    color: inherit;
+    margin: .5em;
+    gap: 20px;
+    justify-content: center;
+
+}
+
+#root>div:nth-child(2)>h3 {
+    margin: 5px 3%;
+    padding: 0 1%;
+    font-size: 20px;
+    color: #333B50;
+    border-bottom: #E5E9F4 1px solid;
+    font-family: 'DM Sans', sans-serif;
+}
+
 div .find-banner {
     height: 180px;
-    background-image: linear-gradient(to bottom right, #213371, gray);
+    background-image: linear-gradient(to bottom right, #131E43, #5F698C);
     font-size: 2.5em;
     color: white;
     display: flex;
@@ -8,4 +30,59 @@ div .find-banner {
     justify-content: center;
     text-align: center;
     margin-top: 10px;
+}
+
+.home-restaurants {
+    margin: 3px 10px;
+    border-radius: 2%;
+    border: #E5E9F4 solid 2px;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+div.home-res-cover {
+    align-self: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 2%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-res-cover>img {
+    object-fit: cover;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+div .home-res-details {
+    /* display: flex;
+    align-items: flex-start;
+    flex-direction: column; */
+    margin: 14px;
+    padding: 5px;
+    float: left;
+
+}
+
+
+.home-res-nav {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.home-res-timeslots>button {
+    background-color: #D10909;
+    color: white;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-right: 11px;
+    padding: 6px 13px;
+    border-radius: 10%;
 }
