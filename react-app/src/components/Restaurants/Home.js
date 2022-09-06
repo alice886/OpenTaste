@@ -62,18 +62,20 @@ function Home() {
             <div className='home-all-container'>
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurants' key={restaurant.id}>
-                        <div className='home-res-cover'>
-                            <img src={restaurant.cover} alt='restaurant img' height={'200px'} />
-                        </div>
-                        <div className='home-res-details'>
-                            <NavLink className='home-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
-                            <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
-                            <div className='home-res-timeslots'>
-                                <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 3} >{Number(restaurant.close_time.slice(0, 2)) - 3}:00</button>
-                                <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 2} >{Number(restaurant.close_time.slice(0, 2)) - 2}:00</button>
-                                <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 1} >{Number(restaurant.close_time.slice(0, 2)) - 1}:00</button>
+                        <NavLink className='home-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
+                            <div className='home-res-cover'>
+                                <img src={restaurant.cover} alt='restaurant img' height={'200px'} />
                             </div>
-                        </div>
+                            <div className='home-res-details'>
+                                <NavLink className='home-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
+                                <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
+                                <div className='home-res-timeslots'>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 3} >{Number(restaurant.close_time.slice(0, 2)) - 3}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 2} >{Number(restaurant.close_time.slice(0, 2)) - 2}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 1} >{Number(restaurant.close_time.slice(0, 2)) - 1}:00</button>
+                                </div>
+                            </div>
+                        </NavLink>
 
                         {/* {restaurant => slotGenerator(restaurant).map(each => {
                             <div>{each}</div>

@@ -3,7 +3,7 @@
 .home-all-container {
     padding: 0 3%;
     display: grid;
-    grid-template-columns: repeat(4, 22%);
+    grid-template-columns: repeat(4, 20%);
     color: inherit;
     margin: .5em;
     gap: 20px;
@@ -14,7 +14,7 @@
 #root>div:nth-child(2)>h3 {
     margin: 5px 3%;
     padding: 0 1%;
-    font-size: 20px;
+    font-size: 1.3em;
     color: #333B50;
     border-bottom: #E5E9F4 1px solid;
     font-family: 'DM Sans', sans-serif;
@@ -33,13 +33,16 @@ div .find-banner {
 }
 
 .home-restaurants {
-    margin: 3px 10px;
+    margin: 1px 1px;
     border-radius: 2%;
     border: #E5E9F4 solid 2px;
     /* display: flex; */
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    font-size: .9em;
+    transition: all .4s ease;
+    position: relative;
 }
 
 div.home-res-cover {
@@ -64,10 +67,10 @@ div .home-res-details {
     /* display: flex;
     align-items: flex-start;
     flex-direction: column; */
-    margin: 14px;
+    margin: 12px;
     padding: 5px;
     float: left;
-
+    color: #131E43;
 }
 
 
@@ -77,12 +80,20 @@ div .home-res-details {
     font-weight: 700;
 }
 
+div .home-restaurants:hover {
+    border-radius: 2% 2% 2% 2% / 2% 2% 2% 2%;
+    box-shadow: 6px 6px 9px rgba(104, 104, 104, .3);
+    top: -6px;
+    transition-duration: 200ms;
+}
+
 .home-res-timeslots>button {
     background-color: #D10909;
     color: white;
-    font-size: 14px;
-    margin-top: 5px;
+    font-weight: lighter;
+    font-size: 1em;
+    margin-top: .7em;
     margin-right: 11px;
-    padding: 6px 13px;
+    padding: 0.3em 0.5em;
     border-radius: 10%;
 }
