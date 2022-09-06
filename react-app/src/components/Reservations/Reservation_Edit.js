@@ -47,8 +47,16 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         }
     }
     else {
-        for (let i = nowHour + 1; i < closeHour; i++) {
-            availableHour_count.push(i + ':00')
+        if (nowHour < openHour) {
+            for (let i = openHour + 1; i < closeHour; i++) {
+                availableHour_count.push(i + ':00')
+
+            }
+        }
+        else {
+            for (let i = nowHour + 1; i < closeHour; i++) {
+                availableHour_count.push(i + ':00')
+            }
         }
     }
 
