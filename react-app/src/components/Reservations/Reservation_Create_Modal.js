@@ -150,7 +150,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
 
     return sessionUser && (
         <>
-            <div className='create-container'>
+            <div className='create-reservation-container-modal'>
                 <button onClick={() => setShowHomeReserve(false)}>x</button>
                 <div id='timer-label' className='timer-label'>{reserveNote}</div>
                 <h3>Make a Reservation at </h3>

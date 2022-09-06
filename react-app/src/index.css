@@ -30,8 +30,8 @@ body {
 button:disabled {
     background-color: #8E8E8E;
     color: #535353;
-    padding: .3em .8em;
-    margin: .5em;
-    border-radius: 10%;
+    padding: .6em 4em;
+    margin: 0 .5em;
+    border-radius: 20px;
+    cursor: no-drop;
 }
-

@@ -102,7 +102,7 @@ export default function MakeReservation({ therestaurant }) {
 
     return sessionUser && (
         <>
-            <div className='create-container'>
+            <div className='create-reservation-container'>
                 <h3>Make a Reservation</h3>
                 <div className='create-error'>
                     {errors.map((error, ind) => (
