@@ -6,6 +6,7 @@ import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
 import MakeReservation from '../Reservations/Reservation_Create'
+import './restaurant_details.css'
 
 function RestaurantDetails() {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function RestaurantDetails() {
     const [showModal, setShowModal] = useState();
     const [loaded, setLoaded] = useState(false)
     const [showReservations, setShowReservations] = useState(false);
-    const [buttontitle, setButtontitle] = useState('see reservations');
+    const [buttontitle, setButtontitle] = useState('See Reservations');
 
     useEffect(() => {
         dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
@@ -30,8 +31,13 @@ function RestaurantDetails() {
 
     const reservationToggle = e => {
         e.preventDefault();
-        showReservations ? setShowReservations(false) : setShowReservations(true)
-        buttontitle === 'see reservations' ? setButtontitle('hide reservations') : setButtontitle('see reservations')
+        setShowReservations(true)
+        // buttontitle === 'See Reservations' ? setButtontitle('Hide Reservations') : setButtontitle('See Reservations')
+    }
+
+    const overviewToggle = e => {
+        e.preventDefault();
+        setShowReservations(false)
     }
 
     const userCheck = therestaurant?.owner_id === sessionUser?.id
@@ -39,37 +45,42 @@ function RestaurantDetails() {
 
     return loaded && (
         <>
-            {userCheck && (
-                <div>
-                    <button onClick={reservationToggle}>{buttontitle}</button>
-                    {showReservations && <ReservationDetails />}
+            <img className='restaurant-detail-cover' src={therestaurant.cover} height={'300px'} />
+            <div className='restaurant-all-container'>
+                <div className='res-left-container'>
+                    <div className='res-left-name'>{therestaurant.name}</div>
+                    <div className='res-left-toggle'>
+                        <button className='res-left-toggle-button' onClick={overviewToggle}>Overview</button>
+                        {userCheck && (
+                                <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
+                        )}
+                    </div>
+                    {showReservations ? < ReservationDetails /> : (
+                        <>
+                            <div className='res-left-info'>
+                                <div>{dollarSigns[therestaurant.price_range]} {therestaurant.cuisine}</div>
+                                <div>{therestaurant.description}</div>
+                            </div>
+                            <div className='res-right-info'>
+                                <div>Address: {therestaurant.address}</div>
+                                <div>City: {therestaurant.city}</div>
+                                <div>State: {therestaurant.state}</div>
+                                <div>Zip code: {therestaurant.zip_code}</div>
+                                {/* <div>Capacity:{therestaurant.capacity}</div> */}
+                                <div>Open at: {therestaurant.open_time}</div>
+                                <div>Close at: {therestaurant.close_time}</div>
+                            </div>
+                        </>
+                    )
+                    }
                 </div>
-            )}
-            <div className='res-left-container'>
-                <div className='res-left-name'>{therestaurant.name}</div>
-                <img src={therestaurant.cover} height={'300px'} />
-                <div className='res-left-info'>
-                    <div>Price range: {dollarSigns[therestaurant.price_range]}</div>
-                    <div>Cuisine: {therestaurant.cuisine}</div>
-                </div>
-                <div className='res-left-des'>description: {therestaurant.description}</div>
-                <div className='res-right-info'>
-                    <div>Address:{therestaurant.address}</div>
-                    <div>City:{therestaurant.city}</div>
-                    <div>State:{therestaurant.state}</div>
-                    <div>Zip code:{therestaurant.zip_code}</div>
-                    {/* <div>Capacity:{therestaurant.capacity}</div> */}
-                    <div>Open at:{therestaurant.open_time}</div>
-                    <div>Close at:{therestaurant.close_time}</div>
-                </div>
-                {/* {therestaurant.owner_id === sessionUser?.id && (
-                    <button onClick={(e) => handleEdit(e, therestaurant.id)}>Edit Your Restaurant</button>
-                )} */}
-                {showModal && (<Modal onClose={() => setShowModal(false)}>
-                    <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
-                </Modal>)}
                 <div className='res-right-container'>
-                    <MakeReservation therestaurant={therestaurant} />
+                    {showModal && (<Modal onClose={() => setShowModal(false)}>
+                        <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
+                    </Modal>)}
+                    <div className='res-right-container'>
+                        <MakeReservation therestaurant={therestaurant} />
+                    </div>
                 </div>
             </div>
         </>

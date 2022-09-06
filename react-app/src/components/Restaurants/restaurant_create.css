@@ -1,0 +1,65 @@
+.create-container {
+    background-color: #FAD961;
+    background-image: linear-gradient(180deg, #FAD961 0%, #F76B1C, #67005E 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    min-height: 700px;
+}
+
+.create-form-container {
+    height: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 2em;
+    margin: 2em 3em;
+}
+
+.create-title {
+    padding-top: .2em;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+#root>div.create-container>h4 {
+    text-decoration: none;
+}
+
+.create-new-restaurant {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    gap: 5px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10% 2%;
+}
+
+.create-error {
+    padding: 15px;
+    border-bottom: #FEE8FC 1px solid;
+}
+
+.left-create>div {
+    padding: 3px 8px;
+    margin: 2px;
+}
+
+.right-create>div {
+    padding: 3px 8px;
+    margin: 2px;
+}
+
+.left-create>div>label {
+    padding-right: 8px;
+    width: 90px;
+}
+
+.right-create>div>label {
+    padding-right: 8px;
+}

@@ -34,7 +34,7 @@ div .find-banner {
 
 .home-restaurants {
     margin: 1px 1px;
-    border-radius: 2%;
+    border-radius: 3%;
     border: #E5E9F4 solid 2px;
     /* display: flex; */
     flex-direction: column;
@@ -49,7 +49,8 @@ div.home-res-cover {
     align-self: center;
     box-sizing: border-box;
     overflow: hidden;
-    border-radius: 2%;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
     object-fit: cover;
     display: flex;
     justify-content: center;

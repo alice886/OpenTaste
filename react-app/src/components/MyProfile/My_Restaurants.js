@@ -5,6 +5,7 @@ import { Modal } from '../context/Modal'
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import { getMyRestaurantThunk } from '../../store/restaurant';
 import ReservationDetails from '../Reservations/Business_Reservation';
+import './my-restaurants.css'
 
 
 export default function MyRestaurants() {
@@ -33,21 +34,32 @@ export default function MyRestaurants() {
     // }
 
     return loaded && sessionUser && (
-        <div>
-            <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
+        <div className='myrestaurants-container'>
+            <h3> My Restaurants </h3>
+            <div>
+                <button className='list-new-res-button'>
+                    <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>
+                </button>
+            </div>
             {showModal && (<Modal onClose={() => setShowModal(false)}>
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
-            <div className='myrestaurants-container'>
-                <h3>- My Restaurants -</h3>
+            <div>
                 {myrestaurants?.map(restaurant => {
-                    return <div className='home-restaurant' key={restaurant.id}>
+                    return <div className='my-restaurant-each' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
                             <img src={restaurant.cover} alt='restaurant img' height={'300px'} />
                         </div>
-                        <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
-                        <div>📍{restaurant.city}, {restaurant.state} {restaurant.zip_code}</div>
-                        <button onClick={(e) => handleEdit(e, restaurant.id)}>Manage/Edit This Business</button>
+                        <div className='myrestaurant-details'>
+                            <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
+                            <div>Location:</div>
+                            <div>{restaurant.address},</div>
+                            <div>{restaurant.city}, {restaurant.state} {restaurant.zip_code}</div>
+                            <div>Cuisine: {restaurant.cuisine} </div>
+                        </div>
+                        <div className='myrestaurant-edit-button'>
+                            <button onClick={(e) => handleEdit(e, restaurant.id)}>Manage/Edit</button>
+                        </div>
                         {/* <button onClick={handleReservations}>Check Reservations for This Restaurant</button> */}
                     </div>
                 })
