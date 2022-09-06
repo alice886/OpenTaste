@@ -1,1 +1,37 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+html {
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+}
+
+body {
+    margin: 0%;
+}
+
+.content.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header {
+    width: 100%;
+    width: 100vw;
+    padding: 0;
+}
+
+#root>nav>ul {
+    list-style: none
+}
+
+button:disabled {
+    background-color: #8E8E8E;
+    color: #535353;
+    padding: .6em 4em;
+    margin: 0 .5em;
+    border-radius: 20px;
+    cursor: no-drop;
+}

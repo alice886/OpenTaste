@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+div.nav-user-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 0 2%;
+    height: 50px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    background-color: none;
+    padding-top: 20px;
+}
+
+.nav-logo {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 2px #f0f0f5 solid;
+    padding: 0 30px;
+    margin: 20px;
+}
+
+div.nav-user-container>div.nav-logo>a>img {
+    height: 100%;
+}
+
+#root>div.nav-user-container>div.nav-logo>a:nth-child(2) {
+    text-decoration: none;
+    height: 100%;
+    font-size: 25px;
+    font-weight: 700;
+    color: black;
+    align-items: center;
+    align-content: center;
+    margin: 14px 10px;
+}
+
+.nav-button-container {
+    height: 100%;
+    margin: 10px 0px;
+    padding: 8px 9%;
+    position: relative;
+}
+
+.nav-user-dropdown {
+    position: absolute;
+    right: 24%;
+    width: 130px;
+    text-decoration: none;
+    background-color: #F8F8F8;
+    color: black;
+    border-radius: 5%;
+    padding: 10px 5px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li>a {
+    text-decoration: none;
+    color: black;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li>a :hover {
+    text-decoration: none;
+    color: #871D1D;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>div {
+    border-bottom: gray solid 1px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul {
+    margin: 5px;
+    font-size: 14px;
+    align-self: flex-start;
+    padding: 5px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li {
+    padding: 10px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li:hover {
+    background-color: white;
+    font-weight: 500;
+}
+
+.nav-button-logout {
+    color: #8E1111;
+    border-radius: 5%/5%;
+}
+
+.nav-button-img {
+    height: 50%;
+    border-radius: 50%;
+    padding: .6em;
+    background-color: #f0f0f5;
+    max-width: 2em;
+    max-height: 2em;
+}
+
+#root > div.nav-user-container > div.nav-button-container > button{
+    height: 80%;
+    padding-top: 9px;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+ul,
+nav {
+    list-style-type: none;
+}

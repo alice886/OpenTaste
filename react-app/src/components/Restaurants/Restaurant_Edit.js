@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
 import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
 import { editRestaurantThunk, getRestaurantDetailThunk, getAllRestaurantThunk } from '../../store/restaurant'
+import './restaurant_edit.css'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const dispatch = useDispatch();
@@ -95,34 +96,35 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
 
     return sessionUser && isLoaded && (
         <>
-            <div>Edit Your Business</div>
-            <h1>test test</h1>
+            <button className='cancel-restaurant-edit' onClick={handleBack}>x</button>
             <form className='edit-restaurant'>
-                <button onClick={handleBack}>X</button>
-                <button onClick={handleDelete}>Delete The Restaurant</button>
+                <h3>Edit Your Business</h3>
+                <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
                     ))}
                 </div>
-                <label>- { }{theRestaurant?.name}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.price_range}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.address}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.city}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.state}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.zip_code}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.description}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.capacity}</label>
-                <br></br>
-                <label>- { }{theRestaurant?.cuisine}</label>
+                <div>
+                    <label> { }{theRestaurant?.name}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.price_range}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.address}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.city}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.state}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.zip_code}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.description}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.capacity}</label>
+                    <br></br>
+                    <label> { }{theRestaurant?.cuisine}</label>
+                </div>
                 <br></br>
                 <div>
                     <label>Name</label>
@@ -254,7 +256,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         className='create-res-input'
                     ></input>
                 </div>
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={handleSubmit} className='edit-restaurant-submit'>Submit Changes</button>
             </form>
         </>
 

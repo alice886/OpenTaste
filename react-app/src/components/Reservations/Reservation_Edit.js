@@ -182,7 +182,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
                 </form >
 
-                <div>Please contact the restaurant if your party size is over 20 people,</div>
+                <div>* Please contact the restaurant if your party size is over 20 people,</div>
                 <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
             </div>
             <button onClick={handleEditSubmit}>Update This Reservation</button>

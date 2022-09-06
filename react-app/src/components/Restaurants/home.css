@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+.home-all-container {
+    padding: 0 3%;
+    display: grid;
+    grid-template-columns: repeat(4, 20%);
+    color: inherit;
+    margin: .5em;
+    gap: 20px;
+    justify-content: center;
+
+}
+
+#root>div:nth-child(2)>h3 {
+    margin: 5px 3%;
+    padding: 0 1%;
+    font-size: 1.3em;
+    color: #333B50;
+    border-bottom: #E5E9F4 1px solid;
+    font-family: 'DM Sans', sans-serif;
+}
+
+div .find-banner {
+    height: 180px;
+    background-image: linear-gradient(to bottom right, #131E43, #5F698C);
+    font-size: 2.5em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.home-restaurants {
+    margin: 1px 1px;
+    border-radius: 3%;
+    border: #E5E9F4 solid 2px;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    font-size: .9em;
+    transition: all .4s ease;
+    position: relative;
+}
+
+div.home-res-cover {
+    align-self: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-res-cover>img {
+    object-fit: cover;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+div .home-res-details {
+    /* display: flex;
+    align-items: flex-start;
+    flex-direction: column; */
+    margin: 12px;
+    padding: 5px;
+    float: left;
+    color: #131E43;
+}
+
+
+.home-res-nav {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+div .home-restaurants:hover {
+    border-radius: 2% 2% 2% 2% / 2% 2% 2% 2%;
+    box-shadow: 6px 6px 9px rgba(104, 104, 104, .3);
+    top: -6px;
+    transition-duration: 200ms;
+}
+
+.home-res-timeslots>button {
+    background-color: #D10909;
+    color: white;
+    font-weight: lighter;
+    font-size: 1em;
+    margin-top: .7em;
+    margin-right: 11px;
+    padding: 0.3em 0.5em;
+    border-radius: 10%;
+}

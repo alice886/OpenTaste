@@ -12,6 +12,7 @@ export default function MyReservations() {
     const [showEditReser, setShowEditReser] = useState(false);
     const [resId, setResId] = useState();
     const myReservations = useSelector(state => state.reservation.reservations);
+    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
@@ -25,9 +26,8 @@ export default function MyReservations() {
         setShowEditReser(true)
     }
 
-    return loaded && (
+    return loaded && sessionUser && (
         <div>
-            <NavLink to='/listnewrestaurant'> List A New Restaurant</NavLink>
             {showEditReser && (<Modal onClose={() => setShowEditReser(false)}>
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}

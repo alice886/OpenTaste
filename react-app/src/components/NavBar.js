@@ -5,51 +5,89 @@ import { NavLink } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
 import SignUpForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
+// import profileicon from './icons/profile-icon.jpeg';
+import Logo from '../icons/Logo.jpg';
+import GrayLogo from '../icons/GrayLogo.jpg';
+import '../components/navbar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [showLogin, setShowLogin] = useState(false)
   const [showSignup, setShowSignUp] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
+
+  const handleProfile = async e => {
+    e.preventDefault();
+    if (showMenu) return;
+    setShowMenu(true);
+  }
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   return (
     <>
       {(sessionUser) ?
-        (<nav>
-          <ul>
-            <li>
-              <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/users' exact={true} activeClassName='active'>
-                Users
-              </NavLink>
-            </li>
-            <li>
-              <LogoutButton />
-            </li>
-          </ul>
-        </nav >) : (
-          <nav>
-            <ul>
+        (<div className='nav-user-container'>
+          <div className='nav-logo'>
+            <NavLink to='/' exact={true} >
+              <img src={Logo} alt='logo' />
+            </NavLink>
+            <NavLink to='/' exact={true} >
+              OpenTaste
+            </NavLink>
+          </div>
+          <div className='nav-button-container'>
+            <button className='nav-button' onClick={handleProfile}>
+              <input className='nav-button-img' type='image' src={GrayLogo} alt='profile icon'></input>
+            </button>
+            {showMenu && (
+              <ul className='nav-user-dropdown'>
+                <div className='nav-user-greeting'> Hello, {sessionUser.username}!</div>
+                <li className='nav-user-greeting'>
+                  <NavLink to='/myrestaurants' exact={true} >
+                    My Restaurants
+                  </NavLink>
+                </li>
+                <li >
+                  <NavLink to='/myreservations' exact={true} >
+                    My Reservations
+                  </NavLink>
+                </li>
+                <li className='nav-button-logout'>
+                  <LogoutButton />
+                </li>
+              </ul>)}
+          </div>
+        </div >) : (
+          <nav >
+            <ul className='nav-public'>
               <li>
-                <NavLink to='/' exact={true} activeClassName='active'>
+                <NavLink to='/' exact={true} >
                   Home
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to='/users' exact={true} activeClassName='active'>
                   Users
                 </NavLink>
-              </li>
+              </li> */}
               <li>
-                <button exact={true} activeClassName='active' onClick={() => setShowLogin(true)}>
+                <button exact={true} onClick={() => setShowLogin(true)}>
                   Login
                 </button>
               </li>
               <li>
-                <button exact={true} activeClassName='active' onClick={() => setShowSignUp(true)}>
+                <button exact={true} onClick={() => setShowSignUp(true)}>
                   Sign Up
                 </button>
               </li>
