@@ -13,7 +13,7 @@ export default function HomeSearch() {
     const availableHour_count = []
 
     const [partySize, setPartySize] = useState(2);
-    const [searchTime, setSearchTime] = useState();
+    const [searchTime, setSearchTime] = useState(('0' + (nowHour + 1)).slice(-2) + ':00');
     const [searchDate, setSearchDate] = useState(todayString);
     const [keyWord, setKeyWord] = useState()
 
@@ -35,32 +35,33 @@ export default function HomeSearch() {
     }
 
     return (
-        <>
-            <div>
+        <div className='home-search-container'>
+            <div >
                 <input
                     type='date'
                     value={searchDate}
                     min={todayString}
                     max='2023-12-31'
                     onChange={e => setSearchDate(e.target.value)}
+                    className='home-search-dattimeppl'
                 ></input>
             </div>
             <div>
-                <select className='create-res-input' value={searchTime} onChange={e => setSearchTime(e.target.value)} required >
-                    <option value={''} selected disabled hidden>Select the hour</option>
+                <select className='home-search-dattimeppl' value={searchTime} onChange={e => setSearchTime(e.target.value)} required >
                     {(availableHour_count.length > 0) ?
                         availableHour_count.map(each => {
-                            return <option value={each} onClick={e => setSearchTime(e.target.value)}>{each}</option>
+                            return <option value={each} key={each} onClick={e => setSearchTime(e.target.value)}>{each}</option>
                         })
                         : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
                     }
                 </select>
             </div>
             <div>
-                <select className='create-res-input' onChange={e => setPartySize(e.target.value)} max={999} required>
-                    <option value={''} selected disabled hidden>Please select the capacity</option>
+                <select className='home-search-dattimeppl' onChange={e => setPartySize(e.target.value)} max={999} required>
+                    <option value={1} >1 People</option>
+                    <option value={2} selected >2 People</option>
                     {capacity_count.map(each => (
-                        <option value={each} >{each}  people</option>
+                        <option value={each} key={each}>{each}  people</option>
                     ))}
                     <option value={21} >Larger Party</option>
                 </select>
@@ -68,14 +69,15 @@ export default function HomeSearch() {
             <div>
                 <input
                     type='text'
-                    placeholder='Location, Restaurant, or Cuisine'
+                    placeholder='  🔎 Location, Restaurant, or Cuisine'
                     onChange={e => setKeyWord(e.target.value)}
                     value={keyWord}
                     maxLength={50}
-                    className='create-res-input'
+                    className='home-search-input'
                     required
                 ></input>
             </div>
-        </>
+            <button className='home-search-button'>Let's go</button>
+        </div>
     )
 }
