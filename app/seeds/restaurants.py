@@ -35,7 +35,7 @@ def seed_restaurants():
         open_time='12:00',
         close_time='22:00',
         cuisine='Filipino',
-        cover='https://i0.wp.com/post.greatist.com/wp-content/uploads/sites/2/2020/02/GRT-filipino-food-dishes-1296x728-header.jpg?w=1155&h=1528',
+        cover='https://cdn.vox-cdn.com/thumbor/0ZxhdtAiiq2-5HdY2PWyY6gUTyM=/0x0:2000x1333/1200x900/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/61896849/Abaca_PChang_0869.14.jpg',
         capacity=80,
         availability=80,
         )

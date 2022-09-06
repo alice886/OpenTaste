@@ -1,8 +1,66 @@
 .edit-restaurant {
-    width: 48em;
-    margin: 1em;
-    padding: 3em;
+    width: 100%;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 4px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.edit-restaurant-title {
+    font-size: 20px;
+    margin: 2px;
+    padding: 2px;
+}
+
+.edit-restaurant>div>img {
+    border-radius: 6px;
+    box-shadow: -10px -5px 10px #6B6B6B;
+    margin: 3px;
+}
+
+.edit-restaurant-left>input,
+.edit-restaurant-left>select,
+.edit-restaurant-right>input,
+.edit-restaurant-right>select {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.edit-restaurant-description {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+#modal-content>form>div.edit-restaurant-description>input {
+    border-radius: 4px;
+    height: 100px;
+    overflow-y: scroll;
+    resize: none;
+    line-height: 1.5;
+    display: flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.edit-restaurant-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+
+
 
 .cancel-restaurant-edit {
     position: absolute;
@@ -26,6 +84,7 @@
     display: inline-block;
     outline: 0;
     border: 0;
+    margin: 10px 0px;
     cursor: pointer;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     will-change: box-shadow, transform;
