@@ -43,7 +43,7 @@ export default function ListNewRestaurant() {
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
-    
+
     const newErrors = [];
 
     useEffect(() => {
@@ -78,7 +78,18 @@ export default function ListNewRestaurant() {
                 newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
             }
             if (open_time === undefined || close_time === undefined) {
-                newErrors.push('* Please select a both Open Time and Close Time to specify your business hours.')
+                newErrors.push('* Please select both Open Time and Close Time to specify your business hours.')
+            }
+            if (open_time > close_time) {
+                newErrors.push('* Your close time may not be earlier than your open time.')
+            }
+            if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) < 4) {
+                newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+            }
+            if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) === 4) {
+                if (close_time?.slice(3, 5) < open_time?.slice(3, 5)) {
+                    newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+                }
             }
         }
         setErrors(newErrors)
@@ -118,8 +129,12 @@ export default function ListNewRestaurant() {
     console.log(name)
     console.log(price_range)
     console.log(capacity)
-    console.log('open time', open_time)
+    console.log('open time', open_time?.slice(0, 2))
+    console.log('open time', open_time?.slice(3, 5))
+    console.log('close time', close_time)
+    console.log('open time', close_time?.slice(0, 2) - open_time?.slice(0, 2))
     console.log('type of zip', typeof zip_code)
+
 
     return sessionUser && (
         <>
@@ -127,7 +142,7 @@ export default function ListNewRestaurant() {
                 <div className='create-title'>List Your Restaurant Now</div>
                 <div className='create-form-container'>
                     <div className='create-error'>
-                        {errors.map((error, ind) => (
+                        {errors?.map((error, ind) => (
                             <div className='create-res-error' key={ind}>{error}</div>
                         ))}
                     </div>

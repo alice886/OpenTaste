@@ -44,6 +44,9 @@ export default function MyRestaurants() {
             {showModal && (<Modal onClose={() => setShowModal(false)}>
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
+            <div>To view Customer Reservations,  </div>
+            <div>please go to the restaurant detail page </div>
+            <div> and view under tab [ See Reservations ] </div>
             <div>
                 {myrestaurants?.map(restaurant => {
                     return <div className='my-restaurant-each' key={restaurant.id}>

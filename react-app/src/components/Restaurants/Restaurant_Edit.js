@@ -73,6 +73,17 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 newErrors.push('* E.g. "https://example.com/image.jpg/"')
                 newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
             }
+            if (open_time > close_time) {
+                newErrors.push('* Your close time may not be earlier than your open time.')
+            }
+            if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) < 4) {
+                newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+            }
+            if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) === 4) {
+                if (close_time?.slice(3, 5) < open_time?.slice(3, 5)) {
+                    newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+                }
+            }
             if (description.length > 500) {
                 newErrors.push('You may only enter description in 500 characters.')
             }
@@ -125,12 +136,12 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
+                    <img src={theRestaurant?.cover} height={'80px'} />
+                </div>
+                <div>
                     {errors.map((error, ind) => (
                         <div className='create-res-error' key={ind}>{error}</div>
                     ))}
-                </div>
-                <div>
-                    <img src={theRestaurant?.cover} height={'80px'} />
                 </div>
                 <div className='edit-restaurant-grid'>
                     <div className='edit-restaurant-left'>

@@ -23,17 +23,18 @@ function ReservationDetails() {
     return loaded && (
         <div className='business-reservation-container'>
             <div className='b-reservation-left'>
-                <h3>I want a calendar here</h3>
             </div>
             <div className='b-reservation-right'>
+                <h3>You have {reservations?.length} reservation(s)</h3>
                 {reservations?.map(reservation => {
                     return <div className='b-reservation-each'>
                         <div>Customer Name: {reservation.user.username}</div>
-                        <div>Reserved At: {reservation.created_at}</div>
-                        <div>Reserve Date/Time: {reservation.reserve_datetime}</div>
+                        <div>Reserve Date: {reservation.reserve_datetime.slice(0, 16)}</div>
+                        <div>Reserve Time: {reservation.reserve_datetime.slice(16, 22)}</div>
                         <div>Party Size: {reservation.party_size}</div>
                         <div>Occasion: {reservation.occasion}</div>
                         <div>Special Request: {reservation.special_request}</div>
+                        <div>Reserved At: {reservation.created_at.slice(0, 22)}</div>
 
                     </div>
                 })}
