@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllRestaurantThunk } from '../../store/restaurant';
 import { Modal } from '../context/Modal'
 import MakeReservationModal from '../Reservations/Reservation_Create_Modal'
+import './home.css'
 
 function Home() {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ function Home() {
     return loaded && (
         <div>
             <div className='find-your-table'>
-                <h2>Find your table for any occasion</h2>
+                <div className='find-banner'>Find your table for any occasion</div>
             </div>
             <div className='restaurants-container'>
                 <h3>Browse restaurants on OpenTaste ... </h3>

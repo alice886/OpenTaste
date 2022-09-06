@@ -4,9 +4,9 @@ html {
     text-decoration: none;
 }
 
-/* body {
-
-} */
+body {
+    margin: 0%;
+}
 
 .content.container {
     display: flex;
