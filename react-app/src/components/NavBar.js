@@ -6,8 +6,9 @@ import LoginForm from '../components/auth/LoginForm';
 import SignUpForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
 // import profileicon from './icons/profile-icon.jpeg';
-import Profileicon from '../icons/Profileicon.jpeg';
 import Logo from '../icons/Logo.jpg';
+import GrayLogo from '../icons/GrayLogo.jpg';
+import '../components/navbar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -36,44 +37,40 @@ const NavBar = () => {
   return (
     <>
       {(sessionUser) ?
-        (<nav>
-          <ul>
-            <li>
-              <NavLink to='/' exact={true} >
-                <img src={Logo} alt='logo' height={'20px'} />
-              </NavLink>
-            </li>
-            <li>
-              <button onClick={handleProfile}>
-                <input type='image' src={Profileicon} alt='profile icon' height={'20px'}></input>
-              </button>
-              {showMenu && (
-                <ul>
-                  <div> Hello, {sessionUser.username}!</div>
-                  <li>
-                    <NavLink to='/myprofile' exact={true} >
-                      My Profile
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/myrestaurants' exact={true} >
-                      My Restaurants
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/myreservations' exact={true} >
-                      My Reservations
-                    </NavLink>
-                  </li>
-                  <li>
-                    <LogoutButton />
-                  </li>
-                </ul>)}
-            </li>
-          </ul>
-        </nav >) : (
-          <nav>
-            <ul>
+        (<div className='nav-user-container'>
+          <div className='nav-logo'>
+            <NavLink to='/' exact={true} >
+              <img src={Logo} alt='logo' />
+            </NavLink>
+            <NavLink to='/' exact={true} >
+              OpenTaste
+            </NavLink>
+          </div>
+          <div className='nav-button-container'>
+            <button className='nav-button' onClick={handleProfile}>
+              <input className='nav-button-img' type='image' src={GrayLogo} alt='profile icon'></input>
+            </button>
+            {showMenu && (
+              <ul className='nav-user-dropdown'>
+                <div className='nav-user-greeting'> Hello, {sessionUser.username}!</div>
+                <li className='nav-user-greeting'>
+                  <NavLink to='/myrestaurants' exact={true} >
+                    My Restaurants
+                  </NavLink>
+                </li>
+                <li >
+                  <NavLink to='/myreservations' exact={true} >
+                    My Reservations
+                  </NavLink>
+                </li>
+                <li className='nav-button-logout'>
+                  <LogoutButton />
+                </li>
+              </ul>)}
+          </div>
+        </div >) : (
+          <nav >
+            <ul className='nav-public'>
               <li>
                 <NavLink to='/' exact={true} >
                   Home
