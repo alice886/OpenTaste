@@ -90,7 +90,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length,open_time,close_time, description,cover])
+    }, [errors.length, open_time, close_time, description, cover])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -132,14 +132,14 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             <button className='cancel-restaurant-edit' onClick={handleBack}>x</button>
             <form className='edit-restaurant'>
                 <div className='edit-restaurant-title'>Edit Your Business</div>
-                <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
+                <div className='edit-restaurant-imgdelete'>
+                    <img src={theRestaurant?.cover} height={'80px'} />
+                    <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
+                </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
-                    <img src={theRestaurant?.cover} height={'80px'} />
-                </div>
-                <div>
                     {errors.map((error, ind) => (
-                        <div className='create-res-error' key={ind}>{error}</div>
+                        <div className='edit-res-error' key={ind}>* {error}</div>
                     ))}
                 </div>
                 <div className='edit-restaurant-grid'>
@@ -151,10 +151,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             onChange={e => setName(e.target.value)}
                             value={name}
                             maxLength={30}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                         <label>Price Range</label>
-                        <select className='create-res-input' onChange={e => setPriceRange(e.target.value)}>
+                        <select className='edit-res-input' onChange={e => setPriceRange(e.target.value)}>
                             <option value={''} selected disabled hidden> Choose a price range </option>
                             <option value={1} >$30 and under</option>
                             <option value={2} > $31 to $50</option>
@@ -168,7 +168,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             onChange={e => setAddress(e.target.value)}
                             value={address}
                             maxLength={30}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                         <label>City</label>
                         <input
@@ -177,10 +177,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             onChange={e => setCity(e.target.value)}
                             value={city}
                             maxLength={30}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                         <label>State</label>
-                        <select className='create-res-input' onChange={e => setState(e.target.value)} required >
+                        <select className='edit-res-input' onChange={e => setState(e.target.value)} required >
                             <option value={''} selected disabled hidden>Choose the state</option>
                             {states.map(state => (
                                 <option value={state}>{state}</option>
@@ -194,12 +194,12 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             onChange={e => setZipCode(e.target.value)}
                             value={zip_code}
                             maxLength={30}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                     </div>
                     <div className='edit-restaurant-right'>
                         <label>Capacity</label>
-                        <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
+                        <select className='edit-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
                             <option value={''} selected disabled hidden>Please select the capacity</option>
                             {capacity_count.map(each => (
                                 <option value={each} >{each}  people</option>
@@ -207,7 +207,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             <option value={999} >300 + people</option>
                         </select>
                         <label>Cuisine</label>
-                        <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
+                        <select required className='edit-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
                             <option value={''} selected disabled hidden>Please select the cuisine</option>
                             {cuisine_count.map(each => (
                                 <option value={each} >{each}</option>
@@ -219,7 +219,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             type='time'
                             onChange={e => setOpenTime(e.target.value)}
                             value={open_time}
-                            className='create-res-input'
+                            className='edit-res-input'
                             defaultValue={''}
                         ></input>
                         <div>Current Closetime: {theRestaurant?.close_time}</div>
@@ -228,7 +228,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             type='time'
                             onChange={e => setCloseTime(e.target.value)}
                             value={close_time}
-                            className='create-res-input'
+                            className='edit-res-input'
                             defaultValue={''}
                         ></input>
                         <label>Cover Picture</label>
@@ -238,21 +238,21 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             onChange={e => setCover(e.target.value)}
                             value={cover}
                             maxLength={300}
-                            className='create-res-input'
+                            className='edit-res-input'
                         ></input>
                     </div>
                 </div>
                 <div className='edit-restaurant-description'>
                     <label>Description</label>
-                    <input
+                    <textarea
                         type='textarea'
                         placeholder='Please update the description here.'
                         onChange={e => setDescription(e.target.value)}
                         value={description}
-                        maxLength={30}
-                        className='create-res-input'
+                        maxLength={501}
+                        className='edit-res-input'
                         rows="5"
-                    ></input>
+                    ></textarea>
                 </div>
                 <button onClick={handleSubmit} className='edit-restaurant-submit'>Submit Changes</button>
             </form>

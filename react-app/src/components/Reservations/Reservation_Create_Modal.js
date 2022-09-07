@@ -65,7 +65,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             newErrors.push('Please log in to complete your reservation.')
         }
         if (sessionUser?.id === therestaurant.owner_id) {
-            newErrors.push('You may not reserve your own restaurant.')
+            newErrors.push('* You may not reserve your own restaurant.')
         }
         else {
             if (reserveDate === undefined) {
@@ -183,7 +183,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                                 availableHour_count.map(each => {
                                     return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
                                 })
-                                : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
+                                : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                             }
                         </select>
                     </div >

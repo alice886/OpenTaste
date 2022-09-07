@@ -48,13 +48,13 @@ function RestaurantDetails() {
             <img className='restaurant-detail-cover' src={therestaurant.cover} height={'300px'} />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
-                    <div className='res-left-name'>{therestaurant.name}</div>
                     <div className='res-left-toggle'>
                         <button className='res-left-toggle-button' onClick={overviewToggle}>Overview</button>
                         {userCheck && (
-                                <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
-                        )}
+                            <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
+                            )}
                     </div>
+                            <div className='res-left-name'>{therestaurant.name}</div>
                     {showReservations ? < ReservationDetails showModal={showModal}/> : (
                         <>
                             <div className='res-left-info'>

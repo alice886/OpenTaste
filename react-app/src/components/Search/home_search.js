@@ -52,7 +52,7 @@ export default function HomeSearch() {
                         availableHour_count.map(each => {
                             return <option value={each} key={each} onClick={e => setSearchTime(e.target.value)}>{each}</option>
                         })
-                        : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
+                        : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                     }
                 </select>
             </div>
