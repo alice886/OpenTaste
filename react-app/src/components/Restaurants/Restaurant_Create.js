@@ -126,14 +126,14 @@ export default function ListNewRestaurant() {
             setIsDisabled(true)
         }
     }
-    console.log(name)
-    console.log(price_range)
-    console.log(capacity)
-    console.log('open time', open_time?.slice(0, 2))
-    console.log('open time', open_time?.slice(3, 5))
-    console.log('close time', close_time)
-    console.log('open time', close_time?.slice(0, 2) - open_time?.slice(0, 2))
-    console.log('type of zip', typeof zip_code)
+    // console.log(name)
+    // console.log(price_range)
+    // console.log(capacity)
+    // console.log('open time', open_time?.slice(0, 2))
+    // console.log('open time', open_time?.slice(3, 5))
+    // console.log('close time', close_time)
+    // console.log('open time', close_time?.slice(0, 2) - open_time?.slice(0, 2))
+    // console.log('type of zip', typeof zip_code)
 
 
     return sessionUser && (
@@ -148,138 +148,120 @@ export default function ListNewRestaurant() {
                     </div>
                     <form className='create-new-restaurant'>
                         <div className='left-create'>
-                            <div >
-                                <label>Name</label>
-                                <input
-                                    type='text'
-                                    placeholder='Please enter the name here.'
-                                    onChange={e => setName(e.target.value)}
-                                    value={name}
-                                    maxLength={30}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Price Range</label>
-                                <select className='create-res-input' onChange={e => setPriceRange(e.target.value)} required>
-                                    <option value={''} selected disabled hidden> Choose a price range </option>
-                                    <option value={1} >$30 and under</option>
-                                    <option value={2} > $31 to $50</option>
-                                    <option value={3} > $50 to $100</option>
-                                    <option value={4} > $101 and over</option>
-                                </select>
-                            </div >
-                            <div>
-                                <label>Address</label>
-                                <input
-                                    type='text'
-                                    placeholder='Please enter the address here.'
-                                    onChange={e => setAddress(e.target.value)}
-                                    value={address}
-                                    maxLength={30}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>City</label>
-                                <input
-                                    type='text'
-                                    placeholder='Please enter the city here.'
-                                    onChange={e => setCity(e.target.value)}
-                                    value={city}
-                                    maxLength={30}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>State</label>
-                                <select className='create-res-input' onChange={e => setState(e.target.value)} required >
-                                    <option value={''} selected disabled hidden>Choose the state</option>
-                                    {states.map(state => (
-                                        <option value={state}>{state}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label>Zip Code</label>
-                                <input
-                                    type='text'
-                                    placeholder='Please enter the zip code here.'
-                                    onChange={e => setZipCode(e.target.value)}
-                                    value={zip_code}
-                                    maxLength={5}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
+
+                            <label>Name</label>
+                            <input
+                                type='text'
+                                placeholder='Please enter the name here.'
+                                onChange={e => setName(e.target.value)}
+                                value={name}
+                                maxLength={30}
+                                className='create-res-input'
+                                required
+                            ></input>
+
+                            <label>Price Range</label>
+                            <select className='create-res-input' onChange={e => setPriceRange(e.target.value)} required>
+                                <option value={''} selected disabled hidden> Choose a price range </option>
+                                <option value={1} >$30 and under</option>
+                                <option value={2} > $31 to $50</option>
+                                <option value={3} > $50 to $100</option>
+                                <option value={4} > $101 and over</option>
+                            </select>
+
+                            <label>Address</label>
+                            <input
+                                type='text'
+                                placeholder='Please enter the address here.'
+                                onChange={e => setAddress(e.target.value)}
+                                value={address}
+                                maxLength={30}
+                                className='create-res-input'
+                                required
+                            ></input>
+
+
+                            <label>City</label>
+                            <input
+                                type='text'
+                                placeholder='Please enter the city here.'
+                                onChange={e => setCity(e.target.value)}
+                                value={city}
+                                maxLength={30}
+                                className='create-res-input'
+                                required
+                            ></input>
+
+
+                            <label>State</label>
+                            <select className='create-res-input' onChange={e => setState(e.target.value)} required >
+                                <option value={''} selected disabled hidden>Choose the state</option>
+                                {states.map(state => (
+                                    <option value={state}>{state}</option>
+                                ))}
+                            </select>
+                            <label>Zip Code</label>
+                            <input
+                                type='text'
+                                placeholder='Please enter the zip code here.'
+                                onChange={e => setZipCode(e.target.value)}
+                                value={zip_code}
+                                maxLength={5}
+                                className='create-res-input'
+                                required
+                            ></input>
+                            <label>Capacity</label>
+                            <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
+                                <option value={''} selected disabled hidden>Please select the capacity</option>
+                                {capacity_count.map(each => (
+                                    <option value={each} >{each}  people</option>
+                                ))}
+                                <option value={999} >300 + people</option>
+                            </select>
                         </div>
                         <div className='right-create'>
-                            <div>
-                                <label>Capacity</label>
-                                <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
-                                    <option value={''} selected disabled hidden>Please select the capacity</option>
-                                    {capacity_count.map(each => (
-                                        <option value={each} >{each}  people</option>
-                                    ))}
-                                    <option value={999} >300 + people</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Cuisine</label>
-                                <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
-                                    <option value={''} selected disabled hidden>Please select the cuisine</option>
-                                    {cuisine_count.map(each => (
-                                        <option value={each} >{each}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label>Open At</label>
-                                <input
-                                    type='time'
-                                    onChange={e => setOpenTime(e.target.value)}
-                                    value={open_time}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Close At</label>
-                                <input
-                                    type='time'
-                                    onChange={e => setCloseTime(e.target.value)}
-                                    value={close_time}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Cover Picture</label>
-                                <input
-                                    type='text'
-                                    placeholder='Please add the cover picture link here.'
-                                    onChange={e => setCover(e.target.value)}
-                                    value={cover}
-                                    maxLength={300}
-                                    className='create-res-input'
-                                    required
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Description</label>
-                                <input
-                                    type='textarea'
-                                    placeholder='Please enter the description here. &#10; You may leave this field empty.'
-                                    onChange={e => setDescription(e.target.value)}
-                                    value={description}
-                                    maxLength={300}
-                                    className='create-res-input'
-                                    height={'300px'}
-                                ></input>
-                            </div>
+                            <label>Cuisine</label>
+                            <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
+                                <option value={''} selected disabled hidden>Please select the cuisine</option>
+                                {cuisine_count.map(each => (
+                                    <option value={each} >{each}</option>
+                                ))}
+                            </select>
+                            <label>Open At</label>
+                            <input
+                                type='time'
+                                onChange={e => setOpenTime(e.target.value)}
+                                value={open_time}
+                                className='create-res-input'
+                                required
+                            ></input>
+                            <label>Close At</label>
+                            <input
+                                type='time'
+                                onChange={e => setCloseTime(e.target.value)}
+                                value={close_time}
+                                className='create-res-input'
+                                required
+                            ></input>
+                            <label>Cover Picture</label>
+                            <input
+                                type='text'
+                                placeholder='Please add the cover picture link here.'
+                                onChange={e => setCover(e.target.value)}
+                                value={cover}
+                                maxLength={300}
+                                className='create-res-input'
+                                required
+                            ></input>
+                            <label>Description</label>
+                            <textarea
+                                placeholder='You may leave this field empty and edit later'
+                                onChange={e => setDescription(e.target.value)}
+                                value={description}
+                                maxLength={501}
+                                className='create-res-input'
+                                height={'300px'}
+                            ></textarea>
                         </div>
                     </form >
                 </div>
