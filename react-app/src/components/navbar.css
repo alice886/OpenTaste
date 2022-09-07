@@ -6,12 +6,11 @@ div.nav-user-container {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 0 2%;
+    padding: 10px 1% 0px;
     height: 50px;
     text-decoration: none;
     font-family: 'DM Sans', sans-serif;
     background-color: none;
-    padding-top: 20px;
 }
 
 .nav-logo {
@@ -22,7 +21,7 @@ div.nav-user-container {
     box-sizing: border-box;
     border-right: 2px #f0f0f5 solid;
     padding: 0 30px;
-    margin: 20px;
+    margin: 10px;
 }
 
 div.nav-user-container>div.nav-logo>a>img {
@@ -43,8 +42,10 @@ div.nav-user-container>div.nav-logo>a>img {
 .nav-button-container {
     height: 100%;
     margin: 10px 0px;
-    padding: 8px 9%;
+    padding: 20px 9%;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .nav-user-dropdown {
@@ -104,9 +105,9 @@ div.nav-user-container>div.nav-logo>a>img {
     max-height: 2em;
 }
 
-#root > div.nav-user-container > div.nav-button-container > button{
-    height: 80%;
-    padding-top: 9px;
+#root>div.nav-user-container>div.nav-button-container>button {
+    height: fit-content;
+
 }
 
 button {
@@ -117,4 +118,145 @@ button {
 ul,
 nav {
     list-style-type: none;
+}
+
+button.login {
+    padding: 0px 15px;
+    margin: 5px;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid #dddbda;
+    color: #0070d2;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+
+
+}
+
+button.signup {
+    padding: 0px 15px;
+    margin: 5px;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    background-color: #0070d2;
+    border-radius: 0.25rem;
+    border: 1px solid #dddbda;
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+    height: fit-content;
+
+
+}
+
+button.login:hover {
+    background-color: #D6D9DE;
+}
+
+button.signup:hover {
+    background-color: #489EEA;
+
+}
+
+/* --------- home search --------- */
+div .home-search-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    margin: 2px;
+}
+
+.home-search-input {
+    height: 43px;
+    width: 280px;
+    border-radius: 5px;
+    margin: 1px 15px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* date input */
+#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(1)>input {
+    height: 38px;
+    width: 130px;
+    border-radius: 3px;
+    margin-left: 19px;
+    border: .5px solid #F1F1F1;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.home-search-dattimeppl {
+    width: 120px;
+    margin: 0px;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(3)>select,
+#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(2)>select {
+    width: 120px;
+    height: 46px;
+    margin: 0px;
+    padding: 3px;
+    border-radius: 2px;
+    border: .5px solid #F1F1F1;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.home-search-button {
+    height: 30px;
+    width: 110px;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left: 19px;
+    font-size: 12px;
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px solid #C30200;
+    color: #fff;
+    background-color: #C30200;
+    padding: 3px 10px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
+    font-size: 14px;
+}
+
+.home-search-button:hover {
+    background: 0 0;
+    background-color: #7B0100;
+}
+
+
+/* ------------- footer css ------------- */
+
+.footer-container{
+    height: 160px;
+    background-image: linear-gradient(to bottom right, #5F698C, #131E43);
+    font-size: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+    padding: 3%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'DM Sans', sans-serif;
+
 }

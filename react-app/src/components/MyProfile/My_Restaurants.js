@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import { getMyRestaurantThunk } from '../../store/restaurant';
-import ReservationDetails from '../Reservations/Business_Reservation';
 import './my-restaurants.css'
 
 
@@ -13,13 +12,13 @@ export default function MyRestaurants() {
     const [loaded, setLoaded] = useState(false);
     const [showModal, setShowModal] = useState();
     const [resId, setResId] = useState();
-    const [showReservations, setShowReservations] = useState(false);
+    // const [showReservations, setShowReservations] = useState(false);
     const myrestaurants = useSelector(state => state.restaurant.restaurants);
     const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(getMyRestaurantThunk()).then(() => setLoaded(true))
-    }, [dispatch, showModal, showReservations])
+    }, [dispatch, showModal])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
@@ -32,6 +31,9 @@ export default function MyRestaurants() {
     //     e.preventDefault();
     //     setShowReservations(true)
     // }
+    if (!sessionUser) {
+        return <Redirect to='/' />;
+    }
 
     return loaded && sessionUser && (
         <div className='myrestaurants-container'>

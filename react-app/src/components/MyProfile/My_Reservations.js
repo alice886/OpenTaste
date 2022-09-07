@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
@@ -24,6 +24,10 @@ export default function MyReservations() {
         e.preventDefault();
         setResId(id);
         setShowEditReser(true)
+    }
+
+    if (!sessionUser) {
+        return <Redirect to='/' />;
     }
 
     return loaded && sessionUser && (

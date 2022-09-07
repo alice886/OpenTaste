@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
+import './login.css'
 
-const LoginForm = () => {
+const LoginForm = ({ setShowLogin }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
+  const history = useHistory();
   const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  // const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
@@ -26,37 +28,55 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
+
+  const demoLogin = async e => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data)
+    } else {
+      setShowLogin(false)
+      history.push('/')
+    }
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form className='login-modal' >
+      <div className='cancel-signin'>
+        <button onClick={() => setShowLogin(false)} >x</button>
+      </div>
+      <h2>Sign In</h2>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='auth-validate-error' key={ind}>* {error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
+      <label className='signin-label' htmlFor='email'>  Email</label>
+      <input
+        name='email'
+        type='text'
+        placeholder='Email'
+        value={email}
+        onChange={updateEmail}
+        className='signin-input'
+        required={true}
+      />
+      <label className='signin-label' htmlFor='password'>  Password</label>
+      <input
+        name='password'
+        type='password'
+        placeholder='Password'
+        value={password}
+        onChange={updatePassword}
+        className='signin-input'
+        required={true}
+      />
+      <div className='signin-buttom-container'>
+        <button className='singin-button' onClick={onLogin} type='submit'>Login</button>
+        <button className='singin-button' onClick={demoLogin}>Demo User</button>
       </div>
     </form>
   );

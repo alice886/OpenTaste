@@ -3,11 +3,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 3% 25%;
-    padding: 0 4%;
+    margin: auto;
     background-color: #E4E3E3;
-    border-radius: 1em;
+    border-radius: .5em;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 850px;
 }
 
 #root>div.myrestaurants-container>h3 {
@@ -59,6 +61,8 @@
     border-radius: .3em;
     justify-content: space-evenly;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .myrestaurant-cover {
@@ -102,12 +106,58 @@ div.myrestaurant-edit-button>button:active {
 }
 
 
- div.myrestaurant-details > a{
+div.myrestaurant-details>a {
     text-decoration: none;
     color: #CE4B00;
-    font-size: 22px;
- }
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
- .div.myrestaurant-details{
+div.myrestaurant-details>a:hover {
+    color: #F16603;
+    text-Decoration: none;
+    font-weight: 900;
+    font-size: 23px;
+    transition-duration: 200ms;
+}
+
+.div.myrestaurant-details {
     height: fit-content;
- }
+}
+
+#modal-content>div>button:nth-child(9) {
+
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    will-change: box-shadow, transform;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 48px;
+    padding: 0 32px;
+    font-size: 18px;
+    border-radius: 6px;
+    color: #36395a;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+#modal-content>div>button:nth-child(9):hover {
+    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    transform: translateY(-2px);
+}
+
+#modal-content>div>button:nth-child(9):active {
+    box-shadow: inset 0px 3px 7px #d6d6e7;
+    transform: translateY(2px);
+}
+
+#modal-content > div > button:nth-child(9):disabled{
+    background-color: #999999;
+    color: #787878;
+    cursor: not-allowed;
+    border: none;
+}

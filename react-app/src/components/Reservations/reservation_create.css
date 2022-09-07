@@ -1,0 +1,59 @@
+#root>div.restaurant-all-container>div.res-right-container>div>div>h3 {
+    text-align: center;
+    border-bottom: #E3E3E3 solid 1px;
+    padding-bottom: 15px;
+
+}
+
+#root>div.restaurant-all-container>div.res-right-container>div>div>form {
+    margin-top: 20px;
+
+    padding: 3px 8px;
+    margin: 2px;
+    font-family: 'Poppins', sans-serif;
+
+    padding: 15px 5px;
+    margin: 5px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+#root>div.restaurant-all-container>div.res-right-container>div>div>form>input[type=date],
+#root>div.restaurant-all-container>div.res-right-container>div>div>form>select {
+    width: 96%;
+    min-height: 40px;
+    border-radius: 10px;
+    border: 1px solid #E3E3E3;
+    font-size: 17px;
+    color: #826762;
+}
+
+#root>div.restaurant-all-container>div.res-right-container>div>div>form>label {
+    margin-top: 10px;
+    color: black;
+    font-weight: 700;
+}
+
+#root>div.restaurant-all-container>div.res-right-container>div>div>form>textarea {
+    width: 91%;
+    height: 100px;
+    resize: none;
+    overflow-y: scroll;
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 8px;
+}
+
+.create-party-note {
+    color: #770000;
+    margin-bottom: 20px;
+    text-align: center;
+    size: 10px;
+}
+
+.make-reservation-submit {
+    text-align: center;
+}

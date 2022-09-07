@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
 import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
@@ -14,7 +15,6 @@ import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const [showLogin, setShowLogin] = useState(false)
   const [showSignup, setShowSignUp] = useState(false)
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar/>
+      <NavBar />
       <Switch>
         <Route path='/' exact={true}>
           <Home />
@@ -58,6 +58,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

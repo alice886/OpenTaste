@@ -154,7 +154,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                                 availableHour_count.map(each => {
                                     return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
                                 })
-                                : (<option value={''} selected disabled hidden>No available time on the selected date</option>)
+                                : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                             }
                         </select>
                     </div >

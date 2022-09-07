@@ -52,7 +52,7 @@ def seed_restaurants():
         open_time='17:30',
         close_time='22:30',
         cuisine='Japanese',
-        cover='http://d20aeo683mqd6t.cloudfront.net/articles/title_images/000/034/440/medium/grilled-chicken-yakitori-japan.jpg?2020',
+        cover='https://images.squarespace-cdn.com/content/v1/573a79de37013b75a012e7f0/1471988260286-IDB5O6TMY9WB69CDCA6I/yakitori+totto+2+copy.jpg?format=2500w',
         capacity=60,
         availability=60,
         )

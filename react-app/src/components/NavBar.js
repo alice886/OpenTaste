@@ -64,41 +64,35 @@ const NavBar = () => {
                   </NavLink>
                 </li>
                 <li className='nav-button-logout'>
-                  <LogoutButton />
+                  <LogoutButton setShowLogin={setShowLogin} />
                 </li>
               </ul>)}
           </div>
         </div >) : (
-          <nav >
-            <ul className='nav-public'>
-              <li>
-                <NavLink to='/' exact={true} >
-                  Home
-                </NavLink>
-              </li>
-              {/* <li>
-                <NavLink to='/users' exact={true} activeClassName='active'>
-                  Users
-                </NavLink>
-              </li> */}
-              <li>
-                <button exact={true} onClick={() => setShowLogin(true)}>
-                  Login
-                </button>
-              </li>
-              <li>
-                <button exact={true} onClick={() => setShowSignUp(true)}>
-                  Sign Up
-                </button>
-              </li>
-              {showLogin && <Modal onClose={() => setShowLogin(false)}>
-                <LoginForm setShowLogin={setShowLogin} />
-              </Modal>}
-              {showSignup && <Modal onClose={() => setShowSignUp(false)}>
-                <SignUpForm setShowSignUp={setShowSignUp} />
-              </Modal>}
-            </ul>
-          </nav>
+          <div className='nav-user-container' >
+            <div className='nav-logo'>
+              <NavLink to='/' exact={true} >
+                <img src={Logo} alt='logo' />
+              </NavLink>
+              <NavLink to='/' exact={true} >
+                OpenTaste
+              </NavLink>
+            </div>
+            <div className='nav-button-container'>
+              <button exact={true} onClick={() => setShowLogin(true)} className='login'>
+                Login
+              </button>
+              <button exact={true} onClick={() => setShowSignUp(true)} className='signup'>
+                Sign Up
+              </button>
+            </div>
+            {showLogin && <Modal onClose={() => setShowLogin(false)}>
+              <LoginForm setShowLogin={setShowLogin} />
+            </Modal>}
+            {showSignup && <Modal onClose={() => setShowSignUp(false)}>
+              <SignUpForm setShowSignUp={setShowSignUp} />
+            </Modal>}
+          </div>
         )
       }
     </>

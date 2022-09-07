@@ -21,6 +21,11 @@
     background-color: white;
     border-radius: 1%;
     padding: 0 1.5em;
+    padding-bottom: 1em;
+
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+    
 }
 
 div.res-left-name {
@@ -39,31 +44,39 @@ div.res-left-name {
 .res-left-toggle {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid #686868;
+    border-bottom: 1px solid #E3E3E3;
     box-sizing: border-box;
     width: 100%;
 
 }
 
-.res-left-toggle-button{
+.res-left-toggle-button {
     display: inline-block;
     outline: 0;
     cursor: pointer;
     border: none;
     padding: 0 56px;
-    height: 40px;
+    height: 58px;
     line-height: 45px;
     border-radius: 7px;
     font-weight: 400;
     font-size: 14px;
     background: #fff;
     color: #696969;
-    box-shadow: -2px 0 0 0 rgb(0 0 0 / 10%);
-    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
+#root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(2) {
+    box-shadow: -2px 0 0 0 rgb(0 0 0 / 10%);
+}
 
-.res-left-toggle-button:hover{
-    background: rgba(255,255,255,0.9);
+.res-left-toggle-button:hover,
+#root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(2):hover {
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+}
+
+.res-left-info > div{
+    padding: 5px 0px;
 }
