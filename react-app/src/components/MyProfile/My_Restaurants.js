@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import { getMyRestaurantThunk } from '../../store/restaurant';
@@ -31,6 +31,9 @@ export default function MyRestaurants() {
     //     e.preventDefault();
     //     setShowReservations(true)
     // }
+    if (!sessionUser) {
+        return <Redirect to='/' />;
+    }
 
     return loaded && sessionUser && (
         <div className='myrestaurants-container'>

@@ -64,7 +64,7 @@ const NavBar = () => {
                   </NavLink>
                 </li>
                 <li className='nav-button-logout'>
-                  <LogoutButton />
+                  <LogoutButton setShowLogin={setShowLogin} />
                 </li>
               </ul>)}
           </div>

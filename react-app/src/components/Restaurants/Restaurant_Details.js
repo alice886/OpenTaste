@@ -55,7 +55,7 @@ function RestaurantDetails() {
                                 <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
                         )}
                     </div>
-                    {showReservations ? < ReservationDetails /> : (
+                    {showReservations ? < ReservationDetails showModal={showModal}/> : (
                         <>
                             <div className='res-left-info'>
                                 <div>{dollarSigns[therestaurant.price_range]} {therestaurant.cuisine}</div>

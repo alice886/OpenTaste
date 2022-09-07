@@ -85,7 +85,7 @@ export default function MakeReservation({ therestaurant }) {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, reserveDate, reserveTime, partySize, occasion, specialRequest])
+    }, [errors.length, newErrors.length, reserveDate, reserveTime, partySize, occasion, specialRequest,sessionUser])
 
     const handleSubmit = async e => {
         e.preventDefault();
