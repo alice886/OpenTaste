@@ -59,6 +59,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
+    const inputRegex = /\s\s/;
 
     const newErrors = [];
 
@@ -83,14 +84,39 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                     newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
                 }
             }
-            if (description.length > 500) {
+            if (name?.length < 2 || address?.length < 2 || city?.length < 2) {
+                newErrors.push('Please at least enter 2 characters in input fields.')
+            }
+            if (name?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the name field.")
+            }
+            if (address?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the address field.")
+            }
+            if (city?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
+            }
+            if (name?.length > 30) {
+                newErrors.push('You may only enter name in 30 characters.')
+            }
+            if (address?.length > 30) {
+                newErrors.push('You may only enter address in 30 characters.')
+            }
+            if (city?.length > 30) {
+                newErrors.push('You may only enter city name in 30 characters.')
+            }
+            if (description?.length > 500) {
                 newErrors.push('You may only enter description in 500 characters.')
             }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, open_time, close_time, description, cover])
+    }, [errors.length, open_time, close_time, description, cover, name, city, address])
+
+    console.log(name)
+    console.log(city)
+    console.log(address)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -134,7 +160,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 <div className='edit-restaurant-title'>Edit Your Business</div>
                 <div className='edit-restaurant-imgdelete'>
                     <img src={theRestaurant?.cover} height={'80px'} />
-                    <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
+                    <div >{theRestaurant?.name}</div>
                 </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
@@ -150,8 +176,9 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the name here.'
                             onChange={e => setName(e.target.value)}
                             value={name}
-                            maxLength={30}
+                            maxLength={31}
                             className='edit-res-input'
+                            pattern="[^\s]+"
                         ></input>
                         <label>Price Range</label>
                         <select className='edit-res-input' onChange={e => setPriceRange(e.target.value)}>
@@ -167,7 +194,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the address here.'
                             onChange={e => setAddress(e.target.value)}
                             value={address}
-                            maxLength={30}
+                            maxLength={31}
                             className='edit-res-input'
                         ></input>
                         <label>City</label>
@@ -176,7 +203,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the city here.'
                             onChange={e => setCity(e.target.value)}
                             value={city}
-                            maxLength={30}
+                            maxLength={31}
                             className='edit-res-input'
                         ></input>
                         <label>State</label>
@@ -193,7 +220,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the zip_code here.'
                             onChange={e => setZipCode(e.target.value)}
                             value={zip_code}
-                            maxLength={30}
+                            maxLength={31}
                             className='edit-res-input'
                         ></input>
                     </div>
@@ -254,7 +281,8 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         rows="5"
                     ></textarea>
                 </div>
-                <button onClick={handleSubmit} className='edit-restaurant-submit'>Submit Changes</button>
+                <button onClick={handleSubmit} className='edit-restaurant-submit' disabled={isDisabled}>Submit Changes</button>
+                <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
             </form>
         </>
 

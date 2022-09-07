@@ -4,10 +4,16 @@
 html {
     font-family: 'DM Sans', sans-serif;
     text-decoration: none;
+    height: 100%;
+    margin: 0%;
 }
 
 body {
-    margin: 0%;
+    height: 100%;
+    /* width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0; */
 }
 
 .content.container {
@@ -15,6 +21,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    min-height: 100%; 
+}
+
+#root{
+    min-height: 100%; 
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 }
 
 .main-header {

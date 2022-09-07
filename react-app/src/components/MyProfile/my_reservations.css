@@ -1,0 +1,80 @@
+.myreservation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #E4E3E3;
+    border-radius: .5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 850px;
+    min-height: 800px;
+    
+}
+
+#root>div.myreservation-container>h3 {
+    margin-top: 30px;
+}
+
+.my-reservation-each {
+    margin: 2em;
+    padding: 2em;
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+    gap: 2%;
+    background-color: white;
+    height: 100px;
+    border-radius: .3em;
+    justify-content: space-evenly;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: fit-content;
+    align-items: center;
+}
+
+.myreservation-cover {
+    width: 100%;
+    max-height: 6em;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+div.myreservation-edit-button>button {
+
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    will-change: box-shadow, transform;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: #36395a;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+}
+
+div.myreservation-edit-button>button:hover {
+    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    transform: translateY(-2px);
+}
+
+div.myreservation-edit-button>button:active {
+    box-shadow: inset 0px 3px 7px #d6d6e7;
+    transform: translateY(2px);
+}
+
+.div.myreservation-details {
+    height: fit-content;
+}

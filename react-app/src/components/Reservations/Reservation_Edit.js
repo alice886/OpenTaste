@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
 import { editReservationThunk } from '../../store/reservation';
 import DeleteReservation from '../DeleteModals/Delete_Reservation';
+import './reservation_edit.css'
 
 export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
     const dispatch = useDispatch();
@@ -114,19 +115,23 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
 
     return (
-        <>
+        <div className='reserved-modal'>
             <button onClick={() => setShowEditReser(false)}>x</button>
             <h1>Edit Reservation </h1>
             {showDeleteReserv && <Modal><DeleteReservation setShowDeleteReserv={setShowDeleteReserv} resId={resId} setShowEditReser={setShowEditReser} object='reservation' /></Modal>}
-            <div>
-                <img src={theReservation.restaurant.cover} height={'70px'}></img>
-                <div>{theReservation.restaurant.name}</div>
-                <div>{theReservation.restaurant.address}</div>
-                <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
-                <div>Date: {theReservation.reserve_datetime.slice(0, 16)}</div>
-                <div>Time: {theReservation.reserve_datetime.slice(16, 22)}</div>
-                <div>Reserved for party of {theReservation.party_size}</div>
-                <div>Occasion: {theReservation.occasion}</div>
+            <div className='reserved-details'>
+                <div>
+                    <img src={theReservation.restaurant.cover} height={'70px'}></img>
+                </div>
+                <div>
+                    <div>{theReservation.restaurant.name}</div>
+                    <div>{theReservation.restaurant.address}</div>
+                    <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
+                    <div>Date: {theReservation.reserve_datetime.slice(0, 16)}</div>
+                    <div>Time: {theReservation.reserve_datetime.slice(16, 22)}</div>
+                    <div>Reserved for party of {theReservation.party_size}</div>
+                    <div>Occasion: {theReservation.occasion}</div>
+                </div>
                 <div>Special request: {theReservation.special_request}</div>
             </div>
             <div>
@@ -136,65 +141,58 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     ))}
                 </div>
                 <form className='edit-reservation'>
-                    <div>
-                        <label>Date</label>
-                        <input
-                            type='date'
-                            value={reserveDate}
-                            min={todayString}
-                            max='2023-12-31'
-                            onChange={e => setReserveDate(e.target.value)}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Time</label>
-                        <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
-                            <option defaultValue={''} selected disabled hidden>Update the hour here</option>
-                            {(availableHour_count.length > 0) ?
-                                availableHour_count.map(each => {
-                                    return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
-                                })
-                                : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
-                            }
-                        </select>
-                    </div >
-                    <div>
-                        <label>Party Size</label>
-                        <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
-                            <option defaultValue={''} selected disabled hidden>Update the party size here</option>
-                            {capacity_count.map(each => (
-                                <option key={each} value={each} >{each}  people</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Occasion</label>
-                        <select required className='edit-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
-                            <option defaultValue={''} selected disabled hidden>Update Your Occasion Here</option>
-                            {occasion_count.map(each => (
-                                <option key={each} value={each} >{each}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Special Requests</label>
-                        <input
-                            type='textarea'
-                            placeholder='Please enter your special request here.'
-                            onChange={e => setSpecialRequest(e.target.value)}
-                            value={specialRequest}
-                            maxLength={201}
-                            className='edit-res-input'
-                        ></input>
-                    </div>
+
+                    <label>Date</label>
+                    <input
+                        type='date'
+                        value={reserveDate}
+                        min={todayString}
+                        max='2023-12-31'
+                        onChange={e => setReserveDate(e.target.value)}
+                    ></input>
+                    <label>Time</label>
+                    <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
+                        <option defaultValue={''} selected disabled hidden>Update the hour here</option>
+                        {(availableHour_count.length > 0) ?
+                            availableHour_count.map(each => {
+                                return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
+                            })
+                            : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
+                        }
+                    </select>
+                    <label>Party Size</label>
+                    <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
+                        <option defaultValue={''} selected disabled hidden>Update the party size here</option>
+                        {capacity_count.map(each => (
+                            <option key={each} value={each} >{each}  people</option>
+                        ))}
+                    </select>
+                    <label>Occasion</label>
+                    <select required className='edit-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
+                        <option defaultValue={''} selected disabled hidden>Update Your Occasion Here</option>
+                        {occasion_count.map(each => (
+                            <option key={each} value={each} >{each}</option>
+                        ))}
+                    </select>
+                    <label>Special Requests</label>
+                    <textarea
+                        type='textarea'
+                        placeholder='Please enter your special request here.'
+                        onChange={e => setSpecialRequest(e.target.value)}
+                        value={specialRequest}
+                        maxLength={201}
+                        className='edit-res-input'
+                    ></textarea>
+
 
                 </form >
 
-                <div>* Please contact the restaurant if your party size is over 20 people,</div>
-                <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+
             </div>
-            <button onClick={handleEditSubmit}>Update This Reservation</button>
-            <button onClick={handleDeleteReser}>Cancel This Reservation</button>
-        </>
+            <div className='edit-reservation-button'>
+                <button onClick={handleEditSubmit} >Update This Reservation</button>
+                <button onClick={handleDeleteReser} className='edit-reservation-button'>Cancel This Reservation</button>
+            </div>
+        </div>
     )
 }

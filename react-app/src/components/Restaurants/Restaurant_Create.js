@@ -43,6 +43,7 @@ export default function ListNewRestaurant() {
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
+    const inputRegex = /\s\s/;
 
     const newErrors = [];
 
@@ -52,44 +53,68 @@ export default function ListNewRestaurant() {
         }
         else {
             if (name === undefined) {
-                newErrors.push('* Please enter the name of your restaurant.')
+                newErrors.push('Please enter the name of your restaurant.')
             }
             if (price_range === undefined) {
-                newErrors.push('* Please select a Price Range.')
+                newErrors.push('Please select a Price Range.')
             }
             if (address === undefined || city === undefined || state === undefined) {
-                newErrors.push('* Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
+                newErrors.push('Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
             }
             if (!zip_code?.match(zipcodeRegex)) {
-                newErrors.push('* Please enter valid 5 digits zip code')
+                newErrors.push('Please enter valid 5 digits zip code')
             }
             if (description && description.length > 500) {
-                newErrors.push('* You may only enter descriptions in 500 character.')
+                newErrors.push('You may only enter descriptions in 500 character.')
             }
             if (capacity === undefined) {
-                newErrors.push('* Please select a capacity for your restaurant.')
+                newErrors.push('Please select a capacity for your restaurant.')
             }
             if (cuisine === undefined) {
-                newErrors.push('* Please select a cuisine type for your restaurant.')
+                newErrors.push('Please select a cuisine type for your restaurant.')
             }
             if (cover === undefined || !cover?.match(coverRegex)) {
-                newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
-                newErrors.push('* E.g. "https://example.com/image.jpg/"')
-                newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
+                newErrors.push('Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
+                newErrors.push('E.g. "https://example.com/image.jpg/"')
+                newErrors.push('Horizontal picture is recommended for your restaurant cover.')
             }
             if (open_time === undefined || close_time === undefined) {
-                newErrors.push('* Please select both Open Time and Close Time to specify your business hours.')
+                newErrors.push('Please select both Open Time and Close Time to specify your business hours.')
             }
             if (open_time > close_time) {
-                newErrors.push('* Your close time may not be earlier than your open time.')
+                newErrors.push('Your close time may not be earlier than your open time.')
             }
             if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) < 4) {
-                newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+                newErrors.push('Your restaurant must have minimum 4 hours of open time.')
             }
             if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) === 4) {
                 if (close_time?.slice(3, 5) < open_time?.slice(3, 5)) {
-                    newErrors.push('* Your restaurant must have minimum 4 hours of open time.')
+                    newErrors.push('Your restaurant must have minimum 4 hours of open time.')
                 }
+            }
+            if (name?.length < 2 || address?.length < 2 || city?.length < 2) {
+                newErrors.push('Please at least enter 2 characters in input fields.')
+            }
+            if (name?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the name field.")
+            }
+            if (address?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the address field.")
+            }
+            if (city?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
+            }
+            if (name?.length > 30) {
+                newErrors.push('You may only enter name in 30 characters.')
+            }
+            if (address?.length > 30) {
+                newErrors.push('You may only enter address in 30 characters.')
+            }
+            if (city?.length > 30) {
+                newErrors.push('You may only enter city name in 30 characters.')
+            }
+            if (description?.length > 500) {
+                newErrors.push('You may only enter description in 500 characters.')
             }
         }
         setErrors(newErrors)
@@ -143,7 +168,7 @@ export default function ListNewRestaurant() {
                 <div className='create-form-container'>
                     <div className='create-error'>
                         {errors?.map((error, ind) => (
-                            <div className='create-res-error' key={ind}>{error}</div>
+                            <div className='create-res-error' key={ind}>* {error}</div>
                         ))}
                     </div>
                     <form className='create-new-restaurant'>
@@ -155,7 +180,7 @@ export default function ListNewRestaurant() {
                                 placeholder='Please enter the name here.'
                                 onChange={e => setName(e.target.value)}
                                 value={name}
-                                maxLength={30}
+                                maxLength={31}
                                 className='create-res-input'
                                 required
                             ></input>
@@ -175,7 +200,7 @@ export default function ListNewRestaurant() {
                                 placeholder='Please enter the address here.'
                                 onChange={e => setAddress(e.target.value)}
                                 value={address}
-                                maxLength={30}
+                                maxLength={31}
                                 className='create-res-input'
                                 required
                             ></input>
@@ -187,7 +212,7 @@ export default function ListNewRestaurant() {
                                 placeholder='Please enter the city here.'
                                 onChange={e => setCity(e.target.value)}
                                 value={city}
-                                maxLength={30}
+                                maxLength={31}
                                 className='create-res-input'
                                 required
                             ></input>
@@ -249,7 +274,7 @@ export default function ListNewRestaurant() {
                                 placeholder='Please add the cover picture link here.'
                                 onChange={e => setCover(e.target.value)}
                                 value={cover}
-                                maxLength={300}
+                                maxLength={301}
                                 className='create-res-input'
                                 required
                             ></input>
