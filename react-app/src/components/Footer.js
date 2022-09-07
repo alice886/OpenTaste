@@ -17,7 +17,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h3>About Alice</h3>
-                    <div>GitHub</div>
+                    <a href='https://github.com/alice886' target="_blank" rel="noopener noreferrer">GutHub</a>
                     <div>LinkedIn</div>
                 </div>
                 <div>

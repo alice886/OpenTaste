@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
+import './my_reservations.css'
 
 
 export default function MyReservations() {
@@ -31,24 +32,28 @@ export default function MyReservations() {
     }
 
     return loaded && sessionUser && (
-        <div>
+        <div className='myreservation-container'>
+            <h3>- My Reservations -</h3>
             {showEditReser && (<Modal onClose={() => setShowEditReser(false)}>
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}
-            <div className='myreservations-container'>
-                <h3>- My Reservations -</h3>
+            <div >
                 {myReservations?.map(reservation => {
-                    return <div className='home-restaurant' key={reservation.id}>
-                        <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
-                        <div>
-                            <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
+                    return <div className='my-reservation-each' key={reservation.id}>
+                        <div className='myreservation-cover'>
+                            <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
                         </div>
-                        <div>{reservation.restaurant.address}</div>
-                        <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
-                        <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
-                        <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
-                        <div>Party Size : {reservation.party_size}</div>
-                        <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
+                        <div className='myrestaurant-details'>
+                            <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
+                            <div>{reservation.restaurant.address}</div>
+                            <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
+                            <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
+                            <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
+                            <div>Party Size : {reservation.party_size}</div>
+                        </div>
+                        <div className='myreservation-edit-button'>
+                            <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
+                        </div>
                     </div>
                 })
                 }

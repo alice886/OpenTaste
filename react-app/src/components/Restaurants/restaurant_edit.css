@@ -1,6 +1,6 @@
 .edit-restaurant {
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     margin: 10px;
     border-radius: 4px;
     width: 800px;
@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 22px;
 }
 
 .edit-restaurant-title {
@@ -30,6 +31,9 @@
     display: inline-block;
     box-sizing: border-box;
     border-radius: 4px;
+    font-size: 18px;
+    padding-top: 5px;
+    border: 1px solid #D0D0D0;
 }
 
 .edit-restaurant-description {
@@ -50,8 +54,14 @@
     align-content: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
+    font-size: 18px;
+    padding-top: 5px;
 }
 
+#modal-content>form>div.edit-restaurant-description>textarea {
+    font-size: 18px;
+    padding-top: 5px;
+}
 
 .edit-restaurant-grid {
     display: grid;
@@ -87,8 +97,29 @@
     justify-content: space-evenly;
 }
 
-#modal-content>form>div.edit-restaurant-imgdelete>button,
+
 #modal-content>form>button.edit-restaurant-submit {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    margin: 20px 0px;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    will-change: box-shadow, transform;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 30px;
+    padding: 4px 24px;
+    font-size: 18px;
+    border-radius: 6px;
+    width: 220px;
+    color: #36395a;
+    text-align: center;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+}
+
+#modal-content>form>button.edit-restaurant-delete {
     display: inline-block;
     outline: 0;
     border: 0;
@@ -96,24 +127,32 @@
     cursor: pointer;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     will-change: box-shadow, transform;
-    background: #FCFCFD;
-    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
-    height: 28px;
-    padding: 0 32px;
-    font-size: 16px;
+    background: #5A0000;
+    box-shadow: 0px 1px 1px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 30px;
+    padding: 4px 24px;
+    width: 220px;
+    font-size: 18px;
     border-radius: 6px;
-    color: #36395a;
+    color: white;
+    text-align: center;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
 
 }
 
-#modal-content>form>div.edit-restaurant-imgdelete>button:hover,
+#modal-content>form>button.edit-restaurant-delete:hover,
 #modal-content>form>button.edit-restaurant-submit:hover {
     box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
     transform: translateY(-2px);
 }
 
-.edit-restaurant-delete:active,
+#modal-content>form>button.edit-restaurant-submit:disabled {
+    background-color: #B5B5B5;
+    color: #787878;
+    cursor: not-allowed;
+}
+
+#modal-content>form>button.edit-restaurant-delete:active,
 .edit-restaurant-submit {
     box-shadow: inset 0px 3px 7px #d6d6e7;
     transform: translateY(2px);

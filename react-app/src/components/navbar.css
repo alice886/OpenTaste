@@ -76,10 +76,11 @@ div.nav-user-container>div.nav-logo>a>img {
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul {
-    margin: 5px;
-    font-size: 14px;
+    margin: 49px;
+    font-size: 16px;
     align-self: flex-start;
     padding: 5px;
+    width: 190px;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>li {
@@ -88,7 +89,8 @@ div.nav-user-container>div.nav-logo>a>img {
 
 #root>div.nav-user-container>div.nav-button-container>ul>li:hover {
     background-color: white;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .nav-button-logout {
@@ -243,7 +245,7 @@ div .home-search-container {
 
 /* ------------- footer css ------------- */
 
-.footer-container{
+.footer-container {
     height: 160px;
     background-image: linear-gradient(to bottom right, #5F698C, #131E43);
     font-size: 20px;
@@ -252,8 +254,8 @@ div .home-search-container {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin-top: 50px;
     padding: 3%;
+    margin: 0px;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
