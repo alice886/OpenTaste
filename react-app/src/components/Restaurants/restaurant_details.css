@@ -24,8 +24,9 @@
     padding-bottom: 1em;
 
     box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
-    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-    
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    max-width: 890px;
+    font-size: 20px;
 }
 
 div.res-left-name {
@@ -33,12 +34,14 @@ div.res-left-name {
     /* border-bottom: 1px solid #686868; */
     padding: 20px 0px;
     margin-bottom: 5%;
+    word-wrap: break-word;
 }
 
 .res-left-info {
     border-bottom: 1px solid #686868;
     padding: 10px 0px;
     margin: 5px;
+    word-wrap: break-word;
 }
 
 .res-left-toggle {
@@ -77,6 +80,6 @@ div.res-left-name {
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 
-.res-left-info > div{
+.res-left-info>div {
     padding: 5px 0px;
 }

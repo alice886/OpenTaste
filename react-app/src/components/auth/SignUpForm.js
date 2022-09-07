@@ -8,8 +8,8 @@ const SignUpForm = ({ setShowSignUp }) => {
   const [errors, setErrors] = useState([]);
   const [doubleerrors, setDoubleErrors] = useState([]);
   const [username, setUsername] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [first_name, setFirstname] = useState('');
+  const [last_name, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -19,7 +19,7 @@ const SignUpForm = ({ setShowSignUp }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, firstname, lastname, email, password));
+      const data = await dispatch(signUp(username, first_name, last_name, email, password));
       if (data) {
         setErrors(data)
       } else {
@@ -35,20 +35,20 @@ const SignUpForm = ({ setShowSignUp }) => {
     if (username?.length > 30) {
       newErrors.push('Your username must be between 1 and 30 characters long.')
     }
-    if (firstname?.length > 30) {
+    if (first_name?.length > 30) {
       newErrors.push('Your firstname must be between 1 and 30 characters long.')
     }
-    if (lastname?.length > 30) {
+    if (last_name?.length > 30) {
       newErrors.push('Your lastname must be between 1 and 30 characters long.')
     }
-    if (email?.length > 255) {
-      newErrors.push('Your email must be between 1 and 255 characters long.')
+    if (email?.length > 100) {
+      newErrors.push('Your email must be between 1 and 100 characters long.')
     }
-    if (password?.length > 255) {
-      newErrors.push('Your password must be between 1 and 255 characters long.')
+    if (password?.length > 100) {
+      newErrors.push('Your password must be between 1 and 100 characters long.')
     }
     setDoubleErrors(newErrors)
-  }, [doubleerrors.length, newErrors.length, username, firstname, lastname, email, password])
+  }, [doubleerrors.length, newErrors.length, username, first_name, last_name, email, password])
 
 
 
@@ -105,7 +105,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         type='text'
         name='firstname'
         onChange={updateFirstname}
-        value={firstname}
+        value={first_name}
         className='register-input'
         required={true}
         maxLength={31}
@@ -115,7 +115,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         type='text'
         name='lastname'
         onChange={updateLastname}
-        value={lastname}
+        value={last_name}
         className='register-input'
         required={true}
         maxLength={31}
@@ -128,7 +128,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         value={email}
         className='register-input'
         required={true}
-        maxLength={256}
+        maxLength={101}
       ></input>
       <label className='register-label'>Password</label>
       <input
@@ -138,7 +138,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         value={password}
         className='register-input'
         required={true}
-        maxLength={256}
+        maxLength={101}
       ></input>
       <label className='register-label'>Repeat Password</label>
       <input
@@ -147,7 +147,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         onChange={updateRepeatPassword}
         value={repeatPassword}
         required={true}
-        maxLength={256}
+        maxLength={101}
         className='register-input'
       ></input>
       <div className='submit-signup'>

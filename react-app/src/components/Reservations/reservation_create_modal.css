@@ -19,14 +19,12 @@
 }
 
 #modal-content>div {
-    background-color: #F6F6F6;
-
     width: 500px;
     max-width: 500px;
-    border-radius: 4px;
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 
     padding: 10px;
