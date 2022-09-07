@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.create-reservation-container-modal {
+    margin: 30px;
+    padding: 19px;
+}
+
+#modal-content>div>button.home-modal-cancel {
+    position: absolute;
+    top: 1%;
+    right: 3%;
+    font-size: 25px;
+    text-align: center;
+}
+
+#modal-content>div>button.home-modal-cancel:hover {
+    font-size: 30px;
+}
+
+#modal-content>div {
+    background-color: #F6F6F6;
+
+    width: 500px;
+    max-width: 500px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.home-reserve-mo-detail {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 5px;
+}
+
+#modal-content>div>form {
+    font-family: 'Poppins', sans-serif;
+}
+
+#modal-content>div>form>label,
+#modal-content>div>form>input,
+#modal-content>div>form>select {
+    width: 100%;
+    font-size: 16px;
+}
+
+#modal-content>div>form>textarea {
+    width: 100%;
+    height: 99px;
+    resize: none;
+    overflow-y: scroll;
+    font-size: 18px;
+}
+
+.timer-label {
+    margin: 10px 0px;
+}
+
+.home-reserve-mo-detail {
+    margin-top: 20px;
+}
+
+#modal-content>div>div.home-reserve-mo-detail>div:nth-child(1)>img {
+    border-radius: 5px;
+    margin-left: 65px;
+}
+
+#modal-content>div>div.home-reserve-mo-detail>div:nth-child(2) {
+    margin-left: 25px;
+    font-size: 21px;
+}
+
+#modal-content>div>div.create-error-mo {
+    margin: 5px 0px;
+    font-size: 18px;
+    color: #630F00;
+
+}
+
+#modal-content>div>button:nth-child(9) {
+    margin-top: 10px;
+}
+
+#modal-content>div>div.home-reserve-mo-detail>div:nth-child(2)>div:nth-child(2)>a {
+    color: #C51E00;
+    text-decoration: none;
+}
+
+#modal-content>div>div.home-reserve-mo-detail>div:nth-child(2)>div:nth-child(2)>a:hover {
+    font-size: 24px;
+    color: #9C0000;
+}

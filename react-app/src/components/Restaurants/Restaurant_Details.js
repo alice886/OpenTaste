@@ -78,7 +78,7 @@ function RestaurantDetails() {
                     {showModal && (<Modal onClose={() => setShowModal(false)}>
                         <EditRestaurant resId={therestaurant.id} showModal={showModal} setShowModal={setShowModal} />
                     </Modal>)}
-                    <div className='res-right-container'>
+                    <div className='res-right-container2'>
                         <MakeReservation therestaurant={therestaurant} />
                     </div>
                 </div>

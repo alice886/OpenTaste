@@ -206,7 +206,7 @@ div .home-search-container {
 
 #root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(3)>select,
 #root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(2)>select {
-    width: 100px;
+    width: 120px;
     height: 46px;
     margin: 0px;
     padding: 3px;
@@ -238,4 +238,25 @@ div .home-search-container {
 .home-search-button:hover {
     background: 0 0;
     background-color: #7B0100;
+}
+
+
+/* ------------- footer css ------------- */
+
+.footer-container{
+    height: 160px;
+    background-image: linear-gradient(to bottom right, #5F698C, #131E43);
+    font-size: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+    padding: 3%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'DM Sans', sans-serif;
+
 }
