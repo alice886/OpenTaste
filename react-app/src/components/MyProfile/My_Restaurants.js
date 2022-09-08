@@ -9,16 +9,23 @@ import './my-restaurants.css'
 
 export default function MyRestaurants() {
     const dispatch = useDispatch();
-    const [loaded, setLoaded] = useState(false);
+    const [restaurantloaded, setRestaurantLoaded] = useState(false);
     const [showModal, setShowModal] = useState();
     const [resId, setResId] = useState();
+
     // const [showReservations, setShowReservations] = useState(false);
-    const myrestaurants = useSelector(state => state.restaurant.restaurants);
+    const myrestaurants = useSelector(state => state.restaurant?.restaurants);
     const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(getMyRestaurantThunk()).then(() => setLoaded(true))
-    }, [dispatch, showModal])
+        dispatch(getMyRestaurantThunk())
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data && data.status == 404) setRestaurantLoaded(true);
+                }
+            )
+    }, [dispatch, myrestaurants?.length, window?.location?.href])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
@@ -26,7 +33,11 @@ export default function MyRestaurants() {
         setShowModal(true);
         setResId(id);
     }
+    if (myrestaurants?.length == 0) {
+        console.log('nothign')
+    }
 
+    // console.log(myrestaurants)
     // const handleReservations = (e) => {
     //     e.preventDefault();
     //     setShowReservations(true)
@@ -35,7 +46,8 @@ export default function MyRestaurants() {
         return <Redirect to='/' />;
     }
 
-    return loaded && sessionUser && (
+    return (
+        // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
             <h3> My Restaurants </h3>
             <div>

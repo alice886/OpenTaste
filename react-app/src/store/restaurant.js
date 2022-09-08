@@ -53,7 +53,13 @@ export const getMyRestaurantThunk = () => async dispatch => {
     if (response.ok) {
         const allMyRestaurant = await response.json();
         dispatch(getAllRestaurant(allMyRestaurant));
-    } else {
+
+    }
+    // else if (response.status == 404) {
+    //     const allMyRestaurant = await response.json();
+    //     dispatch(getAllRestaurant({}));
+    // }
+    else {
         const data = await response.json();
         return data.errors;
     }

@@ -27,6 +27,8 @@ export default function MyReservations() {
         setShowEditReser(true)
     }
 
+    // console.log('myreservations--', myReservations)
+
     if (!sessionUser) {
         return <Redirect to='/' />;
     }
@@ -38,7 +40,7 @@ export default function MyReservations() {
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}
             <div >
-                {myReservations?.map(reservation => {
+                {myReservations?.length ? (myReservations?.map(reservation => {
                     return <div className='my-reservation-each' key={reservation.id}>
                         <div className='myreservation-cover'>
                             <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
@@ -55,7 +57,10 @@ export default function MyReservations() {
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
                         </div>
                     </div>
-                })
+                })) : (<>
+                    <h3>You have no reservations yet</h3>
+                    <NavLink to='/'> Back to Home</NavLink>
+                </>)
                 }
             </div>
 

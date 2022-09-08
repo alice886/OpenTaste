@@ -33,6 +33,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/myrestaurants' exact={true} >
+          <MyRestaurants />
+        </Route>
         <Route path='/' exact={true}>
           <Home />
         </Route>
@@ -41,9 +44,6 @@ function App() {
         </Route>
         <Route path='/listnewrestaurant' >
           <ListNewRestaurant />
-        </Route>
-        <Route path='/myrestaurants' >
-          <MyRestaurants />
         </Route>
         <Route path='/myreservations' >
           <MyReservations />
