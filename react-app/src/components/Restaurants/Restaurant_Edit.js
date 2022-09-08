@@ -69,11 +69,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         if (!sessionUser) {
             newErrors.push('Please log in')
         }
-        if (sessionUser?.id !== myrestaurants?.resId?.owner_id) {
-            window.alert('you cannot edit restaurant that does not belong to you')
-            history.push('/myrestaurants')
-            setShowModal(false)
-        }
+        // if (sessionUser?.id !== myrestaurants?.resId?.owner_id) {
+        //     window.alert('you cannot edit restaurant that does not belong to you')
+        //     history.push('/myrestaurants')
+        //     setShowModal(false)
+        // }
         else {
             if (cover && !cover?.match(coverRegex)) {
                 newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')

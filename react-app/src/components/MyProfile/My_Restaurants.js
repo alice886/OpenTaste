@@ -29,7 +29,7 @@ export default function MyRestaurants() {
 
     useEffect(() => {
         dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
-    }, [dispatch, myrestaurants, myrestaurants?.length, showModal])
+    }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
