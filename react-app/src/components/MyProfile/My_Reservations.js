@@ -17,7 +17,7 @@ export default function MyReservations() {
 
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showEditReser])
+    }, [dispatch, showEditReser,sessionUser])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
