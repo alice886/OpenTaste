@@ -27,7 +27,7 @@ class Restaurant(db.Model, UserMixin):
     owner_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
 
     user = db.relationship('User',back_populates='restaurants',foreign_keys=[owner_id])
-    reservations = db.relationship('Reservation',back_populates='restaurant')
+    reservations = db.relationship('Reservation',back_populates='restaurant',cascade='all,delete')
     reviews = db.relationship('Review',back_populates='restaurant',cascade='all,delete')
     favorite = db.relationship('Favorite',back_populates='restaurants')
     images = db.relationship('Image',back_populates='restaurant',cascade='all,delete')

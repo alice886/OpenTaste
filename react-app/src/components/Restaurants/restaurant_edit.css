@@ -193,6 +193,12 @@
     max-width: 800px;
 }
 
+/* #modal-content>form>div.edit-restaurant-button>button:nth-child(1):hover,
+#modal-content>form>div.edit-restaurant-button>button:nth-child(2):hover {
+    border: 2px double yellowgreen;
+    border-radius: 20%;
+} */
+
 #modal-content>form>div.edit-restaurant-button>button>input {
     padding-top: 40px;
     width: 30px;
@@ -201,7 +207,9 @@
 
 #modal-content>div>div.edit-restaurant-button>button {
     font-size: 18px;
-    width: 100%;
+    /* width: 100%; */
+    width: 20px;
+    height: 20px;
 }
 
 #modal-content>div>div.edit-restaurant-button>button>input {
