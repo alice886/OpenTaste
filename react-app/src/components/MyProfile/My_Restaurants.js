@@ -17,15 +17,19 @@ export default function MyRestaurants() {
     const myrestaurants = useSelector(state => state.restaurant?.restaurants);
     const sessionUser = useSelector(state => state.session.user);
 
+    // useEffect(() => {
+    //     dispatch(getMyRestaurantThunk())
+    //         .catch(
+    //             async (res) => {
+    //                 const data = await res.json();
+    //                 if (data && data.status == 404) setRestaurantLoaded(true);
+    //             }
+    //         )
+    // }, [dispatch, myrestaurants?.length, showModal])
+
     useEffect(() => {
-        dispatch(getMyRestaurantThunk())
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    if (data && data.status == 404) setRestaurantLoaded(true);
-                }
-            )
-    }, [dispatch, myrestaurants?.length, window?.location?.href])
+        dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
+    }, [dispatch, myrestaurants, myrestaurants?.length, showModal])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {

@@ -131,11 +131,11 @@ export const removeRestaurantThunk = (id) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(removeARestaurant(id));
-        console.log('ok', id)
+        // console.log('ok', id)
         return data;
     } else {
         const data = await response.json();
-        console.log('not ok', data)
+        // console.log('not ok-------', data.errors)
         return data.errors;
     }
 }

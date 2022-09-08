@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { createRestaurantThunk } from '../../store/restaurant'
 import './restaurant_create.css'
 
@@ -120,9 +120,7 @@ export default function ListNewRestaurant() {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, name, price_range,
-        address, city, state, zip_code, description?.length,
-        capacity, cuisine, cover, open_time, close_time])
+    }, [errors.length, newErrors.length, name, price_range, address, city, state, zip_code, description?.length, capacity, cuisine, cover, open_time, close_time])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -141,24 +139,21 @@ export default function ListNewRestaurant() {
             cover,
         }
 
-        console.log('what is the payload', payload)
+        // console.log('what is the payload', payload)
         const newRestaurant = await dispatch(createRestaurantThunk(payload));
         // console.log('what is the new restaurant', newRestaurant.payload['id'])
-        if (newRestaurant) {
+        if (newRestaurant && newRestaurant?.id !== undefined) {
             history.push(`/restaurants/${newRestaurant?.id}`)
         }
         else {
             setIsDisabled(true)
         }
     }
-    // console.log(name)
-    // console.log(price_range)
-    // console.log(capacity)
-    // console.log('open time', open_time?.slice(0, 2))
-    // console.log('open time', open_time?.slice(3, 5))
-    // console.log('close time', close_time)
-    // console.log('open time', close_time?.slice(0, 2) - open_time?.slice(0, 2))
-    // console.log('type of zip', typeof zip_code)
+
+
+    if (!sessionUser) {
+        return <Redirect to='/' />
+    }
 
 
     return sessionUser && (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Modal } from '../context/Modal'
 import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
 import { editRestaurantThunk, getRestaurantDetailThunk, getAllRestaurantThunk } from '../../store/restaurant'
@@ -41,7 +41,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
 
     useEffect(() => {
         dispatch(getAllRestaurantThunk()).then(() => setIsLoaded(true))
-    }, [dispatch, theRestaurant?.id])
+    }, [dispatch, theRestaurant?.id, showModal])
 
     const states = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
         'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
@@ -68,6 +68,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
+        }
+        if (sessionUser?.id !== myrestaurants?.resId?.owner_id) {
+            window.alert('you cannot edit restaurant that does not belong to you')
+            history.push('/myrestaurants')
+            setShowModal(false)
         }
         else {
             if (cover && !cover?.match(coverRegex)) {

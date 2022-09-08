@@ -18,9 +18,12 @@ export default function DeleteReservation({ setShowDeleteReserv, resId, setShowE
 
     return (
         <div className='delete-confirmation-modal'>
-            <h1 className='delete-confirmation-question'>Are you sure you want to delete this {object}?</h1>
-            <button className='delete-confirmation-yes' onClick={handleDelete}>Yes</button>
-            <button className='delete-confirmation-no' onClick={() => setShowDeleteReserv(false)}>No</button>
+            <div className='delete-confirmation-question'>Are you sure you want to delete this {object}?</div>
+            <div>
+                <button className='delete-confirmation-yes' onClick={handleDelete}>Yes</button>|
+                <button className='delete-confirmation-no' onClick={() => setShowDeleteReserv(false)}>No</button>
+
+            </div>
         </div>
     )
 }
