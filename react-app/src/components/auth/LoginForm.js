@@ -9,7 +9,7 @@ const LoginForm = ({ setShowLogin }) => {
   const [email, setEmail] = useState('');
   const history = useHistory();
   const [password, setPassword] = useState('');
-  // const user = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
@@ -17,6 +17,9 @@ const LoginForm = ({ setShowLogin }) => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      setShowLogin(false)
+      history.push('/')
     }
   };
 
@@ -27,10 +30,6 @@ const LoginForm = ({ setShowLogin }) => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
 
   const demoLogin = async e => {
     e.preventDefault();

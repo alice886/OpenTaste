@@ -1,0 +1,32 @@
+.myprofile-container {
+    min-height: 820px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around; */
+    display: grid;
+    grid-template-columns: 15% 85%;
+    gap: 35px;
+    margin: 30px 0px;
+}
+
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    /* width: 193px; */
+    width: 100%;
+    font-size: 20px;
+    background-color: aquamarine;
+    align-items: flex-end;
+    padding: 80px 1px;
+    margin-left: 30px;
+    /* top: 15%;
+    left: 1.5%; */
+}
+
+.profile-content {
+    /* width: 1634px; */
+    /* width: 1334px; */
+    width: 90%;
+    background-color: blanchedalmond;
+}

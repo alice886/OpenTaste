@@ -7,14 +7,15 @@ import { getMyRestaurantThunk } from '../../store/restaurant';
 import './my-restaurants.css'
 
 
-export default function MyRestaurants() {
+export default function MyRestaurants({ showMyRestaurants }) {
     const dispatch = useDispatch();
     const [restaurantloaded, setRestaurantLoaded] = useState(false);
     const [showModal, setShowModal] = useState();
     const [resId, setResId] = useState();
-
     // const [showReservations, setShowReservations] = useState(false);
-    const myrestaurants = useSelector(state => state.restaurant?.restaurants);
+
+    // const myrestaurants = useSelector(state => state.restaurant?.restaurants);
+    const myrestaurants = useSelector(state => Object.values(state.restaurant).restaurants);
     const sessionUser = useSelector(state => state.session.user);
 
     // useEffect(() => {
@@ -29,7 +30,7 @@ export default function MyRestaurants() {
 
     useEffect(() => {
         dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
-    }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser])
+    }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser, showMyRestaurants])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
