@@ -23,16 +23,17 @@ def user(id):
 @login_required
 def my_restaurants():
     uid = current_user.id
-    # restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
     restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
+    # # restaurants = db.session.query(Restaurant).options(db.joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
+    # restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
     restaurants_list=[]
-    if restaurants is not None:
-        if restaurants is not None and len(restaurants) > 0:
-            for restaurant in restaurants:
-                restaurant_dict = restaurant.to_dict()
-                # restruant_dict['images']= restaurant.images.to_dict()
-                restaurants_list.append(restaurant_dict)
-            return {'restaurants': restaurants_list}
+    # if restaurants is not None:
+    if restaurants is not None and len(restaurants) > 0:
+        for restaurant in restaurants:
+            restaurant_dict = restaurant.to_dict()
+            # restruant_dict['images']= restaurant.images.to_dict()
+            restaurants_list.append(restaurant_dict)
+        return {'restaurants': restaurants_list}
     else:
         return {'errors':['You have not list a restaurant.']},404
 

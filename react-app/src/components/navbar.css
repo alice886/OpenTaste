@@ -11,6 +11,7 @@ div.nav-user-container {
     text-decoration: none;
     font-family: 'DM Sans', sans-serif;
     background-color: none;
+    min-width: 600px;
 }
 
 .nav-logo {

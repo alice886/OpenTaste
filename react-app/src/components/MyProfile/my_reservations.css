@@ -1,21 +1,28 @@
-.myreservation-container {
+#root>div.myreservation-container {
+    margin: 50px auto;
+    border-radius: 3px;
+    background-color: #EFEFEF;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     margin: auto;
-    background-color: #E4E3E3;
+    background-color: #EFEFEF;
     border-radius: .5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 850px;
     min-height: 800px;
-    
 }
 
 #root>div.myreservation-container>h3 {
     margin-top: 30px;
+    padding-bottom: 20px;
+}
+
+#root>div.myrestaurants-container>div.my-restaurants-each-container {
+    margin-bottom: 40px;
 }
 
 .my-reservation-each {
@@ -28,11 +35,11 @@
     height: 100px;
     border-radius: .3em;
     justify-content: space-evenly;
+    align-items: center;text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     height: fit-content;
-    align-items: center;
 }
 
 .myreservation-cover {
@@ -57,6 +64,7 @@ div.myreservation-edit-button>button {
     background: #FCFCFD;
     box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
     height: 30px;
+    margin-top: 23px;
     padding: 0 10px;
     font-size: 14px;
     border-radius: 6px;
@@ -77,4 +85,10 @@ div.myreservation-edit-button>button:active {
 
 .div.myreservation-details {
     height: fit-content;
+}
+
+div.myrestaurant-edit-button>button {
+    padding: 10px 30px;
+    margin: auto;
+    font-size: 14px;
 }

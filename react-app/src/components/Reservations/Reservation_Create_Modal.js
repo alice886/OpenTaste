@@ -59,6 +59,8 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const occasion_count = ['Anniversary', 'Family/Friend Gathering', 'Birthday', 'Business',
         'Celebration/Graduation', 'Proposal', 'Other Occasion', 'Nothing Special']
 
+    const inputRegex = /\s\s/;
+
     const newErrors = [];
 
 
@@ -71,16 +73,25 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
         }
         else {
             if (reserveDate === undefined) {
-                newErrors.push('* Please select a date')
+                newErrors.push('Please select a date')
             }
             if (reserveTime === undefined) {
-                newErrors.push('* Please select a time')
+                newErrors.push('Please select a time')
+            }
+            if (availableHour_count?.length <= 0) {
+                newErrors.push('Please choose another day for available timeslots')
             }
             if (partySize === undefined) {
-                newErrors.push('* Please select a party size of the visit.')
+                newErrors.push('Please select a party size of the visit.')
             }
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('* You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character.')
+            }
+            if (specialRequest?.length && specialRequest?.length < 2) {
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+            }
+            if (specialRequest?.match(inputRegex)) {
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
             }
         }
         setErrors(newErrors)
@@ -153,8 +164,12 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     return (
         <div className='create-reservation-container-modal'>
             <button className='home-modal-cancel' onClick={() => setShowHomeReserve(false)}>x</button>
-            <div id='timer-label' className='timer-label-mo'>You can still try to complete your reservation, </div>
-            <div id='timer-label' className='timer-label-mo'>we will hold this table for 5 minutes.</div>
+            {(sessionUser?.id !== therestaurant.owner_id) && (
+                <div>
+                    <div id='timer-label' className='timer-label-mo'>You can still try to complete your reservation, </div>
+                    <div id='timer-label' className='timer-label-mo'>we will hold this table for 5 minutes.</div>
+                </div>
+            )}
             <div className='home-reserve-mo-detail'>
                 <div>
                     <img src={therestaurant.cover} height={'100px'}></img>
@@ -168,7 +183,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             </div>
             <div className='create-error-mo'>
                 {errors.map((error, ind) => (
-                    <div className='create-res-error-mo' key={ind}>{error}</div>
+                    <div className='create-res-error-mo' key={ind}>* {error}</div>
                 ))}
             </div>
             <form className='create-new-reservation-mo'>
@@ -219,7 +234,11 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             </form >
             <div>* Please contact the restaurant if your party size is over 20 people,</div>
             <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
-            <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
+            {(sessionUser?.id !== therestaurant.owner_id) &&
+                (<div className='home-reserve-modal-submit'>
+                    <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
+                </div>
+                )}
         </div>
 
 

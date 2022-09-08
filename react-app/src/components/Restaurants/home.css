@@ -5,10 +5,11 @@
     display: grid;
     grid-template-columns: repeat(4, 20%);
     color: inherit;
-    margin: .5em;
+    margin: auto;
     gap: 20px;
     justify-content: center;
-
+    padding-bottom: 60px;
+    width: 1600px;
 }
 
 #root>div:nth-child(2)>h3 {
@@ -30,6 +31,7 @@ div .find-banner {
     justify-content: center;
     text-align: center;
     margin-top: 10px;
+    min-width: 1600px;
 }
 
 .home-restaurants {

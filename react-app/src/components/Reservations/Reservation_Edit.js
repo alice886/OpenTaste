@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { Modal } from '../context/Modal'
 import { editReservationThunk } from '../../store/reservation';
 import DeleteReservation from '../DeleteModals/Delete_Reservation';
+import Uploadicon from '../../icons/Uploadicon.png';
+import Deleteicon from '../../icons/Deleteicon.png';
 import './reservation_edit.css'
 
 export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
@@ -74,6 +76,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const occasion_count = ['Anniversary', 'Family/Friend Gathering', 'Birthday', 'Business',
         'Celebration/Graduation', 'Proposal', 'Other Occasion', 'Nothing Special']
 
+    const inputRegex = /\s\s/;
+
     const newErrors = [];
 
     useEffect(() => {
@@ -81,7 +85,13 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             newErrors.push('Please log in')
         } else {
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('* You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character.')
+            }
+            if (specialRequest?.length && specialRequest?.length < 2) {
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+            }
+            if (specialRequest?.match(inputRegex)) {
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
             }
         }
         setErrors(newErrors)
@@ -116,28 +126,28 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
     return (
         <div className='reserved-modal'>
-            <button onClick={() => setShowEditReser(false)}>x</button>
-            <h1>Edit Reservation </h1>
+            <button className='reserved-cancel-button' onClick={() => setShowEditReser(false)}>x</button>
+            <div className='reserved-modal-title' >Update Your Reservation </div>
             {showDeleteReserv && <Modal><DeleteReservation setShowDeleteReserv={setShowDeleteReserv} resId={resId} setShowEditReser={setShowEditReser} object='reservation' /></Modal>}
-            <div className='reserved-details'>
+            <div className='reserved-edit-modal-details'>
                 <div>
-                    <img src={theReservation.restaurant.cover} height={'70px'}></img>
+                    <img src={theReservation.restaurant.cover} height={'150px'}></img>
                 </div>
-                <div>
-                    <div>{theReservation.restaurant.name}</div>
-                    <div>{theReservation.restaurant.address}</div>
-                    <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
-                    <div>Date: {theReservation.reserve_datetime.slice(0, 16)}</div>
-                    <div>Time: {theReservation.reserve_datetime.slice(16, 22)}</div>
-                    <div>Reserved for party of {theReservation.party_size}</div>
-                    <div>Occasion: {theReservation.occasion}</div>
+                <div className='reserved-edit-modal-each'>
+                    <NavLink to={`/restaurants/${theReservation.restaurant.id}`} className='reserved-modal-navlink'>{theReservation.restaurant.name}</NavLink>
+                    <div>{theReservation.restaurant.address}, {theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
+                    {/* <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div> */}
+                    <div>🗓️  {theReservation.reserve_datetime.slice(0, 16)}</div>
+                    <div>🕐 at {theReservation.reserve_datetime.slice(16, 22)}</div>
+                    <div>👤 party of {theReservation.party_size}</div>
+                    <div>🎟️  {theReservation.occasion}</div>
                 </div>
-                <div>Special request: {theReservation.special_request}</div>
             </div>
-            <div>
+            <div className='reserved-details-specialr'>Your request: {theReservation.special_request}</div>
+            <div className='reserved-modal-edit-form'>
                 <div className='edit-error'>
                     {errors.map((error, ind) => (
-                        <div className='edit-res-error' key={ind}>{error}</div>
+                        <div className='edit-res-error' key={ind}>* {error}</div>
                     ))}
                 </div>
                 <form className='edit-reservation'>
@@ -177,7 +187,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <label>Special Requests</label>
                     <textarea
                         type='textarea'
-                        placeholder='Please enter your special request here.'
+                        placeholder='Please enter your special request here'
                         onChange={e => setSpecialRequest(e.target.value)}
                         value={specialRequest}
                         maxLength={201}
@@ -190,8 +200,14 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
             </div>
             <div className='edit-reservation-button'>
-                <button onClick={handleEditSubmit} >Update This Reservation</button>
-                <button onClick={handleDeleteReser} className='edit-reservation-button'>Cancel This Reservation</button>
+                <button onClick={handleEditSubmit} >
+                    <input className='nav-button-img' type='image' src={Uploadicon} alt='upload icon'></input>
+                    <div>Update</div>
+                </button>
+                <button onClick={handleDeleteReser}>
+                    <input className='nav-button-img' type='image' src={Deleteicon} alt='delete icon'></input>
+                    <div>Cancel This Reservation</div>
+                </button>
             </div>
         </div>
     )

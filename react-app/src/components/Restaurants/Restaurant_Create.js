@@ -104,6 +104,9 @@ export default function ListNewRestaurant() {
             if (city?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
             }
+            if (description?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the description field.")
+            }
             if (name?.length > 30) {
                 newErrors.push('You may only enter name in 30 characters.')
             }
@@ -112,9 +115,6 @@ export default function ListNewRestaurant() {
             }
             if (city?.length > 30) {
                 newErrors.push('You may only enter city name in 30 characters.')
-            }
-            if (description?.length > 500) {
-                newErrors.push('You may only enter description in 500 characters.')
             }
         }
         setErrors(newErrors)
@@ -177,7 +177,7 @@ export default function ListNewRestaurant() {
                             <label>Name</label>
                             <input
                                 type='text'
-                                placeholder='Please enter the name here.'
+                                placeholder='Please enter the name here'
                                 onChange={e => setName(e.target.value)}
                                 value={name}
                                 maxLength={31}
@@ -197,7 +197,7 @@ export default function ListNewRestaurant() {
                             <label>Address</label>
                             <input
                                 type='text'
-                                placeholder='Please enter the address here.'
+                                placeholder='Please enter the address here'
                                 onChange={e => setAddress(e.target.value)}
                                 value={address}
                                 maxLength={31}
@@ -209,7 +209,7 @@ export default function ListNewRestaurant() {
                             <label>City</label>
                             <input
                                 type='text'
-                                placeholder='Please enter the city here.'
+                                placeholder='Please enter the city here'
                                 onChange={e => setCity(e.target.value)}
                                 value={city}
                                 maxLength={31}
@@ -228,7 +228,7 @@ export default function ListNewRestaurant() {
                             <label>Zip Code</label>
                             <input
                                 type='text'
-                                placeholder='Please enter the zip code here.'
+                                placeholder='Please enter the zip code here'
                                 onChange={e => setZipCode(e.target.value)}
                                 value={zip_code}
                                 maxLength={5}
@@ -271,7 +271,7 @@ export default function ListNewRestaurant() {
                             <label>Cover Picture</label>
                             <input
                                 type='text'
-                                placeholder='Please add the cover picture link here.'
+                                placeholder='Please add the cover picture link here'
                                 onChange={e => setCover(e.target.value)}
                                 value={cover}
                                 maxLength={301}
@@ -290,7 +290,9 @@ export default function ListNewRestaurant() {
                         </div>
                     </form >
                 </div>
-                <button onClick={handleSubmit} disabled={isDisabled}>Submit</button>
+                <div className='create-restaurant-submit'>
+                    <button onClick={handleSubmit} disabled={isDisabled}>Submit</button>
+                </div>
             </div>
         </>
 
