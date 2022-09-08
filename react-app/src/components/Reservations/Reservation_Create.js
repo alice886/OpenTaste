@@ -67,7 +67,10 @@ export default function MakeReservation({ therestaurant }) {
             newErrors.push('Please log in to complete your reservation.')
         }
         if (sessionUser?.id === therestaurant.owner_id) {
-            newErrors.push('* You may not reserve your own restaurant.')
+            newErrors.push(`Hello owner of ${therestaurant.name} ❣️`)
+            newErrors.push(<br></br>)
+            newErrors.push('Find customer reservations under [See Reservations]')
+            newErrors.push('And you may not reserve at your own restaurant')
         }
         else {
             if (reserveDate === undefined) {
@@ -164,13 +167,13 @@ export default function MakeReservation({ therestaurant }) {
                     ></textarea>
 
                 </form >
-                <div className='create-party-note'>
+                {sessionUser.id !== therestaurant.owner_id && (<div className='create-party-note'>
                     <div>* Please contact the restaurant if your party size is over 20 people,</div>
                     <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
-                </div>
-                <div className='make-reservation-submit'>
+                </div>)}
+                {sessionUser.id !== therestaurant.owner_id && (<div className='make-reservation-submit'>
                     <button className='make-reservation-submit' onClick={handleSubmit} disabled={isDisabled}>Submit</button>
-                </div>
+                </div>)}
             </div>
         </>
 

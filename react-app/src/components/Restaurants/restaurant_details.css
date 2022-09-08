@@ -10,27 +10,41 @@
 }
 
 .restaurant-all-container {
-    margin: 18% 8% 5%;
+    margin: 18% 11% 5%;
     display: grid;
     grid-template-columns: 5fr 3fr;
-    gap: 30px;
+    gap: 10px;
 }
 
 .res-left-container,
 .res-right-container {
     background-color: white;
     border-radius: 1%;
-    padding: 0 1.5em;
+    padding: 0 4em;
     padding-bottom: 1em;
 
-    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 14px 24px 0 rgb(0 0 0 / 30%);
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-    max-width: 890px;
+    max-width: 760px;
     font-size: 20px;
 }
 
+.res-right-container {
+    min-width: 500px;
+    padding: 0px 30px;
+    padding-bottom: 30px;
+    height: fit-content;
+}
+
+.res-left-container {
+    min-width: 500px;
+    padding: 0px 30px;
+    padding-bottom: 30px;
+    height: fit-content;
+}
+
 div.res-left-name {
-    font-size: 50px;
+    font-size: 61px;
     /* border-bottom: 1px solid #686868; */
     padding: 20px 0px;
     margin-bottom: 5%;
@@ -59,11 +73,11 @@ div.res-left-name {
     cursor: pointer;
     border: none;
     padding: 0 56px;
-    height: 58px;
+    height: 68px;
     line-height: 45px;
     border-radius: 7px;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     background: #fff;
     color: #696969;
 
@@ -76,9 +90,12 @@ div.res-left-name {
 
 .res-left-toggle-button:hover,
 #root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(2):hover {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+    /* background: rgba(255, 255, 255, 0.9); */
+    background-color: #EF2A00;
+    color: white;
+    transition: 1s;
 }
+
 
 .res-left-info>div {
     padding: 5px 0px;

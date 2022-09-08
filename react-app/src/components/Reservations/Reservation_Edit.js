@@ -127,7 +127,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                 </div>
                 <div className='reserved-edit-modal-each'>
                     <NavLink to={`/restaurants/${theReservation.restaurant.id}`} className='reserved-modal-navlink'>{theReservation.restaurant.name}</NavLink>
-                    <div>📍 {theReservation.restaurant.address}, {theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
+                    <div>{theReservation.restaurant.address}, {theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
                     {/* <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div> */}
                     <div>🗓️  {theReservation.reserve_datetime.slice(0, 16)}</div>
                     <div>🕐 at {theReservation.reserve_datetime.slice(16, 22)}</div>
@@ -135,7 +135,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>🎟️  {theReservation.occasion}</div>
                 </div>
             </div>
-            <div className='reserved-details-specialr'>Your special request: {theReservation.special_request}</div>
+            <div className='reserved-details-specialr'>Your request: {theReservation.special_request}</div>
             <div className='reserved-modal-edit-form'>
                 <div className='edit-error'>
                     {errors.map((error, ind) => (
@@ -179,7 +179,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <label>Special Requests</label>
                     <textarea
                         type='textarea'
-                        placeholder='Please enter your special request here.'
+                        placeholder='Please enter your special request here'
                         onChange={e => setSpecialRequest(e.target.value)}
                         value={specialRequest}
                         maxLength={201}
@@ -194,12 +194,12 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             <div className='edit-reservation-button'>
                 <button onClick={handleEditSubmit} >
                     <input className='nav-button-img' type='image' src={Uploadicon} alt='upload icon'></input>
-                    <div>Update This Reservation</div>
-                    </button>
-                <button onClick={handleDeleteReser} className='edit-reservation-button'>
+                    <div>Update</div>
+                </button>
+                <button onClick={handleDeleteReser}>
                     <input className='nav-button-img' type='image' src={Deleteicon} alt='delete icon'></input>
                     <div>Cancel This Reservation</div>
-                    </button>
+                </button>
             </div>
         </div>
     )

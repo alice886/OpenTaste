@@ -1,17 +1,23 @@
+#root>div.myreservation-container {
+    margin: 50px auto;
+    border-radius: 3px;
+    background-color: #EFEFEF;
+}
+
 .myreservation-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     margin: auto;
-    background-color: #E4E3E3;
+    background-color: #EFEFEF;
     border-radius: .5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 850px;
     min-height: 800px;
-    
+
 }
 
 #root>div.myreservation-container>h3 {

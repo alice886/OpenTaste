@@ -58,7 +58,7 @@ function Home() {
         <div >
             <div className='find-your-table'>
                 <div className='find-banner'>Find your table for any occasion
-                <HomeSearch />
+                {/* <HomeSearch /> */}
                 </div>
             </div>
             <h3>Reserve a table now </h3>

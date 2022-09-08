@@ -1,32 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 div.reserved-modal {
     display: contents;
     min-width: 600px;
     max-width: 950px;
     min-height: 730px;
-    max-height: 750px;
+    max-height: 770px;
     word-wrap: break-word;
     margin: 30px 20px;
+    padding: 3px;
     border-radius: 2px;
     background-color: white;
     align-items: center;
+}
+
+.reserved-edit-modal-each {
+    height: 158px;
+}
+
+#modal-content>div>div.reserved-edit-modal-details>div:nth-child(1)>img {
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
 }
 
 .reserved-modal-title {
     font-size: 29px;
     color: #4F4F4F;
     padding: 10px 0px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .reserved-modal-navlink {
-    font-size: 22px;
+    font-size: 24px;
     color: #D81900;
     text-decoration: none;
     transition: transform 0.5s ease;
-    height: 24px;
 }
 
 .reserved-modal-navlink:hover {
-    font-size: 24px;
+    font-size: 26px;
     color: #B01400;
     font-weight: 700;
     text-decoration: none;
@@ -66,9 +78,20 @@ div.reserved-modal {
     font-size: 18px;
 }
 
-#modal-content>div>div.reserved-modal-edit-form>form>textarea {
+#modal-content>div>div.reserved-modal-edit-form>form>select,
+#modal-content>div>div.reserved-modal-edit-form>form>input {
     width: 100%;
     font-size: 18px;
+    border: 1px solid #B5B5B5;
+    border-radius: 5px;
+    height: 30px;
+}
+
+#modal-content>div>div.reserved-modal-edit-form>form>textarea {
+    width: 98%;
+    font-size: 18px;
+    padding: 4px;
+    height: 75px;
     resize: none;
     overflow-y: scroll;
 }
@@ -99,6 +122,10 @@ div.reserved-modal {
     width: 90%;
     word-wrap: break-word;
     margin-bottom: 8px;
+    padding: 10px;
+    /* background-color: #F6F6F6; */
+    box-shadow: 0px 2px 2px rgb(45 35 66 / 20%), 0px 2px 2px -2px rgb(45 35 66 / 20%), inset 0px -1px 0px #d6d6e7;
+
 }
 
 #modal-content>div>div:nth-child(4)>form>label,
@@ -108,6 +135,7 @@ div.reserved-modal {
     word-wrap: break-word;
 
 }
+
 
 /* #modal-content>div>div.edit-reservation-button>button {
     display: inline-block;
@@ -138,7 +166,24 @@ div.reserved-modal {
     transform: translateY(2px);
 } */
 
-#modal-content>form>button.edit-reservation-button:disabled {
+.edit-reservation-button {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    text-align: center;
+    /* margin: 20px; */
+    margin-bottom: 15px;
+}
+
+#modal-content>div>div.edit-reservation-button>button {
+    font-size: 18px;
+    width: 100%;
+}
+#modal-content > div > div.edit-reservation-button > button> input{
+    background-color: white;
+}
+
+#modal-content>div>div.edit-reservation-button>button:disabled {
     background-color: #B5B5B5;
     color: #787878;
     cursor: not-allowed;

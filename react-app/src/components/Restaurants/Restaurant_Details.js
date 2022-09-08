@@ -52,21 +52,22 @@ function RestaurantDetails() {
                         <button className='res-left-toggle-button' onClick={overviewToggle}>Overview</button>
                         {userCheck && (
                             <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
-                            )}
+                        )}
                     </div>
-                            <div className='res-left-name'>{therestaurant.name}</div>
-                    {showReservations ? < ReservationDetails showModal={showModal}/> : (
+                    <div className='res-left-name'>{therestaurant.name}</div>
+                    {showReservations ? < ReservationDetails showModal={showModal} /> : (
                         <>
                             <div className='res-left-info'>
                                 <div>{dollarSigns[therestaurant.price_range]} {therestaurant.cuisine}</div>
                                 <div>{therestaurant.description}</div>
                             </div>
                             <div className='res-right-info'>
-                                <div>Address: {therestaurant.address}</div>
-                                <div>City: {therestaurant.city}</div>
-                                <div>State: {therestaurant.state}</div>
-                                <div>Zip code: {therestaurant.zip_code}</div>
+                                <div>Location:</div>
+                                <div>{therestaurant.address}</div>
+                                <div>{therestaurant.city}</div>
+                                <div>{therestaurant.state},  {therestaurant.zip_code}</div>
                                 {/* <div>Capacity:{therestaurant.capacity}</div> */}
+                                <br></br>
                                 <div>Open at: {therestaurant.open_time}</div>
                                 <div>Close at: {therestaurant.close_time}</div>
                             </div>
