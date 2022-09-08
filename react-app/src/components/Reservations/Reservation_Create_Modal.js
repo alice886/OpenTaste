@@ -76,6 +76,9 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             if (reserveTime === undefined) {
                 newErrors.push('* Please select a time')
             }
+            if (availableHour_count?.length <= 0) {
+                newErrors.push('* Please choose another day for available timeslots')
+            }
             if (partySize === undefined) {
                 newErrors.push('* Please select a party size of the visit.')
             }
@@ -153,8 +156,12 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     return (
         <div className='create-reservation-container-modal'>
             <button className='home-modal-cancel' onClick={() => setShowHomeReserve(false)}>x</button>
-            <div id='timer-label' className='timer-label-mo'>You can still try to complete your reservation, </div>
-            <div id='timer-label' className='timer-label-mo'>we will hold this table for 5 minutes.</div>
+            {(sessionUser?.id !== therestaurant.owner_id) && (
+                <div>
+                    <div id='timer-label' className='timer-label-mo'>You can still try to complete your reservation, </div>
+                    <div id='timer-label' className='timer-label-mo'>we will hold this table for 5 minutes.</div>
+                </div>
+            )}
             <div className='home-reserve-mo-detail'>
                 <div>
                     <img src={therestaurant.cover} height={'100px'}></img>
@@ -219,7 +226,11 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             </form >
             <div>* Please contact the restaurant if your party size is over 20 people,</div>
             <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
-            <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
+            {(sessionUser?.id !== therestaurant.owner_id) &&
+                (<div className='home-reserve-modal-submit'>
+                    <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
+                </div>
+                )}
         </div>
 
 

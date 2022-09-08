@@ -9,8 +9,10 @@
     align-items: center;
     width: 100%;
     padding: 10px;
+    padding-bottom: 90px;
     margin-top: 10px;
     min-height: 700px;
+    font-size: 18px;
 }
 
 .create-form-container {
@@ -20,8 +22,8 @@
     background-color: white;
     border-radius: 10px;
     color: black;
-    padding: 2em;
-    margin: 2em 3em;
+    padding: 3em;
+    margin: 20px 40px;
 }
 
 .create-title {
@@ -48,14 +50,16 @@
 .create-error {
     padding: 15px;
     border-bottom: #FEE8FC 1px solid;
-    color: #6B0000;
+    color: #D10000;
     font-family: 'Slabo 27px', serif;
+    font-size: 20px;
 }
 
 .left-create {
     padding: 3px 8px;
     margin: 2px;
     font-family: 'Poppins', sans-serif;
+
 
     padding: 5px;
     margin: 5px;
@@ -87,6 +91,8 @@
 #root>div.create-container>div.create-form-container>form>div.right-create>input,
 #root>div.create-container>div.create-form-container>form>div.right-create>select {
     width: 100%;
+    font-size: 20px;
+    padding: 3px 0px;
 }
 
 #root>div.create-container>div.create-form-container>form>div.right-create>textarea {
@@ -94,26 +100,29 @@
     width: 375px;
     resize: none;
     overflow-y: scroll;
+    font-size: 18px;
 }
 
-#root>div.create-container>button {
+#root>div.create-container>div.create-restaurant-submit>button:enabled {
     display: inline-block;
     outline: 0;
     cursor: pointer;
     border-radius: 6px;
     border: 2px solid #ff4742;
     color: #fff;
+    padding: 15px 60px;
+    margin: 30px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 22px;
 }
 
-#root>div.create-container>button:hover {
+#root>div.create-container>div.create-restaurant-submit>button:enabled:hover {
     background-color: #ff4742;
     color: #fff;
 }
 
-#root>div.create-container>button:disabled {
+#root>div.create-container>div.create-restaurant-submit>button:disabled {
     background-color: #ACACAC;
     color: #8C8C8C;
     border: 2px solid #8C8C8C;

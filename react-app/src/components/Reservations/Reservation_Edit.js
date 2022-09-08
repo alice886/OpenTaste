@@ -119,7 +119,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     return (
         <div className='reserved-modal'>
             <button className='reserved-cancel-button' onClick={() => setShowEditReser(false)}>x</button>
-            <div className='reserved-modal-title' >Edit Reservation </div>
+            <div className='reserved-modal-title' >Update Your Reservation </div>
             {showDeleteReserv && <Modal><DeleteReservation setShowDeleteReserv={setShowDeleteReserv} resId={resId} setShowEditReser={setShowEditReser} object='reservation' /></Modal>}
             <div className='reserved-edit-modal-details'>
                 <div>

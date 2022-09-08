@@ -96,6 +96,9 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             if (city?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
             }
+            if (description?.match(inputRegex)) {
+                newErrors.push("You may not have 2 consecutive whitespaces in the description field.")
+            }
             if (name?.length > 30) {
                 newErrors.push('You may only enter name in 30 characters.')
             }

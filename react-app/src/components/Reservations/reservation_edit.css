@@ -3,9 +3,9 @@
 div.reserved-modal {
     display: contents;
     min-width: 600px;
-    max-width: 950px;
+    max-width: 1050px;
     min-height: 730px;
-    max-height: 770px;
+    max-height: 820px;
     word-wrap: break-word;
     margin: 30px 20px;
     padding: 3px;
@@ -16,10 +16,12 @@ div.reserved-modal {
 
 .reserved-edit-modal-each {
     height: 158px;
+    max-width: 340px;
+    overflow-wrap: break-word;
 }
 
 #modal-content>div>div.reserved-edit-modal-details>div:nth-child(1)>img {
-    border-radius: 5px;
+    border-radius: 0px;
     box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
 }
 
@@ -35,10 +37,10 @@ div.reserved-modal {
     color: #D81900;
     text-decoration: none;
     transition: transform 0.5s ease;
+    overflow-wrap: break-word;
 }
 
 .reserved-modal-navlink:hover {
-    font-size: 26px;
     color: #B01400;
     font-weight: 700;
     text-decoration: none;
@@ -50,7 +52,7 @@ div.reserved-modal {
     grid-template-columns: 1fr 2fr;
     align-items: center;
     max-width: 800px;
-    height: 160px;
+    height: max-content;
 
     word-wrap: break-word;
     gap: 20px;
@@ -122,7 +124,8 @@ div.reserved-modal {
     width: 90%;
     word-wrap: break-word;
     margin-bottom: 8px;
-    padding: 10px;
+    margin-top: 25px;
+    padding: 20px;
     /* background-color: #F6F6F6; */
     box-shadow: 0px 2px 2px rgb(45 35 66 / 20%), 0px 2px 2px -2px rgb(45 35 66 / 20%), inset 0px -1px 0px #d6d6e7;
 
@@ -179,7 +182,8 @@ div.reserved-modal {
     font-size: 18px;
     width: 100%;
 }
-#modal-content > div > div.edit-reservation-button > button> input{
+
+#modal-content>div>div.edit-reservation-button>button>input {
     background-color: white;
 }
 
@@ -187,4 +191,8 @@ div.reserved-modal {
     background-color: #B5B5B5;
     color: #787878;
     cursor: not-allowed;
+}
+
+#modal-content>div>div.edit-reservation-button>button:nth-child(2)>input {
+    border-radius: 0px;
 }
