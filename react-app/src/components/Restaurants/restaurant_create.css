@@ -96,7 +96,7 @@
 }
 
 #root>div.create-container>div.create-form-container>form>div.right-create>textarea {
-    height: 99px;
+    height: 155px;
     width: 375px;
     resize: none;
     overflow-y: scroll;
@@ -124,6 +124,7 @@
 
 #root>div.create-container>div.create-restaurant-submit>button:disabled {
     background-color: #ACACAC;
+    padding: 10px 30px;
     color: #8C8C8C;
     border: 2px solid #8C8C8C;
     cursor: not-allowed;

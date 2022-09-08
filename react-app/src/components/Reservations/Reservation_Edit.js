@@ -76,6 +76,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const occasion_count = ['Anniversary', 'Family/Friend Gathering', 'Birthday', 'Business',
         'Celebration/Graduation', 'Proposal', 'Other Occasion', 'Nothing Special']
 
+    const inputRegex = /\s\s/;
+
     const newErrors = [];
 
     useEffect(() => {
@@ -83,7 +85,13 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             newErrors.push('Please log in')
         } else {
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('* You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character.')
+            }
+            if (specialRequest?.length && specialRequest?.length < 2) {
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+            }
+            if (specialRequest?.match(inputRegex)) {
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
             }
         }
         setErrors(newErrors)
@@ -139,7 +147,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             <div className='reserved-modal-edit-form'>
                 <div className='edit-error'>
                     {errors.map((error, ind) => (
-                        <div className='edit-res-error' key={ind}>{error}</div>
+                        <div className='edit-res-error' key={ind}>* {error}</div>
                     ))}
                 </div>
                 <form className='edit-reservation'>

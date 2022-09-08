@@ -49,7 +49,7 @@ export default function MyRestaurants() {
             <div>To view Customer Reservations,  </div>
             <div>please go to the restaurant detail page </div>
             <div> and view under tab [ See Reservations ] </div>
-            <div>
+            <div className='my-restaurants-each-container'>
                 {myrestaurants?.map(restaurant => {
                     return <div className='my-restaurant-each' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
@@ -63,7 +63,7 @@ export default function MyRestaurants() {
                             <div>Cuisine: {restaurant.cuisine} </div>
                         </div>
                         <div className='myrestaurant-edit-button'>
-                            <button onClick={(e) => handleEdit(e, restaurant.id)}>Manage/Edit</button>
+                            <button className='each-rest-edit-butt' onClick={(e) => handleEdit(e, restaurant.id)}>Manage/Edit</button>
                         </div>
                         {/* <button onClick={handleReservations}>Check Reservations for This Restaurant</button> */}
                     </div>

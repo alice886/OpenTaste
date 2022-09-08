@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { Modal } from '../context/Modal'
 import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
 import { editRestaurantThunk, getRestaurantDetailThunk, getAllRestaurantThunk } from '../../store/restaurant'
+import Uploadicon from '../../icons/Uploadicon.png';
+import Deleteicon from '../../icons/Deleteicon.png';
 import './restaurant_edit.css'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
@@ -117,9 +119,9 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         else setIsDisabled(true)
     }, [errors.length, open_time, close_time, description, cover, name, city, address])
 
-    console.log(name)
-    console.log(city)
-    console.log(address)
+    // console.log(name)
+    // console.log(city)
+    // console.log(address)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -160,10 +162,10 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         <>
             <button className='cancel-restaurant-edit' onClick={handleBack}>x</button>
             <form className='edit-restaurant'>
-                <div className='edit-restaurant-title'>Edit Your Business</div>
                 <div className='edit-restaurant-imgdelete'>
-                    <img src={theRestaurant?.cover} height={'80px'} />
-                    <div >{theRestaurant?.name}</div>
+                    <div className='edit-restaurant-title'>Edit Your Business</div>
+                    <img src={theRestaurant?.cover} height={'90px'} />
+                    <div >{name}</div>
                 </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
@@ -284,8 +286,18 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         rows="5"
                     ></textarea>
                 </div>
-                <button onClick={handleSubmit} className='edit-restaurant-submit' disabled={isDisabled}>Submit Changes</button>
-                <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button>
+                <div className='edit-restaurant-button'>
+                    {/* <button onClick={handleSubmit} className='edit-restaurant-submit' disabled={isDisabled}>Submit Changes</button>
+                    <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button> */}
+                    <button onClick={handleSubmit} disabled={isDisabled} >
+                        <input className='edit-restaurant-img' type='image' src={Uploadicon} alt='edit icon'></input>
+                        <div>Submit Changes</div>
+                    </button>
+                    <button onClick={handleDelete}>
+                        <input className='edit-restaurant-img' type='image' src={Deleteicon} alt='edit icon'></input>
+                        <div>Delete The Restaurant</div>
+                    </button>
+                </div>
             </form>
         </>
 
