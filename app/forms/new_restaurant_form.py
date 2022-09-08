@@ -21,10 +21,10 @@ class RestaurantForm(FlaskForm):
         if field.data and field.data != int(field.data):
             raise StopValidation('This input must be an integer.')
 
-    name =StringField('name',validators=[validate_string,DataRequired(),Length(min=3,max=50)])
+    name =StringField('name',validators=[validate_string,DataRequired(),Length(min=2,max=50)])
     price_range = IntegerField('price_range',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=4)])
-    address = StringField('address',validators=[validate_string,DataRequired(),Length(min=3,max=50)])
-    city = StringField('city',validators=[validate_string,DataRequired(),Length(min=3,max=30)])
+    address = StringField('address',validators=[validate_string,DataRequired(),Length(min=2,max=50)])
+    city = StringField('city',validators=[validate_string,DataRequired(),Length(min=2,max=30)])
     state = StringField('state',validators=[validate_string,DataRequired(),Length(min=2,max=20)])
     zip_code = IntegerField('zip_code',validators=[validate_integer,DataRequired(),NumberRange(min=10000,max=99999)])
     description = TextAreaField('description',validators=[Length(max=500)])
