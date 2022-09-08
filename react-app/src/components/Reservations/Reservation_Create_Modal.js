@@ -49,7 +49,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
 
     const sessionUser = useSelector(state => state.session.user);
     const user_id = sessionUser?.id;
-    const restaurant_id = therestaurant.id;
+    const restaurant_id = therestaurant?.id;
 
     const capacity_count = []
     for (let i = 1; i < 21; i++) {
@@ -68,7 +68,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
         if (!sessionUser) {
             newErrors.push('Please log in to complete your reservation!')
         }
-        if (sessionUser?.id === therestaurant.owner_id) {
+        if (sessionUser?.id === therestaurant?.owner_id) {
             newErrors.push('* You may not reserve your own restaurant.')
         }
         else {
@@ -164,7 +164,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     return (
         <div className='create-reservation-container-modal'>
             <button className='home-modal-cancel' onClick={() => setShowHomeReserve(false)}>x</button>
-            {(sessionUser?.id !== therestaurant.owner_id) && (
+            {(sessionUser?.id !== therestaurant?.owner_id) && (
                 <div>
                     <div id='timer-label' className='timer-label-mo'>You can still try to complete your reservation, </div>
                     <div id='timer-label' className='timer-label-mo'>we will hold this table for 5 minutes.</div>
@@ -176,7 +176,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 </div>
                 <div>
                     <div>Reserving at </div>
-                    <div><NavLink to={`/restaurants/${therestaurant.id}`}>{therestaurant.name}</NavLink></div>
+                    <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
                     <div>Business Hours:</div>
                     <div>{therestaurant.open_time} - {therestaurant.close_time}</div>
                 </div>
@@ -234,7 +234,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             </form >
             <div>* Please contact the restaurant if your party size is over 20 people,</div>
             <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
-            {(sessionUser?.id !== therestaurant.owner_id) &&
+            {(sessionUser?.id !== therestaurant?.owner_id) &&
                 (<div className='home-reserve-modal-submit'>
                     <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
                 </div>

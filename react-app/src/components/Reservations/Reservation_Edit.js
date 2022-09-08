@@ -134,7 +134,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <img src={theReservation.restaurant.cover} height={'150px'}></img>
                 </div>
                 <div className='reserved-edit-modal-each'>
-                    <NavLink to={`/restaurants/${theReservation.restaurant.id}`} className='reserved-modal-navlink'>{theReservation.restaurant.name}</NavLink>
+                    <NavLink to={`/restaurants/${theReservation?.restaurant.id}`} className='reserved-modal-navlink'>{theReservation.restaurant.name}</NavLink>
                     <div>{theReservation.restaurant.address}, {theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
                     {/* <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div> */}
                     <div>🗓️  {theReservation.reserve_datetime.slice(0, 16)}</div>
