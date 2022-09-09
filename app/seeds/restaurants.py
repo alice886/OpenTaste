@@ -18,7 +18,7 @@ def seed_restaurants():
         open_time='12:00',
         close_time='20:00',
         cuisine='Italian',
-        cover='https://secdn.azureedge.net/-/media/tomatina/images/content/locations/location-walnutcreek.ashx',
+        cover='https://www.sonomamag.com/wp-content/uploads/2016/03/tomatina_rolls-1024x751.jpg',
         capacity=80,
         availability=80,
         )
@@ -52,7 +52,7 @@ def seed_restaurants():
         open_time='17:30',
         close_time='22:30',
         cuisine='Japanese',
-        cover='https://images.squarespace-cdn.com/content/v1/573a79de37013b75a012e7f0/1471988260286-IDB5O6TMY9WB69CDCA6I/yakitori+totto+2+copy.jpg?format=2500w',
+        cover='https://www.restaurant-hospitality.com/sites/restaurant-hospitality.com/files/yardbird-hong-kong-yakitori.jpg',
         capacity=60,
         availability=60,
         )
@@ -69,7 +69,7 @@ def seed_restaurants():
         open_time='17:00',
         close_time='21:00',
         cuisine='Continental',
-        cover='https://images.squarespace-cdn.com/content/v1/5c775eb2e8ba44133a189651/1563183445551-T5MW50BV4BN6V1NXF87H/DR_Detail.jpg?format=2500w',
+        cover='https://cdn.vox-cdn.com/thumbor/WWyhxQ6soLNkhbVTAw_klkl_Rjo=/0x0:2000x1333/1200x0/filters:focal(0x0:2000x1333):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/18332488/Selbys_PChang_3072.jpg',
         capacity=80,
         availability=80,
         )
@@ -136,7 +136,7 @@ def seed_restaurants():
         open_time='09:00',
         close_time='15:00',
         cuisine='Café',
-        cover='https://images.squarespace-cdn.com/content/v1/59532dc336e5d316f68a77ef/1506572787430-OM63B3SFLTTA4N98P9QN/VillageBakery_001.png?format=2500w',
+        cover='https://resizer.otstatic.com/v2/photos/wide-huge/1/25760295.jpg',
         capacity=60,
         availability=60,
         )
