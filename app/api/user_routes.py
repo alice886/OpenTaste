@@ -46,12 +46,12 @@ def my_reservations():
     # restaurant = db.session.query(Restaurant).get(Reservation.restaurant_id)
     reservations = db.session.query(Reservation).options(db.joinedload(Reservation.restaurant)).filter(Reservation.user_id == uid).order_by(Reservation.reserve_datetime).all()
     reservations_list=[]
-    if reservations is not None and len(reservations) > 0:
-        for each in reservations:
-            restaurant = each.restaurant.to_dict()
-            each = each.to_dict()
-            each['restaurant']=restaurant
-            reservations_list.append(each)
-        return {'reservations':reservations_list}
-    else:
-        return {'errors':['You have no reservations yet.']},404
+    # if reservations is not None and len(reservations) > 0:
+    for each in reservations:
+        restaurant = each.restaurant.to_dict()
+        each = each.to_dict()
+        each['restaurant']=restaurant
+        reservations_list.append(each)
+    return {'reservations':reservations_list}
+    # else:
+    #     return {'errors':['You have no reservations yet.']},404

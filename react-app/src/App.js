@@ -35,9 +35,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {/* <ProtectedRoute path='/myprofile' exact={true} >
+        <ProtectedRoute path='/myprofile' exact={true} >
           <MyProfile />
-        </ProtectedRoute> */}
+        </ProtectedRoute>
         <Route path='/myrestaurants' exact={true} >
           <MyRestaurants />
         </Route>

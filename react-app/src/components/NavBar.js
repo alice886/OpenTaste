@@ -58,7 +58,7 @@ const NavBar = () => {
                     My Profile
                   </NavLink>
                 </li>
-                {/* <li className='nav-user-greeting'>
+                <li className='nav-user-greeting'>
                   <NavLink to='/myrestaurants' exact={true} >
                     My Restaurants
                   </NavLink>
@@ -67,7 +67,7 @@ const NavBar = () => {
                   <NavLink to='/myreservations' exact={true} >
                     My Reservations
                   </NavLink>
-                </li> */}
+                </li>
                 <li className='nav-button-logout'>
                   <LogoutButton setShowLogin={setShowLogin} />
                 </li>
