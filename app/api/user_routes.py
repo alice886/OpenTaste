@@ -19,13 +19,14 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/myrestaurants',methods=['GET'])
+@user_routes.route('/myrestaurants666/',methods=['GET'])
+@user_routes.route('/myrestaurants666',methods=['GET'])
 @login_required
 def my_restaurants():
     uid = current_user.id
-    restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
+    # restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
     # # restaurants = db.session.query(Restaurant).options(db.joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
-    # restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
+    restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
     restaurants_list=[]
     # if restaurants is not None:
     if restaurants is not None and len(restaurants) > 0:

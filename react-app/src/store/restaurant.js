@@ -1,4 +1,5 @@
 const GET_RESTAURANT = 'restaurant/GET_RESTAURANT';
+const GET_MYRESTAURANT = 'restaurant/GET_MYRESTAURANT';
 const GET_ONERESTAURANT = 'restaurant/GET_ONERESTAURANT';
 const POST_RESTAURANT = 'restaurant/POST_RESTAURANT';
 const EDIT_RESTAURANT = 'restaurant/EDIT_RESTAURANT';
@@ -6,6 +7,11 @@ const DELETE_RESTAURANT = 'restaurant/DELETE_RESTAURANT';
 
 const getAllRestaurant = restaurants => ({
     type: GET_RESTAURANT,
+    payload: restaurants
+});
+
+const getMyRestaurant = restaurants => ({
+    type: GET_MYRESTAURANT,
     payload: restaurants
 });
 
@@ -45,14 +51,14 @@ export const getAllRestaurantThunk = () => async dispatch => {
 }
 
 export const getMyRestaurantThunk = () => async dispatch => {
-    const response = await fetch('/api/users/myrestaurants', {
+    const response = await fetch('/api/restaurants/myrestaurants', {
         headers: {
             'Content-Type': 'application/json'
         }
     });
     if (response.ok) {
         const allMyRestaurant = await response.json();
-        dispatch(getAllRestaurant(allMyRestaurant));
+        dispatch(getMyRestaurant(allMyRestaurant));
 
     }
     // else if (response.status == 404) {
@@ -143,6 +149,12 @@ export const removeRestaurantThunk = (id) => async dispatch => {
 const restaurantReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_RESTAURANT: {
+            const newState = {};
+            action.payload.restaurants.forEach(restaurant => newState[restaurant.id] = restaurant);
+            newState.restaurants = [...action.payload.restaurants]
+            return newState;
+        }
+        case GET_MYRESTAURANT: {
             const newState = {};
             action.payload.restaurants.forEach(restaurant => newState[restaurant.id] = restaurant);
             newState.restaurants = [...action.payload.restaurants]

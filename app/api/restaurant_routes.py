@@ -139,3 +139,19 @@ def restaurant_delete(id):
         return restaurant.to_dict()
     else:
         return {'errors':['Restaurant not found.']},404
+
+
+@restaurant_routes.route('/myrestaurants',methods=['GET'])
+@login_required
+def my_restaurants2():
+    uid = current_user.id
+    restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
+    # restaurants_list=[]
+    # if restaurants is not None and len(restaurants) > 0:
+    # for restaurant in restaurants:
+    #     restaurant_dict = restaurant.to_dict()
+    #     restaurants_list.append(restaurant_dict)
+    # return {'restaurants': restaurants_list}
+    # else:
+    #     return {'errors':['You have not list a restaurant.']},404
+    return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}

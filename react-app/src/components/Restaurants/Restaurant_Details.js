@@ -45,7 +45,7 @@ function RestaurantDetails() {
 
     return loaded && (
         <>
-            <img className='restaurant-detail-cover' src={therestaurant.cover} height={'300px'} />
+            <img className='restaurant-detail-cover' src={therestaurant?.cover} height={'300px'} />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>
@@ -54,22 +54,22 @@ function RestaurantDetails() {
                             <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
                         )}
                     </div>
-                    <div className='res-left-name'>{therestaurant.name}</div>
+                    <div className='res-left-name'>{therestaurant?.name}</div>
                     {showReservations ? < ReservationDetails showModal={showModal} /> : (
                         <>
                             <div className='res-left-info'>
-                                <div>{dollarSigns[therestaurant.price_range]} {therestaurant.cuisine}</div>
-                                <div>{therestaurant.description}</div>
+                                <div>{dollarSigns[therestaurant?.price_range]} {therestaurant?.cuisine}</div>
+                                <div>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
                                 <div>Location:</div>
-                                <div>{therestaurant.address}</div>
-                                <div>{therestaurant.city}</div>
-                                <div>{therestaurant.state},  {therestaurant.zip_code}</div>
-                                {/* <div>Capacity:{therestaurant.capacity}</div> */}
+                                <div>{therestaurant?.address}</div>
+                                <div>{therestaurant?.city}</div>
+                                <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
+                                {/* <div>Capacity:{therestaurant?.capacity}</div> */}
                                 <br></br>
-                                <div>Open at: {therestaurant.open_time}</div>
-                                <div>Close at: {therestaurant.close_time}</div>
+                                <div>Open at: {therestaurant?.open_time}</div>
+                                <div>Close at: {therestaurant?.close_time}</div>
                             </div>
                         </>
                     )
@@ -80,7 +80,15 @@ function RestaurantDetails() {
                         <EditRestaurant resId={therestaurant?.id} showModal={showModal} setShowModal={setShowModal} />
                     </Modal>)}
                     <div className='res-right-container2'>
-                        <MakeReservation therestaurant={therestaurant} />
+                        {(sessionUser?.id === therestaurant?.owner_id) ? <div>
+                            <div>You are the restaurant owner.</div>
+                            <div>
+                                <div>To view Customer Reservations,  </div>
+                                <div>please go to the restaurant detail page </div>
+                                <div> and view under tab [ See Reservations ] </div>
+                            </div>
+                        </div>
+                            : <MakeReservation therestaurant={therestaurant} />}
                     </div>
                 </div>
             </div>

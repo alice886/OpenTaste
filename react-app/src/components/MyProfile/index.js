@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MyRestaurants from './My_Restaurants';
 import MyReservations from './My_Reservations';
 import { getMyRestaurantThunk } from '../../store/restaurant';
+import { getMyReservationsThunk } from '../../store/reservation';
 import { Redirect, useHistory } from "react-router-dom";
 // import { Modal } from '../context/Modal'
 import './my_profile.css';
@@ -20,14 +21,23 @@ export default function MyProfile() {
     const [showMyRestaurants, setShowMyRest] = useState(false);
     const [showMyReservations, setShowMyReser] = useState(false);
     const [restaurantloaded, setRestaurantLoaded] = useState(false);
+    const [myrestaurants66, setMyrestaurants66] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
-    const myrestaurants = useSelector(state => state.restaurant.restaurants);
 
     useEffect(() => {
         dispatch(getMyRestaurantThunk())
-    }, [dispatch, myrestaurants, sessionUser, showMyRestaurants])
+    }, [dispatch, showProfile, sessionUser, showMyRestaurants])
 
+    useEffect(() => {
+        // dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
+        dispatch(getMyReservationsThunk())
+    }, [dispatch, showProfile, sessionUser, showMyReservations])
+
+    const myRestaurants = useSelector(state => state.restaurant.restaurants);
+    const myReservations = useSelector(state => state.reservation.reservations);
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
+
+    console.log('checkcheck ', myRestaurants?.length)
 
     const HandleMyProfile = async e => {
         e.preventDefault();
@@ -67,6 +77,10 @@ export default function MyProfile() {
                 </div>
             </div>
             <div className='profile-content'>
+                {showProfile && (<div>
+                    <div>you have {myRestaurants?.length} restaurants</div>
+                    <div>you have {myReservations?.length} reservations</div>
+                </div>)}
                 {showMyRestaurants && <MyRestaurants showMyRestaurants={showMyRestaurants} />}
                 {showMyReservations && <MyReservations />}
             </div>

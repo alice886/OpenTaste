@@ -14,23 +14,18 @@ export default function MyRestaurants({ showMyRestaurants }) {
     const [resId, setResId] = useState();
     // const [showReservations, setShowReservations] = useState(false);
 
-    // const myrestaurants = useSelector(state => state.restaurant?.restaurants);
-    const myrestaurants = useSelector(state => Object.values(state.restaurant).restaurants);
+    // const myrestaurants = useSelector(state => Object.values(state.restaurant).restaurants);
     const sessionUser = useSelector(state => state.session.user);
-
-    // useEffect(() => {
-    //     dispatch(getMyRestaurantThunk())
-    //         .catch(
-    //             async (res) => {
-    //                 const data = await res.json();
-    //                 if (data && data.status == 404) setRestaurantLoaded(true);
-    //             }
-    //         )
-    // }, [dispatch, myrestaurants?.length, showModal])
+    const myrestaurants = useSelector(state => state.restaurant?.restaurants);
 
     useEffect(() => {
-        dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
-    }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser, showMyRestaurants])
+        dispatch(getMyRestaurantThunk())
+    }, [dispatch, myrestaurants?.length, showModal, showMyRestaurants, sessionUser?.id])
+
+
+    // useEffect(() => {
+    //     dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
+    // }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser, showMyRestaurants])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
@@ -38,6 +33,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
         setShowModal(true);
         setResId(id);
     }
+    console.log('waht is my restaurants', myrestaurants)
     if (myrestaurants?.length == 0) {
         console.log('nothign')
     }
@@ -54,7 +50,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
     return (
         // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
-            <h3> My Restaurants </h3>
+            <h3>- My Restaurants -</h3>
             <div>
                 <button className='list-new-res-button'>
                     <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>
@@ -63,11 +59,19 @@ export default function MyRestaurants({ showMyRestaurants }) {
             {showModal && (<Modal onClose={() => setShowModal(false)}>
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
-            <div>To view Customer Reservations,  </div>
-            <div>please go to the restaurant detail page </div>
-            <div> and view under tab [ See Reservations ] </div>
+            {(myrestaurants?.length === 0) ? (
+                <div>
+                    <h3>You haven't post any restaurant yet.</h3>
+                    <h3>Click the button above and start listing a restaurant with OpenTaste!</h3>
+                </div>) :
+                (<div>
+                    <div>To view Customer Reservations,  </div>
+                    <div>please go to the restaurant detail page </div>
+                    <div> and view under tab [ See Reservations ] </div>
+                </div>)
+            }
             <div className='my-restaurants-each-container'>
-                {myrestaurants?.map(restaurant => {
+                {(myrestaurants?.length > 0) && (myrestaurants?.map(restaurant => {
                     return <div className='my-restaurant-each' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
                             <img src={restaurant.cover} alt='restaurant img' height={'300px'} />
@@ -84,7 +88,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
                         </div>
                         {/* <button onClick={handleReservations}>Check Reservations for This Restaurant</button> */}
                     </div>
-                })
+                }))
                 }
             </div>
 
