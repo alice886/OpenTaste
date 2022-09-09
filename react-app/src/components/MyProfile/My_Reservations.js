@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
+// import moment from 'moment'
 import './my_reservations.css'
 
 
@@ -20,6 +21,11 @@ export default function MyReservations() {
     }, [dispatch, showEditReser, sessionUser])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
+
+    const d = new Date()
+    const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
+
 
     const handleEditReservations = (e, id) => {
         e.preventDefault();
@@ -49,13 +55,16 @@ export default function MyReservations() {
                             <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
                             <div>{reservation.restaurant.address}</div>
                             <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
+                            <br></br>
                             <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
                             <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
-                            <div>Party Size : {reservation.party_size}</div>
+                            <div>Party of : {reservation.party_size}</div>
+                            <div>Day : {reservation.reserve_datetime.slice(5, 8)}</div>
+                            {/* <div>Month : {moment().month(reservation.reserve_datetime.slice(8, 11))}</div> */}
                         </div>
-                        <div className='myreservation-edit-button'>
+                        {(<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
-                        </div>
+                        </div>)}
                     </div>
                 })) : (<div className='no-reservation'>
                     <h3 className='no-reserv-h3'>You have no reservations yet</h3>

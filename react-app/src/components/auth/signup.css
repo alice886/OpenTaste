@@ -89,7 +89,8 @@
     font-size: 20px;
 }
 
-#modal-content>form>div.submit-signup {
+
+#modal-content > form > div.submit-signup > button {
     display: inline-block;
     outline: 0;
     border: 0;

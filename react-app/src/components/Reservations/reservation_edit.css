@@ -2,21 +2,23 @@
 
 div.reserved-modal {
     display: contents;
-    min-width: 600px;
-    max-width: 1050px;
+    /* min-width: 600px;
+    max-width: 1060px; */
+    width: fit-content;
     min-height: 730px;
-    max-height: 820px;
+    max-height: 780px;
     word-wrap: break-word;
     margin: 30px 20px;
     padding: 3px;
     border-radius: 2px;
     background-color: white;
     align-items: center;
+
 }
 
 .reserved-edit-modal-each {
     height: 158px;
-    max-width: 340px;
+    min-width: 340px;
     overflow-wrap: break-word;
 }
 
@@ -51,13 +53,13 @@ div.reserved-modal {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
-    max-width: 800px;
     height: max-content;
+    width: 500px;
 
     word-wrap: break-word;
-    gap: 20px;
+    gap: 10px;
     margin: 10px;
-    padding: 0px 40px;
+    padding: 0px 20px;
 }
 
 #modal-content>div>div.reserved-modal-edit-form {
@@ -176,17 +178,17 @@ div.reserved-modal {
     gap: 80px;
     text-align: center;
     /* margin: 20px; */
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 #modal-content>div>div.edit-reservation-button>button {
-    padding-top: 5px 20px;
     /* border: 1px solid #850000; */
     background-color: #B01400;
     color: white;
     border-radius: 15px;
-    font-size: 20px;
-    padding: 5px 10px;
+    font-size: 18px;
+    margin-top: 5px;
+    padding: 10px 5px;
 }
 
 

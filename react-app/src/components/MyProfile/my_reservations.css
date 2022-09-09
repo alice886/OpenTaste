@@ -41,8 +41,8 @@
     margin: 30px 25%;
     padding: 25px 10px;
     display: grid;
+    width: 850px;
     grid-template-columns: 260px 400px 150px;
-    gap: 10px;
     background-color: #F3F3F3;
     height: 180px;
     border-radius: 10px;
@@ -64,6 +64,12 @@
     align-items: center;
     overflow: hidden;
     border-radius: 10px;
+}
+
+div.myreservation-cover>img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -123,6 +129,10 @@ div.myrestaurant-edit-button>button {
     /* font-size: 24px; */
     text-align: center;
     /* padding: 10% 35%; */
+    height: 190px;
+    width: 900px;
+    /* text-align: left; */
+    padding: 30px;
 }
 
 #root>div.myreservation-container>div>div>a {

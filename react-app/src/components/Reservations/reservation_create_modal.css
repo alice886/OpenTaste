@@ -22,7 +22,7 @@
 }
 
 #modal-content>div {
-    max-width: 500px;
+    width: 650px;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -109,6 +109,7 @@
 
 #modal-content>div>div.create-error-mo {
     color: #D10000;
+    margin-top: 10px;
 }
 
 #modal-content>div>div:nth-child(6)>div.home-reserve-modal-submit {

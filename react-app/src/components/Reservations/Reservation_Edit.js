@@ -66,7 +66,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
     const [partySize, setPartySize] = useState(theReservation.party_size);
     const [occasion, setOccasion] = useState(theReservation.occasion);
-    const [specialRequest, setSpecialRequest] = useState();
+    const [specialRequest, setSpecialRequest] = useState(theReservation.special_request);
     const [isDisabled, setIsDisabled] = useState(true)
 
     const capacity_count = []
@@ -94,17 +94,17 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             if (specialRequest?.match(inputRegex)) {
                 newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
             }
-            if (reserveDate.slice(0, 4) !== '2022') {
-                newErrors.push('You may only reserve dates in the year of 2022')
-            }
-            if (reserveDate.slice(5, 7) - todayMonth < 0) {
-                newErrors.push('You may not select dates from previous months')
-            }
-            if (reserveDate.slice(5, 7) - todayMonth == 0) {
-                if (reserveDate.slice(8, 10) - todayDate < 0) {
-                    newErrors.push('You may not select dates before today')
-                }
-            }
+            // if (reserveDate.slice(0, 4) !== '2022') {
+            //     newErrors.push('You may only reserve dates in the year of 2022')
+            // }
+            // if (reserveDate.slice(5, 7) - todayMonth < 0) {
+            //     newErrors.push('You may not select dates from previous months')
+            // }
+            // if (reserveDate.slice(5, 7) - todayMonth == 0) {
+            //     if (reserveDate.slice(8, 10) - todayDate < 0) {
+            //         newErrors.push('You may not select dates before today')
+            //     }
+            // }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);

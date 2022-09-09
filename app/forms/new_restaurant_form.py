@@ -32,6 +32,6 @@ class RestaurantForm(FlaskForm):
     open_time = StringField('open_time',validators=[validate_string, DataRequired()])
     close_time = StringField('close_time',validators=[validate_string, DataRequired()])
     cuisine = StringField('cuisine',validators=[validate_string,DataRequired(),Length(min=1,max=30)])
-    cover = StringField('cuisine',validators=[validate_string,DataRequired(),Length(min=2,max=300)])
+    cover = StringField('cuisine',validators=[validate_string,DataRequired(),Length(min=2,max=500)])
     # open_time = TimeField('open_time',validators=[validate_time, DataRequired()])
     # close_time = TimeField('close_time',validators=[validate_time, DataRequired()])
