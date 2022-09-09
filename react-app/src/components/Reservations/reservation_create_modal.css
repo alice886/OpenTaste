@@ -105,8 +105,13 @@
     color: #D10000;
 }
 
+#modal-content>div>div:nth-child(6)>div.home-reserve-modal-submit {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
 
-#modal-content>div>div.home-reserve-modal-submit>button {
+#modal-content>div>div:nth-child(6)>div.home-reserve-modal-submit>button {
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -121,17 +126,16 @@
     color: white;
     box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-
 }
 
-#modal-content>div>div.home-reserve-modal-submit>button:disabled {
+#modal-content>div>div:nth-child(6)>div.home-reserve-modal-submit>button:disabled {
     background: #A9A9A9;
     color: #8A8A8A;
     cursor: not-allowed;
 
 }
 
-#modal-content>div>div.home-reserve-modal-submit>button:enabled:hover {
+#modal-content>div>div:nth-child(6)>div.home-reserve-modal-submit>button:enabled:hover {
     background: rgba(254, 0, 0, 0.9);
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
