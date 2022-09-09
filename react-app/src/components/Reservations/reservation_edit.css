@@ -182,18 +182,21 @@ div.reserved-modal {
 #modal-content>div>div.edit-reservation-button>button {
     padding-top: 5px 20px;
     /* border: 1px solid #850000; */
-    background-color: #FFDBDB;
-    border-radius: 5px;
-    font-size: 22px;
+    background-color: #B01400;
+    color: white;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 10px;
 }
 
 
 #modal-content>div>div.edit-reservation-button>button:nth-child(1):disabled {
     color: #CECECE;
+    background-color: #AAAAAA;
     font-size: 22px;
     cursor: not-allowed;
 }
 
 #modal-content>div>div.edit-reservation-button>button:enabled:hover {
-    color: #E70000;
+    color: #ED0000;
 }

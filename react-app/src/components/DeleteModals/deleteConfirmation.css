@@ -21,5 +21,6 @@
 
 .delete-confirmation-yes:hover,
 .delete-confirmation-no:hover {
-    background-color: aquamarine;
+    background-color: #F60000;
+    color: white;
 }

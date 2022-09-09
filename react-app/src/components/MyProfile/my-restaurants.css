@@ -8,10 +8,24 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
+    min-height: 800px;
 }
 
 #root>div.myrestaurants-container>h3 {
-    margin-top: 10px;
+    margin: 20px;
+    font-size: 30px;
+}
+
+#root>div.myrestaurants-container>h3 {
+    margin-top: 50px;
+    align-self: center;
+}
+
+
+#root>div.myrestaurants-container>div.div-list-new-butt {
+    /* padding-left: 80px;
+    padding-top: 80px; */
+    align-self: center;
 }
 
 .list-new-res-button {
@@ -25,7 +39,7 @@
     box-shadow: 0px 2px 4px rgb(45 35 66 / 20%), 0px 7px 7px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
     height: 48px;
     padding: 3px 55px;
-    margin: 3px;
+    margin-left: 80px;
     font-size: 20px;
     border-radius: 6px;
     color: white;
@@ -48,12 +62,23 @@
     color: inherit;
 }
 
-#root>div.myprofile-container>div.profile-content>div>div.rest-kindreminder {
+
+
+#root>div.myrestaurants-container>div.rest-kindreminder {
     font-size: 20px;
+    padding-left: 40px;
+    align-self: center;
+}
+
+#root>div.myrestaurants-container>div.no-restaurant-text {
+    font-size: 20px;
+    text-align: center;
+    /* padding: 10% 35%; */
+
 }
 
 .my-restaurant-each {
-    margin: 20px 0px;
+    margin: 30px 25%;
     padding: 25px 30px;
     display: grid;
     grid-template-columns: 260px 300px 150fr;

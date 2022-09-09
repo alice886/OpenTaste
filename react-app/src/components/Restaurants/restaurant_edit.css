@@ -168,10 +168,12 @@
 
 #modal-content>form>div.edit-restaurant-description>textarea {
     height: 99px;
-    width: 800px;
+    width: 700px;
     resize: none;
     overflow-y: scroll;
     margin-bottom: 30px;
+    margin-left: 110px;
+    align-self: center;
 }
 
 .edit-res-error {

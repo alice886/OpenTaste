@@ -4,7 +4,7 @@ import MyRestaurants from './My_Restaurants';
 import MyReservations from './My_Reservations';
 import { getMyRestaurantThunk } from '../../store/restaurant';
 import { getMyReservationsThunk } from '../../store/reservation';
-import { Redirect, useHistory } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 // import { Modal } from '../context/Modal'
 import './my_profile.css';
 
@@ -39,24 +39,24 @@ export default function MyProfile() {
 
     console.log('checkcheck ', myRestaurants?.length)
 
-    const HandleMyProfile = async e => {
-        e.preventDefault();
-        setShowProfile(true);
-        setShowMyRest(false);
-        setShowMyReser(false);
-    }
-    const HandleMyRestaurants = async e => {
-        e.preventDefault();
-        setShowProfile(false);
-        setShowMyRest(true);
-        setShowMyReser(false);
-    }
-    const HandleMyReservations = async e => {
-        e.preventDefault();
-        setShowProfile(false);
-        setShowMyRest(false);
-        setShowMyReser(true);
-    }
+    // const HandleMyProfile = async e => {
+    //     e.preventDefault();
+    //     setShowProfile(true);
+    //     setShowMyRest(false);
+    //     setShowMyReser(false);
+    // }
+    // const HandleMyRestaurants = async e => {
+    //     e.preventDefault();
+    //     setShowProfile(false);
+    //     setShowMyRest(true);
+    //     setShowMyReser(false);
+    // }
+    // const HandleMyReservations = async e => {
+    //     e.preventDefault();
+    //     setShowProfile(false);
+    //     setShowMyRest(false);
+    //     setShowMyReser(true);
+    // }
 
     if (!sessionUser) {
         history.push('/');
@@ -67,13 +67,20 @@ export default function MyProfile() {
             {/* <div>My profile home</div> */}
             <div className='profile-sidebar'>
                 <div className='profile-tab1'>
-                    <button onClick={HandleMyProfile}>Profile Summary</button>
+                    {/* <button onClick={HandleMyProfile}> */}
+                    {/* </button> */}
+                    Profile Summary
                 </div>
                 <div className='profile-tab2'>
-                    <button onClick={HandleMyRestaurants}>My Restaurants</button>
+                    {/* <button onClick={HandleMyRestaurants}>
+                        </button> */}
+                    <NavLink to='/myrestaurants'>My Restaurants</NavLink>
+
                 </div>
                 <div className='profile-tab3'>
-                    <button onClick={HandleMyReservations}>My Reservations</button>
+                    {/* <button onClick={HandleMyReservations}>
+                        </button> */}
+                    <NavLink to='/myrestaurants'>My Reservations</NavLink>
                 </div>
             </div>
             <div className='profile-content'>

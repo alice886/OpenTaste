@@ -32,6 +32,21 @@
     padding-bottom: 23px;
 }
 
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab3>a {
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 15px;
+    background-color: #D10000;
+    color: white;
+}
+
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a:hover,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab3>a:hover {
+    background-color: #9D0000;
+}
+
+
 #root>div.myprofile-container>div.profile-sidebar>div.profile-tab1 {
     background-color: #F3F3F3;
 }

@@ -90,7 +90,7 @@ input .signin-input:focus {
     height: 80px;
 } */
 
-#modal-content>form>div:nth-child(3)>div {
+#modal-content>form>div.signin-error>div {
     margin: 2px 0px;
     padding: 5px;
     font-size: 19px;

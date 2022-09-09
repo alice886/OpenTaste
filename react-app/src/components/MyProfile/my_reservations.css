@@ -20,12 +20,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
+    min-height: 800px;
 }
 
 #root>div.myreservation-container>h3 {
-    margin-top: 30px;
-    padding-bottom: 20px;
+    margin-top: 50px;
+    align-self: center;
+    font-size: 30px;
+}
+
+.no-reservation {
+    font-size: 20px;
 }
 
 #root>div.myrestaurants-container>div.my-restaurants-each-container {
@@ -33,27 +38,27 @@
 }
 
 .my-reservation-each {
-    margin: 20px 0px;
-    padding: 30px 30px;
+    margin: 30px 25%;
+    padding: 25px 10px;
     display: grid;
-    grid-template-columns: 260px 300px 150px;
-    gap: 30px;
+    grid-template-columns: 260px 400px 150px;
+    gap: 10px;
     background-color: #F3F3F3;
     height: 180px;
     border-radius: 10px;
-    justify-content: space-evenly;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 970px;
+    /* width: 970px; */
     font-size: 19px;
     position: relative;
+    align-items: flex-start;
 }
 
 .myreservation-cover {
     width: 100%;
     max-height: 100%;
-    height: fit-content;
+    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,7 +85,7 @@ div.myreservation-edit-button>button {
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     text-align: center;
     position: absolute;
-    padding: 5px 30px;
+    padding: 5px 20px;
     top: 38%;
     right: 4%;
 
@@ -98,14 +103,33 @@ div.myreservation-edit-button>button:active {
 
 .div.myreservation-details {
     height: fit-content;
+    text-align: left;
+    width: fit-content;
 }
 
 div.myrestaurant-edit-button>button {
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin: auto;
     font-size: 14px;
 }
 
 #root>div.myprofile-container>div.profile-content>div>div>div:nth-child(1)>div.myrestaurant-details>div {
     font-size: 18px;
+}
+
+
+/* nno reservation */
+#root>div.myreservation-container>div>div {
+    /* font-size: 24px; */
+    text-align: center;
+    /* padding: 10% 35%; */
+}
+
+#root>div.myreservation-container>div>div>a {
+    text-decoration: none;
+    color: #770000;
+}
+
+#root>div.myreservation-container>div>div>a:hover {
+    text-decoration: underline;
 }

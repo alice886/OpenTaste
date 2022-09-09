@@ -49,7 +49,7 @@ const LoginForm = ({ setShowLogin }) => {
         <button onClick={() => setShowLogin(false)} >x</button>
       </div>
       <div className='signin-title'>Sign In</div>
-      <div>
+      <div className='signin-error'>
         {errors.map((error, ind) => (
           <div className='auth-validate-error' key={ind}>* {error.split(':')[0].charAt(0).toUpperCase() + error.split(':')[0].slice(1)}:{error.split(':')[1]}</div>
         ))}

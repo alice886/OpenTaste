@@ -50,8 +50,8 @@ export default function MyRestaurants({ showMyRestaurants }) {
     return (
         // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
-            <h3>- My Reservations -</h3>
-            <div>
+            <h3 className='title-my-restaurants'>- My Reservations -</h3>
+            <div className='div-list-new-butt'>
                 <button className='list-new-res-button'>
                     <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>
                 </button>
@@ -60,7 +60,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
             {(myrestaurants?.length === 0) ? (
-                <div>
+                <div className='no-restaurant-text'>
                     <div>You haven't post any restaurant yet.</div>
                     <div>Click the button above and start listing a restaurant with OpenTaste!</div>
                 </div>) :
