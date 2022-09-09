@@ -50,6 +50,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
     return (
         // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
+            <h3>- My Reservations -</h3>
             <div>
                 <button className='list-new-res-button'>
                     <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>

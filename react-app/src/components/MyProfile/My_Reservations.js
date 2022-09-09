@@ -43,16 +43,15 @@ export default function MyReservations() {
                 {myReservations?.length ? (myReservations?.map(reservation => {
                     return <div className='my-reservation-each' key={reservation.id}>
                         <div className='myreservation-cover'>
-                            <img src={reservation.restaurant.cover} alt="restaurant cover"></img>
+                            <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
                         </div>
                         <div className='myrestaurant-details'>
                             <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
                             <div>{reservation.restaurant.address}</div>
                             <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
-                            <br></br>
-                            <div>🗓️  {reservation.reserve_datetime.slice(0, 16)}</div>
-                            <div>🕐  {reservation.reserve_datetime.slice(16, 22)}</div>
-                            <div>👤 party of  {reservation.party_size}</div>
+                            <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
+                            <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
+                            <div>Party Size : {reservation.party_size}</div>
                         </div>
                         <div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>

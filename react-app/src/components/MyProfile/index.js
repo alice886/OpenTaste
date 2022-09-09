@@ -83,9 +83,10 @@ export default function MyProfile() {
                     </div>
                     <div>👤 {sessionUser.username}</div>
                     <div>📧 {sessionUser.email}</div>
+                    <br></br>
                     <div className='summary-details'>
-                        <div>you have listed {myRestaurants?.length} restaurants</div>
-                        <div>you have  made {myReservations?.length} reservations</div>
+                        <div>You have listed {myRestaurants?.length} restaurants</div>
+                        <div>You have made {myReservations?.length} reservations</div>
                     </div>
                 </div>)}
                 {showMyRestaurants && <MyRestaurants showMyRestaurants={showMyRestaurants} />}
