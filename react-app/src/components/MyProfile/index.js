@@ -66,20 +66,27 @@ export default function MyProfile() {
         <div className='myprofile-container'>
             {/* <div>My profile home</div> */}
             <div className='profile-sidebar'>
-                <div>
+                <div className='profile-tab1'>
                     <button onClick={HandleMyProfile}>Profile Summary</button>
                 </div>
-                <div>
+                <div className='profile-tab2'>
                     <button onClick={HandleMyRestaurants}>My Restaurants</button>
                 </div>
-                <div>
+                <div className='profile-tab3'>
                     <button onClick={HandleMyReservations}>My Reservations</button>
                 </div>
             </div>
             <div className='profile-content'>
-                {showProfile && (<div>
-                    <div>you have {myRestaurants?.length} restaurants</div>
-                    <div>you have {myReservations?.length} reservations</div>
+                {showProfile && (<div className='profile-summary'>
+                    <div>
+                        <h2>{sessionUser.first_name} {sessionUser.last_name}</h2>
+                    </div>
+                    <div>👤 {sessionUser.username}</div>
+                    <div>📧 {sessionUser.email}</div>
+                    <div className='summary-details'>
+                        <div>you have listed {myRestaurants?.length} restaurants</div>
+                        <div>you have  made {myReservations?.length} reservations</div>
+                    </div>
                 </div>)}
                 {showMyRestaurants && <MyRestaurants showMyRestaurants={showMyRestaurants} />}
                 {showMyReservations && <MyReservations />}

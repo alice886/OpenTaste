@@ -50,7 +50,6 @@ export default function MyRestaurants({ showMyRestaurants }) {
     return (
         // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
-            <h3>- My Restaurants -</h3>
             <div>
                 <button className='list-new-res-button'>
                     <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>
@@ -61,13 +60,12 @@ export default function MyRestaurants({ showMyRestaurants }) {
             </Modal>)}
             {(myrestaurants?.length === 0) ? (
                 <div>
-                    <h3>You haven't post any restaurant yet.</h3>
-                    <h3>Click the button above and start listing a restaurant with OpenTaste!</h3>
+                    <div>You haven't post any restaurant yet.</div>
+                    <div>Click the button above and start listing a restaurant with OpenTaste!</div>
                 </div>) :
-                (<div>
+                (<div className='rest-kindreminder'>
                     <div>To view Customer Reservations,  </div>
-                    <div>please go to the restaurant detail page </div>
-                    <div> and view under tab [ See Reservations ] </div>
+                    <div>please go to the restaurant detail page and view under tab [ See Reservations ] </div>
                 </div>)
             }
             <div className='my-restaurants-each-container'>

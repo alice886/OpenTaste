@@ -82,6 +82,7 @@ function RestaurantDetails() {
                     <div className='res-right-container2'>
                         {(sessionUser?.id === therestaurant?.owner_id) ? <div>
                             <div>You are the restaurant owner.</div>
+                            <br></br>
                             <div>
                                 <div>To view Customer Reservations,  </div>
                                 <div>please go to the restaurant detail page </div>

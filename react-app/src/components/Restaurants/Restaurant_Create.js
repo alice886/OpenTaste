@@ -61,10 +61,10 @@ export default function ListNewRestaurant() {
             if (address === undefined || city === undefined || state === undefined) {
                 newErrors.push('Please enter a valid address and make sure it has all the necessary informations (address/city/state info are required).')
             }
-            if (zip_code.length !== 5 || !zip_code.match(zipcodeRegex)) {
+            if (zip_code?.length !== 5 || !zip_code?.match(zipcodeRegex)) {
                 newErrors.push('Please enter valid 5 digits zip code')
             }
-            if (description && description.length > 500) {
+            if (description && description?.length > 500) {
                 newErrors.push('You may only enter descriptions in 500 character.')
             }
             if (capacity === undefined) {
