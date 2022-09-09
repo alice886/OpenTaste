@@ -41,16 +41,17 @@ const LoginForm = ({ setShowLogin }) => {
       history.push('/')
     }
   }
+  console.log(errors)
 
   return (
     <form className='login-modal' >
       <div className='cancel-signin'>
         <button onClick={() => setShowLogin(false)} >x</button>
       </div>
-      <h2>Sign In</h2>
+      <div className='signin-title'>Sign In</div>
       <div>
         {errors.map((error, ind) => (
-          <div className='auth-validate-error' key={ind}>* {error}</div>
+          <div className='auth-validate-error' key={ind}>* {error.split(':')[0].charAt(0).toUpperCase() + error.split(':')[0].slice(1)}:{error.split(':')[1]}</div>
         ))}
       </div>
       <label className='signin-label' htmlFor='email'>  Email</label>
@@ -61,7 +62,8 @@ const LoginForm = ({ setShowLogin }) => {
         value={email}
         onChange={updateEmail}
         className='signin-input'
-        required={true}
+        required
+        maxLength={37}
       />
       <label className='signin-label' htmlFor='password'>  Password</label>
       <input
@@ -71,7 +73,8 @@ const LoginForm = ({ setShowLogin }) => {
         value={password}
         onChange={updatePassword}
         className='signin-input'
-        required={true}
+        required
+        maxLength={41}
       />
       <div className='signin-buttom-container'>
         <button className='singin-button' onClick={onLogin} type='submit'>Login</button>

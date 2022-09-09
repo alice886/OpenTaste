@@ -189,8 +189,8 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 <div>
                     <div>Reserving at </div>
                     <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
-                    <div>Business Hours:</div>
-                    <div>{therestaurant.open_time} - {therestaurant.close_time}</div>
+                    {/* <div>Business Hours:</div>
+                    <div>{therestaurant.open_time} - {therestaurant.close_time}</div> */}
                 </div>
             </div>
             <div className='create-error-mo'>
@@ -247,8 +247,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             {(sessionUser?.id !== therestaurant?.owner_id) &&
                 (
                     <div>
-                        <div>* Please contact the restaurant if your party size is over 20 people,</div>
-                        <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+                        <div>* Please contact the restaurant if your party size is over 20 people</div>
                         <div className='home-reserve-modal-submit'>
                             <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
                         </div>

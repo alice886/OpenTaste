@@ -13,10 +13,12 @@
     right: 3%;
     font-size: 25px;
     text-align: center;
+    background-color: #EDEDED;
+    border-radius: 50%;
 }
 
 #modal-content>div>button.home-modal-cancel:hover {
-    font-size: 30px;
+    font-size: 28px;
 }
 
 #modal-content>div {
@@ -73,20 +75,24 @@
 
 #modal-content>div>div.home-reserve-mo-detail>div:nth-child(2) {
     margin-left: 25px;
-    font-size: 21px;
+    font-size: 20px;
 }
 
 #modal-content>div>div.home-reserve-mo-detail>div:nth-child(2)>div:nth-child(2)>a {
     margin: 5px 0px;
-    font-size: 18px;
+    font-size: 22px;
     color: #D10000;
-    width: 400px;
+    width: 300px;
     overflow-wrap: break-word;
 
 }
 
 #modal-content>div>div:nth-child(8)>button {
     margin-top: 25px;
+}
+
+#modal-content>div>div.home-reserve-mo-detail>div:nth-child(2) {
+    width: 250px;
 }
 
 #modal-content>div>div.home-reserve-mo-detail>div:nth-child(2)>div:nth-child(2)>a {
@@ -96,7 +102,7 @@
 
 #modal-content>div>div.home-reserve-mo-detail>div:nth-child(2)>div:nth-child(2)>a:hover {
     color: #F20000;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
     text-decoration: underline;
 }

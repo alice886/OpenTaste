@@ -188,8 +188,7 @@ export default function MakeReservation({ therestaurant }) {
 
                 </form >
                 {sessionUser?.id !== therestaurant?.owner_id && (<div className='create-party-note'>
-                    <div>* Please contact the restaurant if your party size is over 20 people,</div>
-                    <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+                    <div>* Please contact the restaurant if your party size is over 20 people</div>
                 </div>)}
                 {sessionUser?.id !== therestaurant?.owner_id && (<div className='make-reservation-submit'>
                     <button className='make-reservation-submit' onClick={handleSubmit} disabled={isDisabled}>Submit</button>
