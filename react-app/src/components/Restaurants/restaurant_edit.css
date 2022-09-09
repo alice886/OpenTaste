@@ -168,16 +168,19 @@
 
 #modal-content>form>div.edit-restaurant-description>textarea {
     height: 99px;
-    width: 800px;
+    width: 700px;
     resize: none;
     overflow-y: scroll;
+    margin-bottom: 30px;
+    margin-left: 110px;
+    align-self: center;
 }
 
 .edit-res-error {
     padding: 5px;
-    font-size: 16px;
+    font-size: 18px;
     border-bottom: #FEE8FC 1px dotted;
-    color: #6B0000;
+    color: #D10000;
     font-family: 'Slabo 27px', serif;
 }
 
@@ -199,30 +202,21 @@
     border-radius: 20%;
 } */
 
-#modal-content>form>div.edit-restaurant-button>button>input {
-    padding-top: 40px;
-    width: 30px;
-    height: 30px;
+#modal-content>form>div.edit-restaurant-button>button {
+    padding-top: 5px 20px;
+    /* border: 1px solid #850000; */
+    background-color: #FFDBDB;
+    border-radius: 5px;
+    font-size: 22px;
 }
 
-#modal-content>div>div.edit-restaurant-button>button {
-    font-size: 18px;
-    /* width: 100%; */
-    width: 20px;
-    height: 20px;
-}
 
-#modal-content>div>div.edit-restaurant-button>button>input {
-    background-color: white;
-}
-
-#modal-content>form>div.edit-restaurant-button>button:disabled {
-    /* background-color: #B5B5B5; */
-    color: #787878;
+#modal-content>form>div.edit-restaurant-button>button:nth-child(1):disabled {
+    color: #CECECE;
+    font-size: 22px;
     cursor: not-allowed;
-    height: 100%;
 }
 
-#modal-content>div>div.edit-restaurant-button>button:nth-child(2)>input {
-    border-radius: 0px;
+#modal-content>form>div.edit-restaurant-button>button:enabled:hover {
+    color: #E70000;
 }

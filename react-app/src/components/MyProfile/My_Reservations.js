@@ -17,7 +17,7 @@ export default function MyReservations() {
 
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showEditReser,sessionUser])
+    }, [dispatch, showEditReser, sessionUser])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
@@ -35,7 +35,7 @@ export default function MyReservations() {
 
     return loaded && sessionUser && (
         <div className='myreservation-container'>
-            <h3>- My Reservations -</h3>
+            <h3 className='title-my-reservations'>- My Reservations -</h3>
             {showEditReser && (<Modal onClose={() => setShowEditReser(false)}>
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}
@@ -43,7 +43,7 @@ export default function MyReservations() {
                 {myReservations?.length ? (myReservations?.map(reservation => {
                     return <div className='my-reservation-each' key={reservation.id}>
                         <div className='myreservation-cover'>
-                            <img src={reservation.restaurant.cover} height={'80px'} alt="restaurant cover"></img>
+                            <img src={reservation.restaurant.cover} alt="restaurant cover"></img>
                         </div>
                         <div className='myrestaurant-details'>
                             <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
@@ -57,10 +57,10 @@ export default function MyReservations() {
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
                         </div>
                     </div>
-                })) : (<>
-                    <h3>You have no reservations yet</h3>
+                })) : (<div className='no-reservation'>
+                    <h3 className='no-reserv-h3'>You have no reservations yet</h3>
                     <NavLink to='/'> Back to Home</NavLink>
-                </>)
+                </div>)
                 }
             </div>
 

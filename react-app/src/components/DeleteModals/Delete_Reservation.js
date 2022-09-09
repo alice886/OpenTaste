@@ -13,7 +13,6 @@ export default function DeleteReservation({ setShowDeleteReserv, resId, setShowE
         setShowDeleteReserv(false)
         setShowEditReser(false)
         history.push('/myreservations')
-        console.log('delete modal , id is ', resId)
     }
 
     return (

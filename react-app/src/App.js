@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
 import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
+import MyProfileRestaurants from './components/MyProfile/index_myrestaurants'
+import MyProfileReservations from './components/MyProfile/index_myreservations'
 import MyRestaurants from './components/MyProfile/My_Restaurants'
 import MyReservations from './components/MyProfile/My_Reservations'
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -33,8 +35,14 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <ProtectedRoute path='/myprofile' exact={true} >
+          <MyProfile />
+        </ProtectedRoute>
         <Route path='/myrestaurants' exact={true} >
           <MyRestaurants />
+        </Route>
+        <Route path='/myreservations' exact={true}>
+          <MyReservations />
         </Route>
         <Route path='/' exact={true}>
           <Home />
@@ -45,18 +53,15 @@ function App() {
         <Route path='/listnewrestaurant' >
           <ListNewRestaurant />
         </Route>
-        <Route path='/myreservations' >
-          <MyReservations />
+        <Route path='*' >
+          <h1>Page not Foud, please try another URL</h1>
         </Route>
-        <ProtectedRoute path='/myprofile' exact={true} >
-          <MyProfile />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/myhomepage' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/myhomepage' exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
       <Footer />
     </BrowserRouter>

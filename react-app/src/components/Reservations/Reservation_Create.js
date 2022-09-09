@@ -14,6 +14,7 @@ export default function MakeReservation({ therestaurant }) {
     // to get today's dates
     const d = new Date()
     const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
     // to get available hours
@@ -81,17 +82,28 @@ export default function MakeReservation({ therestaurant }) {
             if (reserveTime === undefined) {
                 newErrors.push('Please select a time')
             }
+            if (reserveDate?.slice(0, 4) !== '2022') {
+                newErrors.push('You may only reserve dates in the year of 2022')
+            }
+            if (reserveDate?.slice(5, 7) - todayMonth < 0) {
+                newErrors.push('You may not select dates from previous months')
+            }
+            if (reserveDate?.slice(5, 7) - todayMonth == 0) {
+                if (reserveDate?.slice(8, 10) - todayDate < 0) {
+                    newErrors.push('You may not select dates before today')
+                }
+            }
             if (partySize === undefined) {
-                newErrors.push('Please select a party size of the visit.')
+                newErrors.push('Please select a party size of the visit')
             }
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character')
             }
             if (specialRequest?.length && specialRequest?.length < 2) {
-                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields")
             }
             if (specialRequest?.match(inputRegex)) {
-                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
             }
         }
         setErrors(newErrors)
@@ -176,8 +188,7 @@ export default function MakeReservation({ therestaurant }) {
 
                 </form >
                 {sessionUser?.id !== therestaurant?.owner_id && (<div className='create-party-note'>
-                    <div>* Please contact the restaurant if your party size is over 20 people,</div>
-                    <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+                    <div>* Please contact the restaurant if your party size is over 20 people</div>
                 </div>)}
                 {sessionUser?.id !== therestaurant?.owner_id && (<div className='make-reservation-submit'>
                     <button className='make-reservation-submit' onClick={handleSubmit} disabled={isDisabled}>Submit</button>

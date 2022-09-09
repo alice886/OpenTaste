@@ -107,6 +107,7 @@ div.reserved-modal {
     position: absolute;
     top: 3%;
     right: 4%;
+    padding: 0px 10px;
 }
 
 #modal-content>div>button:hover {
@@ -179,20 +180,23 @@ div.reserved-modal {
 }
 
 #modal-content>div>div.edit-reservation-button>button {
-    font-size: 18px;
-    width: 100%;
+    padding-top: 5px 20px;
+    /* border: 1px solid #850000; */
+    background-color: #B01400;
+    color: white;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 10px;
 }
 
-#modal-content>div>div.edit-reservation-button>button>input {
-    background-color: white;
-}
 
-#modal-content>div>div.edit-reservation-button>button:disabled {
-    background-color: #B5B5B5;
-    color: #787878;
+#modal-content>div>div.edit-reservation-button>button:nth-child(1):disabled {
+    color: #CECECE;
+    background-color: #AAAAAA;
+    font-size: 22px;
     cursor: not-allowed;
 }
 
-#modal-content>div>div.edit-reservation-button>button:nth-child(2)>input {
-    border-radius: 0px;
+#modal-content>div>div.edit-reservation-button>button:enabled:hover {
+    color: #ED0000;
 }

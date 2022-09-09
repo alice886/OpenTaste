@@ -9,7 +9,7 @@ const LoginForm = ({ setShowLogin }) => {
   const [email, setEmail] = useState('');
   const history = useHistory();
   const [password, setPassword] = useState('');
-  // const user = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
@@ -17,6 +17,9 @@ const LoginForm = ({ setShowLogin }) => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      setShowLogin(false)
+      history.push('/')
     }
   };
 
@@ -28,10 +31,6 @@ const LoginForm = ({ setShowLogin }) => {
     setPassword(e.target.value);
   };
 
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
-
   const demoLogin = async e => {
     e.preventDefault();
     const data = await dispatch(login('demo@aa.io', 'password'));
@@ -42,16 +41,17 @@ const LoginForm = ({ setShowLogin }) => {
       history.push('/')
     }
   }
+  console.log(errors)
 
   return (
     <form className='login-modal' >
       <div className='cancel-signin'>
         <button onClick={() => setShowLogin(false)} >x</button>
       </div>
-      <h2>Sign In</h2>
-      <div>
+      <div className='signin-title'>Sign In</div>
+      <div className='signin-error'>
         {errors.map((error, ind) => (
-          <div className='auth-validate-error' key={ind}>* {error}</div>
+          <div className='auth-validate-error' key={ind}>* {error.split(':')[0].charAt(0).toUpperCase() + error.split(':')[0].slice(1)}:{error.split(':')[1]}</div>
         ))}
       </div>
       <label className='signin-label' htmlFor='email'>  Email</label>
@@ -62,7 +62,8 @@ const LoginForm = ({ setShowLogin }) => {
         value={email}
         onChange={updateEmail}
         className='signin-input'
-        required={true}
+        required
+        maxLength={37}
       />
       <label className='signin-label' htmlFor='password'>  Password</label>
       <input
@@ -72,7 +73,8 @@ const LoginForm = ({ setShowLogin }) => {
         value={password}
         onChange={updatePassword}
         className='signin-input'
-        required={true}
+        required
+        maxLength={41}
       />
       <div className='signin-buttom-container'>
         <button className='singin-button' onClick={onLogin} type='submit'>Login</button>

@@ -19,13 +19,14 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/myrestaurants',methods=['GET'])
+@user_routes.route('/myrestaurants666/',methods=['GET'])
+@user_routes.route('/myrestaurants666',methods=['GET'])
 @login_required
 def my_restaurants():
     uid = current_user.id
-    restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
+    # restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
     # # restaurants = db.session.query(Restaurant).options(db.joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
-    # restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
+    restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
     restaurants_list=[]
     # if restaurants is not None:
     if restaurants is not None and len(restaurants) > 0:
@@ -43,14 +44,14 @@ def my_reservations():
     uid = current_user.id
     print('current user id is', uid)
     # restaurant = db.session.query(Restaurant).get(Reservation.restaurant_id)
-    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.restaurant)).filter(Reservation.user_id == uid).all()
+    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.restaurant)).filter(Reservation.user_id == uid).order_by(Reservation.reserve_datetime).all()
     reservations_list=[]
-    if reservations is not None and len(reservations) > 0:
-        for each in reservations:
-            restaurant = each.restaurant.to_dict()
-            each = each.to_dict()
-            each['restaurant']=restaurant
-            reservations_list.append(each)
-        return {'reservations':reservations_list}
-    else:
-        return {'errors':['You have no reservations yet.']},404
+    # if reservations is not None and len(reservations) > 0:
+    for each in reservations:
+        restaurant = each.restaurant.to_dict()
+        each = each.to_dict()
+        each['restaurant']=restaurant
+        reservations_list.append(each)
+    return {'reservations':reservations_list}
+    # else:
+    #     return {'errors':['You have no reservations yet.']},404

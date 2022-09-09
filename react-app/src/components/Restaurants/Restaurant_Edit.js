@@ -25,11 +25,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const [address, setAddress] = useState(theRestaurant?.address);
     const [city, setCity] = useState(theRestaurant?.city);
     const [state, setState] = useState(theRestaurant?.state);
-    const [zip_code, setZipCode] = useState(theRestaurant?.zip_code);
+    const [zip_code, setZipCode] = useState(String(theRestaurant?.zip_code));
     const [description, setDescription] = useState(theRestaurant?.description);
     const [capacity, setCapacity] = useState(theRestaurant?.capacity);
     const [cuisine, setCuisine] = useState(theRestaurant?.cuisine);
-    const [cover, setCover] = useState();
+    const [cover, setCover] = useState(theRestaurant?.cover);
     const [open_time, setOpenTime] = useState(theRestaurant?.open_time);
     const [close_time, setCloseTime] = useState(theRestaurant?.close_time);
     const [errors, setErrors] = useState([]);
@@ -58,6 +58,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
         'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese', 'Other']
 
+    const priceRangeDetail = ['', '$30 and under', '$31 to $50', '$50 to $100', '$101 and over'];
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
@@ -69,16 +70,14 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         if (!sessionUser) {
             newErrors.push('Please log in')
         }
-        // if (sessionUser?.id !== myrestaurants?.resId?.owner_id) {
-        //     window.alert('you cannot edit restaurant that does not belong to you')
-        //     history.push('/myrestaurants')
-        //     setShowModal(false)
-        // }
         else {
+            if (zip_code.length !== 5 || !zip_code.match(zipcodeRegex)) {
+                newErrors.push('Please enter valid 5 digits zip code')
+            }
             if (cover && !cover?.match(coverRegex)) {
-                newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
+                newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg')
                 newErrors.push('* E.g. "https://example.com/image.jpg/"')
-                newErrors.push('* Horizontal picture is recommended for your restaurant cover.')
+                newErrors.push('* Please try another image link')
             }
             if (open_time > close_time) {
                 newErrors.push('* Your close time may not be earlier than your open time.')
@@ -122,11 +121,8 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, open_time, close_time, description, cover, name, city, address])
+    }, [errors.length, open_time, close_time, description, cover, name, city, address, zip_code])
 
-    // console.log(name)
-    // console.log(city)
-    // console.log(address)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -169,7 +165,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             <form className='edit-restaurant'>
                 <div className='edit-restaurant-imgdelete'>
                     <div className='edit-restaurant-title'>Edit Your Business</div>
-                    <img src={theRestaurant?.cover} height={'90px'} />
+                    <img src={cover} height={'90px'} />
                     <div >{name}</div>
                 </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
@@ -189,10 +185,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             maxLength={31}
                             className='edit-res-input'
                             pattern="[^\s]+"
+                            required
                         ></input>
                         <label>Price Range</label>
                         <select className='edit-res-input' onChange={e => setPriceRange(e.target.value)}>
-                            <option value={''} selected disabled hidden> Choose a price range </option>
+                            <option value={price_range} selected hidden> {priceRangeDetail[price_range]} </option>
                             <option value={1} >$30 and under</option>
                             <option value={2} > $31 to $50</option>
                             <option value={3} > $50 to $100</option>
@@ -206,6 +203,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             value={address}
                             maxLength={31}
                             className='edit-res-input'
+                            required
                         ></input>
                         <label>City</label>
                         <input
@@ -215,10 +213,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             value={city}
                             maxLength={31}
                             className='edit-res-input'
+                            required
                         ></input>
                         <label>State</label>
                         <select className='edit-res-input' onChange={e => setState(e.target.value)} required >
-                            <option value={''} selected disabled hidden>Choose the state</option>
+                            <option value={state} selected hidden>{state}</option>
                             {states.map(state => (
                                 <option value={state}>{state}</option>
                             ))}
@@ -230,14 +229,16 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the zip_code here.'
                             onChange={e => setZipCode(e.target.value)}
                             value={zip_code}
-                            maxLength={31}
+                            maxLength={5}
                             className='edit-res-input'
+                            required
                         ></input>
                     </div>
                     <div className='edit-restaurant-right'>
                         <label>Capacity</label>
                         <select className='edit-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
-                            <option value={''} selected disabled hidden>Please select the capacity</option>
+                            {/* <option value={''} selected disabled hidden>Please select the capacity</option> */}
+                            <option value={capacity} selected hidden>{capacity} people</option>
                             {capacity_count.map(each => (
                                 <option value={each} >{each}  people</option>
                             ))}
@@ -245,7 +246,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         </select>
                         <label>Cuisine</label>
                         <select required className='edit-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
-                            <option value={''} selected disabled hidden>Please select the cuisine</option>
+                            <option value={cuisine} selected hidden>{cuisine}</option>
                             {cuisine_count.map(each => (
                                 <option value={each} >{each}</option>
                             ))}
@@ -258,6 +259,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             value={open_time}
                             className='edit-res-input'
                             defaultValue={''}
+                            required
                         ></input>
                         <div>Current Closetime: {theRestaurant?.close_time}</div>
                         <label>Update Business Hours: Close At</label>
@@ -267,6 +269,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             value={close_time}
                             className='edit-res-input'
                             defaultValue={''}
+                            required
                         ></input>
                         <label>Cover Picture</label>
                         <input
@@ -276,6 +279,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             value={cover}
                             maxLength={300}
                             className='edit-res-input'
+                            required
                         ></input>
                     </div>
                 </div>
@@ -294,13 +298,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 <div className='edit-restaurant-button'>
                     {/* <button onClick={handleSubmit} className='edit-restaurant-submit' disabled={isDisabled}>Submit Changes</button>
                     <button onClick={handleDelete} className='edit-restaurant-delete'>Delete The Restaurant</button> */}
-                    <button onClick={handleSubmit} disabled={isDisabled} >
-                        <input className='edit-restaurant-img' type='image' src={Uploadicon} alt='edit icon'></input>
-                        <div>Submit Changes</div>
+                    <button onClick={handleSubmit} disabled={isDisabled} > Update This Restaurant
+                        {/* <input className='edit-restaurant-img' type='image' src={Uploadicon} alt='edit icon' disabled={isDisabled}></input> */}
                     </button>
-                    <button onClick={handleDelete}>
-                        <input className='edit-restaurant-img' type='image' src={Deleteicon} alt='edit icon'></input>
-                        <div>Delete The Restaurant</div>
+                    <button onClick={handleDelete}> Delete This Restaurant
+                        {/* <input className='edit-restaurant-img' type='image' src={Deleteicon} alt='edit icon'></input> */}
                     </button>
                 </div>
             </form>

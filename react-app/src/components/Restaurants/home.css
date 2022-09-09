@@ -30,7 +30,6 @@ div .find-banner {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin-top: 10px;
     min-width: 1600px;
 }
 
@@ -42,7 +41,7 @@ div .find-banner {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    font-size: .9em;
+    font-size: 18px;
     transition: all .4s ease;
     position: relative;
 }
@@ -85,8 +84,8 @@ div .home-res-details {
 
 div .home-restaurants:hover {
     border-radius: 2% 2% 2% 2% / 2% 2% 2% 2%;
-    box-shadow: 6px 6px 9px rgba(104, 104, 104, .3);
-    top: -6px;
+    box-shadow: 16px 16px 19px rgba(104, 104, 104, .6);
+    /* top: -6px; */
     transition-duration: 200ms;
 }
 

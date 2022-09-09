@@ -3,42 +3,43 @@
     width: 100%;
     overflow: hidden;
     object-fit: cover;
-    height: 700px;
+    height: 780px;
     z-index: -999999;
     padding-top: 10px;
     background-color: white;
 }
 
 .restaurant-all-container {
-    margin: 18% 11% 5%;
+    margin: 400px 240px 60px;
     display: grid;
     grid-template-columns: 5fr 3fr;
-    gap: 10px;
+    gap: 5px;
 }
 
 .res-left-container,
 .res-right-container {
     background-color: white;
     border-radius: 1%;
-    padding: 0 4em;
-    padding-bottom: 1em;
+    padding-bottom: 40px;
 
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 30%);
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     max-width: 760px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .res-right-container {
-    min-width: 500px;
-    padding: 0px 30px;
+    width: 380px;
+    padding: 20px 40px;
     padding-bottom: 30px;
     height: fit-content;
+    border-radius: 10px;
+    font-size: 20px;
 }
 
 .res-left-container {
-    min-width: 600px;
-    padding: 0px 30px;
+    width: 680px;
+    padding: 0px 60px;
     padding-bottom: 30px;
     height: fit-content;
 }
@@ -99,4 +100,33 @@ div.res-left-name {
 
 .res-left-info>div {
     padding: 5px 0px;
+}
+
+
+.make-reservation-submit>button {
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 18px;
+    background: #D10000;
+    color: white;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.make-reservation-submit>button:hover {
+    font-size: 20px;
+}
+
+.make-reservation-submit>button:disabled {
+    background: #A9A9A9;
+    color: #8A8A8A;
+    cursor: not-allowed;
+
 }

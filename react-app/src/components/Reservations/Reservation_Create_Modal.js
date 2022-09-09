@@ -22,6 +22,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     // to get today's dates
     const d = new Date()
     const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
     // to get available hours
@@ -69,7 +70,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             newErrors.push('Please log in to complete your reservation!')
         }
         if (sessionUser?.id === therestaurant?.owner_id) {
-            newErrors.push('* You may not reserve your own restaurant.')
+            newErrors.push('You may not reserve your own restaurant.')
         }
         else {
             if (reserveDate === undefined) {
@@ -78,20 +79,31 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             if (reserveTime === undefined) {
                 newErrors.push('Please select a time')
             }
+            if (reserveDate?.slice(0, 4) !== '2022') {
+                newErrors.push('You may only reserve dates in the year of 2022')
+            }
+            if (reserveDate?.slice(5, 7) - todayMonth < 0) {
+                newErrors.push('You may not select dates from previous months')
+            }
+            if (reserveDate?.slice(5, 7) - todayMonth == 0) {
+                if (reserveDate?.slice(8, 10) - todayDate < 0) {
+                    newErrors.push('You may not select dates before today')
+                }
+            }
             if (availableHour_count?.length <= 0) {
                 newErrors.push('Please choose another day for available timeslots')
             }
             if (partySize === undefined) {
-                newErrors.push('Please select a party size of the visit.')
+                newErrors.push('Please select a party size of the visit')
             }
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character')
             }
             if (specialRequest?.length && specialRequest?.length < 2) {
-                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields")
             }
             if (specialRequest?.match(inputRegex)) {
-                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
             }
         }
         setErrors(newErrors)
@@ -177,8 +189,8 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 <div>
                     <div>Reserving at </div>
                     <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
-                    <div>Business Hours:</div>
-                    <div>{therestaurant.open_time} - {therestaurant.close_time}</div>
+                    {/* <div>Business Hours:</div>
+                    <div>{therestaurant.open_time} - {therestaurant.close_time}</div> */}
                 </div>
             </div>
             <div className='create-error-mo'>
@@ -186,7 +198,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                     <div className='create-res-error-mo' key={ind}>* {error}</div>
                 ))}
             </div>
-            <form className='create-new-reservation-mo'>
+            {(sessionUser?.id !== therestaurant?.owner_id) && <form className='create-new-reservation-mo'>
 
                 <label>Date</label>
                 <input
@@ -231,13 +243,15 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 ></textarea>
 
 
-            </form >
-            <div>* Please contact the restaurant if your party size is over 20 people,</div>
-            <div>so the merchant can get well prepared and make accommondation arrangements for your reservation.</div>
+            </form >}
             {(sessionUser?.id !== therestaurant?.owner_id) &&
-                (<div className='home-reserve-modal-submit'>
-                    <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
-                </div>
+                (
+                    <div>
+                        <div>* Please contact the restaurant if your party size is over 20 people</div>
+                        <div className='home-reserve-modal-submit'>
+                            <button onClick={handleSubmit} disabled={isDisabled}>Complete Reservation</button>
+                        </div>
+                    </div>
                 )}
         </div>
 

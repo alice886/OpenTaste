@@ -36,6 +36,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     // to get today's dates
     const d = new Date()
     const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
     // to get available hours
@@ -63,8 +64,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         }
     }
 
-    const [partySize, setPartySize] = useState();
-    const [occasion, setOccasion] = useState();
+    const [partySize, setPartySize] = useState(theReservation.party_size);
+    const [occasion, setOccasion] = useState(theReservation.occasion);
     const [specialRequest, setSpecialRequest] = useState();
     const [isDisabled, setIsDisabled] = useState(true)
 
@@ -85,19 +86,30 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             newErrors.push('Please log in')
         } else {
             if (specialRequest && specialRequest.length > 200) {
-                newErrors.push('You may only enter descriptions in 200 character.')
+                newErrors.push('You may only enter descriptions in 200 character')
             }
             if (specialRequest?.length && specialRequest?.length < 2) {
-                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields.")
+                newErrors.push("If you choose to provide a special request, please at least enter 2 characters in input fields")
             }
             if (specialRequest?.match(inputRegex)) {
-                newErrors.push('You may not have 2 consecutive whitespaces in the special request field.')
+                newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
+            }
+            if (reserveDate.slice(0, 4) !== '2022') {
+                newErrors.push('You may only reserve dates in the year of 2022')
+            }
+            if (reserveDate.slice(5, 7) - todayMonth < 0) {
+                newErrors.push('You may not select dates from previous months')
+            }
+            if (reserveDate.slice(5, 7) - todayMonth == 0) {
+                if (reserveDate.slice(8, 10) - todayDate < 0) {
+                    newErrors.push('You may not select dates before today')
+                }
             }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
         else setIsDisabled(true)
-    }, [errors.length, newErrors.length, specialRequest])
+    }, [errors.length, newErrors.length, specialRequest, reserveDate])
 
     const handleEditSubmit = async e => {
         e.preventDefault();
@@ -123,6 +135,10 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         setShowDeleteReserv(true);
     }
 
+    console.log('mess date', reserveDate.slice(0, 4))
+    console.log('mess date', reserveDate.slice(5, 7) - todayMonth)
+    console.log('mess date', reserveDate.slice(8, 10))
+    console.log('what is todaydate', todayDate)
 
     return (
         <div className='reserved-modal'>
@@ -159,6 +175,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                         min={todayString}
                         max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
+                        onKeyDown="event.preventDefault()"
                     ></input>
                     <label>Time</label>
                     <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
@@ -172,14 +189,14 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     </select>
                     <label>Party Size</label>
                     <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
-                        <option defaultValue={''} selected disabled hidden>Update the party size here</option>
+                        <option defaultValue={partySize} selected hidden>{partySize} people</option>
                         {capacity_count.map(each => (
                             <option key={each} value={each} >{each}  people</option>
                         ))}
                     </select>
                     <label>Occasion</label>
                     <select required className='edit-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
-                        <option defaultValue={''} selected disabled hidden>Update Your Occasion Here</option>
+                        <option defaultValue={occasion} selected hidden>{occasion}</option>
                         {occasion_count.map(each => (
                             <option key={each} value={each} >{each}</option>
                         ))}
@@ -200,13 +217,11 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
             </div>
             <div className='edit-reservation-button'>
-                <button onClick={handleEditSubmit} >
-                    <input className='nav-button-img' type='image' src={Uploadicon} alt='upload icon'></input>
-                    <div>Update</div>
+                <button onClick={handleEditSubmit} disabled={isDisabled}>Update
+                    {/* <input className='nav-button-img' type='image' src={Uploadicon} alt='upload icon'></input> */}
                 </button>
-                <button onClick={handleDeleteReser}>
-                    <input className='nav-button-img' type='image' src={Deleteicon} alt='delete icon'></input>
-                    <div>Cancel This Reservation</div>
+                <button onClick={handleDeleteReser}>Cancel This Reservation
+                    {/* <input className='nav-button-img' type='image' src={Deleteicon} alt='delete icon'></input> */}
                 </button>
             </div>
         </div>

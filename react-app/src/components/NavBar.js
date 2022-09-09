@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Modal } from '../components/context/Modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
 import SignUpForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
@@ -53,6 +53,11 @@ const NavBar = () => {
             {showMenu && (
               <ul className='nav-user-dropdown'>
                 <div className='nav-user-greeting'> Hello, {sessionUser.username}!</div>
+                <li className='nav-user-greeting'>
+                  <NavLink to='/myprofile' exact={true} >
+                    My Profile
+                  </NavLink>
+                </li>
                 <li className='nav-user-greeting'>
                   <NavLink to='/myrestaurants' exact={true} >
                     My Restaurants

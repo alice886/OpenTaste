@@ -7,29 +7,25 @@ import { getMyRestaurantThunk } from '../../store/restaurant';
 import './my-restaurants.css'
 
 
-export default function MyRestaurants() {
+export default function MyRestaurants({ showMyRestaurants }) {
     const dispatch = useDispatch();
     const [restaurantloaded, setRestaurantLoaded] = useState(false);
     const [showModal, setShowModal] = useState();
     const [resId, setResId] = useState();
-
     // const [showReservations, setShowReservations] = useState(false);
-    const myrestaurants = useSelector(state => state.restaurant?.restaurants);
-    const sessionUser = useSelector(state => state.session.user);
 
-    // useEffect(() => {
-    //     dispatch(getMyRestaurantThunk())
-    //         .catch(
-    //             async (res) => {
-    //                 const data = await res.json();
-    //                 if (data && data.status == 404) setRestaurantLoaded(true);
-    //             }
-    //         )
-    // }, [dispatch, myrestaurants?.length, showModal])
+    // const myrestaurants = useSelector(state => Object.values(state.restaurant).restaurants);
+    const sessionUser = useSelector(state => state.session.user);
+    const myrestaurants = useSelector(state => state.restaurant?.restaurants);
 
     useEffect(() => {
-        dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
-    }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser])
+        dispatch(getMyRestaurantThunk())
+    }, [dispatch, myrestaurants?.length, showModal, showMyRestaurants, sessionUser?.id])
+
+
+    // useEffect(() => {
+    //     dispatch(getMyRestaurantThunk()).then(() => setRestaurantLoaded(true))
+    // }, [dispatch, myrestaurants, myrestaurants?.length, showModal, sessionUser, showMyRestaurants])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
     const handleEdit = (e, id) => {
@@ -37,6 +33,7 @@ export default function MyRestaurants() {
         setShowModal(true);
         setResId(id);
     }
+    console.log('waht is my restaurants', myrestaurants)
     if (myrestaurants?.length == 0) {
         console.log('nothign')
     }
@@ -53,8 +50,8 @@ export default function MyRestaurants() {
     return (
         // return restaurantloaded && sessionUser && (
         <div className='myrestaurants-container'>
-            <h3> My Restaurants </h3>
-            <div>
+            <h3 className='title-my-restaurants'>- My Reservations -</h3>
+            <div className='div-list-new-butt'>
                 <button className='list-new-res-button'>
                     <NavLink to='/listnewrestaurant' className='list-new-res-button-nav'> List A New Restaurant</NavLink>
                 </button>
@@ -62,11 +59,18 @@ export default function MyRestaurants() {
             {showModal && (<Modal onClose={() => setShowModal(false)}>
                 <EditRestaurant resId={resId} showModal={showModal} setShowModal={setShowModal} />
             </Modal>)}
-            <div>To view Customer Reservations,  </div>
-            <div>please go to the restaurant detail page </div>
-            <div> and view under tab [ See Reservations ] </div>
+            {(myrestaurants?.length === 0) ? (
+                <div className='no-restaurant-text'>
+                    <div>You haven't post any restaurant yet.</div>
+                    <div>Click the button above and start listing a restaurant with OpenTaste!</div>
+                </div>) :
+                (<div className='rest-kindreminder'>
+                    <div>To view Customer Reservations,  </div>
+                    <div>please go to the restaurant detail page and view under tab [ See Reservations ] </div>
+                </div>)
+            }
             <div className='my-restaurants-each-container'>
-                {myrestaurants?.map(restaurant => {
+                {(myrestaurants?.length > 0) && (myrestaurants?.map(restaurant => {
                     return <div className='my-restaurant-each' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
                             <img src={restaurant.cover} alt='restaurant img' height={'300px'} />
@@ -83,7 +87,7 @@ export default function MyRestaurants() {
                         </div>
                         {/* <button onClick={handleReservations}>Check Reservations for This Restaurant</button> */}
                     </div>
-                })
+                }))
                 }
             </div>
 

@@ -1,0 +1,64 @@
+.myprofile-container {
+    min-height: 850px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around; */
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    margin-top: 30px;
+    background-color: #F3F3F3;
+}
+
+
+#root>div.myprofile-container>div.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    /* width: 193px; */
+    width: 100%;
+    font-size: 20px;
+    background-color: #F3F3F3;
+    margin: 0px;
+    padding-top: 90px;
+    font-size: 23px;
+}
+
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab1,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab2,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab3 {
+    width: 100%;
+    margin: 0px;
+    padding-left: 68px;
+    padding-top: 10px;
+    padding-bottom: 23px;
+}
+
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab3>a {
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 15px;
+    background-color: #D10000;
+    color: white;
+}
+
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a:hover,
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab3>a:hover {
+    background-color: #9D0000;
+}
+
+
+#root>div.myprofile-container>div.profile-sidebar>div.profile-tab1 {
+    background-color: #F3F3F3;
+}
+
+
+.profile-content {
+    /* width: 1634px; */
+    /* width: 1334px; */
+    /* width: 90%; */
+    padding-top: 70px;
+    padding: 58px;
+    font-size: 23px;
+    margin: 30px;
+    background-color: white;
+}

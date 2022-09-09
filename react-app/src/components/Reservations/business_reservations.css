@@ -1,0 +1,9 @@
+#root>div.restaurant-all-container>div.res-left-container>div.business-reservation-container>div.b-reservation-right {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.b-reservation-each {
+    padding: 10px;
+    border-bottom: 1px solid #D90000;
+}
