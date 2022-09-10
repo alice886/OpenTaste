@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
 import './reservation_create_modal.css'
+import defaultImg3 from '../../icons/defaultImg3.png'
 
 export default function MakeReservationModal({ resId, resTime, setShowHomeReserve }) {
     const dispatch = useDispatch();
@@ -184,7 +185,11 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             )}
             <div className='home-reserve-mo-detail'>
                 <div>
-                    <img src={therestaurant.cover} height={'100px'}></img>
+                    <img src={therestaurant.cover} height={'100px'}>
+                        onError={(e) => {
+                            if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                        }}
+                    </img>
                 </div>
                 <div>
                     <div>Reserving at </div>
