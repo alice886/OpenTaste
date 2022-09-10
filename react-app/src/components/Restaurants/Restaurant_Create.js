@@ -75,7 +75,7 @@ export default function ListNewRestaurant() {
             }
             if (cover === undefined || !cover?.match(coverRegex)) {
                 newErrors.push('Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg.')
-                newErrors.push('E.g. "https://example.com/image.jpg/"')
+                newErrors.push('E.g. "https://example.com/image.jpg"')
                 newErrors.push('Horizontal picture is recommended for your restaurant cover.')
             }
             if (open_time === undefined || close_time === undefined) {

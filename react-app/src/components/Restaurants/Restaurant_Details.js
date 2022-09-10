@@ -45,7 +45,7 @@ function RestaurantDetails() {
 
     return loaded && (
         <>
-            <img className='restaurant-detail-cover' src={therestaurant?.cover} height={'300px'} />
+            <img className='restaurant-detail-cover' src={therestaurant?.cover} />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>

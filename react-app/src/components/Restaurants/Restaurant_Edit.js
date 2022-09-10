@@ -76,7 +76,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             }
             if (cover && !cover?.match(coverRegex)) {
                 newErrors.push('* Please input a valid picture address that ends with .jpg/.png/.gif/.jpeg')
-                newErrors.push('* E.g. "https://example.com/image.jpg/"')
+                newErrors.push('* E.g. "https://example.com/image.jpg"')
                 newErrors.push('* Please try another image link')
             }
             if (open_time > close_time) {
