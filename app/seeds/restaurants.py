@@ -252,7 +252,7 @@ def seed_restaurants():
         open_time='09:00',
         close_time='14:00',
         cuisine='Café',
-        cover='https://media.timeout.com/images/102765870/image.jpg',
+        cover='https://food-images.files.bbci.co.uk/food/recipes/poachedeggs_86686_16x9.jpg',
         capacity=90,
         availability=90,
         )
