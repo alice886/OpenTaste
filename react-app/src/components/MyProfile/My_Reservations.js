@@ -80,7 +80,7 @@ export default function MyReservations() {
                         {validatePastReservations(reservation.reserve_datetime) ? (<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
                         </div>) : (<div className='myreservation-expire'>
-                            Reservation Is Expired
+                            Reservation Expired
                         </div>)}
                     </div>
                 })) : (<div className='no-reservation'>

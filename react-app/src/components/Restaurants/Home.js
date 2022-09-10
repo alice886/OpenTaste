@@ -45,6 +45,10 @@ function Home() {
         setShowHomeReserve(true)
     }
 
+    const getHours = each => {
+        return Number(each['close_time'].slice(0, 2));
+    }
+
     useEffect(() => {
         dispatch(getAllRestaurantThunk()).then(() => setLoaded(true))
     }, [dispatch])
@@ -58,7 +62,7 @@ function Home() {
         <div >
             <div className='find-your-table'>
                 <div className='find-banner'>Find your table for any occasion
-                {/* <HomeSearch /> */}
+                    {/* <HomeSearch /> */}
                 </div>
             </div>
             <h3>Reserve a table now </h3>
@@ -73,9 +77,12 @@ function Home() {
                                 <NavLink className='home-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                                 <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                 <div className='home-res-timeslots'>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 3} >{Number(restaurant.close_time.slice(0, 2)) - 3}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 3}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 2}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 1} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 1}:00</button>
+                                    {/* <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 3} >{Number(restaurant.close_time.slice(0, 2)) - 3}:00</button>
                                     <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 2} >{Number(restaurant.close_time.slice(0, 2)) - 2}:00</button>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 1} >{Number(restaurant.close_time.slice(0, 2)) - 1}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 1} >{Number(restaurant.close_time.slice(0, 2)) - 1}:00</button> */}
                                 </div>
                             </div>
                         </NavLink>

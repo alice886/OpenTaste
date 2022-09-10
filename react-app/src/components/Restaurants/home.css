@@ -15,8 +15,8 @@
 
 #root>div:nth-child(2)>h3 {
     margin: 5px 3%;
-    padding: 0 1%;
-    font-size: 1.3em;
+    padding: 15px;
+    font-size: 22px;
     color: #333B50;
     border-bottom: #E5E9F4 1px solid;
     font-family: 'DM Sans', sans-serif;
@@ -25,7 +25,7 @@
 div .find-banner {
     height: 211px;
     background-image: linear-gradient(to bottom right, #131E43, #5F698C);
-    font-size: 50px;
+    font-size: 48px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -86,7 +86,7 @@ div .home-res-details {
 
 div .home-restaurants:hover {
     border-radius: 2% 2% 2% 2% / 2% 2% 2% 2%;
-    box-shadow: 16px 16px 19px rgba(104, 104, 104, .6);
+    box-shadow: 6px 16px 39px rgba(104, 104, 104, .7);
     /* top: -6px; */
     transition-duration: 200ms;
 }
@@ -100,4 +100,9 @@ div .home-restaurants:hover {
     margin-right: 11px;
     padding: 0.3em 0.5em;
     border-radius: 10%;
+}
+
+.home-res-timeslots>button:disabled {
+    cursor: not-allowed;
+    background-color: #D3D3D3;
 }
