@@ -22,7 +22,7 @@ export default function MakeReservation({ therestaurant }) {
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(todayString);
     const [reserveTime, setReserveTime] = useState();
-    if (new Date(reserveDate) > d) {
+    if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
             availableHour_count.push(i + ':00')
@@ -79,8 +79,16 @@ export default function MakeReservation({ therestaurant }) {
             if (reserveDate === undefined) {
                 newErrors.push('Please select a date')
             }
-            if (reserveTime === undefined) {
-                newErrors.push('Please select a time')
+            if (availableHour_count.length > 0) {
+                if (reserveTime === undefined) {
+                    newErrors.push('Please select a time')
+                }
+                if (partySize === undefined) {
+                    newErrors.push('Please select a party size of the visit')
+                }
+            }
+            if (availableHour_count.length <= 0) {
+                newErrors.push('No available timeslots on selected date.')
             }
             if (reserveDate?.slice(0, 4) !== '2022') {
                 newErrors.push('You may only reserve dates in the year of 2022')
@@ -92,9 +100,6 @@ export default function MakeReservation({ therestaurant }) {
                 if (reserveDate?.slice(8, 10) - todayDate < 0) {
                     newErrors.push('You may not select dates before today')
                 }
-            }
-            if (partySize === undefined) {
-                newErrors.push('Please select a party size of the visit')
             }
             if (specialRequest && specialRequest.length > 200) {
                 newErrors.push('You may only enter descriptions in 200 character')
@@ -133,6 +138,17 @@ export default function MakeReservation({ therestaurant }) {
         }
     }
 
+    console.log(availableHour_count)
+
+    // JS is so weird that you need to either add '-' or ' ' to recognize html date input
+    // console.log('today is --', d)
+    // console.log('browser date is --', reserveDate)
+    // console.log('browser date is with empty string --', reserveDate + ' ')
+    // console.log('if no string or split --', new Date(reserveDate))
+    // console.log('with split --', new Date(reserveDate.split('-')))
+    // console.log('with empty string --', new Date(reserveDate + ' '))
+    // console.log('now it returns true --', new Date(reserveDate.split('-')) > d)
+
     return (
         <>
             <div className='create-reservation-container'>
@@ -153,12 +169,15 @@ export default function MakeReservation({ therestaurant }) {
                     ></input>
                     <label>Time</label>
                     <select className='create-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
+                        {/* <option value={''} selected disabled hidden>Select the hour</option>
+                        {availableHour_count.map(each => {
+                            <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
+                        })} */}
                         <option value={''} selected disabled hidden>Select the hour</option>
-                        {(availableHour_count.length > 0) ?
+                        {(availableHour_count.length > 0) &&
                             availableHour_count.map(each => {
                                 return <option value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
                             })
-                            : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                         }
                     </select>
                     <label>Party Size</label>
