@@ -17,14 +17,18 @@ import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [loadingpage, setLoadingPage] = useState()
   const [showSignup, setShowSignUp] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      setLoadingPage(true)
+      await dispatch(authenticate()).then(() => setLoadingPage(false));
       setLoaded(true);
+      // setTimeout(() => setLoadingPage(false), 3000)
     })();
+
   }, [dispatch]);
 
   if (!loaded) {
@@ -34,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
+      {!loadingpage && <Switch>
         <ProtectedRoute path='/myprofile' exact={true} >
           <MyProfile />
         </ProtectedRoute>
@@ -62,7 +66,7 @@ function App() {
         {/* <ProtectedRoute path='/myhomepage' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
-      </Switch>
+      </Switch>}
       <Footer />
     </BrowserRouter>
   );

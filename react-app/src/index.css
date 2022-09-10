@@ -20,6 +20,12 @@ body {
     top: 0; */
 }
 
+.loadinglogo {
+    height: 900px;
+    width: 100%;
+    background-color: aquamarine;
+}
+
 .content.container {
     display: flex;
     flex-direction: column;
