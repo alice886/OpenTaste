@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
 import './reservation_create_modal.css'
+import defaultImg3 from '../../icons/defaultImg3.png'
 
 export default function MakeReservationModal({ resId, resTime, setShowHomeReserve }) {
     const dispatch = useDispatch();
@@ -184,13 +185,18 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             )}
             <div className='home-reserve-mo-detail'>
                 <div>
-                    <img src={therestaurant.cover} height={'100px'}></img>
+                    <img src={therestaurant.cover} height={'100px'}
+                        onError={(e) => {
+                            if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                        }}
+                    />
                 </div>
                 <div>
                     <div>Reserving at </div>
                     <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
                     {/* <div>Business Hours:</div>
                     <div>{therestaurant.open_time} - {therestaurant.close_time}</div> */}
+                    
                 </div>
             </div>
             <div className='create-error-mo'>
@@ -199,8 +205,8 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 ))}
             </div>
             {(sessionUser?.id !== therestaurant?.owner_id) && <form className='create-new-reservation-mo'>
-
-                <label>Date</label>
+            <div >Required fields are marked with an *</div>
+                <label>Date *</label>
                 <input
                     type='date'
                     value={reserveDate}
@@ -208,7 +214,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                     max='2023-12-31'
                     onChange={e => setReserveDate(e.target.value)}
                 ></input>
-                <label>Time</label>
+                <label>Time *</label>
                 <select className='create-res-input-mo' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                     <option value={''} selected disabled hidden>Select the hour</option>
                     {(availableHour_count.length > 0) ?
@@ -218,7 +224,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                         : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                     }
                 </select>
-                <label>Party Size</label>
+                <label>Party Size *</label>
                 <select className='create-res-input-mo' onChange={e => setPartySize(e.target.value)} max={20} required>
                     <option value={''} selected disabled hidden>Please select the party size</option>
                     {capacity_count.map(each => (
@@ -227,7 +233,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 </select>
                 <label>Occasion</label>
                 <select required className='create-res-input-mo' onChange={e => setOccasion(e.target.value)} maxLength={30} >
-                    <option value={''} selected disabled hidden>Please Select Your Occasion</option>
+                    <option value={''} selected disabled hidden>Please Select Your Occasion (not required)</option>
                     {occasion_count.map(each => (
                         <option value={each} key={each}>{each}</option>
                     ))}

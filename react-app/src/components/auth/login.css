@@ -17,7 +17,7 @@
 #modal-content>form>div.signin-title {
     font-size: 22px;
     margin-bottom: 35px;
-    margin-left: 28px;
+    margin-left: 10px;
 
 }
 
@@ -100,12 +100,12 @@ input .signin-input:focus {
 
 #modal-content>form>div.cancel-signin {
     outline: 0;
-    font-size: 20px;
+    font-size: 21px;
     border: 0;
     cursor: pointer;
     color: rgb(72, 76, 122);
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     padding: 0px;
     margin: 0px;
     border-radius: 50%;
@@ -118,8 +118,9 @@ input .signin-input:focus {
     right: 5%;
 }
 
-#modal-content>form>div.cancel-signin {
+#modal-content>form>div.cancel-signin:hover {
     box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+    font-size: 24px;
 }
 
 #modal-content>form>div.signin-buttom-container>button:nth-child(1),
@@ -138,4 +139,9 @@ input .signin-input:focus {
     padding: 6px;
     width: 440px;
     margin: auto;
+}
+
+.signin-required {
+    font-size: 16px;
+    margin: 5px 0px 0px 0px;
 }

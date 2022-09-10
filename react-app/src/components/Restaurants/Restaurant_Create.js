@@ -52,6 +52,9 @@ export default function ListNewRestaurant() {
             newErrors.push('Please log in')
         }
         else {
+            // if (name === undefined || price_range === undefined || capacity === undefined || cuisine === undefined) {
+            //     newErrors.push('Required fields are marked with an *')
+            // }
             if (name === undefined) {
                 newErrors.push('Please enter the name of your restaurant.')
             }
@@ -162,6 +165,7 @@ export default function ListNewRestaurant() {
             <div className='create-container'>
                 <div className='create-title'>List Your Restaurant Now</div>
                 <div className='create-form-container'>
+                <div className='create-error'>Required fields are marked with an *</div>
                     <div className='create-error'>
                         {errors?.map((error, ind) => (
                             <div className='create-res-error' key={ind}>* {error}</div>
@@ -170,7 +174,7 @@ export default function ListNewRestaurant() {
                     <form className='create-new-restaurant'>
                         <div className='left-create'>
 
-                            <label>Name</label>
+                            <label>Name *</label>
                             <input
                                 type='text'
                                 placeholder='Please enter the name here'
@@ -181,7 +185,7 @@ export default function ListNewRestaurant() {
                                 required
                             ></input>
 
-                            <label>Price Range</label>
+                            <label>Price Range *</label>
                             <select className='create-res-input' onChange={e => setPriceRange(e.target.value)} required>
                                 <option value={''} selected disabled hidden> Choose a price range </option>
                                 <option value={1} >$30 and under</option>
@@ -190,7 +194,7 @@ export default function ListNewRestaurant() {
                                 <option value={4} > $101 and over</option>
                             </select>
 
-                            <label>Address</label>
+                            <label>Address *</label>
                             <input
                                 type='text'
                                 placeholder='Please enter the address here'
@@ -202,7 +206,7 @@ export default function ListNewRestaurant() {
                             ></input>
 
 
-                            <label>City</label>
+                            <label>City *</label>
                             <input
                                 type='text'
                                 placeholder='Please enter the city here'
@@ -214,14 +218,14 @@ export default function ListNewRestaurant() {
                             ></input>
 
 
-                            <label>State</label>
+                            <label>State *</label>
                             <select className='create-res-input' onChange={e => setState(e.target.value)} required >
                                 <option value={''} selected disabled hidden>Choose the state</option>
                                 {states.map(state => (
                                     <option value={state}>{state}</option>
                                 ))}
                             </select>
-                            <label>Zip Code</label>
+                            <label>Zip Code *</label>
                             <input
                                 type='text'
                                 placeholder='Please enter the zip code here'
@@ -231,7 +235,7 @@ export default function ListNewRestaurant() {
                                 className='create-res-input'
                                 required
                             ></input>
-                            <label>Capacity</label>
+                            <label>Capacity *</label>
                             <select className='create-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
                                 <option value={''} selected disabled hidden>Please select the capacity</option>
                                 {capacity_count.map(each => (
@@ -241,14 +245,14 @@ export default function ListNewRestaurant() {
                             </select>
                         </div>
                         <div className='right-create'>
-                            <label>Cuisine</label>
+                            <label>Cuisine *</label>
                             <select required className='create-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
                                 <option value={''} selected disabled hidden>Please select the cuisine</option>
                                 {cuisine_count.map(each => (
                                     <option value={each} >{each}</option>
                                 ))}
                             </select>
-                            <label>Open At</label>
+                            <label>Open At *</label>
                             <input
                                 type='time'
                                 onChange={e => setOpenTime(e.target.value)}
@@ -256,7 +260,7 @@ export default function ListNewRestaurant() {
                                 className='create-res-input'
                                 required
                             ></input>
-                            <label>Close At</label>
+                            <label>Close At *</label>
                             <input
                                 type='time'
                                 onChange={e => setCloseTime(e.target.value)}
@@ -264,7 +268,7 @@ export default function ListNewRestaurant() {
                                 className='create-res-input'
                                 required
                             ></input>
-                            <label>Cover Picture</label>
+                            <label>Cover Picture *</label>
                             <input
                                 type='text'
                                 placeholder='Please add the cover picture link here'

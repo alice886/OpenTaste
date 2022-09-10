@@ -9,16 +9,16 @@
 
 #modal-content>div>button.home-modal-cancel {
     position: absolute;
-    top: 1%;
+    top: 3%;
     right: 3%;
-    font-size: 25px;
+    font-size: 23px;
     text-align: center;
-    background-color: #EDEDED;
+    box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
     border-radius: 50%;
 }
 
 #modal-content>div>button.home-modal-cancel:hover {
-    font-size: 28px;
+    font-size: 25px;
 }
 
 #modal-content>div {

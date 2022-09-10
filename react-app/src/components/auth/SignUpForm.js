@@ -112,7 +112,8 @@ const SignUpForm = ({ setShowSignUp }) => {
         <div className='auth-validate-error2' key={ind}>* {error}</div>
       ))}
       <div className='register-input-container'>
-        <label className='register-label'>User Name</label>
+        <div className='register-input-required'>Required fields are marked with an *</div>
+        <label className='register-label'>User Name *</label>
         <input
           type='text'
           name='username'
@@ -122,7 +123,7 @@ const SignUpForm = ({ setShowSignUp }) => {
           required={true}
           maxLength={31}
         ></input>
-        <label className='register-label'>First Name</label>
+        <label className='register-label'>First Name *</label>
         <input
           type='text'
           name='firstname'
@@ -132,7 +133,7 @@ const SignUpForm = ({ setShowSignUp }) => {
           required={true}
           maxLength={31}
         ></input>
-        <label className='register-label'>Last Name</label>
+        <label className='register-label'>Last Name *</label>
         <input
           type='text'
           name='lastname'
@@ -142,7 +143,7 @@ const SignUpForm = ({ setShowSignUp }) => {
           required={true}
           maxLength={31}
         ></input>
-        <label className='register-label'>Email</label>
+        <label className='register-label'>Email *</label>
         <input
           type='email'
           name='email'
@@ -152,7 +153,7 @@ const SignUpForm = ({ setShowSignUp }) => {
           required={true}
           maxLength={51}
         ></input>
-        <label className='register-label'>Password</label>
+        <label className='register-label'>Password *</label>
         <input
           type='password'
           name='password'
@@ -162,7 +163,7 @@ const SignUpForm = ({ setShowSignUp }) => {
           required={true}
           maxLength={51}
         ></input>
-        <label className='register-label'>Repeat Password</label>
+        <label className='register-label'>Repeat Password *</label>
         <input
           type='password'
           name='repeat_password'
