@@ -14,6 +14,7 @@ body {
     margin: 0%;
     background-color: white;
     z-index: -99;
+    min-height: 800px;
     /* width: 100%;
     height: 100%;
     left: 0;

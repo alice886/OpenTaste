@@ -10,7 +10,7 @@ today = date.today()
 def seed_reservations():
     reser1 = Reservation(
         party_size=2, 
-        reserve_datetime=datetime.strptime('2022-09-29 17:00:00','%Y-%m-%d %H:%M:%S'), 
+        reserve_datetime=datetime.strptime('2022-09-09 17:00:00','%Y-%m-%d %H:%M:%S'), 
         occasion='Anniversary',
         special_request='Can I bring our own wine?',
         created_at=today,
@@ -20,7 +20,7 @@ def seed_reservations():
         )
     reser2 = Reservation(
         party_size=6, 
-        reserve_datetime=datetime.strptime('2022-09-29 18:30:00','%Y-%m-%d %H:%M:%S'), 
+        reserve_datetime=datetime.strptime('2022-09-01 18:30:00','%Y-%m-%d %H:%M:%S'), 
         occasion='Family/Friend Gathering',
         special_request='Please call me at 888-999-0000 to confirm.',
         created_at=today,
@@ -30,7 +30,7 @@ def seed_reservations():
         )
     reser3 = Reservation(
         party_size=2, 
-        reserve_datetime=datetime.strptime('2022-09-29 17:00:00','%Y-%m-%d %H:%M:%S'), 
+        reserve_datetime=datetime.strptime('2022-08-01 17:00:00','%Y-%m-%d %H:%M:%S'), 
         occasion='Birthday',
         special_request='Can I also place an order for a birthday cake for my mom? She likes red velvet chocolate lava with extra extra cocoa & cinnamon powder sprinkle on top!! And Could it be diary free and gluten free?',
         created_at=today,
