@@ -44,7 +44,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(parsedDate);
     const [reserveTime, setReserveTime] = useState(parsedTime);
-    if (new Date(reserveDate) > d) {
+    if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
             availableHour_count.push(i + ':00')

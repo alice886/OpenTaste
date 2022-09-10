@@ -30,7 +30,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(todayString);
     const [reserveTime, setReserveTime] = useState((resTime + ':00'));
-    if (new Date(reserveDate) > d) {
+    if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
             availableHour_count.push(i + ':00')
