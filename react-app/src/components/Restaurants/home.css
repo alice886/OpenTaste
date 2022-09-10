@@ -2,15 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .home-all-container {
-    padding: 0 3%;
+    padding: 0 30px;
     display: grid;
-    grid-template-columns: repeat(4, 20%);
+    /* grid-template-columns: repeat(5, 16%); */
+    grid-template-columns: repeat(4, 16%);
     color: inherit;
     margin: auto;
     gap: 20px;
     justify-content: center;
     padding-bottom: 60px;
-    width: 1600px;
+    min-width: 1556px;
+    font-size: 18px;
 }
 
 #root>div:nth-child(2)>h3 {
@@ -20,6 +22,16 @@
     color: #333B50;
     border-bottom: #E5E9F4 1px solid;
     font-family: 'DM Sans', sans-serif;
+}
+
+.home-res-dcl {
+    font-size: 17px;
+    height: 29px;
+    /* background-color: yellow; */
+    /* overflow-wrap: anywhere; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 div .find-banner {
@@ -37,7 +49,7 @@ div .find-banner {
 
 .home-restaurants {
     margin: 1px 1px;
-    border-radius: 3%;
+    border-radius: 5px;
     border: #E5E9F4 solid 2px;
     /* display: flex; */
     flex-direction: column;
@@ -46,6 +58,8 @@ div .find-banner {
     font-size: 18px;
     transition: all .4s ease;
     position: relative;
+    height: 330px;
+    min-width: 253px;
 }
 
 div.home-res-cover {
@@ -71,17 +85,35 @@ div .home-res-details {
     /* display: flex;
     align-items: flex-start;
     flex-direction: column; */
+    /* width: 220px; */
+    width: 90%;
+    height: 120px;
+    /* background-color: #5F698C; */
     margin: 12px;
     padding: 5px;
     float: left;
     color: #131E43;
+    overflow-wrap: anywhere;
+    position: relative;
+    /* overflow-y: scroll; */
 }
 
+.home-res-nav-div {
+    height: 27px;
+    margin-bottom: 7px;
+    /* background-color: red; */
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 .home-res-nav {
     text-decoration: none;
     color: black;
     font-weight: 700;
+    height: 43px;
+    font-size: 20px;
 }
 
 div .home-restaurants:hover {
@@ -91,15 +123,24 @@ div .home-restaurants:hover {
     transition-duration: 200ms;
 }
 
+.home-res-timeslots {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: absolute;
+    padding-bottom: 8px;
+    /* margin: 5px 5px; */
+}
+
 .home-res-timeslots>button {
     background-color: #D10909;
     color: white;
     font-weight: lighter;
-    font-size: 1em;
-    margin-top: .7em;
-    margin-right: 11px;
-    padding: 0.3em 0.5em;
+    font-size: 18px;
+    margin-right: 8px;
+    padding: 5px 9px;
     border-radius: 10%;
+    margin-bottom: 5px;
 }
 
 .home-res-timeslots>button:disabled {

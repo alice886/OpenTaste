@@ -74,8 +74,10 @@ function Home() {
                                 <img src={restaurant.cover} alt='restaurant img' height={'200px'} />
                             </div>
                             <div className='home-res-details'>
-                                <NavLink className='home-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
-                                <div>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
+                                <div className='home-res-nav-div'>
+                                    <NavLink className='home-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
+                                </div>
+                                <div className='home-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                 <div className='home-res-timeslots'>
                                     <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 3}:00</button>
                                     <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 2}:00</button>
@@ -90,15 +92,15 @@ function Home() {
                         {/* {restaurant => slotGenerator(restaurant).map(each => {
                             <div>{each}</div>
                         })} */}
-                    </div>
+                    </div >
                 })
                 }
-            </div>
+            </div >
             {showHomeReserve && <Modal>
                 <MakeReservationModal resId={resId} resTime={resTime} setShowHomeReserve={setShowHomeReserve} />
             </Modal>}
 
-        </div>
+        </div >
     )
 }
 
