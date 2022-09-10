@@ -159,7 +159,8 @@ export default function MakeReservation({ therestaurant }) {
                     ))}
                 </div>
                 <form className='create-new-reservation'>
-                    <label>Date</label>
+                <div >Required fields are marked with an *</div>
+                    <label>Date *</label>
                     <input
                         type='date'
                         value={reserveDate}
@@ -167,7 +168,7 @@ export default function MakeReservation({ therestaurant }) {
                         max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
                     ></input>
-                    <label>Time</label>
+                    <label>Time *</label>
                     <select className='create-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                         {/* <option value={''} selected disabled hidden>Select the hour</option>
                         {availableHour_count.map(each => {
@@ -180,7 +181,7 @@ export default function MakeReservation({ therestaurant }) {
                             })
                         }
                     </select>
-                    <label>Party Size</label>
+                    <label>Party Size *</label>
                     <select className='create-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
                         <option value={''} selected disabled hidden>Please select the party size</option>
                         {capacity_count.map(each => (
@@ -190,7 +191,7 @@ export default function MakeReservation({ therestaurant }) {
                     {/* <button>Find a Table</button> */}
                     <label>Occasion</label>
                     <select required className='create-res-input' onChange={e => setOccasion(e.target.value)} maxLength={30} >
-                        <option value={''} selected disabled hidden>Please Select Your occasion</option>
+                        <option value={''} selected disabled hidden>Please Select Your occasion (not required)</option>
                         {occasion_count.map(each => (
                             <option value={each} >{each}</option>
                         ))}

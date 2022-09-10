@@ -170,13 +170,14 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                 </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}
                 <div>
+                    <div>Required fields are marked with an *</div>
                     {errors.map((error, ind) => (
                         <div className='edit-res-error' key={ind}>* {error}</div>
                     ))}
                 </div>
                 <div className='edit-restaurant-grid'>
                     <div className='edit-restaurant-left'>
-                        <label>Name</label>
+                        <label>Name *</label>
                         <input
                             type='text'
                             placeholder='Please update the name here.'
@@ -187,7 +188,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             pattern="[^\s]+"
                             required
                         ></input>
-                        <label>Price Range</label>
+                        <label>Price Range *</label>
                         <select className='edit-res-input' onChange={e => setPriceRange(e.target.value)}>
                             <option value={price_range} selected hidden> {priceRangeDetail[price_range]} </option>
                             <option value={1} >$30 and under</option>
@@ -195,7 +196,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             <option value={3} > $50 to $100</option>
                             <option value={4} > $101 and over</option>
                         </select>
-                        <label>Address</label>
+                        <label>Address *</label>
                         <input
                             type='text'
                             placeholder='Please update the address here.'
@@ -205,7 +206,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             className='edit-res-input'
                             required
                         ></input>
-                        <label>City</label>
+                        <label>City *</label>
                         <input
                             type='text'
                             placeholder='Please update the city here.'
@@ -215,14 +216,14 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             className='edit-res-input'
                             required
                         ></input>
-                        <label>State</label>
+                        <label>State *</label>
                         <select className='edit-res-input' onChange={e => setState(e.target.value)} required >
                             <option value={state} selected hidden>{state}</option>
                             {states.map(state => (
                                 <option value={state}>{state}</option>
                             ))}
                         </select>
-                        <label>Zip Code</label>
+                        <label>Zip Code *</label>
 
                         <input
                             type='text'
@@ -235,7 +236,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                         ></input>
                     </div>
                     <div className='edit-restaurant-right'>
-                        <label>Capacity</label>
+                        <label>Capacity *</label>
                         <select className='edit-res-input' onChange={e => setCapacity(e.target.value)} max={999} required>
                             {/* <option value={''} selected disabled hidden>Please select the capacity</option> */}
                             <option value={capacity} selected hidden>{capacity} people</option>
@@ -244,15 +245,15 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             ))}
                             <option value={999} >300 + people</option>
                         </select>
-                        <label>Cuisine</label>
+                        <label>Cuisine *</label>
                         <select required className='edit-res-input' onChange={e => setCuisine(e.target.value)} maxLength={30} >
                             <option value={cuisine} selected hidden>{cuisine}</option>
                             {cuisine_count.map(each => (
                                 <option value={each} >{each}</option>
                             ))}
                         </select>
-                        <div>Current Opentime: {theRestaurant?.open_time}</div>
-                        <label>Update Business Hours: Open At</label>
+                        <div>Update Business Hours:</div>
+                        <label> Open At *</label>
                         <input
                             type='time'
                             onChange={e => setOpenTime(e.target.value)}
@@ -261,8 +262,8 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             defaultValue={''}
                             required
                         ></input>
-                        <div>Current Closetime: {theRestaurant?.close_time}</div>
-                        <label>Update Business Hours: Close At</label>
+                        <div>Update Business Hours:</div>
+                        <label>Close At *</label>
                         <input
                             type='time'
                             onChange={e => setCloseTime(e.target.value)}
@@ -271,7 +272,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             defaultValue={''}
                             required
                         ></input>
-                        <label>Cover Picture</label>
+                        <label>Cover Picture *</label>
                         <input
                             type='text'
                             placeholder='Please update the cover picture link here.'

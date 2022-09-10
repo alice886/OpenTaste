@@ -5,7 +5,6 @@
     justify-content: space-around; */
     display: grid;
     grid-template-columns: 280px 1fr;
-    margin-top: 30px;
     background-color: #F3F3F3;
 }
 
@@ -35,10 +34,11 @@
 #root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a,
 #root>div.myprofile-container>div.profile-sidebar>div.profile-tab3>a {
     text-decoration: none;
-    padding: 5px 20px;
-    border-radius: 15px;
+    padding: 13px 45px;
+    border-radius: 5px;
     background-color: #D10000;
     color: white;
+    text-align: center;
 }
 
 #root>div.myprofile-container>div.profile-sidebar>div.profile-tab2>a:hover,

@@ -170,17 +170,17 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     ))}
                 </div>
                 <form className='edit-reservation'>
-
-                    <label>Date</label>
+                    <div >Required fields are marked with an *</div>
+                    <label>Date *</label>
                     <input
                         type='date'
                         value={reserveDate}
                         min={todayString}
                         max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
-                        // onKeyDown="event.preventDefault()"
+                    // onKeyDown="event.preventDefault()"
                     ></input>
-                    <label>Time</label>
+                    <label>Time *</label>
                     <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                         <option defaultValue={''} selected disabled hidden>Update the hour here</option>
                         {(availableHour_count.length > 0) ?
@@ -190,7 +190,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                             : (<option value={''} selected disabled hidden>* No available time on the selected date</option>)
                         }
                     </select>
-                    <label>Party Size</label>
+                    <label>Party Size *</label>
                     <select className='edit-res-input' onChange={e => setPartySize(e.target.value)} max={20} required>
                         <option defaultValue={partySize} selected hidden>{partySize} people</option>
                         {capacity_count.map(each => (

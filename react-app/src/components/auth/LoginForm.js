@@ -49,12 +49,14 @@ const LoginForm = ({ setShowLogin }) => {
         <button onClick={() => setShowLogin(false)} >x</button>
       </div>
       <div className='signin-title'>Sign In</div>
+      <div className='signin-required' >required fields are marked with an *</div>
+      <br></br>
       <div className='signin-error'>
         {errors.map((error, ind) => (
           <div className='auth-validate-error' key={ind}>* {error}</div>
         ))}
       </div>
-      <label className='signin-label' htmlFor='email'>  Email</label>
+      <label className='signin-label' htmlFor='email'>  Email *</label>
       <input
         name='email'
         type='text'
@@ -65,7 +67,7 @@ const LoginForm = ({ setShowLogin }) => {
         required
         maxLength={37}
       />
-      <label className='signin-label' htmlFor='password'>  Password</label>
+      <label className='signin-label' htmlFor='password'>  Password *</label>
       <input
         name='password'
         type='password'
