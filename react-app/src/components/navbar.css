@@ -65,11 +65,28 @@ div.nav-user-container>div.nav-logo>a>img {
 #root>div.nav-user-container>div.nav-button-container>ul>li>a {
     text-decoration: none;
     color: black;
+    /* padding: 5px 60px; */
+    width: 290px;
+    font-size: 18px;
 }
 
-#root>div.nav-user-container>div.nav-button-container>ul>li>a :hover {
+#root>div.nav-user-container>div.nav-button-container>ul>li:nth-child(2)>a {
+    padding: 7px 98px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li:nth-child(3)>a {
+    padding: 7px 72px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li:nth-child(4)>a {
+    padding: 7px 68px;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li:hover {
     text-decoration: none;
     color: #871D1D;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>div {
@@ -85,19 +102,18 @@ div.nav-user-container>div.nav-logo>a>img {
     margin: 46px;
     font-size: 16px;
     align-self: flex-start;
-    padding: 5px;
     width: 290px;
     z-index: 998;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>li {
-    padding: 10px;
+    margin: 7px 0px;
     font-size: 17px;
 }
 
-#root>div.nav-user-container>div.nav-button-container>ul>li:hover {
+#root>div.nav-user-container>div.nav-button-container>ul>li>a:hover {
     background-color: white;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 18px;
 }
 

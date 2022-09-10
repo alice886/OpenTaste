@@ -208,6 +208,134 @@ def seed_restaurants():
         capacity=90,
         availability=90,
         )
+    rest13 = Restaurant(
+        name="New England Lobster Market & Eatery", 
+        owner_id=1,
+        price_range=2, 
+        address='824 Cowan Rd', 
+        city='Burlingame', 
+        state='CA',
+        zip_code=94010,
+        description="New England Lobster has been serving the Bay Area and beyond with Maine lobsters, Dungeness crab, and shellfish since 1986.",
+        open_time='11:00',
+        close_time='21:00',
+        cuisine='Seafood',
+        cover='https://www.tastingtable.com/img/gallery/the-best-lobster-rolls-in-the-country-you-cant-miss-out-on-this-summer/intro-1627316580.jpg',
+        capacity=130,
+        availability=130,
+        )
+    rest14 = Restaurant(
+        name="Philz Coffee", 
+        owner_id=2,
+        price_range=1, 
+        address='2397 Broadway', 
+        city='San Mateo', 
+        state='CA',
+        zip_code=94403,
+        description="Laid-back local chain specializes in custom-blended coffees, plus teas, specialty drinks & pastries.",
+        open_time='08:00',
+        close_time='19:00',
+        cuisine='Café',
+        cover='https://images.squarespace-cdn.com/content/v1/6184bb7818c6b8680776e1af/c54592f6-5e91-4437-81b6-9e9c676167f3/bloom-web-133.jpg',
+        capacity=50,
+        availability=50,
+        )
+    rest15 = Restaurant(
+        name="Mymy", 
+        owner_id=3,
+        price_range=2, 
+        address='1500 California St', 
+        city='San Francisco', 
+        state='CA',
+        zip_code=94109,
+        description="Broadway Masala invites you try our ever evolving Indian cuisine along with personalized service and beautiful ambiance. Our menu is carefully crafted with fresh seasonal and local produce and offering the diversity of regional Indian fare.",
+        open_time='09:00',
+        close_time='14:00',
+        cuisine='Café',
+        cover='https://media.timeout.com/images/102765870/image.jpg',
+        capacity=90,
+        availability=90,
+        )
+    rest16 = Restaurant(
+        name="Cooking Cooking", 
+        owner_id=4,
+        price_range=2, 
+        address='2830 Homestead Rd', 
+        city='Santa Clara', 
+        state='CA',
+        zip_code=95051,
+        description="Local Chinese chain serving BBQ, dim sum, clay pot dishes, noodles & more in casual surroundings.",
+        open_time='11:00',
+        close_time='21:00',
+        cuisine='Chinese',
+        cover='https://www.seriouseats.com/thmb/MFzSGWuM2zsXafq-BZXjHL26UYY=/1500x1125/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2014__10__20141014-char-siu-max-falkowitz-a9cb3c4d1dbe4594a6a8de4af251deb0.jpg',
+        capacity=190,
+        availability=190,
+        )
+    rest17 = Restaurant(
+        name="Town", 
+        owner_id=1,
+        price_range=3, 
+        address='716 Laurel St', 
+        city='San Carlos', 
+        state='CA',
+        zip_code=94070,
+        description="Town opened in March of 2006. Located in the heart of downtown San Carlos. Town features hand cut steaks & chops, the freshest seafood, local organic produce, hand crafted cocktails, and a wine list with a focus on California, Washington and Oregon wines.",
+        open_time='14:00',
+        close_time='21:00',
+        cuisine='Steakhouse',
+        cover='https://resizer.otstatic.com/v2/photos/wide-huge/1/24054222.jpg',
+        capacity=180,
+        availability=180,
+        )
+    rest18 = Restaurant(
+        name="Sole Ristorante Italiano", 
+        owner_id=2,
+        price_range=2, 
+        address='69 37th Ave', 
+        city='San Mateo', 
+        state='CA',
+        zip_code=94403,
+        description="Broadway Masala invites you try our ever evolving Indian cuisine along with personalized service and beautiful ambiance. Our menu is carefully crafted with fresh seasonal and local produce and offering the diversity of regional Indian fare.",
+        open_time='11:00',
+        close_time='21:00',
+        cuisine='Italian',
+        cover='https://www.nonnabox.com/wp-content/uploads/2016/01/classic_tiramisu_recipe.jpg',
+        capacity=290,
+        availability=290,
+        )
+    rest19 = Restaurant(
+        name="Shalizaar", 
+        owner_id=3,
+        price_range=2, 
+        address='300 El Camino Real', 
+        city='Belmont', 
+        state='CA',
+        zip_code=94002,
+        description="Welcome to Shalizaar, a rare and undoubtedly the best Persian restaurant in the Bay Area. We have served the most delectable authentic Persian cuisine for over 23 years now, and we are loved unconditionally by our customers. ",
+        open_time='11:00',
+        close_time='21:00',
+        cuisine='Persian',
+        cover='https://cdn01.eavartravel.com/2019/12/383e8224-5685-4d11-8081-95191f66a1e0.jpg',
+        capacity=290,
+        availability=290,
+        )
+    rest20 = Restaurant(
+        name="Limón", 
+        owner_id=4,
+        price_range=2, 
+        address='1101 Burlingame Ave', 
+        city='Burlingame', 
+        state='CA',
+        zip_code=94010,
+        description="The Bay's favorite Peruvian hot spot! Limón Restaurants feature innovative Peruvian cuisine in a trendy, upscale, and energetic setting.",
+        open_time='11:00',
+        close_time='22:00',
+        cuisine='Tapas/Small Plates',
+        cover='https://www.blueorbiting.com/wp-content/uploads/celebration-cheers-dining-1268558.jpg',
+        capacity=150,
+        availability=150,
+        )
 
     db.session.add(rest1)
     db.session.add(rest2)
@@ -221,6 +349,14 @@ def seed_restaurants():
     db.session.add(rest10)
     db.session.add(rest11)
     db.session.add(rest12)
+    db.session.add(rest13)
+    db.session.add(rest14)
+    db.session.add(rest15)
+    db.session.add(rest16)
+    db.session.add(rest17)
+    db.session.add(rest18)
+    db.session.add(rest19)
+    db.session.add(rest20)
 
     db.session.commit()
 

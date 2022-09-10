@@ -11,17 +11,17 @@ def seed_users():
         username='alice',first_name='alice',last_name='L', email='alice@aa.io', password='password')
     grace = User(
         username='grace',first_name='grace',last_name='C', email='grace@aa.io', password='password')
-    lucas = User(
-        username='lucas', first_name='Lucas',last_name='H',email='lucas@aa.io', password='password')
-    remi = User(
-        username='remi', first_name='Remi',last_name='H',email='remi@aa.io', password='password')
+    # lucas = User(
+    #     username='lucas', first_name='Lucas',last_name='H',email='lucas@aa.io', password='password')
+    # remi = User(
+    #     username='remi', first_name='Remi',last_name='H',email='remi@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(bobbie)
     db.session.add(alice)
     db.session.add(grace)
-    db.session.add(lucas)
-    db.session.add(remi)
+    # db.session.add(lucas)
+    # db.session.add(remi)
 
     db.session.commit()
 

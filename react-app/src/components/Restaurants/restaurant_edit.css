@@ -9,6 +9,10 @@
     justify-content: center;
     align-items: center; */
     font-size: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 780px;
+    width: 800px;
 }
 
 .edit-restaurant-title {

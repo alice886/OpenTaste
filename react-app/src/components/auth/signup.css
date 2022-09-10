@@ -70,6 +70,7 @@
     font-family: 'Comfortaa', cursive;
     color: black;
     height: 600px;
+    height: 700px;
 
 
 }
@@ -86,11 +87,11 @@
 #modal-content>form>div.register-input-container>label,
 #modal-content>form>div.register-input-container>input {
     width: 95%;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
-#modal-content > form > div.submit-signup > button {
+#modal-content>form>div.submit-signup>button {
     display: inline-block;
     outline: 0;
     border: 0;
@@ -100,7 +101,9 @@
     border-radius: 5px;
     padding: 10px 205px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 18px;
+    margin: auto;
+    width: 90px;
     transition: transform 200ms, background 200ms;
 }
 
