@@ -35,6 +35,9 @@ const SignUpForm = ({ setShowSignUp }) => {
 
   const newErrors = [];
   useEffect(() => {
+    if (username?.length < 3 || first_name?.length < 3 || last_name?.length < 3 || email?.length < 3 || password?.length < 3) {
+      newErrors.push('Every input field has to have at least 3 characters.')
+    }
     if (username?.length > 30) {
       newErrors.push('Your username must be between 1 and 30 characters long.')
     }
@@ -48,19 +51,19 @@ const SignUpForm = ({ setShowSignUp }) => {
       newErrors.push("Whitespace in first name is not allowed.")
     }
     if (last_name?.length > 30) {
-      newErrors.push('Your lastname must be between 1 and 30 characters long.')
+      newErrors.push('Your lastname must be between 3 and 30 characters long.')
     }
     if (last_name?.match(inputRegex)) {
       newErrors.push("Whitespace in last name is not allowed.")
     }
     if (email?.length > 50) {
-      newErrors.push('Your email must be between 1 and 50 characters long.')
+      newErrors.push('Your email must be between 3 and 50 characters long.')
     }
     if (email?.match(inputRegex)) {
       newErrors.push("Whitespace in email is not allowed.")
     }
     if (password?.length > 50) {
-      newErrors.push('Your password must be between 1 and 50 characters long.')
+      newErrors.push('Your password must be between 3 and 50 characters long.')
     }
     if (password?.match(inputRegex)) {
       newErrors.push("Whitespace in password is not allowed.")
