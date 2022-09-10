@@ -57,7 +57,7 @@ function Home() {
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
-    console.log(showHomeReserve)
+    console.log(nowHour)
 
     return loaded && (
         <div >
@@ -83,12 +83,9 @@ function Home() {
                                 </div>
                                 <div className='home-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                 <div className='home-res-timeslots'>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 3}:00</button>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 2}:00</button>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 1} disabled={getHours(restaurant) < nowHour}>{getHours(restaurant) - 1}:00</button>
-                                    {/* <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 3} >{Number(restaurant.close_time.slice(0, 2)) - 3}:00</button>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 2} >{Number(restaurant.close_time.slice(0, 2)) - 2}:00</button>
-                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={Number(restaurant.close_time.slice(0, 2)) - 1} >{Number(restaurant.close_time.slice(0, 2)) - 1}:00</button> */}
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:00</button>
+                                    <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 1} disabled={getHours(restaurant) - 1 <= nowHour}>{getHours(restaurant) - 1}:00</button>
                                 </div>
                             </div>
                         </NavLink>
