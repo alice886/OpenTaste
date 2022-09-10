@@ -66,7 +66,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
     const [partySize, setPartySize] = useState(theReservation.party_size);
     const [occasion, setOccasion] = useState(theReservation.occasion);
-    const [specialRequest, setSpecialRequest] = useState();
+    const [specialRequest, setSpecialRequest] = useState(theReservation.special_request);
     const [isDisabled, setIsDisabled] = useState(true)
 
     const capacity_count = []
@@ -80,6 +80,9 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const inputRegex = /\s\s/;
 
     const newErrors = [];
+
+    console.log(reserveDate)
+    console.log(reserveDate.slice(0, 4))
 
     useEffect(() => {
         if (!sessionUser) {
@@ -159,7 +162,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>🎟️  {theReservation.occasion}</div>
                 </div>
             </div>
-            <div className='reserved-details-specialr'>Your request: {theReservation.special_request}</div>
+            <div className='reserved-details-specialr'></div>
             <div className='reserved-modal-edit-form'>
                 <div className='edit-error'>
                     {errors.map((error, ind) => (
@@ -175,7 +178,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                         min={todayString}
                         max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
-                        onKeyDown="event.preventDefault()"
+                        // onKeyDown="event.preventDefault()"
                     ></input>
                     <label>Time</label>
                     <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >

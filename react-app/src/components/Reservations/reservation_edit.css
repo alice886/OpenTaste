@@ -2,21 +2,23 @@
 
 div.reserved-modal {
     display: contents;
-    min-width: 600px;
-    max-width: 1050px;
+    /* min-width: 600px;
+    max-width: 1060px; */
+    width: fit-content;
     min-height: 730px;
-    max-height: 820px;
+    max-height: 780px;
     word-wrap: break-word;
     margin: 30px 20px;
     padding: 3px;
     border-radius: 2px;
     background-color: white;
     align-items: center;
+
 }
 
 .reserved-edit-modal-each {
     height: 158px;
-    max-width: 340px;
+    min-width: 340px;
     overflow-wrap: break-word;
 }
 
@@ -34,30 +36,33 @@ div.reserved-modal {
 
 .reserved-modal-navlink {
     font-size: 24px;
-    color: #D81900;
+    color: #B01400;
     text-decoration: none;
     transition: transform 0.5s ease;
     overflow-wrap: break-word;
 }
 
 .reserved-modal-navlink:hover {
-    color: #B01400;
-    font-weight: 700;
-    text-decoration: none;
+    color: rgba(254, 0, 0, 0.9);
+    font-size: 24px;
+    text-decoration: underline;
 }
 
 
 #modal-content>div>div.reserved-edit-modal-details {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+    /* display: grid;
+    grid-template-columns: 1fr 2fr; */
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    max-width: 800px;
     height: max-content;
+    width: 600px;
+    box-sizing: border-box;
 
     word-wrap: break-word;
-    gap: 20px;
+    gap: 10px;
     margin: 10px;
-    padding: 0px 40px;
+    /* padding: 0px 20px; */
 }
 
 #modal-content>div>div.reserved-modal-edit-form {
@@ -117,7 +122,6 @@ div.reserved-modal {
 
 #modal-content>div>div.reserved-details>div {
     word-wrap: break-word;
-    margin: 14px;
     font: 400;
 }
 
@@ -125,10 +129,10 @@ div.reserved-modal {
     width: 90%;
     word-wrap: break-word;
     margin-bottom: 8px;
-    margin-top: 25px;
-    padding: 20px;
-    /* background-color: #F6F6F6; */
-    box-shadow: 0px 2px 2px rgb(45 35 66 / 20%), 0px 2px 2px -2px rgb(45 35 66 / 20%), inset 0px -1px 0px #d6d6e7;
+    margin-top: 15px;
+    padding: 10px;
+    /* box-shadow: 0px 1px 0px rgb(216 0 0 / 20%), 0px 2px 2px -2px rgb(45 35 66 / 20%), inset 0px -1px 0px #d6d6e7; */
+    border-bottom: 1px solid #660000;
 
 }
 
@@ -176,17 +180,24 @@ div.reserved-modal {
     gap: 80px;
     text-align: center;
     /* margin: 20px; */
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 #modal-content>div>div.edit-reservation-button>button {
-    padding-top: 5px 20px;
     /* border: 1px solid #850000; */
-    background-color: #B01400;
+    /* background-color: #B01400;
     color: white;
     border-radius: 15px;
-    font-size: 20px;
-    padding: 5px 10px;
+    font-size: 18px;
+    padding: 10px 5px; */
+    margin-top: 14px;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 44px;
+    padding: 0 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    font-size: 22px;
 }
 
 
@@ -198,5 +209,7 @@ div.reserved-modal {
 }
 
 #modal-content>div>div.edit-reservation-button>button:enabled:hover {
-    color: #ED0000;
+    background: rgba(254, 0, 0, 0.9);
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+    color: white;
 }

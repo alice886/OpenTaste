@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './my_reservations.css'
 
 
@@ -20,6 +21,28 @@ export default function MyReservations() {
     }, [dispatch, showEditReser, sessionUser])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
+
+    const d = new Date()
+    const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
+
+    const monthNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // const test01 = new Date('Fri, 09 Sep 2022 17:00:00 GMT').toLocaleString('en-us', { month: 'short' })
+    // console.log('can i get the month??? plz??', [moment().month('Sep')])
+    // console.log('can i get the month??? plz?? 02', test01)
+    const validatePastReservations = time => {
+        const resMonth = monthNames.indexOf(time.slice(8, 11));
+        const resDate = time.slice(5, 8);
+        if (resMonth < todayMonth) {
+            return false;
+        }
+        if (resDate < todayDate && resMonth === todayMonth) {
+            return false;
+        }
+        return true;
+
+    }
 
     const handleEditReservations = (e, id) => {
         e.preventDefault();
@@ -43,19 +66,25 @@ export default function MyReservations() {
                 {myReservations?.length ? (myReservations?.map(reservation => {
                     return <div className='my-reservation-each' key={reservation.id}>
                         <div className='myreservation-cover'>
-                            <img src={reservation.restaurant.cover} alt="restaurant cover"></img>
+                            <img src={reservation.restaurant.cover} alt="restaurant cover"
+                                onError={(e) => {
+                                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                                }} ></img>
                         </div>
                         <div className='myrestaurant-details'>
                             <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>
                             <div>{reservation.restaurant.address}</div>
                             <div>{reservation.restaurant.city}, {reservation.restaurant.state} {reservation.restaurant.zip_code}</div>
+                            <br></br>
                             <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
                             <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
-                            <div>Party Size : {reservation.party_size}</div>
+                            <div>Party of : {reservation.party_size}</div>
                         </div>
-                        <div className='myreservation-edit-button'>
+                        {validatePastReservations(reservation.reserve_datetime) ? (<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
-                        </div>
+                        </div>) : (<div className='myreservation-expire'>
+                            Reservation Expired
+                        </div>)}
                     </div>
                 })) : (<div className='no-reservation'>
                     <h3 className='no-reserv-h3'>You have no reservations yet</h3>

@@ -44,7 +44,7 @@ def my_reservations():
     uid = current_user.id
     print('current user id is', uid)
     # restaurant = db.session.query(Restaurant).get(Reservation.restaurant_id)
-    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.restaurant)).filter(Reservation.user_id == uid).order_by(Reservation.reserve_datetime).all()
+    reservations = db.session.query(Reservation).options(db.joinedload(Reservation.restaurant)).filter(Reservation.user_id == uid).order_by(Reservation.reserve_datetime.desc()).all()
     reservations_list=[]
     # if reservations is not None and len(reservations) > 0:
     for each in reservations:

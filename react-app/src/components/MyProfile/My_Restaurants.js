@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import { getMyRestaurantThunk } from '../../store/restaurant';
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './my-restaurants.css'
 
 
@@ -73,7 +74,10 @@ export default function MyRestaurants({ showMyRestaurants }) {
                 {(myrestaurants?.length > 0) && (myrestaurants?.map(restaurant => {
                     return <div className='my-restaurant-each' key={restaurant.id}>
                         <div className='myrestaurant-cover'>
-                            <img src={restaurant.cover} alt='restaurant img' height={'300px'} />
+                            <img src={restaurant.cover} alt='restaurant img' height={'300px'}
+                                onError={(e) => {
+                                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                                }} />
                         </div>
                         <div className='myrestaurant-details'>
                             <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
