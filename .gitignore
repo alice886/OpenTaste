@@ -165,3 +165,8 @@ cython_debug/
 dev.db
 app/dev.db
 *.sql
+
+.moment
+moment
+*moment
+/moment
