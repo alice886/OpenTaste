@@ -66,7 +66,7 @@ function Home() {
                     {/* <HomeSearch /> */}
                 </div>
             </div>
-            <h3>Reserve a table now </h3>
+            <div className='home-subtitle'>Reserve a table now </div>
             <div className='home-all-container'>
                 {restaurants?.map(restaurant => {
                     return <div className='home-restaurants' key={restaurant.id}>

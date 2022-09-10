@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import TopBar from './components/TopBar';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './components/Restaurants/Home';
 import RestaurantDetails from './components/Restaurants/Restaurant_Details'
 import ListNewRestaurant from './components/Restaurants/Restaurant_Create'
-import MyProfileRestaurants from './components/MyProfile/index_myrestaurants'
-import MyProfileReservations from './components/MyProfile/index_myreservations'
+// import MyProfileRestaurants from './components/MyProfile/index_myrestaurants'
+// import MyProfileReservations from './components/MyProfile/index_myreservations'
 import MyRestaurants from './components/MyProfile/My_Restaurants'
 import MyReservations from './components/MyProfile/My_Reservations'
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <TopBar />
       <NavBar />
       <Switch>
         <ProtectedRoute path='/myprofile' exact={true} >
