@@ -4,7 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
-import moment from 'moment'
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './my_reservations.css'
 
 
@@ -66,7 +66,10 @@ export default function MyReservations() {
                 {myReservations?.length ? (myReservations?.map(reservation => {
                     return <div className='my-reservation-each' key={reservation.id}>
                         <div className='myreservation-cover'>
-                            <img src={reservation.restaurant.cover} alt="restaurant cover"></img>
+                            <img src={reservation.restaurant.cover} alt="restaurant cover"
+                                onError={(e) => {
+                                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                                }} ></img>
                         </div>
                         <div className='myrestaurant-details'>
                             <NavLink to={`/restaurants/${reservation.restaurant_id}`}>{reservation.restaurant.name}</NavLink>

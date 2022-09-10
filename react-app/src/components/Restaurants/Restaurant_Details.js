@@ -7,6 +7,7 @@ import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
 import MakeReservation from '../Reservations/Reservation_Create'
 import './restaurant_details.css'
+import defaultImg3 from '../../icons/defaultImg3.png'
 
 function RestaurantDetails() {
     const dispatch = useDispatch();
@@ -45,7 +46,12 @@ function RestaurantDetails() {
 
     return loaded && (
         <>
-            <img className='restaurant-detail-cover' src={therestaurant?.cover} />
+            <img className='restaurant-detail-cover'
+                src={therestaurant?.cover}
+                onError={(e) => {
+                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                }}
+            />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>

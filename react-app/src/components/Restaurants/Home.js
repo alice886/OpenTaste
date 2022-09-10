@@ -5,6 +5,7 @@ import { getAllRestaurantThunk } from '../../store/restaurant';
 import { Modal } from '../context/Modal'
 import MakeReservationModal from '../Reservations/Reservation_Create_Modal'
 import HomeSearch from '../Search/home_search'
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './home.css'
 
 function Home() {
@@ -71,7 +72,10 @@ function Home() {
                     return <div className='home-restaurants' key={restaurant.id}>
                         <NavLink className='home-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
                             <div className='home-res-cover'>
-                                <img src={restaurant.cover} alt='restaurant img' height={'200px'} />
+                                <img src={restaurant.cover} alt='restaurant img' height={'200px'}
+                                    onError={(e) => {
+                                        if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                                    }} />
                             </div>
                             <div className='home-res-details'>
                                 <div className='home-res-nav-div'>
