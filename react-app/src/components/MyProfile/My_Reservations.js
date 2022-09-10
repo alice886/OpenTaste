@@ -4,7 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
-// import moment from 'moment'
+import moment from 'moment'
 import './my_reservations.css'
 
 
@@ -26,6 +26,23 @@ export default function MyReservations() {
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
 
+    const monthNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // const test01 = new Date('Fri, 09 Sep 2022 17:00:00 GMT').toLocaleString('en-us', { month: 'short' })
+    // console.log('can i get the month??? plz??', [moment().month('Sep')])
+    // console.log('can i get the month??? plz?? 02', test01)
+    const validatePastReservations = time => {
+        const resMonth = monthNames.indexOf(time.slice(8, 11));
+        const resDate = time.slice(5, 8);
+        if (resMonth < todayMonth) {
+            return false;
+        }
+        if (resDate < todayDate && resMonth === todayMonth) {
+            return false;
+        }
+        return true;
+
+    }
 
     const handleEditReservations = (e, id) => {
         e.preventDefault();
@@ -59,11 +76,11 @@ export default function MyReservations() {
                             <div>Date : {reservation.reserve_datetime.slice(0, 16)}</div>
                             <div>Time : {reservation.reserve_datetime.slice(16, 22)}</div>
                             <div>Party of : {reservation.party_size}</div>
-                            <div>Day : {reservation.reserve_datetime.slice(5, 8)}</div>
-                            {/* <div>Month : {moment().month(reservation.reserve_datetime.slice(8, 11))}</div> */}
                         </div>
-                        {(<div className='myreservation-edit-button'>
+                        {validatePastReservations(reservation.reserve_datetime) ? (<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
+                        </div>) : (<div className='myreservation-expire'>
+                            Reservation Is Expired
                         </div>)}
                     </div>
                 })) : (<div className='no-reservation'>

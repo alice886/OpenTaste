@@ -81,6 +81,9 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
     const newErrors = [];
 
+    console.log(reserveDate)
+    console.log(reserveDate.slice(0, 4))
+
     useEffect(() => {
         if (!sessionUser) {
             newErrors.push('Please log in')
@@ -94,17 +97,17 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             if (specialRequest?.match(inputRegex)) {
                 newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
             }
-            // if (reserveDate.slice(0, 4) !== '2022') {
-            //     newErrors.push('You may only reserve dates in the year of 2022')
-            // }
-            // if (reserveDate.slice(5, 7) - todayMonth < 0) {
-            //     newErrors.push('You may not select dates from previous months')
-            // }
-            // if (reserveDate.slice(5, 7) - todayMonth == 0) {
-            //     if (reserveDate.slice(8, 10) - todayDate < 0) {
-            //         newErrors.push('You may not select dates before today')
-            //     }
-            // }
+            if (reserveDate.slice(0, 4) !== '2022') {
+                newErrors.push('You may only reserve dates in the year of 2022')
+            }
+            if (reserveDate.slice(5, 7) - todayMonth < 0) {
+                newErrors.push('You may not select dates from previous months')
+            }
+            if (reserveDate.slice(5, 7) - todayMonth == 0) {
+                if (reserveDate.slice(8, 10) - todayDate < 0) {
+                    newErrors.push('You may not select dates before today')
+                }
+            }
         }
         setErrors(newErrors)
         if (!errors.length) setIsDisabled(false);
@@ -159,7 +162,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>🎟️  {theReservation.occasion}</div>
                 </div>
             </div>
-            <div className='reserved-details-specialr'>Your request: {theReservation.special_request}</div>
+            <div className='reserved-details-specialr'></div>
             <div className='reserved-modal-edit-form'>
                 <div className='edit-error'>
                     {errors.map((error, ind) => (
@@ -175,7 +178,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                         min={todayString}
                         max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
-                        onKeyDown="event.preventDefault()"
+                        // onKeyDown="event.preventDefault()"
                     ></input>
                     <label>Time</label>
                     <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >

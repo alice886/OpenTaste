@@ -203,9 +203,12 @@
 } */
 
 #modal-content>form>div.edit-restaurant-button>button {
-    padding-top: 5px 20px;
     /* border: 1px solid #850000; */
-    background-color: #FFDBDB;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 48px;
+    padding: 0 25px;
+    font-size: 16px;
     border-radius: 5px;
     font-size: 22px;
 }
@@ -218,5 +221,8 @@
 }
 
 #modal-content>form>div.edit-restaurant-button>button:enabled:hover {
-    color: #E70000;
+    background: rgba(254, 0, 0, 0.9);
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+    color: white;
+    font-weight: 100;
 }
