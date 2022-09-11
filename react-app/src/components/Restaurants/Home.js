@@ -17,7 +17,8 @@ function Home() {
     const [resTime, setResTime] = useState()
 
     // to get today's dates
-    const d = new Date()
+    let d = new Date()
+    d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();

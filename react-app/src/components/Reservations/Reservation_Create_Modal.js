@@ -21,7 +21,8 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const openHour = Number(therestaurant.open_time.slice(0, 2))
 
     // to get today's dates
-    const d = new Date()
+    let d = new Date();
+    d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
@@ -31,6 +32,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(todayString);
     const [reserveTime, setReserveTime] = useState((resTime + ':00'));
+    
     if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
@@ -196,7 +198,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                     <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
                     {/* <div>Business Hours:</div>
                     <div>{therestaurant.open_time} - {therestaurant.close_time}</div> */}
-                    
+
                 </div>
             </div>
             <div className='create-error-mo'>
@@ -205,7 +207,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 ))}
             </div>
             {(sessionUser?.id !== therestaurant?.owner_id) && <form className='create-new-reservation-mo'>
-            <div >Required fields are marked with an *</div>
+                <div >Required fields are marked with an *</div>
                 <label>Date *</label>
                 <input
                     type='date'

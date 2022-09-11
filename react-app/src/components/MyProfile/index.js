@@ -80,7 +80,7 @@ export default function MyProfile() {
                 <div className='profile-tab3'>
                     {/* <button onClick={HandleMyReservations}>
                         </button> */}
-                    <NavLink to='/myrestaurants'>My Reservations</NavLink>
+                    <NavLink to='/myreservations'>My Reservations</NavLink>
                 </div>
             </div>
             <div className='profile-content'>

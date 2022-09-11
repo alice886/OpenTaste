@@ -6,6 +6,7 @@ import DeleteRestaurant from '../DeleteModals/Delete_Restaurant'
 import { editRestaurantThunk, getRestaurantDetailThunk, getAllRestaurantThunk } from '../../store/restaurant'
 import Uploadicon from '../../icons/Uploadicon.png';
 import Deleteicon from '../../icons/Deleteicon.png';
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './restaurant_edit.css'
 
 export default function EditRestaurant({ resId, showModal, setShowModal }) {
@@ -165,7 +166,11 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             <form className='edit-restaurant'>
                 <div className='edit-restaurant-imgdelete'>
                     <div className='edit-restaurant-title'>Edit Your Business</div>
-                    <img src={cover} height={'90px'} />
+                    <img src={cover} height={'90px'}
+                        onError={(e) => {
+                            if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                        }}
+                    />
                     <div >{name}</div>
                 </div>
                 {showDelete && <Modal><DeleteRestaurant setShowDelete={setShowDelete} resId={resId} setShowModal={setShowModal} object='restaurant' /></Modal>}

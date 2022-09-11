@@ -9,10 +9,11 @@
 }
 
 .restaurant-all-container {
-    margin: 400px 240px 60px;
+    margin: 400px 350px 0px;
     display: grid;
-    grid-template-columns: 5fr 3fr;
-    gap: 5px;
+    grid-template-columns: 600px 380px;
+    gap: 180px;
+    min-height: 100%;
 }
 
 .res-left-container,
@@ -24,7 +25,7 @@
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 30%);
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     max-width: 760px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .res-right-container {
@@ -37,7 +38,7 @@
 }
 
 .res-left-container {
-    width: 680px;
+    width: 600px;
     padding: 0px 60px;
     padding-bottom: 30px;
     height: fit-content;

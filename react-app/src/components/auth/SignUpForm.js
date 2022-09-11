@@ -32,6 +32,7 @@ const SignUpForm = ({ setShowSignUp }) => {
   };
 
   const inputRegex = /\s/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const newErrors = [];
   useEffect(() => {
@@ -58,6 +59,9 @@ const SignUpForm = ({ setShowSignUp }) => {
     }
     if (email?.length > 50) {
       newErrors.push('Your email must be between 3 and 50 characters long.')
+    }
+    if (email?.length > 0 && !email?.match(emailRegex)) {
+      newErrors.push("Please enter a valid email.")
     }
     if (email?.match(inputRegex)) {
       newErrors.push("Whitespace in email is not allowed.")

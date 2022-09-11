@@ -52,11 +52,11 @@ function App() {
         <Route path='/restaurants/:restaurantId' >
           <RestaurantDetails />
         </Route>
-        <Route path='/listnewrestaurant' >
+        <Route path='/listnewrestaurant' exact={true} >
           <ListNewRestaurant />
         </Route>
         <Route path='*' >
-          <h1>Page not Foud, please try another URL</h1>
+          <div className='pagenotfound'>404 Page not Foud - Please Try Another URL</div>
         </Route>
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
