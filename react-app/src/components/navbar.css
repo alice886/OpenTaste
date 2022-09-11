@@ -292,7 +292,7 @@ div .home-search-container {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
+    /* width: 100%; */
     padding: 50px 70px;
     /* position: fixed; */
 }
@@ -307,7 +307,8 @@ div .home-search-container {
 
 
 .footer-top>div {
-    padding: 0px 15px;
+    padding: 0px 10px;
+    width: 430px;
 }
 
 .footer-top>div>a {

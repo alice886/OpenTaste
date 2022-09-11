@@ -16,7 +16,8 @@ def validation_errors_to_error_messages(validation_errors):
     for field in validation_errors:
         for error in validation_errors[field]:
             if not errorCheck.get(field):
-                errorMessages.append(f'{field.capitalize()} : {error}')
+                # errorMessages.append(f'{field.capitalize()} : {error}')
+                errorMessages.append(f'{error}')
                 errorCheck[field] = 1
     return errorMessages
 
