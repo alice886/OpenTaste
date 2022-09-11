@@ -15,8 +15,8 @@
     font-size: 18px;
 }
 
-#root>div:nth-child(2)>h3 {
-    margin: 5px 3%;
+.home-subtitle {
+    margin: 10px 3%;
     padding: 15px;
     font-size: 22px;
     color: #333B50;

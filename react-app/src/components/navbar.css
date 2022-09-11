@@ -44,7 +44,7 @@ div.nav-user-container>div.nav-logo>a>img {
 
 .nav-button-container {
     height: 100%;
-    margin: 10px 0px;
+    margin: 5px 0px;
     padding: 20px 9%;
     position: relative;
     display: flex;
@@ -59,7 +59,7 @@ div.nav-user-container>div.nav-logo>a>img {
     border: 1px solid #ECECEC;
     color: black;
     border-radius: 6px;
-    padding: 10px 5px;
+    padding: 5px 5px;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>li>a {
@@ -86,7 +86,8 @@ div.nav-user-container>div.nav-logo>a>img {
     text-decoration: none;
     color: #871D1D;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
+    padding: 5px 0px;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>div {
@@ -139,6 +140,11 @@ div.nav-user-container>div.nav-logo>a>img {
 button {
     all: unset;
     cursor: pointer;
+}
+
+#root>div.nav-user-container>div.nav-button-container>ul>li.nav-button-logout>button {
+    padding: 10px 0px;
+    width: 283px;
 }
 
 ul,
@@ -300,4 +306,16 @@ div .home-search-container {
 
 #root>div.footer-container>div>a:hover {
     color: #00CFF9;
+}
+
+
+.topbar-container {
+    min-width: 600px;
+    padding: 2px 280px;
+    font-style: italic;
+    color: #484848;
+    height: 25px;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: space-between;
 }

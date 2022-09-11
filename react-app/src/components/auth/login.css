@@ -63,8 +63,7 @@
     font-size: 20px;
 }
 
-#modal-content>form>input:nth-child(4),
-#modal-content>form>input:nth-child(6) {
+#modal-content>form>input.signin-input {
     cursor: text;
     font-size: 14px;
     line-height: 16px;
@@ -118,6 +117,11 @@ input .signin-input:focus {
     right: 5%;
 }
 
+#modal-content>form>div.cancel-signin>button {
+    height: 25px;
+    width: 25px;
+}
+
 #modal-content>form>div.cancel-signin:hover {
     box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
     font-size: 24px;
@@ -131,15 +135,17 @@ input .signin-input:focus {
     font-size: 18px;
 }
 
-#modal-content>form>label:nth-child(4),
+/* #modal-content>form>label:nth-child(4),
 #modal-content>form>label:nth-child(6),
 #modal-content>form>input:nth-child(7),
-#modal-content>form>input:nth-child(5) {
-    font-size: 18px;
+#modal-content>form>input:nth-child(5),
+#modal-content>form>input:nth-child(9),
+.signin-input-why {
+    font-size: 20px;
     padding: 6px;
     width: 440px;
-    margin: auto;
-}
+    margin: 10px 0px;
+} */
 
 .signin-required {
     font-size: 16px;
