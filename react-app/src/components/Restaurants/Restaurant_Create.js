@@ -44,6 +44,7 @@ export default function ListNewRestaurant() {
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
     const inputRegex = /\s\s/;
+    const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
 
     const newErrors = [];
 
@@ -107,6 +108,9 @@ export default function ListNewRestaurant() {
             if (city?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
             }
+            if ( city && !city?.match(cityRegex)) {
+                newErrors.push("You city name is invalid.")
+            }
             if (description?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the description field.")
             }
@@ -165,7 +169,7 @@ export default function ListNewRestaurant() {
             <div className='create-container'>
                 <div className='create-title'>List Your Restaurant Now</div>
                 <div className='create-form-container'>
-                <div className='create-error-as'>Required fields are marked with an *</div>
+                    <div className='create-error-as'>Required fields are marked with an *</div>
                     <div className='create-error'>
                         {errors?.map((error, ind) => (
                             <div className='create-res-error' key={ind}>* {error}</div>

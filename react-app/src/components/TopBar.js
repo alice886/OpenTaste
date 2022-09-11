@@ -16,9 +16,9 @@ const TopBar = () => {
 
     return (
         <div className='topbar-container'>
-            <div>Welcome to OpenTaste!</div >
             {/* <div>Set Timezone for this site is Pacific Standard Time </div > */}
             <div>Today is {todayString}</div >
+            <div>Welcome to OpenTaste!</div >
             <div>Page last refreshed at {nowHour}:{nowMinutes}</div >
         </div>
     );
