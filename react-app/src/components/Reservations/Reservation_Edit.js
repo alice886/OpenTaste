@@ -31,7 +31,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const parsedTime = (maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0
 
     // console.log(maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate())
-    // console.log((maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0)
+    console.log((maydate.getHours()) + ':' + maydate.getMinutes() + 0)
+    console.log((maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0)
 
     // to get today's dates
     let d = new Date()
@@ -185,7 +186,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     ></input>
                     <label>Time *</label>
                     <select className='edit-res-input' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
-                        <option defaultValue={''} selected disabled hidden>Update the hour here</option>
+                        <option defaultValue={''} disabled >Update the hour here</option>
                         {(availableHour_count.length > 0) ?
                             availableHour_count.map(each => {
                                 return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
