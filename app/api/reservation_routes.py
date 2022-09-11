@@ -63,11 +63,12 @@ def reservation_edit(id):
         for i in form.data:
             if not form.data[i] and i != 'reserve_date' and i !='reserve_time' :
                 form[i].data = reservation_dict[i]
+                form[i].data = form[i].data
         updated_datetime=datetime.combine(form.data['reserve_date'],form.data['reserve_time'])
         # print('updated time --', updated_datetime)
         if form.validate_on_submit():
             for i in form.data:
-                if i != 'csrf_token' and i != 'reserve_date' and i != 'csrf_token':
+                if i != 'csrf_token' and i != 'reserve_date' and i != 'reserve_time':
                     # reservation_dict[i] = form.data[i] -> doesnot work, not a dict
                     setattr(reservation,i,form.data[i])
                 setattr(reservation,'reserve_datetime',updated_datetime)

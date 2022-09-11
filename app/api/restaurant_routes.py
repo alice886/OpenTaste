@@ -110,9 +110,9 @@ def restaurant_edit(id):
             return {'errors':["You cannot edit the restaurant that doesn't belong to you."]},403
         form = RestaurantForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        for i in form.data:
-            if not form.data[i]:
-                form[i].data = restaurant_dict[i]
+        # for i in form.data:
+        #     if not form.data[i]:
+        #         form[i].data = restaurant_dict[i]
         if form.validate_on_submit():
             for i in form.data:
                 if i != 'csrf_token':

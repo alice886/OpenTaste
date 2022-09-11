@@ -6,8 +6,8 @@ const TopBar = () => {
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
-    const nowHour = d.getHours();
-    const nowMinutes = d.getMinutes();
+    const nowHour = ('0' + d.getHours()).slice(-2);
+    const nowMinutes = ('0' + d.getMinutes()).slice(-2);
 
     return (
         <div className='topbar-container'>

@@ -284,13 +284,17 @@ div .home-search-container {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin: 0px;
 
     display: flex;
     flex-direction: row;
     font-family: 'DM Sans', sans-serif;
     align-items: center;
-
+    margin-bottom: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* position: fixed; */
 }
 
 #root>div.footer-container>div {

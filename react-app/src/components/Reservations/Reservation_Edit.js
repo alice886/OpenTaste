@@ -131,6 +131,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         else {
             setIsDisabled(true)
         }
+        console.log('what is payload', payload)
+        console.log('what is editedReservation', editedReservation)
     }
 
     const handleDeleteReser = async e => {
@@ -138,10 +140,10 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
         setShowDeleteReserv(true);
     }
 
-    console.log('mess date', reserveDate.slice(0, 4))
-    console.log('mess date', reserveDate.slice(5, 7) - todayMonth)
-    console.log('mess date', reserveDate.slice(8, 10))
-    console.log('what is todaydate', todayDate)
+    // console.log('mess date', reserveDate.slice(0, 4))
+    // console.log('mess date', reserveDate.slice(5, 7) - todayMonth)
+    // console.log('mess date', reserveDate.slice(8, 10))
+    // console.log('what is todaydate', todayDate)
 
     return (
         <div className='reserved-modal'>
