@@ -23,7 +23,7 @@ export default function MyReservations() {
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
 
     let d = new Date()
-    d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
+    // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
 
