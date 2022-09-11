@@ -276,17 +276,16 @@ div .home-search-container {
 /* ------------- footer css ------------- */
 
 .footer-container {
-    height: 160px;
+    height: fit-content;
+    /* height: 160px; */
     background-image: linear-gradient(to bottom right, #484848, #000000);
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     text-align: center;
 
-    display: flex;
-    flex-direction: row;
     font-family: 'DM Sans', sans-serif;
     align-items: center;
     margin-bottom: 0px;
@@ -294,31 +293,55 @@ div .home-search-container {
     left: 0;
     right: 0;
     width: 100%;
+    padding: 50px 70px;
     /* position: fixed; */
 }
 
-#root>div.footer-container>div {
-    margin: 15px 5px;
-    padding: 15px 25px;
+.footer-top {
+    display: flex;
+    flex-direction: row;
+    /* background-color: blue; */
+    width: 590px;
+    padding: 0px 20px;
 }
 
 
-#root>div.footer-container>div>a {
+.footer-top>div {
+    padding: 0px 15px;
+}
+
+.footer-top>div>a {
+    margin: 10px 50px;
     text-decoration: none;
-    color: #E9E9E9;
+    color: #E60000;
 }
 
-#root>div.footer-container>div>a:hover {
-    color: #00CFF9;
+.footer-top>div>a:hover {
+    text-decoration: underline;
+    color: #FF0C0C;
 }
 
+.footer-bottom>div {
+    /* background-color: red; */
+    width: 910px;
+    margin-right: 180px;
+}
+
+.footer-mid>img {
+    height: 90px;
+    padding-top: 30px;
+    padding-right: 20px;
+}
+
+/* topbar container styling */
 
 .topbar-container {
     min-width: 600px;
     padding: 2px 280px;
     font-style: italic;
     color: #484848;
-    height: 25px;
+    height: fit-content;
+    font-size: 16px;
     background-color: #F1F1F1;
     display: flex;
     justify-content: space-between;

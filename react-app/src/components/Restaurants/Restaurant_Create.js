@@ -85,7 +85,7 @@ export default function ListNewRestaurant() {
                 newErrors.push('Please select both Open Time and Close Time to specify your business hours.')
             }
             if (open_time > close_time) {
-                newErrors.push('Your close time may not be earlier than your open time.')
+                newErrors.push('Close time may not be earlier than open time, and overnight hours is not supported.')
             }
             if ((close_time?.slice(0, 2) - open_time?.slice(0, 2)) < 4) {
                 newErrors.push('Your restaurant must have minimum 4 hours of open time.')
@@ -165,7 +165,7 @@ export default function ListNewRestaurant() {
             <div className='create-container'>
                 <div className='create-title'>List Your Restaurant Now</div>
                 <div className='create-form-container'>
-                <div className='create-error'>Required fields are marked with an *</div>
+                <div className='create-error-as'>Required fields are marked with an *</div>
                     <div className='create-error'>
                         {errors?.map((error, ind) => (
                             <div className='create-res-error' key={ind}>* {error}</div>
