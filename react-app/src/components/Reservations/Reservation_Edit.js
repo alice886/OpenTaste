@@ -27,12 +27,17 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const closeHour = Number(theReservation.restaurant.close_time.slice(0, 2))
     const openHour = Number(theReservation.restaurant.open_time.slice(0, 2))
     let maydate = new Date(theReservation.reserve_datetime)
+
     const parsedDate = maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate()
     const parsedTime = (maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0
 
+    const str1 = theReservation.reserve_datetime
+    // console.log(str1.slice(17, 22))
+
     // console.log(maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate())
-    console.log((maydate.getHours()) + ':' + maydate.getMinutes() + 0)
-    console.log((maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0)
+
+    // console.log((maydate.getHours()) + ':' + maydate.getMinutes() + 0)
+    // console.log((maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0)
 
     // to get today's dates
     let d = new Date()
@@ -45,7 +50,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const availableHour_count = []
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(parsedDate);
-    const [reserveTime, setReserveTime] = useState(parsedTime);
+    const [reserveTime, setReserveTime] = useState(str1.slice(17, 22));
     if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
@@ -83,8 +88,8 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
 
     const newErrors = [];
 
-    console.log(reserveDate)
-    console.log(reserveDate.slice(0, 4))
+    // console.log(reserveDate)
+    // console.log(reserveDate.slice(0, 4))
 
     useEffect(() => {
         if (!sessionUser) {
