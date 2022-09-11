@@ -49,8 +49,15 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     // to get available hours
     const availableHour_count = []
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
+    // const [reserveDate, setReserveDate] = useState(parsedDate);
     const [reserveDate, setReserveDate] = useState(parsedDate);
     const [reserveTime, setReserveTime] = useState(str1.slice(17, 22));
+
+    // console.log(str1.slice(0, 17))
+    // console.log(str1.slice(17, 22))
+    // console.log(str1.slice(16, 22))
+
+
     if (new Date(reserveDate.split('-')) > d) {
         const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
@@ -166,7 +173,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                     <div>{theReservation.restaurant.address}, {theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div>
                     {/* <div>{theReservation.restaurant.city}, {theReservation.restaurant.state}  {theReservation.restaurant.zip_code}</div> */}
                     <div>🗓️  {theReservation.reserve_datetime.slice(0, 16)}</div>
-                    <div>🕐 at {theReservation.reserve_datetime.slice(16, 22)}</div>
+                    <div>🕐 at {theReservation.reserve_datetime.slice(17, 22)}</div>
                     <div>👤 party of {theReservation.party_size}</div>
                     <div>🎟️  {theReservation.occasion}</div>
                 </div>

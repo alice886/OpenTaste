@@ -34,7 +34,7 @@ function ReservationDetails({ showModal }) {
                         <div>Party Size: {reservation.party_size}</div>
                         <div>Occasion: {reservation.occasion}</div>
                         <div>Special Request: {reservation.special_request}</div>
-                        <div>Reserved At: {reservation.created_at.slice(0, 22)}</div>
+                        <div>Reserved At: {reservation.created_at.slice(0, 16)}</div>
 
                     </div>
                 })}
