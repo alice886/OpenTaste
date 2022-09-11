@@ -36,8 +36,8 @@ const SignUpForm = ({ setShowSignUp }) => {
 
   const newErrors = [];
   useEffect(() => {
-    if (username?.length < 3 || first_name?.length < 3 || last_name?.length < 3 || email?.length < 3 || password?.length < 3) {
-      newErrors.push('Every input field has to have at least 3 characters.')
+    if (username?.length < 2 || first_name?.length < 2 || last_name?.length < 2 || email?.length < 2 || password?.length < 2) {
+      newErrors.push('Every input field has to have at least 2 characters.')
     }
     if (username?.length > 30) {
       newErrors.push('Your username must be between 1 and 30 characters long.')
