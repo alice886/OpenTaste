@@ -64,6 +64,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
     const inputRegex = /\s\s/;
+    const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
 
     const newErrors = [];
 
@@ -102,6 +103,9 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             }
             if (city?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the city field.")
+            }
+            if (city && !city?.match(cityRegex)) {
+                newErrors.push("You city name is invalid.")
             }
             if (description?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the description field.")
