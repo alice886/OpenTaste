@@ -8,16 +8,16 @@ const TopBar = () => {
     // console.log('ok lets see the time 1-->', d)
     // console.log('ok lets see the time 2-->', UTCd)
     // console.log('ok lets see the time 3-->', typeof UTCd)
-    const todayMonth = UTCd.getMonth() + 1
-    const todayDate = UTCd.getDate()
-    const todayString = [UTCd.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + UTCd.getDate()).slice(-2)].join('-')
-    const nowHour = ('0' + UTCd.getHours()).slice(-2);
-    const nowMinutes = ('0' + UTCd.getMinutes()).slice(-2);
+    const todayMonth = d.getMonth() + 1
+    const todayDate = d.getDate()
+    const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
+    const nowHour = ('0' + d.getHours()).slice(-2);
+    const nowMinutes = ('0' + d.getMinutes()).slice(-2);
 
     return (
         <div className='topbar-container'>
             <div>Welcome to OpenTaste!</div >
-            <div>Set Timezone for this site is Pacific Standard Time </div >
+            {/* <div>Set Timezone for this site is Pacific Standard Time </div > */}
             <div>Today is {todayString}</div >
             <div>Page last refreshed at {nowHour}:{nowMinutes}</div >
         </div>

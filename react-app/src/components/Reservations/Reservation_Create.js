@@ -13,7 +13,7 @@ export default function MakeReservation({ therestaurant }) {
 
     // to get today's dates
     let d = new Date()
-    d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
+    // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
