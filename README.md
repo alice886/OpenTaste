@@ -64,11 +64,18 @@
 ![Screen Shot 2022-09-11 at 5 00 16 PM](https://user-images.githubusercontent.com/93701088/189554632-1f6cf396-6912-4635-a22b-db957c5268b0.png)
 
 ## Restaurant Owners - Customer Reservations
-* Check customer reservations under restaurant Detail Page.
+* Check customer reservations under tab [See Reservations] in restaurant Detail Page.
 ![Screen Shot 2022-09-11 at 5 02 54 PM](https://user-images.githubusercontent.com/93701088/189554720-9f9822fd-bbef-4836-b9bc-3d2f581955b8.png)
 
 ## Customer -- Reserving on MainPage
+* By clicking the red timeslots in Home page, customers can make reservations in the reservation modal.
+* Customers can also change date and time in the modal if there is any available spots.
 ![Screen Shot 2022-09-11 at 5 04 21 PM](https://user-images.githubusercontent.com/93701088/189554808-7866b4e4-95a9-4e3b-8a56-84e1a001aa82.png)
 
 ## Customer -- MyReservation List
+* customers can check their reservations in MyReservation page.
+* Only unexpired reservations can be edited/cancelled, expired reservations would not be edited.
 ![Screen Shot 2022-09-11 at 5 06 13 PM](https://user-images.githubusercontent.com/93701088/189554877-f457b4ae-e438-41ba-ab8b-07a601eabe14.png)
+
+
+## Thank you for visiting OpenTaste! Let me know if you have any questions or feebacks and please feel free to connect with me on GitHub =)

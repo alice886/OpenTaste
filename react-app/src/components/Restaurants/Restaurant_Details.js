@@ -64,7 +64,7 @@ function RestaurantDetails() {
                     {(showReservations && sessionUser) ? < ReservationDetails showModal={showModal} /> : (
                         <>
                             <div className='res-left-info'>
-                                <div>{dollarSigns[therestaurant?.price_range]} {therestaurant?.cuisine}</div>
+                                <div>{dollarSigns[therestaurant?.price_range]} · {therestaurant?.cuisine}</div>
                                 <div>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
