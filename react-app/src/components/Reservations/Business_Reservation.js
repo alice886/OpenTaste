@@ -26,7 +26,7 @@ function ReservationDetails({ showModal }) {
             </div>
             <div className='b-reservation-right'>
                 <h3>You have {reservations?.length} reservation(s)</h3>
-                {reservations?.map(reservation => {
+                {reservations?.length && reservations?.map(reservation => {
                     return <div className='b-reservation-each'>
                         <div>Customer Name: {reservation.user.username}</div>
                         <div>Reserve Date: {reservation.reserve_datetime.slice(0, 16)}</div>
