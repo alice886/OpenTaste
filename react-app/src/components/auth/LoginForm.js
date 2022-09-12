@@ -41,7 +41,7 @@ const LoginForm = ({ setShowLogin }) => {
       history.push('/')
     }
   }
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <form className='login-modal' >
@@ -79,7 +79,7 @@ const LoginForm = ({ setShowLogin }) => {
         maxLength={41}
       />
       <div className='signin-buttom-container'>
-        <button className='singin-button' onClick={onLogin} type='submit'>Login</button>
+        <button className='singin-button' onClick={onLogin} type='submit' disabled={errors.length > 0}>Login</button>
         <button className='singin-button' onClick={demoLogin}>Demo User</button>
       </div>
     </form>
