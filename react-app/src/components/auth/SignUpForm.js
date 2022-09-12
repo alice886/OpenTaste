@@ -73,6 +73,7 @@ const SignUpForm = ({ setShowSignUp }) => {
       newErrors.push("Whitespace in password is not allowed.")
     }
     setDoubleErrors(newErrors)
+
   }, [doubleerrors.length, newErrors.length, username, first_name, last_name, email, password])
 
 
@@ -103,6 +104,7 @@ const SignUpForm = ({ setShowSignUp }) => {
     return <Redirect to='/' />;
   }
 
+  // console.log(doubleerrors.length > 0)
   return (
     <form onSubmit={onSignUp} className='register-modal'>
       <div className='cancel-signup'>
@@ -179,7 +181,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         ></input>
       </div>
       <div className='submit-signup'>
-        <button type='submit'>Sign Up</button>
+        <button type='submit' disabled={doubleerrors.length > 0 || errors.length > 0 }>Sign Up</button>
       </div>
     </form>
   );
