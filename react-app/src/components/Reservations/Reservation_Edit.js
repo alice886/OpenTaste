@@ -6,6 +6,7 @@ import { editReservationThunk } from '../../store/reservation';
 import DeleteReservation from '../DeleteModals/Delete_Reservation';
 import Uploadicon from '../../icons/Uploadicon.png';
 import Deleteicon from '../../icons/Deleteicon.png';
+import defaultImg3 from '../../icons/defaultImg3.png'
 import './reservation_edit.css'
 
 export default function EditReservation({ resId, showEditReser, setShowEditReser }) {
@@ -166,7 +167,11 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
             {showDeleteReserv && <Modal><DeleteReservation setShowDeleteReserv={setShowDeleteReserv} resId={resId} setShowEditReser={setShowEditReser} object='reservation' /></Modal>}
             <div className='reserved-edit-modal-details'>
                 <div>
-                    <img src={theReservation.restaurant.cover} height={'150px'}></img>
+                    <img src={theReservation.restaurant.cover} height={'150px'}
+                        onError={(e) => {
+                            if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                        }}
+                    ></img>
                 </div>
                 <div className='reserved-edit-modal-each'>
                     <NavLink to={`/restaurants/${theReservation?.restaurant.id}`} className='reserved-modal-navlink'>{theReservation.restaurant.name}</NavLink>
