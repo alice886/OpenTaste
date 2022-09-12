@@ -44,6 +44,7 @@ export const getAllRestaurantThunk = () => async dispatch => {
     if (response.ok) {
         const allRestaurant = await response.json();
         dispatch(getAllRestaurant(allRestaurant));
+        return allRestaurant;
     } else {
         const data = await response.json();
         return data.errors;
@@ -59,7 +60,7 @@ export const getMyRestaurantThunk = () => async dispatch => {
     if (response.ok) {
         const allMyRestaurant = await response.json();
         dispatch(getMyRestaurant(allMyRestaurant));
-
+        return allMyRestaurant;
     }
     // else if (response.status == 404) {
     //     const allMyRestaurant = await response.json();
@@ -80,6 +81,7 @@ export const getRestaurantDetailThunk = id => async dispatch => {
     if (response.ok) {
         const theRestaurant = await response.json();
         dispatch(getRestaurantDetail(theRestaurant));
+        return theRestaurant;
     } else {
         const data = await response.json();
         return data.errors;

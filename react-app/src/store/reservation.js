@@ -38,6 +38,7 @@ export const getAllReservationsThunk = (id) => async dispatch => {
     if (response.ok) {
         const allReservations = await response.json();
         dispatch(getAllReservations(allReservations));
+        return allReservations;
     } else {
         const data = await response.json();
         return data.errors;
@@ -53,6 +54,7 @@ export const getMyReservationsThunk = () => async dispatch => {
     if (response.ok) {
         const allMyReservations = await response.json();
         dispatch(getAllReservations(allMyReservations));
+        return allMyReservations;
     } else {
         const data = await response.json();
         return data.errors;
@@ -68,6 +70,7 @@ export const getReservationDetailThunk = id => async dispatch => {
     if (response.ok) {
         const theReservation = await response.json();
         dispatch(getReservationDetail(theReservation));
+        return theReservation;
     } else {
         const data = await response.json();
         return data.errors;
