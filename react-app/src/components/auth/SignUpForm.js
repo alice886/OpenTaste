@@ -181,7 +181,7 @@ const SignUpForm = ({ setShowSignUp }) => {
         ></input>
       </div>
       <div className='submit-signup'>
-        <button type='submit' disabled={doubleerrors.length > 0 || errors.length > 0 }>Sign Up</button>
+        <button type='submit' disabled={doubleerrors.length > 0 }>Sign Up</button>
       </div>
     </form>
   );
