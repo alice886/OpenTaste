@@ -77,7 +77,7 @@
 * Only unexpired reservations can be edited/cancelled, expired reservations would not be edited.
 ![Screen Shot 2022-09-11 at 5 06 13 PM](https://user-images.githubusercontent.com/93701088/189554877-f457b4ae-e438-41ba-ab8b-07a601eabe14.png)
 
-## Getting started
+## Running it locally
 1. Clone this repository (only this branch)
 
    ```bash
