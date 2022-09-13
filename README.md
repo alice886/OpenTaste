@@ -77,5 +77,42 @@
 * Only unexpired reservations can be edited/cancelled, expired reservations would not be edited.
 ![Screen Shot 2022-09-11 at 5 06 13 PM](https://user-images.githubusercontent.com/93701088/189554877-f457b4ae-e438-41ba-ab8b-07a601eabe14.png)
 
+## Getting started
+1. Clone this repository (only this branch)
 
-## Thank you for visiting OpenTaste! Let me know if you have any questions or feebacks and please feel free to connect with me on GitHub =)
+   ```bash
+   git clone https://github.com/alice886/OpenTaste.git
+   ```
+
+2. Install dependencies
+
+      ```bash
+      pipenv install -r requirements.txt
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+4. Make sure the SQLite3 database connection URL is in the **.env** file
+
+5. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ```
+
+<br>
+
+
+### Thank you for visiting OpenTaste! Let me know if you have any questions or feebacks and please feel free to connect with me on GitHub =)
