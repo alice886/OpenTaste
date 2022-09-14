@@ -219,8 +219,8 @@ div .home-search-container {
 }
 
 /* date input */
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(1)>input {
-    height: 38px;
+#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(1) > input{
+    height: 37px;
     width: 130px;
     border-radius: 3px;
     margin-left: 19px;
@@ -236,8 +236,9 @@ div .home-search-container {
     font-size: 14px;
 }
 
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(3)>select,
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(2)>select {
+
+#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(2) > select,
+#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(3) > select {
     width: 120px;
     height: 46px;
     margin: 0px;
