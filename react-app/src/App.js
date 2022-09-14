@@ -55,6 +55,9 @@ function App() {
         <Route path='/listnewrestaurant' exact={true} >
           <ListNewRestaurant />
         </Route>
+        <Route path='/search' >
+          <div className='pagenotfound'>this is a search page</div>
+        </Route>
         <Route path='*' >
           <div className='pagenotfound'>404 Page not Foud - Please Try Another URL</div>
         </Route>

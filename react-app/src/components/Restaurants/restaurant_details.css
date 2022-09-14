@@ -130,3 +130,11 @@ div.res-left-name {
     cursor: not-allowed;
 
 }
+
+
+.restaurant-notfound {
+    margin: 20%;
+    text-align: center;
+    font-size: 40px;
+    font-style: italic;
+}

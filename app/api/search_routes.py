@@ -12,4 +12,5 @@ search_routes = Blueprint('search', __name__)
 @search_routes.route('/', methods=['GET'])
 @search_routes.route('/', methods=['GET'])
 def search():
-    
+    restaurants = db.session.query(Restaurant).all()
+    return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
