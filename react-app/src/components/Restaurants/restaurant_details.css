@@ -3,13 +3,13 @@
     overflow: hidden;
     object-fit: cover;
     height: 780px;
-    width: 100%;
+    width: 100vw;
     z-index: -94;
     background-color: white;
 }
 
 .restaurant-all-container {
-    margin: 400px 350px 0px;
+    margin: 430px 20% 150px;
     display: grid;
     grid-template-columns: 600px 380px;
     gap: 180px;
@@ -19,7 +19,7 @@
 .res-left-container,
 .res-right-container {
     background-color: white;
-    border-radius: 1%;
+    border-radius: 10px;
     padding-bottom: 40px;
 
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 30%);
@@ -30,16 +30,16 @@
 
 .res-right-container {
     width: 380px;
-    padding: 20px 40px;
+    padding: 10px 30px;
     padding-bottom: 30px;
     height: fit-content;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .res-left-container {
-    width: 600px;
-    padding: 0px 60px;
+    width: 630px;
+    padding: 0px 40px;
     padding-bottom: 30px;
     height: fit-content;
 }
