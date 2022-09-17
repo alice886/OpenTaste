@@ -206,7 +206,7 @@ div .home-search-container {
     align-items: center;
     justify-content: center;
     padding: auto;
-    margin: 7px;
+    margin: 17px;
 }
 
 .home-search-input {
@@ -219,8 +219,8 @@ div .home-search-container {
 }
 
 /* date input */
-#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(1) > input{
-    height: 37px;
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(1)>input {
+    height: 38px;
     width: 130px;
     border-radius: 3px;
     margin-left: 19px;
@@ -238,8 +238,8 @@ div .home-search-container {
 }
 
 
-#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(2) > select,
-#root > div:nth-child(3) > div.find-your-table > div > div > div:nth-child(3) > select {
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(2)>select,
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(3)>select {
     width: 120px;
     height: 46px;
     margin: 0px;
@@ -267,12 +267,13 @@ div .home-search-container {
     background-color: #C30200;
     padding: 3px 10px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .home-search-button:hover {
-    background: 0 0;
-    background-color: #7B0100;
+    /* background: 0 0; */
+    background-color: #D10000;
+    font-size: 17px;
 }
 
 

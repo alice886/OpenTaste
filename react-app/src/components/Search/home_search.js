@@ -13,7 +13,7 @@ export default function HomeSearch() {
     const nowHour = d.getHours();
 
     const [partySize, setPartySize] = useState(2);
-    const [searchTime, setSearchTime] = useState('12:00');
+    const [searchTime, setSearchTime] = useState();
     // const [searchTime, setSearchTime] = useState(('0' + (nowHour + 1)).slice(-2) + ':00');
     const [searchDate, setSearchDate] = useState(todayString);
     const [keyWord, setKeyWord] = useState()
@@ -45,6 +45,7 @@ export default function HomeSearch() {
             </div>
             <div>
                 <select className='home-search-dattimeppl' value={searchTime} onChange={e => setSearchTime(e.target.value)} required >
+                    <option value={''} selected disabled >any time</option>
                     {availableHour_count.map(each => {
                         return <option value={each} key={each} onClick={e => setSearchTime(e.target.value)}>{each}</option>
                     })}
