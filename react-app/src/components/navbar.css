@@ -206,38 +206,41 @@ div .home-search-container {
     align-items: center;
     justify-content: center;
     padding: auto;
-    margin: 2px;
+    margin: 17px;
 }
 
 .home-search-input {
     height: 43px;
-    width: 280px;
+    width: 350px;
     border-radius: 5px;
     margin: 1px 15px;
-    font-size: 13px;
+    font-size: 18px;
     font-family: 'DM Sans', sans-serif;
+    padding: 0 20px;
 }
 
 /* date input */
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(1)>input {
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(1)>input {
     height: 38px;
     width: 130px;
     border-radius: 3px;
     margin-left: 19px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
 }
 
 .home-search-dattimeppl {
-    width: 120px;
+    width: 130px;
     margin: 0px;
     padding: 3px;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 18px;
 }
 
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(3)>select,
-#root>div:nth-child(2)>div.find-your-table>div>div>div:nth-child(2)>select {
+
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(2)>select,
+#root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(3)>select {
     width: 120px;
     height: 46px;
     margin: 0px;
@@ -245,6 +248,7 @@ div .home-search-container {
     border-radius: 2px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
 }
 
 .home-search-button {
@@ -264,12 +268,13 @@ div .home-search-container {
     background-color: #C30200;
     padding: 3px 10px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .home-search-button:hover {
-    background: 0 0;
-    background-color: #7B0100;
+    /* background: 0 0; */
+    background-color: #D10000;
+    font-size: 17px;
 }
 
 
@@ -292,7 +297,7 @@ div .home-search-container {
     bottom: 0;
     left: 0;
     right: 0;
-    /* width: 100%; */
+    width: 100vw;
     padding: 50px 70px;
     /* position: fixed; */
 }
@@ -337,7 +342,7 @@ div .home-search-container {
 /* topbar container styling */
 
 .topbar-container {
-    min-width: 600px;
+    min-width: 100vw;
     padding: 2px 280px;
     font-style: italic;
     color: #484848;

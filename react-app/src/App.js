@@ -13,6 +13,7 @@ import MyRestaurants from './components/MyProfile/My_Restaurants'
 import MyReservations from './components/MyProfile/My_Reservations'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import MyProfile from './components/MyProfile/index';
+import SearchPage from './components/Search/search_page'
 import User from './components/User';
 import { authenticate } from './store/session';
 
@@ -54,6 +55,9 @@ function App() {
         </Route>
         <Route path='/listnewrestaurant' exact={true} >
           <ListNewRestaurant />
+        </Route>
+        <Route path='/search' >
+          <SearchPage />
         </Route>
         <Route path='*' >
           <div className='pagenotfound'>404 Page not Foud - Please Try Another URL</div>

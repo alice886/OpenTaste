@@ -35,9 +35,9 @@
 }
 
 div .find-banner {
-    height: 211px;
+    height: 281px;
     background-image: linear-gradient(to bottom right, #131E43, #5F698C);
-    font-size: 48px;
+    font-size: 46px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -45,6 +45,7 @@ div .find-banner {
     text-align: center;
     min-width: 1600px;
     font-family: 'Varela Round', sans-serif;
+    margin-bottom: 20px;
 }
 
 .home-restaurants {

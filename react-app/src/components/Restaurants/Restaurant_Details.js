@@ -41,10 +41,14 @@ function RestaurantDetails() {
         setShowReservations(false)
     }
 
+    if (!therestaurant) {
+        return <div className='restaurant-notfound'>uh oh, restaurant not found</div>
+    }
+
     const userCheck = therestaurant?.owner_id === sessionUser?.id
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
-    return loaded && (
+    return loaded && therestaurant && (
         <>
             <img className='restaurant-detail-cover'
                 src={therestaurant?.cover}

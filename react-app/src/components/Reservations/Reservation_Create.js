@@ -8,8 +8,8 @@ import './reservation_create.css'
 export default function MakeReservation({ therestaurant }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const closeHour = Number(therestaurant.close_time.slice(0, 2))
-    const openHour = Number(therestaurant.open_time.slice(0, 2))
+    const closeHour = Number(therestaurant?.close_time.slice(0, 2))
+    const openHour = Number(therestaurant?.open_time.slice(0, 2))
 
     // to get today's dates
     let d = new Date()
@@ -150,7 +150,7 @@ export default function MakeReservation({ therestaurant }) {
     // console.log('with empty string --', new Date(reserveDate + ' '))
     // console.log('now it returns true --', new Date(reserveDate.split('-')) > d)
 
-    return (
+    return  (
         <>
             <div className='create-reservation-container'>
                 <h3>Make a Reservation</h3>
