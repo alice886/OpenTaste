@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 
 export default function HomeSearch() {
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function HomeSearch() {
     const nowHour = d.getHours();
 
     const [partySize, setPartySize] = useState(2);
-    const [searchTime, setSearchTime] = useState();
+    const [searchTime, setSearchTime] = useState(('0' + (nowHour + 1)).slice(-2) + ':00');
     // const [searchTime, setSearchTime] = useState(('0' + (nowHour + 1)).slice(-2) + ':00');
     const [searchDate, setSearchDate] = useState(todayString);
     const [keyWord, setKeyWord] = useState()
@@ -28,6 +28,12 @@ export default function HomeSearch() {
     const capacity_count = []
     for (let i = 1; i < 21; i += 1) {
         capacity_count.push(i)
+    }
+
+    const handleHomeSearch = async e => {
+        e.preventDefault();
+        history.push(`/search?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}`)
+        // console.log(`?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}`)
     }
 
 
@@ -72,7 +78,7 @@ export default function HomeSearch() {
                     required
                 ></input>
             </div>
-            <button className='home-search-button'>Let's go</button>
+            <button className='home-search-button' onClick={handleHomeSearch}>Let's go</button>
         </div>
     )
 }
