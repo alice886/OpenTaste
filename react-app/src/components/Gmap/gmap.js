@@ -28,7 +28,6 @@ function GoogleMapAPI({ therestaurant }) {
     var geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'address': formattedAddress }, function (results, status) {
         if (status === 'OK') {
-            // map.setCenter(results[0].geometry.location);
             // var marker = new google.maps.Marker({
             //     map: map,
             //     position: results[0].geometry.location
@@ -41,12 +40,13 @@ function GoogleMapAPI({ therestaurant }) {
             // console.log('what is the geocoded lat lng Ab---', results[0].geometry.viewport.Ab.hi)
             // console.log('what is the geocoded lat lng Va---', results[0].geometry.viewport.Va.lo)
             // console.log('what is the geocoded lat lng Va---', results[0].geometry.viewport.Va.hi)
-            // let avglat = ((results[0].geometry.viewport.Ab.lo + results[0].geometry.viewport.Ab.hi) / 2).toFixed(6);
-            // let avglng = ((results[0].geometry.viewport.Va.lo + results[0].geometry.viewport.Va.hi) / 2).toFixed(6);
-            // center = {
-            //     lat: avglat,
-            //     lng: avglng,
-            // }
+            let avglat = ((results[0].geometry.viewport.Ab.lo + results[0].geometry.viewport.Ab.hi) / 2).toFixed(6);
+            let avglng = ((results[0].geometry.viewport.Va.lo + results[0].geometry.viewport.Va.hi) / 2).toFixed(6);
+            center = {
+                lat: avglat,
+                lng: avglng,
+            }
+            map?.setCenter(results[0].geometry.location);
             return center;
 
         } else {
@@ -91,7 +91,7 @@ function GoogleMapAPI({ therestaurant }) {
             zoom={18}
             zoomControl={true}
             onLoad={onLoad}
-        // onUnmount={onUnmount}
+            onUnmount={onUnmount}
         >
             { /* Child components, such as markers, info windows, etc. */}
             <Marker position={center}></Marker>
