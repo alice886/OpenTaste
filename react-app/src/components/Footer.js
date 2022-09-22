@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
 import '../components/navbar.css'
 import Logo from '../icons/Logo.jpg'
 
@@ -21,7 +20,7 @@ const Footer = () => {
 
             <div className='footer-container'>
                 <div className='footer-mid'>
-                    <img src={Logo} height={"30px"}></img>
+                    <img src={Logo} height={"30px"} alt='logo'></img>
                 </div>
                 <div className='footer-top'>
                     <div >

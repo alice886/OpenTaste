@@ -10,7 +10,7 @@ import './my-restaurants.css'
 
 export default function MyRestaurants({ showMyRestaurants }) {
     const dispatch = useDispatch();
-    const [restaurantloaded, setRestaurantLoaded] = useState(false);
+    // const [restaurantloaded, setRestaurantLoaded] = useState(false);
     const [showModal, setShowModal] = useState();
     const [resId, setResId] = useState();
     // const [showReservations, setShowReservations] = useState(false);
@@ -35,7 +35,7 @@ export default function MyRestaurants({ showMyRestaurants }) {
         setResId(id);
     }
     console.log('waht is my restaurants', myrestaurants)
-    if (myrestaurants?.length == 0) {
+    if (myrestaurants?.length === 0) {
         console.log('nothign')
     }
 

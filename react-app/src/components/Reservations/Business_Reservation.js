@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { Modal } from '../context/Modal'
 import { getAllReservationsThunk } from '../../store/reservation';
 import './business_reservations.css'
 
 function ReservationDetails({ showModal }) {
     const dispatch = useDispatch();
     const { restaurantId } = useParams();
-    const therestaurant = useSelector(state => state.restaurant.restaurant)
+    // const therestaurant = useSelector(state => state.restaurant.restaurant)
     const reservations = useSelector(state => state.reservation.reservations)
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         dispatch(getAllReservationsThunk(restaurantId)).then(() => setLoaded(true))
-    }, [dispatch, showModal])
+    }, [dispatch, showModal,restaurantId])
 
     // console.log('reservations detail is --', reservations)
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)

@@ -4,7 +4,7 @@ import MyRestaurants from './My_Restaurants';
 import MyReservations from './My_Reservations';
 import { getMyRestaurantThunk } from '../../store/restaurant';
 import { getMyReservationsThunk } from '../../store/reservation';
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 // import { Modal } from '../context/Modal'
 import './my_profile.css';
 
@@ -20,8 +20,8 @@ export default function MyProfile() {
     const [showProfile, setShowProfile] = useState(true);
     const [showMyRestaurants, setShowMyRest] = useState(false);
     const [showMyReservations, setShowMyReser] = useState(false);
-    const [restaurantloaded, setRestaurantLoaded] = useState(false);
-    const [myrestaurants66, setMyrestaurants66] = useState(false);
+    // const [restaurantloaded, setRestaurantLoaded] = useState(false);
+    // const [myrestaurants66, setMyrestaurants66] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
