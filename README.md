@@ -41,16 +41,19 @@
 * Both public and loggedin user can browse all restaurants on the site.
 * Available timeslots for today's date are presented in red and else in gray.
 * Clicking on each restaurant will direct to the Restaurant Detail Page.
-![Screen Shot 2022-09-11 at 3 26 45 PM](https://user-images.githubusercontent.com/93701088/189551475-20907a2e-9fbb-41ff-8d29-fc959f96c355.png)
-![Screen Shot 2022-09-11 at 3 26 55 PM](https://user-images.githubusercontent.com/93701088/189554096-8b84eda0-5997-467b-849e-509c79261871.png)
+![Screen Shot 2022-09-22 at 2 45 44 PM](https://user-images.githubusercontent.com/93701088/191857227-f68b433d-1519-452a-affc-b4074b6a40be.png)
+![Screen Shot 2022-09-22 at 2 48 12 PM](https://user-images.githubusercontent.com/93701088/191857483-ff5333ed-f22d-471d-baa8-162240b21f78.png)
+
 
 
 ## Restaurant Detail Page
 * In Restaurant Detailed Page, Overview information is available to all users on the left.
 * Business details include Price Range, Cuisine, Description, Location and Business Hours.
 * Reservation Form for the restaurant is located to the right and only loggedin user can make rservations.
-![Screen Shot 2022-09-11 at 4 50 14 PM](https://user-images.githubusercontent.com/93701088/189554180-dc043bf1-fbb2-4753-8de7-c91265498686.png)
-![Screen Shot 2022-09-11 at 4 50 23 PM](https://user-images.githubusercontent.com/93701088/189554184-1c98f447-b05f-4f1a-8231-f1c2a873f5bb.png)
+![Screen Shot 2022-09-22 at 2 51 58 PM](https://user-images.githubusercontent.com/93701088/191858056-d02304da-0e34-4d33-9d60-ae28ee930d79.png)
+![Screen Shot 2022-09-22 at 2 53 50 PM](https://user-images.githubusercontent.com/93701088/191858255-30ab2770-0b20-4c52-b940-a822941c11a7.png)
+
+
 
 ## Restaurant Owners - MyRestaurant List
 * Under MyRestaurant Page, business owner can see all listed restaurants.
