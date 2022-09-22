@@ -28,7 +28,6 @@ function GoogleMapAPI({ therestaurant }) {
                 //     lat: avglat,
                 //     lng: avglng,
             // }
-
             map?.setCenter(results[0].geometry.location);
 
             var marker = new window.google.maps.Marker({
@@ -36,7 +35,6 @@ function GoogleMapAPI({ therestaurant }) {
                 position: results[0].geometry.location
             });
 
-            // return center;
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
@@ -78,5 +76,5 @@ function GoogleMapAPI({ therestaurant }) {
     ) : <></>
 }
 
-// export default React.memo(GoogleMapAPI)
-export default GoogleMapAPI
+export default React.memo(GoogleMapAPI)
+// export default GoogleMapAPI

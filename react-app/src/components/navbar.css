@@ -297,7 +297,7 @@ div .home-search-container {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100vw;
+    /* width: 100vw; */
     padding: 50px 70px;
     /* position: fixed; */
 }
@@ -342,7 +342,7 @@ div .home-search-container {
 /* topbar container styling */
 
 .topbar-container {
-    min-width: 100vw;
+    /* min-width: 100vw; */
     padding: 2px 280px;
     font-style: italic;
     color: #484848;
