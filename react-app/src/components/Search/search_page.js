@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMyRestaurantThunk } from '../../store/restaurant';
 import { getMyReservationsThunk } from '../../store/reservation';
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import GoogleMapAPI from '../Gmap/gmap'
 
 export default function SearchPage() {
     const history = useHistory();
@@ -17,11 +18,7 @@ export default function SearchPage() {
     return (
         <>
             <h2>now you are in search page</h2>
-            <h2>now you are in search page</h2>
-            <h2>now you are in search page</h2>
-            <h2>now you are in search page</h2>
-            <h2>now you are in search page</h2>
-            <h2>now you are in search page</h2>
+            <GoogleMapAPI />
         </>
     )
 }

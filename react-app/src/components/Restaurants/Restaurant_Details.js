@@ -9,6 +9,7 @@ import MakeReservation from '../Reservations/Reservation_Create'
 import './restaurant_details.css'
 import defaultImg3 from '../../icons/defaultImg3.png'
 
+
 function RestaurantDetails() {
     const dispatch = useDispatch();
     const { restaurantId } = useParams();
@@ -47,6 +48,18 @@ function RestaurantDetails() {
 
     const userCheck = therestaurant?.owner_id === sessionUser?.id
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
+
+    // let map;
+
+    // function initMap() {
+    //     map = new google.maps.Map(document.getElementById("map"), {
+    //         center: { lat: -34.397, lng: 150.644 },
+    //         zoom: 8,
+    //     });
+    // }
+
+    // window.initMap = initMap;
+
 
     return loaded && therestaurant && (
         <>
@@ -89,6 +102,7 @@ function RestaurantDetails() {
                     {showModal && (<Modal onClose={() => setShowModal(false)}>
                         <EditRestaurant resId={therestaurant?.id} showModal={showModal} setShowModal={setShowModal} />
                     </Modal>)}
+                    <div id="map"></div>
                     <div className='res-right-container2'>
                         {(sessionUser?.id === therestaurant?.owner_id) ? <div>
                             <div>You are the restaurant owner.</div>
