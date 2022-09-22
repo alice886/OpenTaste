@@ -18,7 +18,6 @@ export default function SearchPage() {
     return (
         <>
             <h2>now you are in search page</h2>
-            <GoogleMapAPI />
         </>
     )
 }

@@ -6,6 +6,7 @@ import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
 import MakeReservation from '../Reservations/Reservation_Create'
+import GoogleMapAPI from '../Gmap/gmap';
 import './restaurant_details.css'
 import defaultImg3 from '../../icons/defaultImg3.png'
 
@@ -85,15 +86,16 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
+                                {/* <div>Capacity:{therestaurant?.capacity}</div> */}
+                                <div>Open at: {therestaurant?.open_time}</div>
+                                <div>Close at: {therestaurant?.close_time}</div>
+                                <br></br>
                                 <div>Location:</div>
                                 <div>{therestaurant?.address}</div>
                                 <div>{therestaurant?.city}</div>
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
-                                {/* <div>Capacity:{therestaurant?.capacity}</div> */}
-                                <br></br>
-                                <div>Open at: {therestaurant?.open_time}</div>
-                                <div>Close at: {therestaurant?.close_time}</div>
                             </div>
+                            <GoogleMapAPI />
                         </>
                     )
                     }
