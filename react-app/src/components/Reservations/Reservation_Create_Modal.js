@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
 import './reservation_create_modal.css'
@@ -34,7 +34,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const [reserveTime, setReserveTime] = useState((resTime + ':00'));
 
     if (new Date(reserveDate.split('-')) > d) {
-        const startCount = closeHour - openHour
+        // const startCount = closeHour - openHour
         for (let i = openHour + 1; i < closeHour; i++) {
             availableHour_count.push(i + ':00')
         }
@@ -60,7 +60,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const [isDisabled, setIsDisabled] = useState(true)
 
     const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser?.id;
+    // const user_id = sessionUser?.id;
     const restaurant_id = therestaurant?.id;
 
     const capacity_count = []

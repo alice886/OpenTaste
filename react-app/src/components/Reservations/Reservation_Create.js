@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
 import './reservation_create.css'
 
@@ -50,7 +50,7 @@ export default function MakeReservation({ therestaurant }) {
     const [isDisabled, setIsDisabled] = useState(true)
 
     const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser?.id;
+    // const user_id = sessionUser?.id;
     const restaurant_id = therestaurant?.id;
 
     const capacity_count = []
@@ -97,7 +97,7 @@ export default function MakeReservation({ therestaurant }) {
             if (reserveDate?.slice(5, 7) - todayMonth < 0) {
                 newErrors.push('You may not select dates from previous months')
             }
-            if (reserveDate?.slice(5, 7) - todayMonth == 0) {
+            if (reserveDate?.slice(5, 7) - todayMonth === 0) {
                 if (reserveDate?.slice(8, 10) - todayDate < 0) {
                     newErrors.push('You may not select dates before today')
                 }
@@ -128,7 +128,7 @@ export default function MakeReservation({ therestaurant }) {
             reserve_time: reserveTime,
         }
 
-        console.log('what is the payload', payload)
+        // console.log('what is the payload', payload)
         const newReservation = await dispatch(createReservationThunk(payload));
 
         if (newReservation) {
@@ -139,7 +139,7 @@ export default function MakeReservation({ therestaurant }) {
         }
     }
 
-    console.log(availableHour_count)
+    // console.log(availableHour_count)
 
     // JS is so weird that you need to either add '-' or ' ' to recognize html date input
     // console.log('today is --', d)

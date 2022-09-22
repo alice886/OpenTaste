@@ -6,8 +6,10 @@ import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
 import MakeReservation from '../Reservations/Reservation_Create'
+import GoogleMapAPI from '../Gmap/gmap';
 import './restaurant_details.css'
 import defaultImg3 from '../../icons/defaultImg3.png'
+
 
 function RestaurantDetails() {
     const dispatch = useDispatch();
@@ -48,6 +50,7 @@ function RestaurantDetails() {
     const userCheck = therestaurant?.owner_id === sessionUser?.id
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
+    
     return loaded && therestaurant && (
         <>
             <img className='restaurant-detail-cover'
@@ -72,15 +75,16 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
+                                {/* <div>Capacity:{therestaurant?.capacity}</div> */}
+                                <div>Open at: {therestaurant?.open_time}</div>
+                                <div>Close at: {therestaurant?.close_time}</div>
+                                <br></br>
                                 <div>Location:</div>
                                 <div>{therestaurant?.address}</div>
                                 <div>{therestaurant?.city}</div>
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
-                                {/* <div>Capacity:{therestaurant?.capacity}</div> */}
-                                <br></br>
-                                <div>Open at: {therestaurant?.open_time}</div>
-                                <div>Close at: {therestaurant?.close_time}</div>
                             </div>
+                            <GoogleMapAPI therestaurant={therestaurant}/>
                         </>
                     )
                     }
@@ -89,6 +93,7 @@ function RestaurantDetails() {
                     {showModal && (<Modal onClose={() => setShowModal(false)}>
                         <EditRestaurant resId={therestaurant?.id} showModal={showModal} setShowModal={setShowModal} />
                     </Modal>)}
+                    <div id="map"></div>
                     <div className='res-right-container2'>
                         {(sessionUser?.id === therestaurant?.owner_id) ? <div>
                             <div>You are the restaurant owner.</div>
