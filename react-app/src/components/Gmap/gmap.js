@@ -6,30 +6,14 @@ const containerStyle = {
     height: '300px'
 };
 
-
-function GoogleMapAPI() {
-    // require("dotenv").config();
-    const address = '3001 El Camino Real, Redwood City, CA, 94061, USA';
-    var geocoder= new window.google.maps.Geocoder();
-    geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status == 'OK') {
-            // map.setCenter(results[0].geometry.location);
-            // var marker = new google.maps.Marker({
-            //     map: map,
-            //     position: results[0].geometry.location
-            // });
-            console.log('what is the geocoded lat lng ---', results[0].geometry.location)
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
+// let center ={};
+const center = {
+    lat: 37.46858,
+    lng: -122.210374
+};
 
 
-    const center = useMemo(() => ({
-        lat: 37.46858,
-        lng: -122.210374
-    }), []);
-
+function GoogleMapAPI({ therestaurant }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: 'AIzaSyCYbe3jm8d31jqk-4buxC0wSuQwO6-eBH4'
@@ -50,6 +34,45 @@ function GoogleMapAPI() {
     }, [])
 
     // console.log('emm hello key??----------', apikey)
+    // require("dotenv").config();
+
+    const formattedAddress = therestaurant.address + ', ' + therestaurant.city + ', ' + therestaurant.state + ', ' + therestaurant.zip_code + ', USA';
+
+    // const address = '3001 El Camino Real, Redwood City, CA, 94061, USA';
+    console.log('what is formatted address', formattedAddress)
+
+    var geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({ 'address': formattedAddress }, function (results, status) {
+        if (status == 'OK') {
+            // map.setCenter(results[0].geometry.location);
+            // var marker = new google.maps.Marker({
+            //     map: map,
+            //     position: results[0].geometry.location
+            // });
+            // center = results[0].geometry.location;
+
+            console.log('what is the geocoded lat lng 1---', results[0].geometry.bounds)
+            console.log('what is the geocoded lat lng Ab---', results[0].geometry.bounds.Ab.lo)
+            console.log('what is the geocoded lat lng Ab---', results[0].geometry.bounds.Ab.hi)
+            console.log('what is the geocoded lat lng Va---', results[0].geometry.bounds.Va.lo)
+            console.log('what is the geocoded lat lng Va---', results[0].geometry.bounds.Va.hi)
+            center.lat = ((results[0].geometry.bounds.Ab.lo + results[0].geometry.bounds.Ab.hi) / 2).toFixed(6);
+            center.lng = ((results[0].geometry.bounds.Va.lo + results[0].geometry.bounds.Va.hi) / 2).toFixed(6);
+            console.log(center.lat)
+            console.log(center.lng)
+
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+
+
+    // const center = useMemo(() => ({
+    //     lat: 37.46858,
+    //     lng: -122.210374
+    // }), []);
+
+
 
     return isLoaded ? (
         <GoogleMap
@@ -58,7 +81,7 @@ function GoogleMapAPI() {
             zoom={18}
             zoomControl={true}
             onLoad={onLoad}
-            onUnmount={onUnmount}
+        // onUnmount={onUnmount}
         >
             { /* Child components, such as markers, info windows, etc. */}
             <Marker position={center}></Marker>
@@ -67,4 +90,5 @@ function GoogleMapAPI() {
     ) : <></>
 }
 
-export default React.memo(GoogleMapAPI)
+// export default React.memo(GoogleMapAPI)
+export default GoogleMapAPI

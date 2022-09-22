@@ -95,7 +95,7 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.city}</div>
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
                             </div>
-                            <GoogleMapAPI />
+                            <GoogleMapAPI therestaurant={therestaurant}/>
                         </>
                     )
                     }
