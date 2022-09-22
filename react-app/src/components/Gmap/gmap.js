@@ -3,15 +3,8 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '600px',
-    height: '300px'
+    height: '250px'
 };
-
-// let center ={};
-// let center = {
-//     lat: 37.46858,
-//     lng: -122.210374
-// };
-
 
 function GoogleMapAPI({ therestaurant }) {
 
@@ -28,33 +21,26 @@ function GoogleMapAPI({ therestaurant }) {
     var geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'address': formattedAddress }, function (results, status) {
         if (status === 'OK') {
-            // var marker = new google.maps.Marker({
-            //     map: map,
-            //     position: results[0].geometry.location
-            // });
             // center = results[0].geometry.location;
+            // let avglat = ((results[0].geometry.viewport.Ab.lo + results[0].geometry.viewport.Ab.hi) / 2).toFixed(6);
+            // let avglng = ((results[0].geometry.viewport.Va.lo + results[0].geometry.viewport.Va.hi) / 2).toFixed(6);
+            // center = {
+                //     lat: avglat,
+                //     lng: avglng,
+            // }
 
-            // console.log('what is the geocoded lat lng 1---', results)
-            // console.log('what is the geocoded lat lng 1---', results[0].geometry.viewport)
-            // console.log('what is the geocoded lat lng Ab---', results[0].geometry.viewport.Ab.lo)
-            // console.log('what is the geocoded lat lng Ab---', results[0].geometry.viewport.Ab.hi)
-            // console.log('what is the geocoded lat lng Va---', results[0].geometry.viewport.Va.lo)
-            // console.log('what is the geocoded lat lng Va---', results[0].geometry.viewport.Va.hi)
-            let avglat = ((results[0].geometry.viewport.Ab.lo + results[0].geometry.viewport.Ab.hi) / 2).toFixed(6);
-            let avglng = ((results[0].geometry.viewport.Va.lo + results[0].geometry.viewport.Va.hi) / 2).toFixed(6);
-            center = {
-                lat: avglat,
-                lng: avglng,
-            }
             map?.setCenter(results[0].geometry.location);
-            return center;
 
+            var marker = new window.google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+
+            // return center;
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     })
-
-    // .then(() => setLatlngLoaded(true))
 
 
     const { isLoaded } = useJsApiLoader({
@@ -75,14 +61,6 @@ function GoogleMapAPI({ therestaurant }) {
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
     }, [])
-
-
-    // const center = useMemo(() => ({
-    //     lat: 37.46858,
-    //     lng: -122.210374
-    // }), []);
-
-
 
     return latlngLoaded && isLoaded ? (
         (<GoogleMap
