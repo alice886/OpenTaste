@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
+
 export default function HomeSearch() {
     const dispatch = useDispatch();
     const history = useHistory();

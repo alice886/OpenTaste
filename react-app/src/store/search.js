@@ -27,9 +27,9 @@ export const searchRestaurantThunk = () => async dispatch => {
 const searchReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_SEARCH: {
-            const newState = {};
-            action.payload.forEach(restaurant => newState[restaurant.id] = restaurant);
-            newState = [...action.payload]
+            let newState = {};
+            action.payload.restaurants.forEach(restaurant => newState[restaurant.id] = restaurant);
+            newState = [...action.payload.restaurants]
             return newState;
         }
         default:
