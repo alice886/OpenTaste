@@ -22,7 +22,7 @@ function RestaurantDetails() {
     const [buttontitle, setButtontitle] = useState('See Reservations');
 
     useEffect(() => {
-        dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
+       dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
     }, [dispatch, showModal])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
@@ -43,7 +43,7 @@ function RestaurantDetails() {
         setShowReservations(false)
     }
 
-    if (!therestaurant) {
+    if (loaded && !therestaurant) {
         return <div className='restaurant-notfound'>uh oh, restaurant not found</div>
     }
 
