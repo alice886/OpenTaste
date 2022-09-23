@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from flask_paginate import Pagination, get_page_parameter
+# from flask_paginate import Pagination, get_page_parameter
 # from flask_paginate import Pagination
 from sqlalchemy.orm import joinedload, Load, subqueryload
 from app.models import db, Restaurant
