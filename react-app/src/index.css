@@ -54,6 +54,30 @@ body {
     list-style: none
 }
 
+.loading-img {
+    height: 90%;
+    margin: 0;
+}
+
+.loading-img>img {
+    height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    display: block;
+    animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
 button:disabled {
     /* background-color: #8E8E8E; */
     color: #535353;
