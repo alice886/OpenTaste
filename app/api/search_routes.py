@@ -17,12 +17,11 @@ def home_search():
     restaurants = db.session.query(Restaurant).all()
     # page = request.args.get(get_page_parameter(), type= int, default=1)
     # pagination = Pagination(page=page, total= restaurant.count(), search=False)
-    return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
-    # http://localhost:3000/api/search?dateTime=2022-09-17T12%3A00%3A00&covers=2&term=san%20mateo
-    # return {'url is': request.args.get('dateTime')} #returns '2022-09-17T12:00:00'
-    # return {'url is': request.args.get('covers')}  # returns '2'
-    # return {'url is': request.args.get('term')} # returns 'san mateo'
     # return {'url is': request.full_path}
+    terms = request.args.get('term');
+    parsed_terms = terms.split(' ');
+    return {'term is': parsed_terms}
+    # return {'term is': request.args.get('term')}
 
     # restaurants = db.session.query(Restaurant).all()
     # return {'restaurants': [restaurant.to_dict() for restaurant in restaurants]}
