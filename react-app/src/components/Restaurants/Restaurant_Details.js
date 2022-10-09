@@ -8,6 +8,7 @@ import ReservationDetails from '../Reservations/Business_Reservation'
 import MakeReservation from '../Reservations/Reservation_Create'
 import GoogleMapAPI from '../Gmap/gmap';
 import './restaurant_details.css'
+import loadingpic from '../../icons/Logo.jpg'
 import defaultImg3 from '../../icons/defaultImg3.png'
 
 
@@ -22,7 +23,7 @@ function RestaurantDetails() {
     const [buttontitle, setButtontitle] = useState('See Reservations');
 
     useEffect(() => {
-       dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
+        dispatch(getRestaurantDetailThunk(restaurantId)).then(() => setLoaded(true))
     }, [dispatch, showModal])
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
@@ -50,7 +51,12 @@ function RestaurantDetails() {
     const userCheck = therestaurant?.owner_id === sessionUser?.id
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
-    
+    if (!loaded) {
+        return <div className='loading-img'>
+            <img src={loadingpic}></img>
+        </div>
+    }
+
     return loaded && therestaurant && (
         <>
             <img className='restaurant-detail-cover'
@@ -84,7 +90,7 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.city}</div>
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
                             </div>
-                            <GoogleMapAPI therestaurant={therestaurant}/>
+                            <GoogleMapAPI therestaurant={therestaurant} />
                         </>
                     )
                     }

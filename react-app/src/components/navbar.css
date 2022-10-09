@@ -290,21 +290,22 @@ div .home-search-container {
     flex-direction: row;
     justify-content: space-evenly;
     text-align: center;
+    align-items: flex-start;
 
     font-family: 'DM Sans', sans-serif;
     align-items: center;
     margin-bottom: 0px;
     bottom: 0;
-    left: 0;
-    right: 0;
-    /* width: 100vw; */
+    /* left: 0;
+    right: 0; */
+    /* width: 100%; */
     padding: 50px 70px;
     /* position: fixed; */
 }
 
 .footer-top {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* background-color: blue; */
     width: 590px;
     padding: 0px 20px;
@@ -329,7 +330,7 @@ div .home-search-container {
 
 .footer-bottom>div {
     /* background-color: red; */
-    width: 910px;
+    width: 100%;
     margin-right: 180px;
 }
 
@@ -342,7 +343,7 @@ div .home-search-container {
 /* topbar container styling */
 
 .topbar-container {
-    /* min-width: 100vw; */
+    margin: 0px;
     padding: 2px 280px;
     font-style: italic;
     color: #484848;

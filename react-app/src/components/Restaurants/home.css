@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .home-all-container {
-    padding: 0 30px;
+    padding: 0 10px;
     display: grid;
     /* grid-template-columns: repeat(5, 16%); */
     grid-template-columns: repeat(4, 16%);
@@ -11,8 +11,9 @@
     gap: 20px;
     justify-content: center;
     padding-bottom: 60px;
-    min-width: 1556px;
+    /* min-width: 1556px; */
     font-size: 18px;
+    /* width: 100%; */
 }
 
 .home-subtitle {
@@ -43,9 +44,10 @@ div .find-banner {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    min-width: 1600px;
+    /* min-width: 1600px; */
     font-family: 'Varela Round', sans-serif;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .home-restaurants {
@@ -60,7 +62,7 @@ div .find-banner {
     transition: all .4s ease;
     position: relative;
     height: 330px;
-    min-width: 253px;
+    min-width: 243px;
 }
 
 div.home-res-cover {
@@ -73,6 +75,7 @@ div.home-res-cover {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .home-res-cover>img {

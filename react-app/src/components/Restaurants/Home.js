@@ -6,6 +6,7 @@ import { Modal } from '../context/Modal'
 import MakeReservationModal from '../Reservations/Reservation_Create_Modal'
 import HomeSearch from '../Search/home_search'
 import defaultImg3 from '../../icons/defaultImg3.png'
+import loadingpic from '../../icons/Logo.jpg'
 import './home.css'
 
 function Home() {
@@ -58,7 +59,12 @@ function Home() {
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     // console.log('aws route for images -- dont delete', restaurants[3].images[0].img)
-    console.log(nowHour)
+    // console.log(nowHour)
+    if (!loaded) {
+        return <div className='loading-img'>
+            <img src={loadingpic}></img>
+        </div>
+    }
 
     return loaded && (
         <div >
