@@ -2,17 +2,17 @@
     position: absolute;
     overflow: hidden;
     object-fit: cover;
-    height: 780px;
+    height: 880px;
     width: 100%;
     z-index: -94;
     background-color: white;
 }
 
 .restaurant-all-container {
-    margin: 430px 20% 150px;
+    margin: 430px 5% 150px;
     display: grid;
-    grid-template-columns: 600px 380px;
-    gap: 180px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
     min-height: 100%;
 }
 
@@ -29,7 +29,9 @@
 }
 
 .res-right-container {
-    width: 380px;
+    width: 50%;
+    min-width: 380px;
+    margin: auto auto auto 0px;
     padding: 10px 30px;
     padding-bottom: 30px;
     height: fit-content;
@@ -38,7 +40,9 @@
 }
 
 .res-left-container {
-    width: 630px;
+    /* width: 630px; */
+    width: 90%;
+    margin: auto 0px auto auto;
     padding: 0px 40px;
     padding-bottom: 30px;
     height: fit-content;
