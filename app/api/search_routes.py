@@ -21,8 +21,6 @@ def clean_terms(terms):
 @search_routes.route('', methods=['GET'])
 def home_search():
     terms = request.args.get('term')
-    # term = 'Francisco'
-    # cleaned_terms = ['Francisco', 'mymy']
     cleaned_terms = clean_terms(terms)
     result = []
     for term in cleaned_terms:
@@ -41,11 +39,6 @@ def home_search():
                 each = each.to_dict()
                 if each not in result:
                     result.append(each) 
-
-    # restaurants = db.session.query(Restaurant).filter(Restaurant.city.ilike(f'%{term}%')).all()
-    # for each in restaurants:
-    #     each = each.to_dict()
-    #     result.append(each)
     
     if len(result) > 0:
         return {'what is the length':len(result),'restaurants': result}
