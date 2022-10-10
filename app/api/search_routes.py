@@ -25,11 +25,12 @@ def home_search():
     result = []
     for term in cleaned_terms:
         restaurants = db.session.query(Restaurant)\
-        .filter(or_(Restaurant.name.ilike(f'%{term}%'),\
+        .filter(or_\
+        (Restaurant.name.ilike(f'%{term}%'),\
         Restaurant.address.ilike(f'%{term}%'),\
         Restaurant.city.ilike(f'%{term}%'),\
-        Restaurant.state.ilike(f'%{term}%'),\
-        Restaurant.zip_code.ilike(f'%{term}%'),\
+        Restaurant.state.ilike(f'{term}'),\
+        Restaurant.zip_code.ilike(f'{term}'),\
         Restaurant.description.ilike(f'%{term}%'),\
         Restaurant.cuisine.ilike(f'%{term}%')\
         ))\
