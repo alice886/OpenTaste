@@ -27,7 +27,12 @@ def home_search():
     onpage = int(request.args.get('page')) -1
     pagesize = 8
 
-    orderby = Restaurant.id
+    orderby = None
+
+    if sorting == 'default':
+        orderby = Restaurant.id
+    if sorting == 'newest':
+        orderby = Restaurant.id.desc()
     if sorting == 'priceasc':
         orderby = Restaurant.price_range
     if sorting == 'pricedes':
@@ -46,9 +51,7 @@ def home_search():
         ))\
         # .all()
 
-        restaurants = restaurants_total\
-        .order_by(orderby)\
-        .limit(pagesize).offset((onpage*pagesize))\
+        restaurants = restaurants_total.order_by(orderby).limit(pagesize).offset((onpage*pagesize))\
         .all()
 
         if len(restaurants)>0:
@@ -76,6 +79,8 @@ def home_search():
         if onpage*pagesize > len(recommend_total):
             return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
         return {'errors':['No restaurants met your search.'], 'restaurants':recomment_rest, 'length':len(recommend_total)}
+
+        
     # return {'url is': request.full_path}
     # page = request.args.get(get_page_parameter(), type= int, default=1)
     # pagination = Pagination(page=page, total= restaurant.count(), search=False)

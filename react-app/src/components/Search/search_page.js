@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchRestaurantThunk } from '../../store/search';
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import defaultImg3 from '../../icons/defaultImg3.png'
+import loadingpic from '../../icons/Logo.jpg'
 import './search_page.css'
 
 export default function SearchPage() {
     const history = useHistory();
+    const location = window.location.search
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const [showHomeReserve, setShowHomeReserve] = useState(false);
@@ -17,8 +19,8 @@ export default function SearchPage() {
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     useEffect(() => {
-        dispatch(searchRestaurantThunk()).then(() => setLoaded(true))
-    }, [dispatch])
+        dispatch(searchRestaurantThunk(location)).then(() => setLoaded(true))
+    }, [dispatch, history])
 
     const { dateTime, covers, term } = useParams();
     // console.log(dateTime)
@@ -42,6 +44,27 @@ export default function SearchPage() {
     }
 
 
+    const handleSort = async e => {
+        e.preventDefault();
+        let oldurl = location.split('&').slice(0, 3)
+        let newsort = '&sort=' + e.target.value + '&page=1'
+        let newlocation = oldurl.join('&') + newsort
+        setLoaded(false)
+        console.log('what is the location split', oldurl.join('&') + newsort)
+        dispatch(searchRestaurantThunk(newlocation)).then(() => {
+            setLoaded(true)
+            history.push(`/search${newlocation}`)
+        })
+
+    }
+
+    if (!loaded) {
+        return <div className='loading-img'>
+            <img src={loadingpic}></img>
+        </div>
+    }
+
+
     return loaded && (
         <div>
             <div className='search-all-container'>
@@ -50,7 +73,14 @@ export default function SearchPage() {
                 </div>
                 <div className='search-right'>
                     <div className='search-right-sort'>
-                        Sort v
+
+                        <select onChange={handleSort}>
+                            <option value={'default'} >Default Sorting</option>
+                            <option value={'newest'} >Newest</option>
+                            <option value={'priceasc'} >Price Range: Ascending - $</option>
+                            <option value={'pricedes'} >Price Range: Decending - $$$$$</option>
+                            {/* <option value={'highrate'}>Highest Rated</option> */}
+                        </select>
                     </div>
                     <div className='search-right-res'>
                         {searchRes?.map(restaurant => {
