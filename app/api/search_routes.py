@@ -40,10 +40,8 @@ def home_search():
     else:
         orderby = Restaurant.price_range.desc()
 
-    restaurants_total = []
-
     for term in cleaned_terms:
-        if term != 'undefined':
+        if term != None:
             restaurants_total = db.session.query(Restaurant)\
             .filter(or_\
             (Restaurant.name.ilike(f'%{term}%'),\
