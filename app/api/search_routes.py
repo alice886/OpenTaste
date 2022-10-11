@@ -50,7 +50,7 @@ def home_search():
             Restaurant.address.ilike(f'%{term}%'),\
             Restaurant.city.ilike(f'%{term}%'),\
             Restaurant.state.ilike(f'{term}'),\
-            Restaurant.zip_code == f'{term}',\
+            str(Restaurant.zip_code) == f'{term}',\
             Restaurant.description.ilike(f'%{term}%'),\
             Restaurant.cuisine.ilike(f'%{term}%')\
             ))\
