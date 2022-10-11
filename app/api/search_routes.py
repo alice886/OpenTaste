@@ -25,7 +25,7 @@ def home_search():
     cleaned_terms = clean_terms(terms)
     result = []
     onpage = int(request.args.get('page')) -1
-    pagesize = 30
+    pagesize = 40
 
     orderby = None
 
@@ -51,36 +51,42 @@ def home_search():
         Restaurant.description.ilike(f'%{term}%'),\
         Restaurant.cuisine.ilike(f'%{term}%')\
         ))\
-        # .all()
-
-        restaurants = restaurants_total.order_by(orderby).limit(pagesize).offset((onpage*pagesize))\
         .all()
 
-        if len(restaurants)>0:
-            for each in restaurants:
+        # restaurants = restaurants_total.order_by(orderby).limit(pagesize).offset((onpage*pagesize))\
+        # .all()
+
+        # if len(restaurants)>0:
+        if len(restaurants_total)>0:
+            for each in restaurants_total:
                 each = each.to_dict()
                 if each not in result:
                     result.append(each)
     
     typeofonpage = type(onpage)
 
-    if len(result) > 0:
+    # if len(result) > 0:
+    if len(restaurants_total) > 0:
         # return {'restaurants': result}
-        return {'length':len(restaurants_total.all()),'restaurants': result}
-        if onepage*pagesize > len(restaurants_total):
-            return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
+        # return {'length':len(restaurants_total.all()),'restaurants': result}
+        return {'restaurants': result}
+        # if onepage*pagesize > len(restaurants_total):
+        #     return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
     else:
         recomment_rest = []
         recommend_total = db.session.query(Restaurant).all()
-        recommend = db.session.query(Restaurant).order_by(orderby).limit(pagesize).offset((onpage*pagesize)).all()
-        if recommend is not None and len(recommend) > 0:
-            for each in recommend:
-                each = each.to_dict()
-                recomment_rest.append(each)
+        # recommend = db.session.query(Restaurant).order_by(orderby).limit(pagesize).offset((onpage*pagesize)).all()
+        # if recommend is not None and len(recommend) > 0:
+        for each in recommend_total:
+            each = each.to_dict()
+            recomment_rest.append(each)
         # return {'errors':['No restaurants met your search.'], 'restaurants':recomment_rest}
-        if onpage*pagesize > len(recommend_total):
-            return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
-        return {'errors':['No restaurants met your search.'], 'restaurants':recomment_rest, 'length':len(recommend_total)}
+        # if onpage*pagesize > len(recommend_total):
+        #     return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
+        # return {'errors':['No restaurants met your search.'], 'restaurants':recomment_rest, 'length':len(recommend_total)}
+        return { 'restaurants':recomment_rest}
+
+        
 
         
     # return {'url is': request.full_path}
