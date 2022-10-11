@@ -194,7 +194,7 @@ export default function ListNewRestaurant() {
                                 <option value={''} selected disabled hidden> Choose a price range </option>
                                 <option value={1} >$30 and under</option>
                                 <option value={2} > $31 to $50</option>
-                                <option value={3} > $50 to $100</option>
+                                <option value={3} > $51 to $100</option>
                                 <option value={4} > $101 and over</option>
                             </select>
 

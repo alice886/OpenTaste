@@ -25,7 +25,7 @@ def home_search():
     cleaned_terms = clean_terms(terms)
     result = []
     onpage = int(request.args.get('page')) -1
-    pagesize = 8
+    pagesize = 30
 
     orderby = None
 
