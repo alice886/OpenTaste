@@ -41,19 +41,18 @@ def home_search():
         orderby = Restaurant.price_range.desc()
 
     for term in cleaned_terms:
-        if term == 'undefined':
-            term = None
-        restaurants_total = db.session.query(Restaurant)\
-        .filter(or_\
-        (Restaurant.name.ilike(f'%{term}%'),\
-        Restaurant.address.ilike(f'%{term}%'),\
-        Restaurant.city.ilike(f'%{term}%'),\
-        Restaurant.state.ilike(f'{term}'),\
-        Restaurant.zip_code == f'{term}',\
-        Restaurant.description.ilike(f'%{term}%'),\
-        Restaurant.cuisine.ilike(f'%{term}%')\
-        ))\
-        .all()
+        if term != None:
+            restaurants_total = db.session.query(Restaurant)\
+            .filter(or_\
+            (Restaurant.name.ilike(f'%{term}%'),\
+            Restaurant.address.ilike(f'%{term}%'),\
+            Restaurant.city.ilike(f'%{term}%'),\
+            Restaurant.state.ilike(f'{term}'),\
+            Restaurant.zip_code == f'{term}',\
+            Restaurant.description.ilike(f'%{term}%'),\
+            Restaurant.cuisine.ilike(f'%{term}%')\
+            ))\
+            .all()
 
         # restaurants = restaurants_total.order_by(orderby).limit(pagesize).offset((onpage*pagesize))\
         # .all()
