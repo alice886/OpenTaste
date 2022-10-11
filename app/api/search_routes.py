@@ -21,7 +21,7 @@ def clean_terms(terms):
 @search_routes.route('', methods=['GET'])
 def home_search():
     terms = request.args.get('term')
-    sorting = request.args.get('sorting')
+    sorting = request.args.get('sort')
     cleaned_terms = clean_terms(terms)
     result = []
     onpage = int(request.args.get('page')) -1
@@ -31,11 +31,13 @@ def home_search():
 
     if sorting == 'default':
         orderby = Restaurant.id
-    if sorting == 'newest':
+    elif sorting == 'newest':
         orderby = Restaurant.id.desc()
-    if sorting == 'priceasc':
+    elif sorting == 'priceasc':
         orderby = Restaurant.price_range
-    if sorting == 'pricedes':
+    elif sorting == 'pricedes':
+        orderby = Restaurant.price_range.desc()
+    else:
         orderby = Restaurant.price_range.desc()
 
     for term in cleaned_terms:

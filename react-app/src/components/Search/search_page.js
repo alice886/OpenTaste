@@ -14,7 +14,11 @@ export default function SearchPage() {
     const [showHomeReserve, setShowHomeReserve] = useState(false);
     const [resId, setRestId] = useState();
     const [resTime, setResTime] = useState();
+    const [sortLabel, setSortLabel] = useState('Sort by');
     const searchRes = useSelector(state => state.search)
+    const searchResLength = useSelector(state => state.errors)
+
+    console.log(searchResLength, 'hahahahaha')
 
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
@@ -43,7 +47,6 @@ export default function SearchPage() {
         return Number(each['close_time'].slice(0, 2));
     }
 
-
     const handleSort = async e => {
         e.preventDefault();
         let oldurl = location.split('&').slice(0, 3)
@@ -52,6 +55,13 @@ export default function SearchPage() {
         setLoaded(false)
         console.log('what is the location split', oldurl.join('&') + newsort)
         dispatch(searchRestaurantThunk(newlocation)).then(() => {
+            if (e.target.value === 'newest') {
+                setSortLabel('Newest')
+            } else if (e.target.value === 'priceasc') {
+                setSortLabel('Price Range: Ascending - $')
+            } else {
+                setSortLabel('Price Range: Decending - $$$$$')
+            }
             setLoaded(true)
             history.push(`/search${newlocation}`)
         })
@@ -75,7 +85,7 @@ export default function SearchPage() {
                     <div className='search-right-sort'>
 
                         <select onChange={handleSort}>
-                            <option value={'default'} >Default Sorting</option>
+                            <option value={'default'} disabled selected>{sortLabel}</option>
                             <option value={'newest'} >Newest</option>
                             <option value={'priceasc'} >Price Range: Ascending - $</option>
                             <option value={'pricedes'} >Price Range: Decending - $$$$$</option>
