@@ -59,7 +59,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
         'Winery', 'Irish', 'Fushion/Eclectic', 'Tapas/Small Plates', 'Turkish', 'Persian', 'Burmese', 'Other']
 
-    const priceRangeDetail = ['', '$30 and under', '$31 to $50', '$50 to $100', '$101 and over'];
+    const priceRangeDetail = ['', '$30 and under', '$31 to $50', '$51 to $100', '$101 and over'];
 
     const zipcodeRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
     const coverRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/;
@@ -202,7 +202,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             <option value={price_range} selected hidden> {priceRangeDetail[price_range]} </option>
                             <option value={1} >$30 and under</option>
                             <option value={2} > $31 to $50</option>
-                            <option value={3} > $50 to $100</option>
+                            <option value={3} > $51 to $100</option>
                             <option value={4} > $101 and over</option>
                         </select>
                         <label>Address *</label>

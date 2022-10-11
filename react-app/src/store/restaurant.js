@@ -43,6 +43,7 @@ export const getAllRestaurantThunk = () => async dispatch => {
     });
     if (response.ok) {
         const allRestaurant = await response.json();
+        console.log('what is the response', allRestaurant)
         dispatch(getAllRestaurant(allRestaurant));
         return allRestaurant;
     } else {

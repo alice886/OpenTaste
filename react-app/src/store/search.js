@@ -8,8 +8,8 @@ const getSearch = restaurants => ({
 
 
 
-export const searchRestaurantThunk = () => async dispatch => {
-    const response = await fetch('/api/search', {
+export const searchRestaurantThunk = (location) => async dispatch => {
+    const response = await fetch(`/api/search${location}`, {
         headers: {
             'Content-Type': 'application/json'
         }

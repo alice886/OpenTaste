@@ -33,7 +33,8 @@ export default function HomeSearch() {
 
     const handleHomeSearch = async e => {
         e.preventDefault();
-        history.push(`/search?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}&page=1`)
+        history.push(`/search?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}&sorting=default&page=1`)
+        
         // console.log(`?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}`)
     }
 

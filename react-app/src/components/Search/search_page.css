@@ -6,7 +6,14 @@
 
 .search-left {
     padding: 20px;
+    width: 320px;
     /* background-color: cadetblue; */
+}
+
+.search-left>div:nth-child(1) {
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .search-right {
@@ -17,6 +24,15 @@
 .search-right-sort {
     text-align: right;
     padding: 0px 20px;
+    height: 40px;
+}
+
+.search-right-sort>select {
+    height: 100%;
+    width: 18em;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 /* .search-right-res {
@@ -24,10 +40,10 @@
 } */
 
 .search-res-each {
-    padding: 25px 60px;
-    background-color: aliceblue;
+    padding: 15px 60px;
     border-radius: 10px;
     margin: 20px 0px;
+    background-color: rgb(246, 246, 246);
 
 }
 
@@ -37,8 +53,13 @@
 
 .search-res-nav-whole {
     display: grid;
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 1fr 5fr;
     gap: 50px;
+    height: 150px;
+}
+
+.search-res-nav-whole>div {
+    height: 100%;
 }
 
 .search-res-cover {
@@ -53,12 +74,35 @@ div.search-res-cover>img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+
+}
+
+.search-res-each>a {
+    border-radius: 5px;
 }
 
 .search-res-details {
     font-size: 24px;
     color: black;
     margin: auto 0px;
+}
 
+.search-res-nav-div>a {
+    text-decoration: none;
+    color: rgb(149, 0, 0);
+    font-size: 28px;
+}
 
+.search-res-nav-div {
+    margin: 10px 0px;
+}
+
+.search-res-timeslots>button {
+    background-color: rgba(218, 17, 17, 0.89);
+    color: white;
+    font-weight: 100;
+    font-size: 18px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
