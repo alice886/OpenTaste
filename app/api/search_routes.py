@@ -47,7 +47,7 @@ def home_search():
         Restaurant.address.ilike(f'%{term}%'),\
         Restaurant.city.ilike(f'%{term}%'),\
         Restaurant.state.ilike(f'{term}'),\
-        Restaurant.zip_code.ilike(f'{term}'),\
+        Restaurant.zip_code == f'{term}',\
         Restaurant.description.ilike(f'%{term}%'),\
         Restaurant.cuisine.ilike(f'%{term}%')\
         ))\
@@ -62,8 +62,6 @@ def home_search():
                 each = each.to_dict()
                 if each not in result:
                     result.append(each)
-    
-    typeofonpage = type(onpage)
 
     # if len(result) > 0:
     if len(restaurants_total) > 0:
