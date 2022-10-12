@@ -209,31 +209,43 @@ div .home-search-container {
     margin: 17px;
 }
 
+
 .home-search-input {
-    height: 43px;
-    width: 350px;
+    /* height: 43px; */
+    background-color: #0070d2;
+    height: 46px;
+    width: fit-content;
     border-radius: 5px;
-    margin: 1px 15px;
+    margin: 1px 0px;
     font-size: 18px;
     font-family: 'DM Sans', sans-serif;
-    padding: 0 20px;
+    padding: 0 0px;
 }
 
 /* date input */
 #root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(1)>input {
-    height: 38px;
+    /* height: 38px; */
+    height: 96%;
     width: 130px;
     border-radius: 3px;
-    margin-left: 19px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
 }
 
+.home-search-input-bar{
+    height: 92%;
+    width: 380px;
+    border-radius: 3px;
+    border: .5px solid #F1F1F1;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+
+}
+
 .home-search-dattimeppl {
     width: 130px;
     margin: 0px;
-    padding: 3px;
     border-radius: 3px;
     font-size: 18px;
 }
@@ -242,7 +254,7 @@ div .home-search-container {
 #root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(2)>select,
 #root>div:nth-child(3)>div.find-your-table>div>div>div:nth-child(3)>select {
     width: 120px;
-    height: 46px;
+    height: 100%;
     margin: 0px;
     padding: 3px;
     border-radius: 2px;
