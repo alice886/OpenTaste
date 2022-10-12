@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchRestaurantThunk } from '../../store/search';
 import { Modal } from '../context/Modal';
-import MakeReservationModal from '../Reservations/Reservation_Create_Modal';
+import SearchReservationModal from '../Reservations/Reservation_Create_Modal_at_Search';
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import defaultImg3 from '../../icons/defaultImg3.png'
 import loadingpic from '../../icons/Logo.jpg'
@@ -30,6 +30,9 @@ export default function SearchPage() {
     }, [dispatch, history])
 
     let searchD = window.location.search.split('&')[0].split('=')[1].split('T')[0]
+    let saerchDyear = searchD.split('-')[0]
+    let saerchDmonth = searchD.split('-')[1]
+    let saerchDday = searchD.split('-')[2]
     let searchT = window.location.search.split('&')[0].split('=')[1].split('T')[1].split('%3A')
     let searchPt = Number(window.location.search.split('&')[1].split('=')[1])
 
@@ -56,6 +59,7 @@ export default function SearchPage() {
     const todayMonth = d.getMonth() + 1
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
+    const nowMin = d.getMinutes();
     const getHours = each => {
         return Number(each['close_time'].slice(0, 2));
     }
@@ -114,6 +118,16 @@ export default function SearchPage() {
     //     e.preventDefault();
     //     console.log('filter cuisine is---- in apply butt -----', filterCuisineArray)
     // }
+
+    const validateSearchDate = async (searchT) => {
+        if (Number(searchT[0]) < nowHour) {
+            return true;
+        }
+        if ((Number(searchT[0]) == nowHour) && (Number(searchT[1] <= nowMin))) {
+            return true;
+        }
+        return false;
+    }
 
     if (!loaded) {
         return <div className='loading-img'>
@@ -205,6 +219,8 @@ export default function SearchPage() {
                                         </div>
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                         <div className='search-res-timeslots'>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >exactly at {searchT[0]}:{searchT[1]}</button>
+                                            <button disabled={true}>or at other time ... </button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:00</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:15</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:30</button>
@@ -229,7 +245,7 @@ export default function SearchPage() {
                 </div>
             </div >
             {showHomeReserve && <Modal>
-                <MakeReservationModal searchPt={searchPt} resId={resId} resTime={resTime} setShowHomeReserve={setShowHomeReserve} />
+                <SearchReservationModal searchPt={searchPt} resId={resId} resTime={resTime} setShowHomeReserve={setShowHomeReserve} searchD={searchD} searchT={searchT} />
             </Modal>}
         </div >
     )
