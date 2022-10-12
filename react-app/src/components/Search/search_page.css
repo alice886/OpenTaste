@@ -1,7 +1,7 @@
 .search-all-container {
     display: grid;
     grid-template-columns: 1fr 6fr;
-    font-size: 23px;
+    font-size: 21px;
 }
 
 .search-left {
@@ -60,6 +60,7 @@
 
 .search-res-nav-whole>div {
     height: 100%;
+    width: 100%;
 }
 
 .search-res-cover {
@@ -87,6 +88,13 @@ div.search-res-cover>img {
     margin: auto 0px;
 }
 
+.search-res-timeslots {
+    height: 60px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .search-res-nav-div>a {
     text-decoration: none;
     color: rgb(149, 0, 0);
@@ -99,12 +107,18 @@ div.search-res-cover>img {
 
 .search-res-timeslots>button {
     background-color: rgba(218, 17, 17, 0.89);
+    min-width: 90px;
+    text-align: center;
     color: white;
     font-weight: 100;
     font-size: 18px;
-    margin: 10px 5px;
+    margin: 10px 8px;
     border-radius: 5px;
     padding: 5px 10px;
+}
+
+.search-res-timeslots>button:disabled{
+    background-color: rgb(195, 195, 195);
 }
 
 #priceradios,
@@ -117,4 +131,18 @@ div.search-res-cover>img {
 #priceradios:hover,
 .checkbox:hover {
     cursor: pointer;
+}
+
+.price-sort,
+.cuisine-sort{
+    padding: 10px 2px;
+    
+}
+
+.price-sort > fieldset,
+.cuisine-sort > fieldset{
+    padding: 25px;
+    border-radius: 7px;
+    border-style: hidden;
+    background-color: rgb(255, 244, 242);
 }

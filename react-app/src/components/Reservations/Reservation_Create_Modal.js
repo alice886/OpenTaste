@@ -3,22 +3,35 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { createReservationThunk } from '../../store/reservation'
+import { getAllRestaurantThunk } from '../../store/restaurant'
 import './reservation_create_modal.css'
 import defaultImg3 from '../../icons/defaultImg3.png'
 
-export default function MakeReservationModal({ resId, resTime, setShowHomeReserve }) {
+export default function MakeReservationModal({ resId, resTime, setShowHomeReserve, searchPt }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const restaurants = useSelector(state => state.restaurant.restaurants)
+    const [loadRestau, setLoadRestau] = useState(false)
+    const [partySize, setPartySize] = useState();
+
+    useEffect(() => {
+        dispatch(getAllRestaurantThunk()).then(() => {
+            setLoadRestau(true)
+            setPartySize(searchPt)
+        })
+    }, [dispatch])
 
     let therestaurant;
-    for (let i of restaurants) {
-        if (i.id === resId) {
-            therestaurant = i
+    if (restaurants) {
+        for (let i of restaurants) {
+            if (i.id === resId) {
+                therestaurant = i
+            }
         }
+
     }
-    const closeHour = Number(therestaurant.close_time.slice(0, 2))
-    const openHour = Number(therestaurant.open_time.slice(0, 2))
+    const closeHour = Number(therestaurant?.close_time.slice(0, 2))
+    const openHour = Number(therestaurant?.open_time.slice(0, 2))
 
     // to get today's dates
     let d = new Date();
@@ -53,7 +66,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
         }
     }
 
-    const [partySize, setPartySize] = useState();
+
     const [occasion, setOccasion] = useState();
     const [specialRequest, setSpecialRequest] = useState();
     const [errors, setErrors] = useState([])
@@ -184,7 +197,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     }
     changeReserveNote();
 
-    return (
+    return loadRestau && (
         <div className='create-reservation-container-modal'>
             <button className='home-modal-cancel' onClick={() => setShowHomeReserve(false)}>x</button>
             {(sessionUser?.id !== therestaurant?.owner_id) && (
@@ -195,7 +208,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             )}
             <div className='home-reserve-mo-detail'>
                 <div>
-                    <img src={therestaurant.cover} height={'100px'}
+                    <img src={therestaurant?.cover} height={'100px'}
                         onError={(e) => {
                             if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
                         }}
@@ -203,7 +216,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
                 </div>
                 <div>
                     <div>Reserving at </div>
-                    <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant.name}</NavLink></div>
+                    <div><NavLink to={`/restaurants/${therestaurant?.id}`}>{therestaurant?.name}</NavLink></div>
                     {/* <div>Business Hours:</div>
                     <div>{therestaurant.open_time} - {therestaurant.close_time}</div> */}
 
