@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchRestaurantThunk } from '../../store/search';
+import { Modal } from '../context/Modal';
+import MakeReservationModal from '../Reservations/Reservation_Create_Modal';
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import defaultImg3 from '../../icons/defaultImg3.png'
 import loadingpic from '../../icons/Logo.jpg'
@@ -14,8 +16,9 @@ export default function SearchPage() {
     const [showHomeReserve, setShowHomeReserve] = useState(false);
     const [resId, setRestId] = useState();
     const [resTime, setResTime] = useState();
+    const [resHour, setResHour] = useState();
     const [filterPrice, setFilterPrice] = useState();
-    const [filterCuisine, setFilterCuisine] = useState([]);
+    const [filterCuisine, setFilterCuisine] = useState();
     const [sortLabel, setSortLabel] = useState('Sort by');
     const searchRes = useSelector(state => state.search)
     const searchResLength = useSelector(state => state.errors)
@@ -25,6 +28,12 @@ export default function SearchPage() {
     useEffect(() => {
         dispatch(searchRestaurantThunk(location)).then(() => setLoaded(true))
     }, [dispatch, history])
+
+    let searchD = window.location.search.split('&')[0].split('=')[1].split('T')[0]
+    let searchT = window.location.search.split('&')[0].split('=')[1].split('T')[1].split('%3A')
+    let searchPt = Number(window.location.search.split('&')[1].split('=')[1])
+
+    console.log('what is search type', searchT)
 
     const { dateTime, covers, term } = useParams();
     // console.log(dateTime)
@@ -101,10 +110,10 @@ export default function SearchPage() {
 
 
 
-    const handleApplyFilter = async e => {
-        e.preventDefault();
-        console.log('filter cuisine is---- in apply butt -----', filterCuisineArray)
-    }
+    // const handleApplyFilter = async e => {
+    //     e.preventDefault();
+    //     console.log('filter cuisine is---- in apply butt -----', filterCuisineArray)
+    // }
 
     if (!loaded) {
         return <div className='loading-img'>
@@ -118,11 +127,17 @@ export default function SearchPage() {
             <div className='search-all-container'>
                 <div className='search-left'>
                     <div>
-                        {/* <button onClick={handleClearFilter}>Clear Filter</button> */}
-                        {/* <button onClick={handleApplyFilter}>Apply</button> */}
+                        {/* <button onClick={handleClearFilter}>Clear Filter</button>
+                        <button onClick={handleApplyFilter}>Apply</button> */}
                     </div>
-                    <div>
+                    <div className='price-sort'>
                         <fieldset >
+                            <label>Price Range</label>
+                            <div>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice()}>
+                                </input>
+                                <label>All Price Range</label>
+                            </div>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(1)}></input>
                                 <label>$30 and under</label>
@@ -139,17 +154,19 @@ export default function SearchPage() {
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(4)}></input>
                                 <label>$101 and over</label>
                             </div>
-                            <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice()} checked={true} ></input>
-                                <label>All Price Range</label>
-                            </div>
                         </fieldset>
                     </div>
-                    <div>
+                    <div className='cuisine-sort'>
                         <fieldset>
+                            <label>Cuisines</label>
+                            <div>
+                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine()}></input>
+                                <label >All Cuisines</label>
+                            </div>
                             {cuisine_count.map(each => (
                                 <div key={each}>
-                                    <input type='checkbox' class='checkbox' value={each}></input>
+                                    {/* <input type='checkbox' class='checkbox' value={each}></input> */}
+                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine(each)}></input>
                                     <label value={each}>{each}</label>
                                 </div>
                             ))}
@@ -170,8 +187,11 @@ export default function SearchPage() {
                         </select>
                     </div>
                     <div className='search-right-res'>
+                        <div>
+                            Reserving on {searchD} , at {searchT[0]}:{searchT[1]} , for the party of {searchPt}
+                        </div>
                         {searchRes?.map(restaurant => {
-                            return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (<div className='search-res-each' key={restaurant.id}>
+                            return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (filterCuisine ? (restaurant.cuisine === filterCuisine) : true) && (<div className='search-res-each' key={restaurant.id}>
                                 <NavLink className='search-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
                                     <div className='search-res-cover'>
                                         <img src={restaurant.cover} alt='restaurant img' height={'150px'}
@@ -186,7 +206,13 @@ export default function SearchPage() {
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                         <div className='search-res-timeslots'>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:15</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:30</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:45</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:15</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:30</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:45</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 1} disabled={getHours(restaurant) - 1 <= nowHour}>{getHours(restaurant) - 1}:00</button>
                                         </div>
                                     </div>
@@ -202,6 +228,9 @@ export default function SearchPage() {
                     </div>
                 </div>
             </div >
+            {showHomeReserve && <Modal>
+                <MakeReservationModal searchPt={searchPt} resId={resId} resTime={resTime} setShowHomeReserve={setShowHomeReserve} />
+            </Modal>}
         </div >
     )
 }

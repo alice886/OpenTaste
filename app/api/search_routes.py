@@ -40,11 +40,10 @@ def home_search():
     else:
         orderby = Restaurant.price_range.desc()
 
-    restaurants_total = []
-
     for term in cleaned_terms:
-        if term != 'undefined':
+        if term != None:
             restaurants_total = db.session.query(Restaurant)\
+            .order_by(orderby) \
             .filter(or_\
             (Restaurant.name.ilike(f'%{term}%'),\
             Restaurant.address.ilike(f'%{term}%'),\
@@ -75,7 +74,7 @@ def home_search():
         #     return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
     else:
         recomment_rest = []
-        recommend_total = db.session.query(Restaurant).all()
+        recommend_total = db.session.query(Restaurant).order_by(orderby).all()
         # recommend = db.session.query(Restaurant).order_by(orderby).limit(pagesize).offset((onpage*pagesize)).all()
         # if recommend is not None and len(recommend) > 0:
         for each in recommend_total:
