@@ -30,21 +30,18 @@ export default function SearchPage() {
     }, [dispatch, history])
 
     let searchD = window.location.search.split('&')[0].split('=')[1].split('T')[0]
-    let saerchDyear = searchD.split('-')[0]
-    let saerchDmonth = searchD.split('-')[1]
-    let saerchDday = searchD.split('-')[2]
+    let searchDyear = searchD.split('-')[0]
+    let searchDmonth = searchD.split('-')[1]
+    let searchDday = searchD.split('-')[2]
     let searchT = window.location.search.split('&')[0].split('=')[1].split('T')[1].split('%3A')
     let searchPt = Number(window.location.search.split('&')[1].split('=')[1])
 
-    console.log('what is search type', searchT)
-
-    const { dateTime, covers, term } = useParams();
-    // console.log(dateTime)
-    // console.log(covers)
-    // console.log(term)
+    console.log('what is tttt', searchT)
 
     const handleHomeReserve = async (e, id) => {
         e.preventDefault();
+        console.log('what is the e value now---> ', e.target.value)
+        console.log('what is the e value now---> ', e.target.value.split(",")[0] > nowHour)
         setRestId(id)
         setResTime(e.target.value)
         setShowHomeReserve(true)
@@ -56,8 +53,10 @@ export default function SearchPage() {
 
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
+    const nowYear = d.getFullYear()
     const todayMonth = d.getMonth() + 1
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
+    const nowDate = d.getDate();
     const nowHour = d.getHours();
     const nowMin = d.getMinutes();
     const getHours = each => {
@@ -90,13 +89,12 @@ export default function SearchPage() {
     // let cuisineList = document.getElementById('cuisineList')
 
 
-    const handleClearFilter = async e => {
-        e.preventDefault();
-        let radios = document.getElementsByName('priceradio')
-        setFilterPrice();
-        radios.checked = false
-
-    }
+    // const handleClearFilter = async e => {
+    //     e.preventDefault();
+    //     let radios = document.getElementsByName('priceradio')
+    //     setFilterPrice();
+    //     radios.checked = false
+    // }
 
     let checkboxes = document.querySelectorAll('.checkbox')
     let filterCuisineArray = [];
@@ -110,23 +108,22 @@ export default function SearchPage() {
             }
         }
     }
-    console.log('filter cuisine is---- in apply butt -----', filterCuisineArray)
 
+    console.log('what is now hour', 17 - nowHour)
 
-
-    // const handleApplyFilter = async e => {
-    //     e.preventDefault();
-    //     console.log('filter cuisine is---- in apply butt -----', filterCuisineArray)
-    // }
-
-    const validateSearchDate = async (searchT) => {
-        if (Number(searchT[0]) < nowHour) {
+    const validateSearchDate = async (e) => {
+        let daySearch = new Date(searchD)
+        let dayNowNew = new Date(nowYear + '-' + todayMonth + '-' + nowDate)
+        let slotHour = Number(e.target.value.split(',')[0]);
+        if (daySearch - dayNowNew > 0) {
+            return false;
+        } else if (daySearch - dayNowNew == 0) {
+            if (slotHour - nowHour > 0) {
+                return false;
+            }
             return true;
         }
-        if ((Number(searchT[0]) == nowHour) && (Number(searchT[1] <= nowMin))) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     if (!loaded) {
@@ -220,16 +217,18 @@ export default function SearchPage() {
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                         <div className='search-res-timeslots'>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >exactly at {searchT[0]}:{searchT[1]}</button>
-                                            <button disabled={true}>or at other time ... </button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:00</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:15</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:30</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3} disabled={getHours(restaurant) - 3 <= nowHour}>{getHours(restaurant) - 3}:45</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:00</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:15</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:30</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 2} disabled={getHours(restaurant) - 2 <= nowHour}>{getHours(restaurant) - 2}:45</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 1} disabled={getHours(restaurant) - 1 <= nowHour}>{getHours(restaurant) - 1}:00</button>
+                                            <> or </>
+                                            {/* <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3 +':00'} disabled={niXX <= nowHour}>{getHours(restaurant) - 3}:00</button> */}
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} disabled={false}>{getHours(restaurant) - 3}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',15'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:15</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',30'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:30</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',45'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:45</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',15'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:15</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',30'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:30</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',45'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:45</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 1) + ',00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 1}:00</button>
                                         </div>
                                     </div>
                                 </NavLink>

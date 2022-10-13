@@ -117,8 +117,10 @@ div.search-res-cover>img {
     padding: 5px 10px;
 }
 
-.search-res-timeslots>button:disabled{
+.search-res-timeslots>button:disabled:hover {
+    color: black;
     background-color: rgb(195, 195, 195);
+    cursor: not-allowed;
 }
 
 #priceradios,
@@ -134,13 +136,13 @@ div.search-res-cover>img {
 }
 
 .price-sort,
-.cuisine-sort{
+.cuisine-sort {
     padding: 10px 2px;
-    
+
 }
 
-.price-sort > fieldset,
-.cuisine-sort > fieldset{
+.price-sort>fieldset,
+.cuisine-sort>fieldset {
     padding: 25px;
     border-radius: 7px;
     border-style: hidden;
