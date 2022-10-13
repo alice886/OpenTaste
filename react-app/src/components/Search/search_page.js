@@ -18,6 +18,7 @@ export default function SearchPage() {
     const [resTime, setResTime] = useState();
     const [resHour, setResHour] = useState();
     const [filterPrice, setFilterPrice] = useState();
+    const [filterCity, setFilterCity] = useState();
     const [filterCuisine, setFilterCuisine] = useState();
     const [sortLabel, setSortLabel] = useState('Sort by');
     const searchRes = useSelector(state => state.search)
@@ -57,6 +58,8 @@ export default function SearchPage() {
         setResTime(e.target.value)
         setShowHomeReserve(true)
     }
+
+    const neiborhood_count = ['San Francisco', 'Burlingame','Palo Alto','San Mateo' ] 
 
     const cuisine_count = ['American', 'Italian', 'Steakhouse', 'Seafood', 'French', 'Indian', 'Mexican',
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
@@ -141,6 +144,7 @@ export default function SearchPage() {
         </div>
     }
 
+
     return loaded && (
         <div>
             <div className='search-all-container'>
@@ -151,7 +155,7 @@ export default function SearchPage() {
                     </div>
                     <div className='price-sort'>
                         <fieldset >
-                            <label>Price Range</label>
+                            <label>💰 Price Range</label>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() =>  setFilterPrice()}>
                                 </input>
@@ -159,25 +163,41 @@ export default function SearchPage() {
                             </div>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(1); setFClick(true) }}></input>
-                                <label>$30 and under</label>
+                                <label>$ - $30 and under</label>
                             </div>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(2); setFClick(true) }} ></input>
-                                <label>$31 to $50</label>
+                                <label>$$ - $31 to $50</label>
                             </div>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(3); setFClick(true) }}></input>
-                                <label>$51 to $100</label>
+                                <label>$$$ - $51 to $100</label>
                             </div>
                             <div>
                                 <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(4); setFClick(true) }}></input>
-                                <label>$101 and over</label>
+                                <label>$$$$ - $101 and over</label>
                             </div>
+                        </fieldset>
+                    </div>
+                    <div className='neighborhood-sort'>
+                        <fieldset>
+                            <label>📍 Neighborhood</label>
+                            <div>
+                                <input type="radio" class='checkbox' name='checkbox' onClick={() =>  setFilterCity()}></input>
+                                <label >All Cities</label>
+                            </div>
+                            {neiborhood_count.map(each => (
+                                <div key={each}>
+                                    {/* <input type='checkbox' class='checkbox' value={each}></input> */}
+                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => { setFilterCity(each); setFClick(true) }}></input>
+                                    <label value={each}>{each}</label>
+                                </div>
+                            ))}
                         </fieldset>
                     </div>
                     <div className='cuisine-sort'>
                         <fieldset>
-                            <label>Cuisines</label>
+                            <label>🧂 Cuisines</label>
                             <div>
                                 <input type="radio" class='checkbox' name='checkbox' onClick={() =>  setFilterCuisine()}></input>
                                 <label >All Cuisines</label>
@@ -199,8 +219,8 @@ export default function SearchPage() {
                         <select onChange={handleSort} >
                             <option value={'default'} disabled selected>{sortLabel}</option>
                             <option value={'newest'} >Newest</option>
-                            <option value={'priceasc'} >Price Range: Ascending - $</option>
-                            <option value={'pricedes'} >Price Range: Decending - $$$$</option>
+                            <option value={'priceasc'} >Ascending Price</option>
+                            <option value={'pricedes'} >Decending Price</option>
                             <option value={'default'} >Default</option>
                             {/* <option value={'highrate'}>Highest Rated</option> */}
                         </select>
@@ -216,7 +236,7 @@ export default function SearchPage() {
                         )}
                         {noResUnderF && fClicked && (<h3>No restaurants Under the Set Filters(s)</h3>)}
                         {searchRes?.map(restaurant => {
-                            return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (filterCuisine ? (restaurant.cuisine === filterCuisine) : true) && (<div className='search-res-each' key={restaurant.id}>
+                            return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (filterCuisine ? (restaurant.cuisine === filterCuisine) : true) && (filterCity ? (String(restaurant.city).toLocaleLowerCase() == String(filterCity).toLocaleLowerCase()) : true) && (<div className='search-res-each' key={restaurant.id}>
                                 <NavLink className='search-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
                                     <div className='search-res-cover'>
                                         <img src={restaurant.cover} alt='restaurant img' height={'150px'}
