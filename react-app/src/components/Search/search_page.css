@@ -61,6 +61,7 @@
 .search-res-nav-whole>div {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .search-res-cover {
@@ -91,8 +92,8 @@ div.search-res-cover>img {
 .search-res-timeslots {
     height: 60px;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
 }
 
 .search-res-nav-div>a {
@@ -112,9 +113,11 @@ div.search-res-cover>img {
     color: white;
     font-weight: 100;
     font-size: 18px;
-    margin: 10px 8px;
+    margin: 10px 0px;
     border-radius: 5px;
     padding: 5px 10px;
+    height: 35px;
+
 }
 
 .search-res-timeslots>button:disabled:hover {

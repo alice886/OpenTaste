@@ -40,8 +40,13 @@ export default function SearchPage() {
 
     const handleHomeReserve = async (e, id) => {
         e.preventDefault();
-        console.log('what is the e value now---> ', e.target.value)
-        console.log('what is the e value now---> ', e.target.value.split(",")[0] > nowHour)
+        let slotHour = Number((e.target.value).split(':')[0]);
+        console.log('what is the e value now1.1---> ', slotHour)
+        console.log('what is the e value now1.2---> ', nowHour)
+        console.log('what is the e value now2---> ', slotHour - nowHour)
+        console.log('what is the e value now3---> ', typeof e.target.value)
+        console.log('what is the e value now4---> ', e.target.value.split(":")[0])
+        console.log('what is the e value now5---> ', e.target.value.split(":")[0] > nowHour)
         setRestId(id)
         setResTime(e.target.value)
         setShowHomeReserve(true)
@@ -114,14 +119,14 @@ export default function SearchPage() {
     const validateSearchDate = async (e) => {
         let daySearch = new Date(searchD)
         let dayNowNew = new Date(nowYear + '-' + todayMonth + '-' + nowDate)
-        let slotHour = Number(e.target.value.split(',')[0]);
+        let slotHour = (e.target.value).split(':')[0];
         if (daySearch - dayNowNew > 0) {
             return false;
-        } else if (daySearch - dayNowNew == 0) {
-            if (slotHour - nowHour > 0) {
-                return false;
-            }
-            return true;
+            // } else if (daySearch - dayNowNew == 0) {
+            //     if (slotHour - nowHour > 0) {
+            //         return false;
+            //     }
+            //     return true;
         }
         return true;
     }
@@ -216,10 +221,10 @@ export default function SearchPage() {
                                         </div>
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                         <div className='search-res-timeslots'>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >exactly at {searchT[0]}:{searchT[1]}</button>
-                                            <> or </>
-                                            {/* <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3 +':00'} disabled={niXX <= nowHour}>{getHours(restaurant) - 3}:00</button> */}
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} disabled={false}>{getHours(restaurant) - 3}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >Reserve Now</button>
+                                            {/* <> or </>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} >{getHours(restaurant) - 3}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3 +':00'} disabled={niXX <= nowHour}>{getHours(restaurant) - 3}:00</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:00</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',15'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:15</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',30'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:30</button>
@@ -228,14 +233,10 @@ export default function SearchPage() {
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',15'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:15</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',30'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:30</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',45'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:45</button>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 1) + ',00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 1}:00</button>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 1) + ',00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 1}:00</button> */}
                                         </div>
                                     </div>
                                 </NavLink>
-
-                                {/* {restaurant => slotGenerator(restaurant).map(each => {
-                            <div>{each}</div>
-                        })} */}
                             </div >)
                         }
                         )

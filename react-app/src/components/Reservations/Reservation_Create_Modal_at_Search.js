@@ -7,7 +7,7 @@ import { getAllRestaurantThunk } from '../../store/restaurant'
 import './reservation_create_modal.css'
 import defaultImg3 from '../../icons/defaultImg3.png'
 
-export default function SearchReservationModal({ searchPt, resId, resTime, setShowHomeReserve, searchD, searchT}) {
+export default function SearchReservationModal({ searchPt, resId, resTime, setShowHomeReserve, searchD, searchT }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const restaurants = useSelector(state => state.restaurant.restaurants)
@@ -44,7 +44,7 @@ export default function SearchReservationModal({ searchPt, resId, resTime, setSh
     const availableHour_count = []
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
     const [reserveDate, setReserveDate] = useState(searchD);
-    const [reserveTime, setReserveTime] = useState((resTime + ':00'));
+    const [reserveTime, setReserveTime] = useState(searchT[0]+':'+searchT[1]);
 
     if (new Date(reserveDate.split('-')) > d) {
         // const startCount = closeHour - openHour
@@ -239,7 +239,8 @@ export default function SearchReservationModal({ searchPt, resId, resTime, setSh
                 ></input>
                 <label>Time *</label>
                 <select className='create-res-input-mo' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
-                    <option value={''} selected disabled hidden>Select the hour</option>
+                    {/* <option value={''} selected disabled hidden>Select the hour</option> */}
+                    <option value={''} selected disabled hidden>{searchT[0]}:{searchT[1]}</option>
                     {(availableHour_count.length > 0) ?
                         availableHour_count.map(each => {
                             return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
