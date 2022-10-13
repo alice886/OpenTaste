@@ -59,12 +59,12 @@ function RestaurantDetails() {
 
     return loaded && therestaurant && (
         <>
-            <img className='restaurant-detail-cover'
-                src={therestaurant?.cover}
-                onError={(e) => {
-                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
-                }}
-            />
+                <img className='restaurant-detail-cover'
+                    src={therestaurant?.cover}
+                    onError={(e) => {
+                        if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                    }}
+                />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>

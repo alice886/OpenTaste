@@ -23,11 +23,12 @@ export default function SearchPage() {
     const searchRes = useSelector(state => state.search)
     const searchResLength = useSelector(state => state.errors)
     const [noResUnderF, setNoResUnderF] = useState(false)
+    const [fClicked, setFClick] = useState(false)
 
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
     useEffect(() => {
-        dispatch(searchRestaurantThunk(location)).then(() => setLoaded(true))
+        dispatch(searchRestaurantThunk(location)).then(() => { setLoaded(true) })
     }, [dispatch, history])
 
     let searchD = window.location.search.split('&')[0].split('=')[1].split('T')[0]
@@ -37,14 +38,16 @@ export default function SearchPage() {
     let searchT = window.location.search.split('&')[0].split('=')[1].split('T')[1].split('%3A')
     let searchPt = Number(window.location.search.split('&')[1].split('=')[1])
 
+    let collectSearchFilters = document.getElementsByClassName('search-res-nav-whole')
+
     useEffect(() => {
-        if (document.getElementsByClassName('search-res-nav-whole').length === 0) {
+        if (collectSearchFilters?.length === 0) {
             setNoResUnderF(true)
         }
-        if (document.getElementsByClassName('search-res-nav-whole').length > 0) {
+        if (collectSearchFilters?.length > 0) {
             setNoResUnderF(false)
         }
-    }, [filterPrice, filterCuisine, dispatch])
+    }, [filterPrice, filterCuisine])
 
 
     const handleHomeReserve = async (e, id) => {
@@ -150,24 +153,24 @@ export default function SearchPage() {
                         <fieldset >
                             <label>Price Range</label>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice()}>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() =>  setFilterPrice()}>
                                 </input>
                                 <label>All Price Range</label>
                             </div>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(1)}></input>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(1); setFClick(true) }}></input>
                                 <label>$30 and under</label>
                             </div>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(2)} ></input>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(2); setFClick(true) }} ></input>
                                 <label>$31 to $50</label>
                             </div>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(3)}></input>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(3); setFClick(true) }}></input>
                                 <label>$51 to $100</label>
                             </div>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice(4)}></input>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => { setFilterPrice(4); setFClick(true) }}></input>
                                 <label>$101 and over</label>
                             </div>
                         </fieldset>
@@ -176,13 +179,13 @@ export default function SearchPage() {
                         <fieldset>
                             <label>Cuisines</label>
                             <div>
-                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine()}></input>
+                                <input type="radio" class='checkbox' name='checkbox' onClick={() =>  setFilterCuisine()}></input>
                                 <label >All Cuisines</label>
                             </div>
                             {cuisine_count.map(each => (
                                 <div key={each}>
                                     {/* <input type='checkbox' class='checkbox' value={each}></input> */}
-                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine(each)}></input>
+                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => { setFilterCuisine(each); setFClick(true) }}></input>
                                     <label value={each}>{each}</label>
                                 </div>
                             ))}
@@ -211,7 +214,7 @@ export default function SearchPage() {
                                 <br></br>
                                 - No Results Met Your Search - </h2>
                         )}
-                        {noResUnderF && (<h3>No restaurants Under the Set Filters(s)</h3>)}
+                        {noResUnderF && fClicked && (<h3>No restaurants Under the Set Filters(s)</h3>)}
                         {searchRes?.map(restaurant => {
                             return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (filterCuisine ? (restaurant.cuisine === filterCuisine) : true) && (<div className='search-res-each' key={restaurant.id}>
                                 <NavLink className='search-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
