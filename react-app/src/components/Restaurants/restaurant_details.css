@@ -3,7 +3,7 @@
     overflow: hidden;
     object-fit: cover;
     height: 880px;
-    width: 100%;
+    min-width: 100%;
     z-index: -94;
     background-color: white;
 }

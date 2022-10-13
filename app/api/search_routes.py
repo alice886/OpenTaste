@@ -85,6 +85,7 @@ def home_search():
         #     return {'errors':['No more restaurants to browse.'], 'restaurants':[]}
         # return {'errors':['No restaurants met your search.'], 'restaurants':recomment_rest, 'length':len(recommend_total)}
         return { 'restaurants':recomment_rest}
+        # return { 'restaurants':[]}
 
         
 

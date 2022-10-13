@@ -41,7 +41,7 @@ export default function HomeSearch() {
 
     return (
         <div className='home-search-container'>
-            <div >
+            <div className='home-search-input'>
                 <input
                     type='date'
                     value={searchDate}
@@ -51,7 +51,7 @@ export default function HomeSearch() {
                     className='home-search-dattimeppl'
                 ></input>
             </div>
-            <div>
+            <div className='home-search-input'>
                 <select className='home-search-dattimeppl' value={searchTime} onChange={e => setSearchTime(e.target.value)} required >
                     <option value={''} selected disabled >any time</option>
                     {availableHour_count.map(each => {
@@ -59,7 +59,7 @@ export default function HomeSearch() {
                     })}
                 </select>
             </div>
-            <div>
+            <div className='home-search-input'>
                 <select className='home-search-dattimeppl' onChange={e => setPartySize(e.target.value)} max={999} required>
                     <option value={1} >1 People</option>
                     <option value={2} selected >2 People</option>
@@ -69,14 +69,14 @@ export default function HomeSearch() {
                     <option value={21} >Larger Party</option>
                 </select>
             </div>
-            <div>
+            <div className='home-search-input'>
                 <input
                     type='text'
                     placeholder='  🔎 Location, Restaurant, or Cuisine'
                     onChange={e => setKeyWord(e.target.value)}
                     value={keyWord}
                     maxLength={50}
-                    className='home-search-input'
+                    className='home-search-input-bar'
                     required
                 ></input>
             </div>

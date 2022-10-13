@@ -61,6 +61,7 @@
 .search-res-nav-whole>div {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .search-res-cover {
@@ -91,8 +92,8 @@ div.search-res-cover>img {
 .search-res-timeslots {
     height: 60px;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
 }
 
 .search-res-nav-div>a {
@@ -112,13 +113,17 @@ div.search-res-cover>img {
     color: white;
     font-weight: 100;
     font-size: 18px;
-    margin: 10px 8px;
+    margin: 10px 0px;
     border-radius: 5px;
     padding: 5px 10px;
+    height: 35px;
+
 }
 
-.search-res-timeslots>button:disabled{
+.search-res-timeslots>button:disabled:hover {
+    color: black;
     background-color: rgb(195, 195, 195);
+    cursor: not-allowed;
 }
 
 #priceradios,
@@ -134,13 +139,13 @@ div.search-res-cover>img {
 }
 
 .price-sort,
-.cuisine-sort{
+.cuisine-sort {
     padding: 10px 2px;
-    
+
 }
 
-.price-sort > fieldset,
-.cuisine-sort > fieldset{
+.price-sort>fieldset,
+.cuisine-sort>fieldset {
     padding: 25px;
     border-radius: 7px;
     border-style: hidden;
