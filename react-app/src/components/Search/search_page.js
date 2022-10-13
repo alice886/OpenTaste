@@ -22,6 +22,7 @@ export default function SearchPage() {
     const [sortLabel, setSortLabel] = useState('Sort by');
     const searchRes = useSelector(state => state.search)
     const searchResLength = useSelector(state => state.errors)
+    const [noResUnderF, setNoResUnderF] = useState(false)
 
     const dollarSigns = ['', '$', '$$', '$$$', '$$$$'];
 
@@ -36,17 +37,19 @@ export default function SearchPage() {
     let searchT = window.location.search.split('&')[0].split('=')[1].split('T')[1].split('%3A')
     let searchPt = Number(window.location.search.split('&')[1].split('=')[1])
 
-    console.log('what is tttt', searchT)
+    useEffect(() => {
+        if (document.getElementsByClassName('search-res-nav-whole').length === 0) {
+            setNoResUnderF(true)
+        }
+        if (document.getElementsByClassName('search-res-nav-whole').length > 0) {
+            setNoResUnderF(false)
+        }
+    }, [filterPrice, filterCuisine, dispatch])
+
 
     const handleHomeReserve = async (e, id) => {
         e.preventDefault();
         let slotHour = Number((e.target.value).split(':')[0]);
-        console.log('what is the e value now1.1---> ', slotHour)
-        console.log('what is the e value now1.2---> ', nowHour)
-        console.log('what is the e value now2---> ', slotHour - nowHour)
-        console.log('what is the e value now3---> ', typeof e.target.value)
-        console.log('what is the e value now4---> ', e.target.value.split(":")[0])
-        console.log('what is the e value now5---> ', e.target.value.split(":")[0] > nowHour)
         setRestId(id)
         setResTime(e.target.value)
         setShowHomeReserve(true)
@@ -114,19 +117,17 @@ export default function SearchPage() {
         }
     }
 
-    console.log('what is now hour', 17 - nowHour)
-
     const validateSearchDate = async (e) => {
         let daySearch = new Date(searchD)
         let dayNowNew = new Date(nowYear + '-' + todayMonth + '-' + nowDate)
         let slotHour = (e.target.value).split(':')[0];
         if (daySearch - dayNowNew > 0) {
             return false;
-            // } else if (daySearch - dayNowNew == 0) {
-            //     if (slotHour - nowHour > 0) {
-            //         return false;
-            //     }
-            //     return true;
+        } else if (daySearch - dayNowNew == 0) {
+            if (slotHour - nowHour > 0) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
@@ -136,7 +137,6 @@ export default function SearchPage() {
             <img src={loadingpic}></img>
         </div>
     }
-
 
     return loaded && (
         <div>
@@ -206,6 +206,12 @@ export default function SearchPage() {
                         <div>
                             Reserving on {searchD} , at {searchT[0]}:{searchT[1]} , for the party of {searchPt}
                         </div>
+                        {(searchRes.length === 0) && (
+                            <h2>
+                                <br></br>
+                                - No Results Met Your Search - </h2>
+                        )}
+                        {noResUnderF && (<h3>No restaurants Under the Set Filters(s)</h3>)}
                         {searchRes?.map(restaurant => {
                             return (filterPrice ? (restaurant.price_range === filterPrice) : true) && (filterCuisine ? (restaurant.cuisine === filterCuisine) : true) && (<div className='search-res-each' key={restaurant.id}>
                                 <NavLink className='search-res-nav-whole' to={`/restaurants/${restaurant.id}`}>
@@ -222,8 +228,9 @@ export default function SearchPage() {
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
                                         <div className='search-res-timeslots'>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >Reserve Now</button>
-                                            {/* <> or </>
-                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} >{getHours(restaurant) - 3}:00</button>
+                                            {/* 
+                                            <> or </>
+                                            <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} >Find Another Available Spots</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={getHours(restaurant) - 3 +':00'} disabled={niXX <= nowHour}>{getHours(restaurant) - 3}:00</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ':00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:00</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 3) + ',15'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 3}:15</button>

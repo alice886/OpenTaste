@@ -14,6 +14,8 @@ export default function SearchReservationModal({ searchPt, resId, resTime, setSh
     const [loadRestau, setLoadRestau] = useState(false)
     const [partySize, setPartySize] = useState(searchPt);
 
+    const passInSearchTime = searchT.join(":")
+
     useEffect(() => {
         dispatch(getAllRestaurantThunk()).then(() => {
             setLoadRestau(true)
@@ -65,6 +67,13 @@ export default function SearchReservationModal({ searchPt, resId, resTime, setSh
             }
         }
     }
+
+    // const availabilityCheck = time =>{
+    //     if (daySearch - dayNowNew > 0 && time >openHour && time < closeHour){
+    //         return passInSearchTime;
+    //     }
+    //     return '- selected time not available'
+    // }
 
 
     const [occasion, setOccasion] = useState();
@@ -240,7 +249,7 @@ export default function SearchReservationModal({ searchPt, resId, resTime, setSh
                 <label>Time *</label>
                 <select className='create-res-input-mo' value={reserveTime} onChange={e => setReserveTime(e.target.value)} required >
                     {/* <option value={''} selected disabled hidden>Select the hour</option> */}
-                    <option value={''} selected disabled hidden>{searchT[0]}:{searchT[1]}</option>
+                    <option value={''} selected disabled hidden>Choose An Available Spot Here</option>
                     {(availableHour_count.length > 0) ?
                         availableHour_count.map(each => {
                             return <option key={each} value={each} onClick={e => setReserveTime(e.target.value)}>{each}</option>
