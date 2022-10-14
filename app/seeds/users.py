@@ -6,22 +6,22 @@ def seed_users():
     demo = User(
         username='Demo', first_name='Demo',last_name='Lition',email='demo@aa.io', password='password')
     bobbie = User(
-        username='bobbie',first_name='Bobbie',last_name='Axelrod', email='bobbie@aa.io', password='password')
+        username='Bobbie',first_name='Bobbie',last_name='Axelrod', email='bobbie@aa.io', password='password')
     alice = User(
-        username='alice',first_name='alice',last_name='L', email='alice@aa.io', password='password')
+        username='Alice',first_name='Alice',last_name='Li', email='alice@aa.io', password='password')
     grace = User(
-        username='grace',first_name='grace',last_name='C', email='grace@aa.io', password='password')
-    # lucas = User(
-    #     username='lucas', first_name='Lucas',last_name='H',email='lucas@aa.io', password='password')
-    # remi = User(
-    #     username='remi', first_name='Remi',last_name='H',email='remi@aa.io', password='password')
+        username='Grace',first_name='Grace',last_name='Cn', email='grace@aa.io', password='password')
+    lucas = User(
+        username='Lucas', first_name='Lucas',last_name='Hg',email='lucas@aa.io', password='password')
+    remi = User(
+        username='Remi', first_name='Remi',last_name='Hg',email='remi@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(bobbie)
     db.session.add(alice)
     db.session.add(grace)
-    # db.session.add(lucas)
-    # db.session.add(remi)
+    db.session.add(lucas)
+    db.session.add(remi)
 
     db.session.commit()
 

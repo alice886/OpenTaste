@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required,current_user
-from app.models import db,User,Restaurant, Image, Reservation
+from app.models import db,User,Restaurant, Image, Reservation, Review
 from sqlalchemy.orm import joinedload, Load, join
 
 user_routes = Blueprint('users', __name__)
@@ -18,25 +18,6 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
-
-@user_routes.route('/myrestaurants666/',methods=['GET'])
-@user_routes.route('/myrestaurants666',methods=['GET'])
-@login_required
-def my_restaurants():
-    uid = current_user.id
-    # restaurants = Restaurant.query.options(joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
-    # # restaurants = db.session.query(Restaurant).options(db.joinedload(Image,Restaurant.images)).filter(Restaurant.owner_id == uid).all()
-    restaurants = db.session.query(Restaurant).filter(Restaurant.owner_id == uid).all()
-    restaurants_list=[]
-    # if restaurants is not None:
-    if restaurants is not None and len(restaurants) > 0:
-        for restaurant in restaurants:
-            restaurant_dict = restaurant.to_dict()
-            # restruant_dict['images']= restaurant.images.to_dict()
-            restaurants_list.append(restaurant_dict)
-        return {'restaurants': restaurants_list}
-    else:
-        return {'errors':['You have not list a restaurant.']},404
 
 @user_routes.route('/myreservations',methods=['GET'])
 @login_required

@@ -9,7 +9,10 @@ class Review(db.Model, UserMixin):
     __tablename__ = 'reviews'
 
     id = db.Column(db.Integer, primary_key=True)
-    rating = db.Column(db.Integer, nullable=False)
+    food = db.Column(db.Integer, nullable=False)
+    service = db.Column(db.Integer, nullable=False)
+    ambience = db.Column(db.Integer, nullable=False)
+    overall = db.Column(db.Integer, nullable=False)
     review_body = db.Column(db.String(200))
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
@@ -28,7 +31,10 @@ class Review(db.Model, UserMixin):
     def to_dict(self):
         return{
             'id':self.id,
-            'rating':self.rating,
+            'food':self.food,
+            'service':self.service,
+            'ambience':self.ambience,
+            'overall':self.overall,
             'review_body':self.review_body,
             'created_at':self.created_at,
             'updated_at':self.updated_at,
