@@ -23,7 +23,7 @@ def my_reviews():
             reviews_list.append(review_dict)
         return {'reviews': reviews_list}
     else:
-        return {'reviews': []}
+        return {'errors':['No review is found.']},404
 
 @review_routes.route('/',methods=['POST'])
 @review_routes.route('',methods=['POST'])

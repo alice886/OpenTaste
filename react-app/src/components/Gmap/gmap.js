@@ -16,7 +16,7 @@ function GoogleMapAPI({ therestaurant }) {
     const formattedAddress = therestaurant.address + ', ' + therestaurant.city + ', ' + therestaurant.state + ', ' + therestaurant.zip_code + ', USA';
 
     // const address = '3001 El Camino Real, Redwood City, CA, 94061, USA';
-    console.log('what is formatted address', formattedAddress)
+    // console.log('what is formatted address', formattedAddress)
 
     var geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'address': formattedAddress }, function (results, status) {

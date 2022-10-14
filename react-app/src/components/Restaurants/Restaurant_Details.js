@@ -5,6 +5,7 @@ import { Modal } from '../context/Modal'
 import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
+import BusinessReviews from '../Reviews/Business_Reviews';
 import MakeReservation from '../Reservations/Reservation_Create'
 import GoogleMapAPI from '../Gmap/gmap';
 import './restaurant_details.css'
@@ -91,9 +92,11 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
                             </div>
                             <GoogleMapAPI therestaurant={therestaurant} />
+                            <BusinessReviews />
                         </>
                     )
                     }
+                   
                 </div>
                 <div className='res-right-container'>
                     {showModal && (<Modal onClose={() => setShowModal(false)}>
