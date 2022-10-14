@@ -42,6 +42,7 @@ def review_create():
             updated_at=today,
             user_id=current_user.id,
             restaurant_id=form.data['restaurant_id'],
+            reservation_id=form.data['reservation_id']
         )
         db.session.add(review)
         db.session.commit()

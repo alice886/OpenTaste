@@ -16,7 +16,7 @@ def seed_reservations():
         created_at=today,
         # confirmation_number='R1T3KX',
         user_id=1,
-        restaurant_id=5,
+        restaurant_id=8,
         )
     reser2 = Reservation(
         party_size=6, 
@@ -26,7 +26,7 @@ def seed_reservations():
         created_at=today,
         # confirmation_number='1AF9DI',
         user_id=2,
-        restaurant_id=1,
+        restaurant_id=2,
         )
     reser3 = Reservation(
         party_size=2, 
@@ -36,7 +36,7 @@ def seed_reservations():
         created_at=today,
         # confirmation_number='XXW7SG',
         user_id=3,
-        restaurant_id=7,
+        restaurant_id=2,
         )
     reser4 = Reservation(
         party_size=2, 

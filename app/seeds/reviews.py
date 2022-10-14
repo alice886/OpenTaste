@@ -18,6 +18,7 @@ def seed_reviews():
         updated_at=today,
         user_id=1,
         restaurant_id=8,
+        reservation_id=1,
         )
     review2 = Review(
         food=4,
@@ -29,6 +30,7 @@ def seed_reviews():
         updated_at=today,
         user_id=1,
         restaurant_id=2,
+        reservation_id=5,
         )
     review3 = Review(
         food=4,
@@ -38,8 +40,9 @@ def seed_reviews():
         review_body='We had wonderful servers! They were a joy !',
         created_at=today,
         updated_at=today,
-        user_id=1,
-        restaurant_id=1,
+        user_id=2,
+        restaurant_id=2,
+        reservation_id=2,
         )
     review4 = Review(
         food=4,
@@ -49,8 +52,9 @@ def seed_reviews():
         review_body='Reserved and arrived on time but then waited another 35 minutes before being seated. Thought it must be busy… it’s not… lots of empty tables. Apparently, they specifically want to wait for a round table of 5 for us. And the people at that table simply wasn’t leaving after their meal. They finally then decided to put together a 5 people seating using 3 rectangular tables. Terrible. Food was ok…the fried chicken on top of waffle made waffle very soggy.',
         created_at=today,
         updated_at=today,
-        user_id=1,
-        restaurant_id=1,
+        user_id=3,
+        restaurant_id=2,
+        reservation_id=3,
         )
     review5 = Review(
         food=5,
@@ -60,8 +64,9 @@ def seed_reviews():
         review_body='Great food, great services. Nothing to complain. Kids friendly as well.',
         created_at=today,
         updated_at=today,
-        user_id=1,
-        restaurant_id=19,
+        user_id=4,
+        restaurant_id=4,
+        reservation_id=4,
         )
     
 

@@ -25,7 +25,7 @@ def seed_restaurants():
 
     rest2 = Restaurant(
         name='Avenida', 
-        owner_id=3,
+        owner_id=5,
         price_range=2, 
         address='201 E 3rd Avenue', 
         city='San Mateo', 

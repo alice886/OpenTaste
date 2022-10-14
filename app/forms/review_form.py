@@ -22,4 +22,5 @@ class ReviewForm(FlaskForm):
     ambience = IntegerField('ambience',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=5)])
     overall = IntegerField('value',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=5)])
     review_body = StringField('state',validators=[validate_string,Length(min=0,max=500)])
-    restaurant_id = IntegerField('restaurant_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=100)])
+    restaurant_id = IntegerField('restaurant_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=200)])
+    reservation_id = IntegerField('reservation_id',validators=[validate_integer,DataRequired(),NumberRange(min=1,max=200)])

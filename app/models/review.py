@@ -19,6 +19,7 @@ class Review(db.Model, UserMixin):
 
     user_id= db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     restaurant_id= db.Column(db.Integer, db.ForeignKey('restaurants.id'),nullable=False)
+    reservation_id= db.Column(db.Integer, db.ForeignKey('reservations.id'),nullable=False)
 
     user = db.relationship('User',back_populates='reviews',foreign_keys=[user_id])
     restaurant = db.relationship('Restaurant',back_populates='reviews',foreign_keys=[restaurant_id])
