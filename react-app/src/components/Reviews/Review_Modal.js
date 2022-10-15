@@ -42,9 +42,9 @@ export default function ReviewModal({ }) {
         const payload = {
 
         }
-
-
     }
+
+
     const starRange = [1, 2, 3, 4, 5];
 
     const handleFood = async e => {
@@ -65,11 +65,22 @@ export default function ReviewModal({ }) {
         setReviewOverall(e.target.value);
     }
 
+    const whatRatingis = score => {
+        if (score == 5) return 'Exceptional!';
+        if (score == 4) return 'Awesome';
+        if (score == 3) return 'Good';
+        if (score == 2) return 'Okay';
+        if (score == 1) return 'Welp...';
+        if (score == 0) return '';
+    }
+
     console.log('what is f/s/a/v', reviewFood, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
+    console.log('what is f/s/a/v', reviewFood === 5, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
 
 
     return (
         <div className='create-reservation-container-modal'>
+            <button>x</button>
             <form>
                 <div>How was your experience at XXX ?</div>
                 <div>Rate your dinning experience now</div>
@@ -80,6 +91,8 @@ export default function ReviewModal({ }) {
                             {(each <= reviewFood) ? <i class="fa-solid fa-star" ></i> : <i class="fa-regular fa-star"></i>}
                         </button>
                     })}
+                    <div></div>
+                    <label>{whatRatingis(reviewFood)}</label>
                 </div>
                 <div className="rating-button" >
                     <label>Service</label>
@@ -88,6 +101,8 @@ export default function ReviewModal({ }) {
                             {(each <= reviewService) ? <i class="fa-solid fa-star"></i> : <i class="fa-regular fa-star"></i>}
                         </button>
                     })}
+                    <div></div>
+                    <label>{whatRatingis(reviewService)}</label>
                 </div>
                 <div className="rating-button" >
                     <label>Ambience</label>
@@ -96,6 +111,8 @@ export default function ReviewModal({ }) {
                             {(each <= reviewAmbience) ? <i class="fa-solid fa-star"></i> : <i class="fa-regular fa-star"></i>}
                         </button>
                     })}
+                    <div></div>
+                    <label>{whatRatingis(reviewAmbience)}</label>
                 </div>
                 <div className="rating-button" >
                     <label>Overall</label>
@@ -104,6 +121,18 @@ export default function ReviewModal({ }) {
                             {(each <= reviewOverall) ? <i class="fa-solid fa-star"></i> : <i class="fa-regular fa-star"></i>}
                         </button>
                     })}
+                    <div></div>
+                    <label>{whatRatingis(reviewOverall)}</label>
+                </div>
+                <div className="rating-comments">
+                    <input
+                    placeholder='nice nice'
+                    >
+                    </input>
+                </div>
+                <div>
+                    <button>Submit</button>
+                    <button>Delete Review</button>
                 </div>
             </form>
         </div>

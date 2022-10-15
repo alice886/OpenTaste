@@ -1,6 +1,6 @@
 .rating-button {
     display: grid;
-    grid-template-columns: 130px repeat(5, 1fr);
+    grid-template-columns: 140px repeat(5, 1fr) 15px 150px;
 }
 
 
@@ -19,5 +19,12 @@
 
 .rating-button>label {
     font-size: 22px;
-    margin: auto 0px;
+    margin: auto 5px;
+}
+
+#modal-content > div > form > div:nth-child(3) > label:nth-child(7),
+#modal-content > div > form > div:nth-child(4) > label:nth-child(7),
+#modal-content > div > form > div:nth-child(5) > label:nth-child(7),
+#modal-content > div > form > div:nth-child(6) > label:nth-child(7){
+    margin-left: 25x;
 }
