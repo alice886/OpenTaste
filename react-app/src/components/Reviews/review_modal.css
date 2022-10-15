@@ -1,0 +1,23 @@
+.rating-button {
+    display: grid;
+    grid-template-columns: 130px repeat(5, 1fr);
+}
+
+
+.rating-button>button {
+    font-size: 28px;
+    padding: 5px;
+    text-align: center;
+    margin: 0px 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.rating-button> button > i{
+    pointer-events:none; 
+}
+
+.rating-button>label {
+    font-size: 22px;
+    margin: auto 0px;
+}

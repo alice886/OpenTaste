@@ -85,22 +85,24 @@ div.myreservation-expire {
 
 .rate-reservation{
     position: absolute;
-    bottom: 20%;
+    bottom: 15%;
     right: 4%;
 }
 
 
 .rate-reservation > button{
     color: white;
-    background-color: #00aeb4;
+    background-color: #8a0000;
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 6px;
     font-size: 19px;
+    font-weight: 300;
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 
 .rate-reservation > button:hover{
-    background: rgba(0, 196, 203, 0.9);
+    background: rgba(226, 0, 0, 0.9);
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 

@@ -4,7 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
 import EditReservation from '../Reservations/Reservation_Edit'
-import ReviewModal from '../Reviews/Review_Model'
+import ReviewModal from '../Reviews/Review_Modal'
 import defaultImg3 from '../../icons/defaultImg3.png'
 import './my_reservations.css'
 
@@ -13,7 +13,7 @@ export default function MyReservations() {
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const [showEditReser, setShowEditReser] = useState(false);
-    const [showReviewModal, setShowReviewModal] = useState(false);
+    const [showReviewModal, setShowReviewModal] = useState(true);
     const [resId, setResId] = useState();
     const myReservations = useSelector(state => state.reservation.reservations);
     const sessionUser = useSelector(state => state.session.user);
@@ -85,6 +85,9 @@ export default function MyReservations() {
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
                         </div>) : (<div className='myreservation-expire'>
                             <div>Reservation Expired</div>
+                            {/* <div className='rate-reservation'>
+                                <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
+                            </div> */}
                         </div>)}
                         <div className='rate-reservation'>
                             <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
