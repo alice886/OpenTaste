@@ -6,7 +6,7 @@ import { createReviewThunk } from '../../store/review'
 import { getAllRestaurantThunk } from '../../store/restaurant'
 import './review_modal.css'
 
-export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId, setShowReviewModal }) {
+export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId, setShowEditReviewModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     // const restaurants = useSelector(state => state.restaurant.restaurants)
@@ -55,7 +55,7 @@ export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId, se
         const newreview = await dispatch(createReviewThunk(payload))
         if (newreview) {
             history.push(`/myreservations`)
-            setShowReviewModal(false)
+            setShowEditReviewModal(false)
         }
     }
 
@@ -94,9 +94,9 @@ export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId, se
 
     return (
         <div className='create-review-container-modal'>
-            <button onClick={() => setShowReviewModal(false)}>x</button>
+            <button onClick={() => setShowEditReviewModal(false)}>x</button>
             <form>
-                <div>How was your experience at {reviewRestaurant?.name} ?</div>
+                <div>Update your review for {reviewRestaurant?.name} ?</div>
                 <div>Rate your dinning reservation on {reviewDate}:</div>
                 <div className="rating-button" >
                     <label>Food *</label>

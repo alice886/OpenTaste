@@ -41,4 +41,5 @@ class Review(db.Model, UserMixin):
             'updated_at':self.updated_at,
             'user_id':self.user_id,
             'restaurant_id':self.restaurant_id,
+            'reservation_id':self.reservation_id,
         }

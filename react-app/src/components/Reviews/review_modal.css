@@ -1,5 +1,5 @@
 .create-review-container-modal {
-    width: 680px;
+    width: 720px;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     margin: 40px;
     font-size: 18px;
     display: flex;
-    height: 620px;
+    height: 650px;
 }
 
 .create-review-container-modal>form>div:nth-child(1) {
@@ -44,6 +44,11 @@
 .rating-button {
     display: grid;
     grid-template-columns: 140px repeat(5, 1fr) 15px 150px;
+}
+
+.rating-button>label:nth-child(8){
+    color: rgb(120, 0, 0);
+    font-weight: bolder;
 }
 
 
@@ -88,10 +93,14 @@
     border-radius: 5px;
 }
 
-.review-error-msg {
+.review-errormsg-container{
     position: absolute;
-    bottom: 100px;
     width: 630px;
+    bottom: 105px;
+
+}
+
+.review-error-msg {
     color: rgb(194, 0, 0);
     font-size: 14px;
 }
@@ -101,7 +110,7 @@
     flex-direction: row;
     justify-content: space-around;
     position: absolute;
-    bottom: 45px;
+    bottom: 38px;
     width: 630px;
 }
 

@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect } from "react-router-dom";
 import { Modal } from '../context/Modal'
 import { getMyReservationsThunk } from '../../store/reservation';
+import { getMyReviewsThunk } from '../../store/review';
 import EditReservation from '../Reservations/Reservation_Edit'
 import ReviewModal from '../Reviews/Review_Modal'
+import ReviewEditModal from '../Reviews/Review_Edit_Modal'
 import defaultImg3 from '../../icons/defaultImg3.png'
 import './my_reservations.css'
 
@@ -13,9 +15,11 @@ export default function MyReservations() {
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const [showEditReser, setShowEditReser] = useState(false);
-    const [showReviewModal, setShowReviewModal] = useState(true);
+    const [showReviewModal, setShowReviewModal] = useState(false);
+    const [showEditReviewModal, setShowEditReviewModal] = useState(false);
     const [resId, setResId] = useState();
     const myReservations = useSelector(state => state.reservation.reservations);
+    const myReviews = useSelector(state => state.review.myreviews);
     const sessionUser = useSelector(state => state.session.user);
     const [reviewRestaurant, setReviewRestaurant] = useState()
     const [reviewId, setReviewId] = useState()
@@ -24,6 +28,10 @@ export default function MyReservations() {
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
     }, [dispatch, showEditReser, sessionUser])
+
+    useEffect(() => {
+        dispatch(getMyReviewsThunk()).then(() => setLoaded(true))
+    }, [dispatch, showReviewModal, sessionUser])
 
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
@@ -45,13 +53,35 @@ export default function MyReservations() {
 
     }
 
+    const reservIds = []
+    myReviews?.forEach(each => {
+        reservIds.push(each['reservation_id'])
+    })
+
+    console.log('what is the reservId', reservIds)
+
+    const reserveReviewed = (reservationId) => {
+        if (myReviews) {
+            myReviews?.forEach(each => {
+                if (each['reservation_id'] == reservationId) {
+                    console.log(each['reservation_id'], '---', reservationId, '-----', each['reservation_id'] == reservationId);
+                    return true;
+                }
+                return false;
+            })
+        }
+    }
+
+
     const handleEditReservations = (e, id) => {
         e.preventDefault();
         setResId(id);
         setShowEditReser(true)
     }
 
+
     // console.log('myreservations--', myReservations)
+    console.log('myreviewa--', myReviews)
 
     if (!sessionUser) {
         return <Redirect to='/' />;
@@ -64,7 +94,10 @@ export default function MyReservations() {
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}
             {showReviewModal && (<Modal onClose={() => setShowReviewModal(false)}>
-                <ReviewModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} />
+                <ReviewModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} setShowReviewModal={setShowReviewModal} />
+            </Modal>)}
+            {showEditReviewModal && (<Modal onClose={() => setShowReviewModal(false)}>
+                <ReviewEditModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} setShowEditReviewModal={setShowEditReviewModal} />
             </Modal>)}
             <div >
                 {myReservations?.length ? (myReservations?.map(reservation => {
@@ -92,14 +125,17 @@ export default function MyReservations() {
                                 <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
                             </div> */}
                         </div>)}
+
                         <div className='rate-reservation'>
                             <button onClick={() => {
-                                setShowReviewModal(true);
-                                setReviewRestaurant(reservation.restaurant.name);
+                                (reservIds.indexOf(reservation.id) > -1) ? setShowEditReviewModal(true) : setShowReviewModal(true);
+                                setReviewRestaurant(reservation.restaurant);
                                 setReviewDate(reservation.reserve_datetime.slice(5, 16));
                                 setReviewId(reservation.id);
-                            }}>Rate/Edit your experience</button>
+                                // }}>{reservation.id}</button>
+                            }}>{(reservIds.indexOf(reservation.id) > -1) ? "Edit Review" : "Rate Your Experience Now"}</button>
                         </div>
+
                     </div>
                 })) : (<div className='no-reservation'>
                     <h3 className='no-reserv-h3'>You have no reservations yet</h3>
