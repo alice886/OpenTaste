@@ -13,7 +13,7 @@ class Review(db.Model, UserMixin):
     service = db.Column(db.Integer, nullable=False)
     ambience = db.Column(db.Integer, nullable=False)
     overall = db.Column(db.Integer, nullable=False)
-    review_body = db.Column(db.String(200))
+    review_body = db.Column(db.String(500))
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 

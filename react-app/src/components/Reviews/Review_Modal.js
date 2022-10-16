@@ -6,7 +6,7 @@ import { createReservationThunk } from '../../store/reservation'
 import { getAllRestaurantThunk } from '../../store/restaurant'
 import './review_modal.css'
 
-export default function ReviewModal({ }) {
+export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     // const restaurants = useSelector(state => state.restaurant.restaurants)
@@ -15,27 +15,28 @@ export default function ReviewModal({ }) {
     const [reviewService, setReviewService] = useState(0)
     const [reviewAmbience, setReviewAmbience] = useState(0)
     const [reviewOverall, setReviewOverall] = useState(0)
-    const [allstars, setAllstars] = useState('')
+    const [isDisabled, setIsDisabled] = useState(true)
+    const [reviewComment, setReviewComment] = useState()
+    const [errors, setErrors] = useState([])
+
+    const sessionUser = useSelector(state => state.session.user);
 
 
+    const newErrors = [];
+    useEffect(() => {
+        if (!sessionUser) {
+            newErrors.push('Please log in to complete your review!')
+        }
+        else {
 
-    // useEffect(() => {
-    //     if (!sessionUser) {
-    //         newErrors.push('Please log in to complete your reservation!')
-    //     }
-    //     if (sessionUser?.id === therestaurant?.owner_id) {
-    //         newErrors.push('You may not reserve your own restaurant.')
-    //     }
-    //     else {
-
-    //         if (specialRequest?.match(inputRegex)) {
-    //             newErrors.push('You may not have 2 consecutive whitespaces in the special request field')
-    //         }
-    //     }
-    //     setErrors(newErrors)
-    //     if (!errors.length) setIsDisabled(false);
-    //     else setIsDisabled(true)
-    // }, [errors.length, newErrors.length, reserveDate, reserveTime, partySize, occasion, specialRequest])
+            if (reviewComment?.length > 500) {
+                newErrors.push('Max length for review body can only contain 500 characters.')
+            }
+        }
+        setErrors(newErrors)
+        if (!errors.length) setIsDisabled(false);
+        else setIsDisabled(true)
+    }, [errors?.length, newErrors?.length, reviewComment?.length])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -74,16 +75,15 @@ export default function ReviewModal({ }) {
         if (score == 0) return '';
     }
 
-    console.log('what is f/s/a/v', reviewFood, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
-    console.log('what is f/s/a/v', reviewFood === 5, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
+    // console.log('what is f/s/a/v', reviewFood, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
 
 
     return (
-        <div className='create-reservation-container-modal'>
+        <div className='create-review-container-modal'>
             <button>x</button>
             <form>
-                <div>How was your experience at XXX ?</div>
-                <div>Rate your dinning experience now</div>
+                <div>How was your experience at {reviewRestaurant} ?</div>
+                <div>Rate your dinning reservation on {reviewDate}:</div>
                 <div className="rating-button" >
                     <label>Food</label>
                     {starRange.map((each) => {
@@ -125,14 +125,20 @@ export default function ReviewModal({ }) {
                     <label>{whatRatingis(reviewOverall)}</label>
                 </div>
                 <div className="rating-comments">
-                    <input
-                    placeholder='nice nice'
+                    <textarea
+                        placeholder='Reviewing with comments is optional'
+                        maxLength={501}
+                        value={reviewComment}
+                        onChange={e => setReviewComment(e.target.value)}
                     >
-                    </input>
+                    </textarea>
                 </div>
-                <div>
-                    <button>Submit</button>
-                    <button>Delete Review</button>
+                {errors.map((error, ind) => (
+                    <div key={ind} className='review-error-msg'>* {error}</div>
+                ))}
+                <div className='review-butt-container'>
+                    <button className='review-submit' disabled={isDisabled}>Submit</button>
+                    <button className='review-delete'>Delete Review</button>
                 </div>
             </form>
         </div>

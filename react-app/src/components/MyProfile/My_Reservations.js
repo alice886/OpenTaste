@@ -17,6 +17,9 @@ export default function MyReservations() {
     const [resId, setResId] = useState();
     const myReservations = useSelector(state => state.reservation.reservations);
     const sessionUser = useSelector(state => state.session.user);
+    const [reviewRestaurant, setReviewRestaurant] = useState()
+    const [reviewId, setReviewId] = useState()
+    const [reviewDate, setReviewDate] = useState()
 
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
@@ -61,7 +64,7 @@ export default function MyReservations() {
                 <EditReservation resId={resId} showEditReser={showEditReser} setShowEditReser={setShowEditReser} />
             </Modal>)}
             {showReviewModal && (<Modal onClose={() => setShowReviewModal(false)}>
-                <ReviewModal />
+                <ReviewModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} />
             </Modal>)}
             <div >
                 {myReservations?.length ? (myReservations?.map(reservation => {
@@ -90,7 +93,12 @@ export default function MyReservations() {
                             </div> */}
                         </div>)}
                         <div className='rate-reservation'>
-                            <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
+                            <button onClick={() => {
+                                setShowReviewModal(true);
+                                setReviewRestaurant(reservation.restaurant.name);
+                                setReviewDate(reservation.reserve_datetime.slice(5, 16));
+                                setReviewId(reservation.id);
+                            }}>Rate/Edit your experience</button>
                         </div>
                     </div>
                 })) : (<div className='no-reservation'>

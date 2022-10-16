@@ -1,3 +1,46 @@
+.create-review-container-modal {
+    width: 680px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 40px;
+    font-size: 18px;
+    display: flex;
+    height: 620px;
+}
+
+.create-review-container-modal>form>div:nth-child(1) {
+    margin-top: 15px;
+    height: 90px;
+    padding: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-review-container-modal>form>div:nth-child(1) {
+    font-size: 28px;
+    text-align: center;
+    color: rgb(195, 0, 0);
+    font-weight: 700;
+}
+
+
+.create-review-container-modal>form>div:nth-child(2) {
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(195, 0, 0);
+    font-weight: 700;
+}
+
+
+.create-review-container-modal>form>div:nth-child(2) {
+    margin-bottom: 20px;
+}
+
 .rating-button {
     display: grid;
     grid-template-columns: 140px repeat(5, 1fr) 15px 150px;
@@ -13,18 +56,60 @@
     width: 40px;
 }
 
-.rating-button> button > i{
-    pointer-events:none; 
+.rating-button>button>i {
+    pointer-events: none;
 }
 
 .rating-button>label {
-    font-size: 22px;
+    font-size: 20px;
     margin: auto 5px;
 }
 
-#modal-content > div > form > div:nth-child(3) > label:nth-child(7),
-#modal-content > div > form > div:nth-child(4) > label:nth-child(7),
-#modal-content > div > form > div:nth-child(5) > label:nth-child(7),
-#modal-content > div > form > div:nth-child(6) > label:nth-child(7){
+#modal-content>div>form>div:nth-child(3)>label:nth-child(7),
+#modal-content>div>form>div:nth-child(4)>label:nth-child(7),
+#modal-content>div>form>div:nth-child(5)>label:nth-child(7),
+#modal-content>div>form>div:nth-child(6)>label:nth-child(7) {
     margin-left: 25x;
+}
+
+.rating-comments {
+    width: 100%;
+    height: 80px;
+}
+
+.rating-comments>textarea {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 190px;
+    height: 130px;
+    font-size: 19px;
+    padding: 10px 15px;
+    resize: none;
+    border-radius: 5px;
+}
+
+.review-error-msg {
+    position: absolute;
+    bottom: 100px;
+    width: 630px;
+    color: rgb(194, 0, 0);
+    font-size: 14px;
+}
+
+.review-butt-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 45px;
+    width: 630px;
+}
+
+.review-submit,
+.review-delete {
+    background-color: rgb(178, 0, 0);
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    margin: 0px 10px;
 }
