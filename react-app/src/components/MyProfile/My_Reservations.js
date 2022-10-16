@@ -27,12 +27,14 @@ export default function MyReservations() {
     const [reviewDate, setReviewDate] = useState()
 
     useEffect(() => {
-        dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showEditReser, showReviewModal, sessionUser])
+        dispatch(getMyReservationsThunk())
+        dispatch(getMyReviewsThunk())
+            .then(() => setLoaded(true))
+    }, [dispatch, showEditReser, showReviewModal, showEditReviewModal, sessionUser])
 
-    useEffect(() => {
-        dispatch(getMyReviewsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showReviewModal, showEditReser, sessionUser])
+    // useEffect(() => {
+    //     dispatch(getMyReviewsThunk()).then(() => setLoaded(true))
+    // }, [dispatch, showReviewModal, showEditReser, sessionUser])
 
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
@@ -115,13 +117,12 @@ export default function MyReservations() {
                         </div>
                         {validatePastReservations(reservation.reserve_datetime) ? (<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
-                        </div>) : (<div className='myreservation-expire'>
-                            <div>Reservation Expired</div>
+                        </div>) : (<div className='myreservation-edit-button'>
+                            <div style={{color: "silver"}}>Reservation Expired</div>
                             {/* <div className='rate-reservation'>
                                 <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
                             </div> */}
                         </div>)}
-
                         <div className='rate-reservation'>
                             <button onClick={() => {
                                 (reservIds.indexOf(reservation.id) > -1) ? setShowEditReviewModal(true) : setShowReviewModal(true);
@@ -129,7 +130,7 @@ export default function MyReservations() {
                                 setReviewDate(reservation.reserve_datetime.slice(5, 16));
                                 setReviewId(reservation.id);
                                 // }}>{reservation.id}</button>
-                            }}>{(reservIds.indexOf(reservation.id) > -1) ? "Edit Review" : "Review Your Experience Now"}</button>
+                            }}>{(reservIds.indexOf(reservation.id) > -1) ? "Edit Review" : "Rate Your Experience"}</button>
                         </div>
 
                     </div>

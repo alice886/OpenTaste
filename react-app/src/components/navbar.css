@@ -79,7 +79,7 @@ div.nav-user-container>div.nav-logo>a>img {
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>li:nth-child(4)>a {
-    padding: 7px 68px;
+    padding: 7px 40px;
 }
 
 #root>div.nav-user-container>div.nav-button-container>ul>li:hover {
@@ -103,7 +103,7 @@ div.nav-user-container>div.nav-logo>a>img {
     margin: 46px;
     font-size: 16px;
     align-self: flex-start;
-    width: 290px;
+    width: 280px;
     z-index: 998;
 }
 
@@ -233,7 +233,7 @@ div .home-search-container {
     font-size: 18px;
 }
 
-.home-search-input-bar{
+.home-search-input-bar {
     height: 92%;
     width: 380px;
     border-radius: 3px;

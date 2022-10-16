@@ -22,7 +22,7 @@
 }
 
 #modal-content>div {
-    width: 650px;
+    width: 630px;
     border-radius: 2px;
     display: flex;
     flex-direction: column;

@@ -47,13 +47,14 @@
     background-color: #F3F3F3;
     height: 180px;
     border-radius: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-overflow: ellipsis;
     white-space: nowrap;
     /* width: 970px; */
     font-size: 19px;
     position: relative;
     align-items: flex-start;
+    z-index: 92;
 }
 
 .myreservation-cover {
@@ -83,30 +84,40 @@ div.myreservation-expire {
 
 
 
-.rate-reservation{
+.rate-reservation {
     position: absolute;
-    bottom: 15%;
-    right: 4%;
+    top: -10px;
+    overflow-wrap: break-word;
+    right: -60px;
+    height: 180px;
+    width: 80px;
+    z-index: 90;
 }
 
 
-.rate-reservation > button{
+.rate-reservation>button {
     color: white;
+    height: 230px;
+    width: 95px;
+    white-space: normal;
+    overflow-wrap: break-word;
     background-color: #8a0000;
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: 6px;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 300;
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 
-.rate-reservation > button:hover{
-    background: rgba(226, 0, 0, 0.9);
+.rate-reservation>button:hover {
+    background: rgba(192, 4, 4, 0.9);
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 
-
+.myreservation-edit-button{
+    margin: auto 0px;
+}
 
 div.myreservation-edit-button>button {
 
@@ -124,11 +135,7 @@ div.myreservation-edit-button>button {
     color: white;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     text-align: center;
-    position: absolute;
     padding: 10px 20px;
-    top: 38%;
-    right: 4%;
-
 }
 
 div.myreservation-edit-button>button:hover {
@@ -167,7 +174,7 @@ div.myrestaurant-edit-button>button {
     text-align: center;
     /* padding: 10% 35%; */
     height: 190px;
-    width: 950px;
+    width: 910px;
     /* text-align: left; */
     padding: 30px;
 }
