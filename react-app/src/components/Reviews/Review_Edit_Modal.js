@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { Modal } from '../context/Modal';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom';
-import { createReviewThunk } from '../../store/review'
+import { editReviewThunk, getMyReviewsThunk } from '../../store/review'
 import { getAllRestaurantThunk } from '../../store/restaurant'
+import DeleteReview from '../DeleteModals/Delete_Review';
 import './review_modal.css'
 
-export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId, setShowEditReviewModal }) {
+export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId, setShowEditReviewModal, theReview }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const restaurants = useSelector(state => state.restaurant.restaurants)
+
     const [partySize, setPartySize] = useState();
-    const [reviewFood, setReviewFood] = useState(0)
-    const [reviewService, setReviewService] = useState(0)
-    const [reviewAmbience, setReviewAmbience] = useState(0)
-    const [reviewOverall, setReviewOverall] = useState(0)
+    const [reviewFood, setReviewFood] = useState(theReview?.food)
+    const [reviewService, setReviewService] = useState(theReview?.service)
+    const [reviewAmbience, setReviewAmbience] = useState(theReview?.ambience)
+    const [reviewOverall, setReviewOverall] = useState(theReview?.overall)
     const [isDisabled, setIsDisabled] = useState(true)
-    const [reviewComment, setReviewComment] = useState()
+    const [reviewComment, setReviewComment] = useState(theReview?.review_body)
+    const [deleteReview, setDeleteReview] = useState(false)
     const [errors, setErrors] = useState([])
 
     const sessionUser = useSelector(state => state.session.user);
-
 
     const newErrors = [];
     useEffect(() => {
@@ -41,7 +43,7 @@ export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId
     }, [errors?.length, newErrors?.length, reviewComment?.length, reviewFood * reviewService * reviewAmbience * reviewOverall])
 
 
-    const handleSubmit = async e => {
+    const handleUpdate = async e => {
         e.preventDefault();
         const payload = {
             food: reviewFood,
@@ -52,8 +54,9 @@ export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId
             restaurant_id: reviewRestaurant?.id,
             reservation_id: reviewId,
         }
-        const newreview = await dispatch(createReviewThunk(payload))
+        const newreview = await dispatch(editReviewThunk(payload, theReview?.id))
         if (newreview) {
+            window.alert('Thank you for your feedback!')
             history.push(`/myreservations`)
             setShowEditReviewModal(false)
         }
@@ -88,6 +91,10 @@ export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId
         if (score == 0) return '';
     }
 
+    const handleDeleteConfirm = async e => {
+        e.preventDefault();
+        setDeleteReview(true);
+    }
     // console.log('what is f/s/a/v', reviewFood, '/', reviewService, '/', reviewAmbience, '/', reviewOverall)
     // console.log('what is res id/ rev id', reviewRestaurant?.id, '/', reviewId)
 
@@ -95,6 +102,7 @@ export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId
     return (
         <div className='create-review-container-modal'>
             <button onClick={() => setShowEditReviewModal(false)}>x</button>
+            {deleteReview && <Modal><DeleteReview setDeleteReview={setDeleteReview} reviewId={theReview?.id} setShowEditReviewModal={setShowEditReviewModal} /></Modal>}
             <form>
                 <div>Update your review for {reviewRestaurant?.name} ?</div>
                 <div>Rate your dinning reservation on {reviewDate}:</div>
@@ -153,8 +161,8 @@ export default function ReviewEditModal({ reviewRestaurant, reviewDate, reviewId
                     ))}
                 </div>
                 <div className='review-butt-container'>
-                    <button className='review-submit' disabled={isDisabled} onClick={handleSubmit}>Submit</button>
-                    <button className='review-delete'>Delete Review</button>
+                    <button className='review-submit' disabled={isDisabled} onClick={handleUpdate}>Update</button>
+                    <button className='review-delete' onClick={handleDeleteConfirm}>Delete Review</button>
                 </div>
             </form>
         </div>

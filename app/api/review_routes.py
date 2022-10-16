@@ -77,10 +77,10 @@ def review_edit(id):
 def review_delete(id):
     # review = db.session.query(Review).get(id)
     review = Review.query.get(id)
-    review_todict = review.to_dict()
-    if current_user.id != review_todict['user_id']:
-        return {'errors':["You could not delete a review that doesn't belong to you."]},403
     if review is not None:
+        review_todict = review.to_dict()
+        if current_user.id != review_todict['user_id']:
+            return {'errors':["You could not delete a review that doesn't belong to you."]},403
         db.session.delete(review)
         db.session.commit()
         return {'deleted review':review_todict}

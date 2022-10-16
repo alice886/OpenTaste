@@ -8,6 +8,7 @@ import EditReservation from '../Reservations/Reservation_Edit'
 import ReviewModal from '../Reviews/Review_Modal'
 import ReviewEditModal from '../Reviews/Review_Edit_Modal'
 import defaultImg3 from '../../icons/defaultImg3.png'
+import loadingpic from '../../icons/Logo.jpg'
 import './my_reservations.css'
 
 
@@ -27,11 +28,11 @@ export default function MyReservations() {
 
     useEffect(() => {
         dispatch(getMyReservationsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showEditReser, sessionUser])
+    }, [dispatch, showEditReser, showReviewModal, sessionUser])
 
     useEffect(() => {
         dispatch(getMyReviewsThunk()).then(() => setLoaded(true))
-    }, [dispatch, showReviewModal, sessionUser])
+    }, [dispatch, showReviewModal, showEditReser, sessionUser])
 
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
@@ -53,25 +54,15 @@ export default function MyReservations() {
 
     }
 
-    const reservIds = []
+    const reservIds = [];
+    let theReview;
+
     myReviews?.forEach(each => {
         reservIds.push(each['reservation_id'])
-    })
-
-    console.log('what is the reservId', reservIds)
-
-    const reserveReviewed = (reservationId) => {
-        if (myReviews) {
-            myReviews?.forEach(each => {
-                if (each['reservation_id'] == reservationId) {
-                    console.log(each['reservation_id'], '---', reservationId, '-----', each['reservation_id'] == reservationId);
-                    return true;
-                }
-                return false;
-            })
+        if (each['reservation_id'] === reviewId) {
+            theReview = each
         }
-    }
-
+    })
 
     const handleEditReservations = (e, id) => {
         e.preventDefault();
@@ -79,9 +70,14 @@ export default function MyReservations() {
         setShowEditReser(true)
     }
 
-
     // console.log('myreservations--', myReservations)
-    console.log('myreviewa--', myReviews)
+    // console.log('myreviewa--', myReviews)
+
+    if (!loaded) {
+        return <div className='loading-img'>
+            <img src={loadingpic}></img>
+        </div>
+    }
 
     if (!sessionUser) {
         return <Redirect to='/' />;
@@ -97,7 +93,7 @@ export default function MyReservations() {
                 <ReviewModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} setShowReviewModal={setShowReviewModal} />
             </Modal>)}
             {showEditReviewModal && (<Modal onClose={() => setShowReviewModal(false)}>
-                <ReviewEditModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} setShowEditReviewModal={setShowEditReviewModal} />
+                <ReviewEditModal reviewRestaurant={reviewRestaurant} reviewDate={reviewDate} reviewId={reviewId} setShowEditReviewModal={setShowEditReviewModal} theReview={theReview} />
             </Modal>)}
             <div >
                 {myReservations?.length ? (myReservations?.map(reservation => {
@@ -133,7 +129,7 @@ export default function MyReservations() {
                                 setReviewDate(reservation.reserve_datetime.slice(5, 16));
                                 setReviewId(reservation.id);
                                 // }}>{reservation.id}</button>
-                            }}>{(reservIds.indexOf(reservation.id) > -1) ? "Edit Review" : "Rate Your Experience Now"}</button>
+                            }}>{(reservIds.indexOf(reservation.id) > -1) ? "Edit Review" : "Review Your Experience Now"}</button>
                         </div>
 
                     </div>

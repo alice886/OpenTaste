@@ -54,6 +54,7 @@ export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId, se
         }
         const newreview = await dispatch(createReviewThunk(payload))
         if (newreview) {
+            window.alert('Thank you for your feedback!')
             history.push(`/myreservations`)
             setShowReviewModal(false)
         }

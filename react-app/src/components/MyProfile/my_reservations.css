@@ -39,7 +39,7 @@
 }
 
 .my-reservation-each {
-    margin: 30px 25%;
+    margin: 30px auto;
     padding: 25px 10px;
     display: grid;
     width: 850px;
