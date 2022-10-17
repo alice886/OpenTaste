@@ -12,6 +12,7 @@ function BusinessReviews() {
     const reviews = useSelector(state => state.review.allreviews)
     const [loaded, setLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user);
+    const [showEditReser, setShowEditReser] = useState(false);
 
     let countValue1 = 0;
     let countValue2 = 0;
@@ -55,7 +56,7 @@ function BusinessReviews() {
     let avgService = (sumService / reviews?.length).toFixed(1);
     let avgAmbience = (sumAmbience / reviews?.length).toFixed(1);
     let avgValue = (sumValue / reviews?.length).toFixed(1);
-    let avgForAll = (sumFood + sumService + sumAmbience + sumValue) / reviews?.length / 4
+    let avgForAll = ((sumFood + sumService + sumAmbience + sumValue) / reviews?.length / 4).toFixed(1)
 
     const stars = [0, '⭑☆☆☆☆', '⭑⭑☆☆☆', '⭑⭑⭑☆', '⭑⭑⭑⭑☆', '⭑⭑⭑⭑⭑']
 
@@ -81,7 +82,7 @@ function BusinessReviews() {
                     Overall ratings and reviews
                     <div style={{ color: "silver" }}>Reviews can only be made by diners who have reserved at this restaurant</div>
                     <br></br>
-                    <div>{(reviews.length > 0) ? (avgForAll + ' '+' stars based on recent ratings :') : 'No scores available yet.'}</div>
+                    <div>{(reviews.length > 0) ? (avgForAll + ' ' + ' stars based on recent ratings :') : 'No scores available yet.'}</div>
                     <div className='all-cate-avg'>
                         <div className='each-cate-avg'>
                             <div><span class="redword">{(reviews.length > 0) ? avgValue : '-'}</span></div>
@@ -155,25 +156,25 @@ function BusinessReviews() {
                             <div >
                                 <div className='b-review-right-top'>
                                     <div className='b-review-right-top-stars'><span class="redword">{stars[review.overall]}</span></div>
-                                <div>&nbsp; · &nbsp;Reviewed on {review.updated_at.slice(5, 11)}, {review.updated_at.slice(12, 16)}</div>
+                                    <div>&nbsp; · &nbsp;Reviewed on {review.updated_at.slice(5, 11)}, {review.updated_at.slice(12, 16)}</div>
+                                </div>
+                                <div className='b-review-right-mid'>
+                                    <div>Overall <span class="redword">{review.overall}</span> · &nbsp;</div>
+                                    <div>Food <span class="redword">{review.food}</span> · &nbsp;</div>
+                                    <div>Service <span class="redword">{review.service}</span> · &nbsp;</div>
+                                    <div>Ambience <span class="redword">{review.ambience}</span></div>
+                                </div>
                             </div>
-                            <div className='b-review-right-mid'>
-                                <div>Overall <span class="redword">{review.overall}</span> · &nbsp;</div>
-                                <div>Food <span class="redword">{review.food}</span> · &nbsp;</div>
-                                <div>Service <span class="redword">{review.service}</span> · &nbsp;</div>
-                                <div>Ambience <span class="redword">{review.ambience}</span></div>
-                            </div>
+                            <div className='b-review-right-buttom'>{review.review_body}</div>
+                            {/* {(review.user.id == sessionUser.id) && <div className='b-review-edit'>
+                                <button className='b-review-right-editbutt'>edit</button>
+                            </div>} */}
                         </div>
-                        <div className='b-review-right-buttom'>{review.review_body}</div>
-                        {(review.user.id == sessionUser.id) && <div className='b-review-edit'>
-                            <button>edit</button>
-                        </div>}
-                    </div>
                     </div>
                 }
                 )}
 
-        </div>
+            </div>
         </div >
     )
 }
