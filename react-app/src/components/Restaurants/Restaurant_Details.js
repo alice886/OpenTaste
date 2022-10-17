@@ -5,6 +5,7 @@ import { Modal } from '../context/Modal'
 import { getRestaurantDetailThunk } from '../../store/restaurant';
 import EditRestaurant from '../Restaurants/Restaurant_Edit'
 import ReservationDetails from '../Reservations/Business_Reservation'
+import BusinessReviews from '../Reviews/Business_Reviews';
 import MakeReservation from '../Reservations/Reservation_Create'
 import GoogleMapAPI from '../Gmap/gmap';
 import './restaurant_details.css'
@@ -59,12 +60,12 @@ function RestaurantDetails() {
 
     return loaded && therestaurant && (
         <>
-                <img className='restaurant-detail-cover'
-                    src={therestaurant?.cover}
-                    onError={(e) => {
-                        if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
-                    }}
-                />
+            <img className='restaurant-detail-cover'
+                src={therestaurant?.cover}
+                onError={(e) => {
+                    if (e.target.src !== defaultImg3) { e.target.onerror = null; e.target.src = defaultImg3; }
+                }}
+            />
             <div className='restaurant-all-container'>
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>
@@ -77,8 +78,8 @@ function RestaurantDetails() {
                     {(showReservations && sessionUser) ? < ReservationDetails showModal={showModal} /> : (
                         <>
                             <div className='res-left-info'>
-                                <div>{dollarSigns[therestaurant?.price_range]} · {therestaurant?.cuisine}</div>
-                                <div>{therestaurant?.description}</div>
+                                <div style={{ color: "#A80000"}}>{dollarSigns[therestaurant?.price_range]} · {therestaurant?.cuisine}</div>
+                                <div style={{ color: "gray"}}>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
                                 {/* <div>Capacity:{therestaurant?.capacity}</div> */}
@@ -91,9 +92,11 @@ function RestaurantDetails() {
                                 <div>{therestaurant?.state},  {therestaurant?.zip_code}</div>
                             </div>
                             <GoogleMapAPI therestaurant={therestaurant} />
+                            <BusinessReviews />
                         </>
                     )
                     }
+
                 </div>
                 <div className='res-right-container'>
                     {showModal && (<Modal onClose={() => setShowModal(false)}>

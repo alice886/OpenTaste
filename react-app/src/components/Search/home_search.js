@@ -66,7 +66,6 @@ export default function HomeSearch() {
                     {capacity_count.map(each => (
                         <option value={each} key={each}>{each}  people</option>
                     ))}
-                    <option value={21} >Larger Party</option>
                 </select>
             </div>
             <div className='home-search-input'>

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload, Load, subqueryload
-from app.models import db, Restaurant, Reservation, User, Image
+from app.models import db, Restaurant, Reservation, User, Image, Review
 from app.forms import RestaurantForm
 from datetime import datetime, date, timedelta
 import time
@@ -64,6 +64,28 @@ def restaurant_reservation_details(id):
         return {'reservations':reservations_list}
     else:
         return {'errors':['There is no reservation yet.']},404
+
+
+@restaurant_routes.route('/<int:id>/reviews',methods=['GET'])
+def restaurant_review_details(id):
+    # restaurant = db.session.query(Restaurant).get(id)
+    reviews = db.session.query(Review).options(db.joinedload(Review.user)).filter(Review.restaurant_id == id)
+    reviews_list=[]
+    # if reservations is not None and len(reservations) > 0:
+    if reviews is not None:
+        for each in reviews:
+            user = each.user.to_dict()  # dont need to iterate, many-to-one relationship
+            each = each.to_dict()
+            each['user'] = user
+            reviews_list.append(each)
+        return {'reviews':reviews_list}
+    else:
+        return {'reviews': []}
+        # return {'errors':['There is no reservation yet.']},404
+
+
+
+
 
 @restaurant_routes.route('/',methods=['POST'])
 @restaurant_routes.route('',methods=['POST'])

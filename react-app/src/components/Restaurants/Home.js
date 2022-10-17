@@ -17,6 +17,8 @@ function Home() {
     const [resId, setRestId] = useState()
     const [resTime, setResTime] = useState()
 
+    // console.log(typeof restaurants)
+
     // to get today's dates
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))

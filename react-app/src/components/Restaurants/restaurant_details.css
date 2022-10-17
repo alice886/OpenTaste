@@ -31,12 +31,14 @@
 .res-right-container {
     width: 50%;
     min-width: 380px;
-    margin: auto auto auto 0px;
+    /* margin: auto auto auto 0px; */
     padding: 10px 30px;
     padding-bottom: 30px;
     height: fit-content;
     border-radius: 10px;
     font-size: 18px;
+    position: sticky;
+    top: 0px;
 }
 
 .res-left-container {

@@ -25,7 +25,7 @@ def seed_restaurants():
 
     rest2 = Restaurant(
         name='Avenida', 
-        owner_id=3,
+        owner_id=5,
         price_range=2, 
         address='201 E 3rd Avenue', 
         city='San Mateo', 
@@ -69,7 +69,7 @@ def seed_restaurants():
         open_time='17:00',
         close_time='21:00',
         cuisine='Continental',
-        cover='https://cdn.vox-cdn.com/thumbor/WWyhxQ6soLNkhbVTAw_klkl_Rjo=/0x0:2000x1333/1200x0/filters:focal(0x0:2000x1333):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/18332488/Selbys_PChang_3072.jpg',
+        cover='https://resizer.otstatic.com/v2/photos/wide-huge/1/28107972.jpg',
         capacity=80,
         availability=80,
         )
@@ -109,7 +109,7 @@ def seed_restaurants():
         )
     rest7 = Restaurant(
         name="The Rotunda at Neiman Marcus", 
-        owner_id=1,
+        owner_id=5,
         price_range=3, 
         address='150 Stockton St Level Four', 
         city='San Francisco', 
@@ -135,7 +135,7 @@ def seed_restaurants():
         description="The Village Bakery & Cafe is open! We are offering indoor and outdoor seating, takeout, and delivery daily. The bakery is also open, offering a selection of coffee drinks, freshly baked pastries and breads, sandwiches, and other sweet treats! We hope to see you soon.",
         open_time='09:00',
         close_time='15:00',
-        cuisine='Café',
+        cuisine='Cafe',
         cover='https://resizer.otstatic.com/v2/photos/wide-huge/1/25760295.jpg',
         capacity=60,
         availability=60,
@@ -160,7 +160,7 @@ def seed_restaurants():
 
     rest10 = Restaurant(
         name="Sterling Vineyards", 
-        owner_id=1,
+        owner_id=6,
         price_range=3, 
         address='1111 W Dunaweal Ln', 
         city='Calistoga', 
@@ -235,7 +235,7 @@ def seed_restaurants():
         description="Laid-back local chain specializes in custom-blended coffees, plus teas, specialty drinks & pastries.",
         open_time='08:00',
         close_time='19:00',
-        cuisine='Café',
+        cuisine='Cafe',
         cover='https://images.squarespace-cdn.com/content/v1/6184bb7818c6b8680776e1af/c54592f6-5e91-4437-81b6-9e9c676167f3/bloom-web-133.jpg',
         capacity=50,
         availability=50,
@@ -251,7 +251,7 @@ def seed_restaurants():
         description="Broadway Masala invites you try our ever evolving Indian cuisine along with personalized service and beautiful ambiance. Our menu is carefully crafted with fresh seasonal and local produce and offering the diversity of regional Indian fare.",
         open_time='09:00',
         close_time='14:00',
-        cuisine='Café',
+        cuisine='Cafe',
         cover='https://food-images.files.bbci.co.uk/food/recipes/poachedeggs_86686_16x9.jpg',
         capacity=90,
         availability=90,
@@ -274,7 +274,7 @@ def seed_restaurants():
         )
     rest17 = Restaurant(
         name="Town", 
-        owner_id=1,
+        owner_id=2,
         price_range=3, 
         address='716 Laurel St', 
         city='San Carlos', 

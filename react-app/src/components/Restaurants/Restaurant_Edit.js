@@ -110,8 +110,8 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
             if (description?.match(inputRegex)) {
                 newErrors.push("You may not have 2 consecutive whitespaces in the description field.")
             }
-            if (name?.length > 30) {
-                newErrors.push('You may only enter name in 30 characters.')
+            if (name?.length > 50) {
+                newErrors.push('You may only enter name in 50 characters.')
             }
             if (address?.length > 30) {
                 newErrors.push('You may only enter address in 30 characters.')
@@ -192,7 +192,7 @@ export default function EditRestaurant({ resId, showModal, setShowModal }) {
                             placeholder='Please update the name here.'
                             onChange={e => setName(e.target.value)}
                             value={name}
-                            maxLength={31}
+                            maxLength={51}
                             className='edit-res-input'
                             pattern="[^\s]+"
                             required

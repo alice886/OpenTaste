@@ -65,7 +65,7 @@ const NavBar = () => {
                 </li>
                 <li >
                   <NavLink to='/myreservations' exact={true} >
-                    My Reservations
+                    Reservations & Reviews
                   </NavLink>
                 </li>
                 <li className='nav-button-logout'>
