@@ -227,26 +227,27 @@ div .home-search-container {
     /* height: 38px; */
     height: 96%;
     width: 130px;
-    border-radius: 3px;
+    border-radius: 3px 0px 0px 3px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
+    padding-left: 10px;
 }
 
 .home-search-input-bar {
     height: 92%;
     width: 380px;
-    border-radius: 3px;
+    border-radius: 0px 3px 5px 0px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
+    padding-left: 15px;
 
 }
 
 .home-search-dattimeppl {
     width: 130px;
     margin: 0px;
-    border-radius: 3px;
     font-size: 18px;
 }
 
@@ -256,8 +257,7 @@ div .home-search-container {
     width: 120px;
     height: 100%;
     margin: 0px;
-    padding: 3px;
-    border-radius: 2px;
+    padding: 5px;
     border: .5px solid #F1F1F1;
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
