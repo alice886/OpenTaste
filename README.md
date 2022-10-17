@@ -50,8 +50,9 @@
 * In Restaurant Detailed Page, Overview information is available to all users on the left.
 * Business details include Price Range, Cuisine, Description, Location and Business Hours.
 * Reservation Form for the restaurant is located to the right and only loggedin user can make rservations.
-![Screen Shot 2022-09-22 at 2 51 58 PM](https://user-images.githubusercontent.com/93701088/191858056-d02304da-0e34-4d33-9d60-ae28ee930d79.png)
-![Screen Shot 2022-09-22 at 2 53 50 PM](https://user-images.githubusercontent.com/93701088/191858255-30ab2770-0b20-4c52-b940-a822941c11a7.png)
+![Screen Shot 2022-10-17 at 1 37 50 PM](https://user-images.githubusercontent.com/93701088/196278475-0becc465-3305-4c88-a91a-577ec2ace0c6.png)
+![Screen Shot 2022-10-17 at 1 38 06 PM](https://user-images.githubusercontent.com/93701088/196278491-3e0159ef-6206-4502-b8ea-f47534a49b02.png)
+
 
 
 
@@ -78,7 +79,18 @@
 ## Customer -- MyReservation List
 * customers can check their reservations in MyReservation page.
 * Only unexpired reservations can be edited/cancelled, expired reservations would not be edited.
-![Screen Shot 2022-09-11 at 5 06 13 PM](https://user-images.githubusercontent.com/93701088/189554877-f457b4ae-e438-41ba-ab8b-07a601eabe14.png)
+![Screen Shot 2022-10-17 at 1 39 03 PM](https://user-images.githubusercontent.com/93701088/196278674-f5b834ca-f86e-4254-a2fe-f5cbe6354cac.png)
+
+## Customer -- Leave a Review!
+* customers can review on their reservation experiences in MyReservation page.
+* Only customers who booked reservation at a particular restaurant can be create/edite/cancell reviews.
+![Screen Shot 2022-10-17 at 1 39 39 PM](https://user-images.githubusercontent.com/93701088/196278941-8a3fea81-00f1-4d11-adc0-af0dbefe0ed9.png)
+
+## Looking for a specific one? -- Search for it!
+* Anyone could utilize the Search fearture and navigate the site with key words.
+* Sorting and Filters are available to funnel down the result.
+![Screen Shot 2022-10-17 at 1 42 02 PM](https://user-images.githubusercontent.com/93701088/196279589-f7b35499-7e27-4db2-9897-06c5f74d7346.png)
+
 
 ## Running it locally
 1. Clone this repository (only this branch)
