@@ -49,7 +49,7 @@ export default function SearchPage() {
         if (collectSearchFilters?.length > 0) {
             setNoResUnderF(false)
         }
-    }, [filterPrice, filterCuisine])
+    }, [filterPrice, filterCuisine, filterCity])
 
 
     const handleHomeReserve = async (e, id) => {
@@ -184,13 +184,13 @@ export default function SearchPage() {
                         <fieldset>
                             <label>📍 Neighborhood</label>
                             <div>
-                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCity()}></input>
+                                <input type="radio" class='checkbox' name='checkbox1' onClick={() => setFilterCity()}></input>
                                 <label >All Cities</label>
                             </div>
                             {neiborhood_count.map(each => (
                                 <div key={each}>
                                     {/* <input type='checkbox' class='checkbox' value={each}></input> */}
-                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => { setFilterCity(each); setFClick(true) }}></input>
+                                    <input type="radio" class='checkbox' name='checkbox1' onClick={() => { setFilterCity(each); setFClick(true) }}></input>
                                     <label value={each}>{each}</label>
                                 </div>
                             ))}
@@ -200,13 +200,13 @@ export default function SearchPage() {
                         <fieldset>
                             <label>🧂 Cuisines</label>
                             <div>
-                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine()}></input>
+                                <input type="radio" class='checkbox' name='checkbox2' onClick={() => setFilterCuisine()}></input>
                                 <label >All Cuisines</label>
                             </div>
                             {cuisine_count.map(each => (
                                 <div key={each}>
                                     {/* <input type='checkbox' class='checkbox' value={each}></input> */}
-                                    <input type="radio" class='checkbox' name='checkbox' onClick={() => { setFilterCuisine(each); setFClick(true) }}></input>
+                                    <input type="radio" class='checkbox' name='checkbox2' onClick={() => { setFilterCuisine(each); setFClick(true) }}></input>
                                     <label value={each}>{each}</label>
                                 </div>
                             ))}
