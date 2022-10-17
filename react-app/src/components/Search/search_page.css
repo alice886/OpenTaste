@@ -1,7 +1,8 @@
 .search-all-container {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 5fr 1fr;
     font-size: 21px;
+    position: relative;
 }
 
 .search-left {
@@ -40,6 +41,7 @@
 } */
 
 .search-res-each {
+    min-width: 500px;
     padding: 15px 60px;
     border-radius: 10px;
     margin: 20px 0px;
@@ -53,7 +55,7 @@
 
 .search-res-nav-whole {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 2fr;
     gap: 50px;
     height: 150px;
 }
@@ -66,7 +68,7 @@
 
 .search-res-cover {
     height: 240px;
-    width: 240px;
+    width: 140px;
     overflow: hidden;
     margin: auto 0px;
 }
@@ -104,6 +106,17 @@ div.search-res-cover>img {
 
 .search-res-nav-div {
     margin: 10px 0px;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    text-overflow: ellipsis;
+}
+
+.search-res-dcl{
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    text-overflow: ellipsis;
 }
 
 .search-res-timeslots>button {
@@ -158,6 +171,14 @@ div.search-res-cover>img {
 .price-sort>fieldset>label,
 .neighborhood-sort>fieldset>label,
 .cuisine-sort>fieldset>label {
- font-weight: 700;
- margin-bottom: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
+/* ------google map for many restaurants----- */
+.search-map {
+    position: sticky;
+    height: 80vh;
+    top: 16%;
 }

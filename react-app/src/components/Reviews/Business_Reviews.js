@@ -81,22 +81,22 @@ function BusinessReviews() {
                     Overall ratings and reviews
                     <div style={{ color: "silver" }}>Reviews can only be made by diners who have reserved at this restaurant</div>
                     <br></br>
-                    <div>{avgFood ? (avgForAll + ' stars based on recent ratings') : 'No scores available'}</div>
+                    <div>{(reviews.length > 0) ? (avgForAll + ' '+' stars based on recent ratings :') : 'No scores available yet.'}</div>
                     <div className='all-cate-avg'>
                         <div className='each-cate-avg'>
-                            <div><span class="redword">{avgValue ? avgValue : '-'}</span></div>
+                            <div><span class="redword">{(reviews.length > 0) ? avgValue : '-'}</span></div>
                             <div>Value</div>
                         </div>
                         <div className='each-cate-avg'>
-                            <div><span class="redword">{avgFood ? avgFood : '-'}</span></div>
+                            <div><span class="redword">{(reviews.length > 0) ? avgFood : '-'}</span></div>
                             <div>Food</div>
                         </div>
                         <div className='each-cate-avg'>
-                            <div><span class="redword">{avgService ? avgService : '-'}</span></div>
+                            <div><span class="redword">{(reviews.length > 0) ? avgService : '-'}</span></div>
                             <div>Service</div>
                         </div>
                         <div className='each-cate-avg'>
-                            <div><span class="redword">{avgAmbience ? avgAmbience : '-'}</span></div>
+                            <div><span class="redword">{(reviews.length > 0) ? avgAmbience : '-'}</span></div>
                             <div>Ambience</div>
                         </div>
                     </div>

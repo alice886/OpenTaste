@@ -4,6 +4,7 @@ import { searchRestaurantThunk } from '../../store/search';
 import { Modal } from '../context/Modal';
 import SearchReservationModal from '../Reservations/Reservation_Create_Modal_at_Search';
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import GoogleMapAPIMany from '../Gmap/gmap_many'
 import defaultImg3 from '../../icons/defaultImg3.png'
 import loadingpic from '../../icons/Logo.jpg'
 import './search_page.css'
@@ -59,7 +60,7 @@ export default function SearchPage() {
         setShowHomeReserve(true)
     }
 
-    const neiborhood_count = ['San Francisco', 'Burlingame','Palo Alto','San Mateo' ] 
+    const neiborhood_count = ['San Francisco', 'Burlingame', 'Palo Alto', 'San Mateo']
 
     const cuisine_count = ['American', 'Italian', 'Steakhouse', 'Seafood', 'French', 'Indian', 'Mexican',
         'Japanese', 'Chinese', 'Spanish', 'Greek', 'Asian', 'Continental', 'Filipino', 'Café', 'Wine',
@@ -157,7 +158,7 @@ export default function SearchPage() {
                         <fieldset >
                             <label>💰 Price Range</label>
                             <div>
-                                <input type="radio" name='priceradio' id='priceradios' onClick={() =>  setFilterPrice()}>
+                                <input type="radio" name='priceradio' id='priceradios' onClick={() => setFilterPrice()}>
                                 </input>
                                 <label>All Price Range</label>
                             </div>
@@ -183,7 +184,7 @@ export default function SearchPage() {
                         <fieldset>
                             <label>📍 Neighborhood</label>
                             <div>
-                                <input type="radio" class='checkbox' name='checkbox' onClick={() =>  setFilterCity()}></input>
+                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCity()}></input>
                                 <label >All Cities</label>
                             </div>
                             {neiborhood_count.map(each => (
@@ -199,7 +200,7 @@ export default function SearchPage() {
                         <fieldset>
                             <label>🧂 Cuisines</label>
                             <div>
-                                <input type="radio" class='checkbox' name='checkbox' onClick={() =>  setFilterCuisine()}></input>
+                                <input type="radio" class='checkbox' name='checkbox' onClick={() => setFilterCuisine()}></input>
                                 <label >All Cuisines</label>
                             </div>
                             {cuisine_count.map(each => (
@@ -272,6 +273,9 @@ export default function SearchPage() {
                         )
                         }
                     </div>
+                </div>
+                <div className='search-map'>
+                    <GoogleMapAPIMany searchRes={searchRes} />
                 </div>
             </div >
             {showHomeReserve && <Modal>
