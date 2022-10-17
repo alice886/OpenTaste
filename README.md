@@ -83,7 +83,7 @@
 
 ## Customer -- Leave a Review!
 * customers can review on their reservation experiences in MyReservation page.
-* Only customers who booked reservation at a particular restaurant can be create/edite/cancell reviews.
+* Only customers who booked reservation at a particular restaurant can create/edite/cancell reviews.
 ![Screen Shot 2022-10-17 at 1 39 39 PM](https://user-images.githubusercontent.com/93701088/196278941-8a3fea81-00f1-4d11-adc0-af0dbefe0ed9.png)
 
 ## Looking for a specific one? -- Search for it!
