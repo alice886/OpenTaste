@@ -115,10 +115,14 @@
 }
 
 .review-submit,
-.review-delete {
+.review-delete  {
     background-color: rgb(178, 0, 0);
     border-radius: 10px;
     color: white;
     padding: 10px 20px;
     margin: 0px 10px;
+}
+
+.review-submit:disabled{
+    background-color: lightgray;
 }

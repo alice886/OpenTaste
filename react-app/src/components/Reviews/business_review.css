@@ -1,0 +1,32 @@
+.score-overview-board {}
+
+
+.all-cate-avg {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.each-cate-avg {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0px;
+    border-right: solid 1px lightgray;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.all-cate-avg>div:nth-child(1) {
+    border-left: solid 1px lightgray;
+}
+
+.review-data-bar {
+    display: grid;
+    grid-template-columns: 5% 90%;
+
+}
+
+.percent-bar {
+    margin: 2px;
+}

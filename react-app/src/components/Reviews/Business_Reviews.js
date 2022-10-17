@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getAllReviewsThunk } from '../../store/review';
+import './business_review.css'
 
 
 function BusinessReviews() {
@@ -11,6 +12,17 @@ function BusinessReviews() {
     const [loaded, setLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user);
 
+    let countValue1 = 0;
+    let countValue2 = 0;
+    let countValue3 = 0;
+    let countValue4 = 0;
+    let countValue5 = 0;
+
+    let sumFood = 0;
+    let sumService = 0;
+    let sumAmbience = 0;
+    let sumValue = 0;
+
 
     useEffect(() => {
         dispatch(getAllReviewsThunk(restaurantId)).then(() => {
@@ -18,22 +30,29 @@ function BusinessReviews() {
         })
     }, [dispatch, restaurantId])
 
-    console.log('what is the reviews', reviews)
+    reviews?.map(each => {
+        if (each.overall == 1) countValue1++
+        if (each.overall == 2) countValue2++
+        if (each.overall == 3) countValue3++
+        if (each.overall == 4) countValue4++
+        if (each.overall == 5) countValue5++
+        sumFood += each['food']
+        sumService += each['service']
+        sumAmbience += each['ambience']
+        sumValue += each['overall']
 
-    const avgCalculator = x => {
-        if (loaded && reviews) {
-            let sum = reviews.reduce((pre, curr) =>
-                pre[x] + curr[x], 0
-            )
-            let avg = sum / reviews.length
-            return avg
-        }
-    }
+    })
 
-    let avgFood = avgCalculator('food');
-    let avgService = avgCalculator('service');
-    let avgAmbience = avgCalculator('ambience');
-    let avgValue = avgCalculator('value');
+    const percentValue1 = (countValue1 / reviews?.length * 100).toFixed(2) + '%'
+    const percentValue2 = (countValue2 / reviews?.length * 100).toFixed(2) + '%'
+    const percentValue3 = (countValue3 / reviews?.length * 100).toFixed(2) + '%'
+    const percentValue4 = (countValue4 / reviews?.length * 100).toFixed(2) + '%'
+    const percentValue5 = (countValue5 / reviews?.length * 100).toFixed(2) + '%'
+
+    let avgFood = (sumFood / reviews?.length).toFixed(1);
+    let avgService = (sumService / reviews?.length).toFixed(1);
+    let avgAmbience = (sumAmbience / reviews?.length).toFixed(1);
+    let avgValue = (sumValue / reviews?.length).toFixed(1);
 
     return loaded && (
         <div className='business-review-container'>
@@ -45,34 +64,64 @@ function BusinessReviews() {
             <div className='b-review-right'>
                 {(reviews.length > 0) ? <h3>What {reviews?.length} people are saying</h3> :
                     <h3>No reviews yet</h3>}
-                <div>
+                <div className='score-overview-board'>
                     Overall ratings and reviews
-                    <div>Reviews can only be made by diners who have reserved at this restaurant</div>
+                    <div style={{ color: "silver" }}>Reviews can only be made by diners who have reserved at this restaurant</div>
                     <div>{avgFood ? (avgFood + avgService + avgAmbience + avgValue) / 4 + ' stars based on recent ratings' : 'No scores available'}</div>
-                    <div>
-                        <div>{avgFood ? avgFood : '-'}</div>
-                        <div>Food</div>
+                    <div className='all-cate-avg'>
+                        <div className='each-cate-avg'>
+                            <div>{avgFood ? avgFood : '-'}</div>
+                            <div>Food</div>
+                        </div>
+                        <div className='each-cate-avg'>
+                            <div>{avgService ? avgService : '-'}</div>
+                            <div>Service</div>
+                        </div>
+                        <div className='each-cate-avg'>
+                            <div>{avgAmbience ? avgAmbience : '-'}</div>
+                            <div>Ambience</div>
+                        </div>
+                        <div className='each-cate-avg'>
+                            <div>{avgValue ? avgValue : '-'}</div>
+                            <div>Value</div>
+                        </div>
                     </div>
-                    <div>
-                        <div>{avgService ? avgService : '-'}</div>
-                        <div>Service</div>
+
+                    <div className='review-data-bar'>
+                        <div>5</div>
+                        <div style={{ backgroundColor: "WhiteSmoke" }} className='percent-bar'>
+                            <div style={{ backgroundColor: "#E80000", width: percentValue5, color: 'transparent' }}>
+                                5
+                            </div>
+                        </div>
+                        <div>4</div>
+                        <div style={{ backgroundColor: "WhiteSmoke" }} className='percent-bar'>
+                            <div style={{ backgroundColor: "#D80000", width: percentValue4, color: 'transparent' }}>
+                                4
+                            </div>
+                        </div>
+                        <div>3</div>
+                        <div style={{ backgroundColor: "WhiteSmoke" }} className='percent-bar'>
+                            <div style={{ backgroundColor: "#C80000", width: percentValue3, color: 'transparent' }}>
+                                3
+                            </div>
+                        </div>
+                        <div>2</div>
+                        <div style={{ backgroundColor: "WhiteSmoke" }} className='percent-bar'>
+                            <div style={{ backgroundColor: '#B80000', width: percentValue2, color: 'transparent' }}>
+                                2
+                            </div>
+                        </div>
+                        <div>1</div>
+                        <div style={{ backgroundColor: "WhiteSmoke" }} className='percent-bar'>
+                            <div style={{ backgroundColor: "#A80000", width: percentValue1, color: 'transparent' }}>
+                                1
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div>{avgAmbience ? avgAmbience : '-'}</div>
-                        <div>Ambience</div>
-                    </div>
-                    <div>
-                        <div>{avgValue ? avgValue : '-'}</div>
-                        <div>Value</div>
-                    </div>
+
                 </div>
-                <div>
-                    <div>5</div>
-                    <div>4</div>
-                    <div>3</div>
-                    <div>2</div>
-                    <div>1</div>
-                </div>
+
                 {/* <div>
                     Sort by
                     <select>

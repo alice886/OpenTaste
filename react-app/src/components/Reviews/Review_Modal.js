@@ -155,7 +155,7 @@ export default function ReviewModal({ reviewRestaurant, reviewDate, reviewId, se
                 </div>
                 <div className='review-butt-container'>
                     <button className='review-submit' disabled={isDisabled} onClick={handleSubmit}>Submit</button>
-                    <button className='review-delete'>Delete Review</button>
+                    {/* <button className='review-delete'>Delete Review</button> */}
                 </div>
             </form>
         </div>
