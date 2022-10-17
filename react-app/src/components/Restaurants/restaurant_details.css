@@ -67,7 +67,7 @@ div.res-left-name {
 
 .res-left-toggle {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     border-bottom: 1px solid #E3E3E3;
     box-sizing: border-box;
     width: 100%;
@@ -79,7 +79,7 @@ div.res-left-name {
     outline: 0;
     cursor: pointer;
     border: none;
-    padding: 0 56px;
+    padding: 0 20px;
     height: 68px;
     line-height: 45px;
     border-radius: 7px;
@@ -91,7 +91,17 @@ div.res-left-name {
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(2) {
+.res-left-toggle-button>a {
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 20px 50px;
+    color: #696969;
+}
+
+#root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(2),
+#root>div.restaurant-all-container>div.res-left-container>div.res-left-toggle>button:nth-child(3) {
     box-shadow: -2px 0 0 0 rgb(0 0 0 / 10%);
 }
 

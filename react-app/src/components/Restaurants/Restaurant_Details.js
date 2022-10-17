@@ -60,6 +60,7 @@ function RestaurantDetails() {
 
     return loaded && therestaurant && (
         <>
+            <a name="overview"></a>
             <img className='restaurant-detail-cover'
                 src={therestaurant?.cover}
                 onError={(e) => {
@@ -70,6 +71,7 @@ function RestaurantDetails() {
                 <div className='res-left-container'>
                     <div className='res-left-toggle'>
                         <button className='res-left-toggle-button' onClick={overviewToggle}>Overview</button>
+                        <button className='res-left-toggle-button'><a href="#reviewSession" >Reviews</a></button>
                         {userCheck && sessionUser && (
                             <button className='res-left-toggle-button' onClick={reservationToggle}>{buttontitle}</button>
                         )}
@@ -78,8 +80,8 @@ function RestaurantDetails() {
                     {(showReservations && sessionUser) ? < ReservationDetails showModal={showModal} /> : (
                         <>
                             <div className='res-left-info'>
-                                <div style={{ color: "#A80000"}}>{dollarSigns[therestaurant?.price_range]} · {therestaurant?.cuisine}</div>
-                                <div style={{ color: "gray"}}>{therestaurant?.description}</div>
+                                <div style={{ color: "#A80000" }}>{dollarSigns[therestaurant?.price_range]} · {therestaurant?.cuisine}</div>
+                                <div style={{ color: "gray" }}>{therestaurant?.description}</div>
                             </div>
                             <div className='res-right-info'>
                                 {/* <div>Capacity:{therestaurant?.capacity}</div> */}
@@ -93,6 +95,7 @@ function RestaurantDetails() {
                             </div>
                             <GoogleMapAPI therestaurant={therestaurant} />
                             <BusinessReviews />
+                            <a href="#overview">Back to top ↑</a>
                         </>
                     )
                     }
