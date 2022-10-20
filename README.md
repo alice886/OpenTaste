@@ -44,6 +44,12 @@
 ![Screen Shot 2022-09-22 at 2 45 44 PM](https://user-images.githubusercontent.com/93701088/191857227-f68b433d-1519-452a-affc-b4074b6a40be.png)
 ![Screen Shot 2022-09-22 at 2 48 12 PM](https://user-images.githubusercontent.com/93701088/191857483-ff5333ed-f22d-471d-baa8-162240b21f78.png)
 
+## Looking for a specific one? -- Search for it!
+* Anyone could utilize the Search fearture and navigate the site with key words.
+* Indicative Search is here to help.
+* Sorting and Filters are available to funnel down the result.
+![Screen Shot 2022-10-20 at 2 43 37 PM](https://user-images.githubusercontent.com/93701088/197064782-b64dc225-13cd-4d26-a6cf-6b6979c0b468.png)
+![Screen Shot 2022-10-17 at 1 42 02 PM](https://user-images.githubusercontent.com/93701088/196279589-f7b35499-7e27-4db2-9897-06c5f74d7346.png)
 
 
 ## Restaurant Detail Page
@@ -85,11 +91,6 @@
 * customers can review on their reservation experiences in MyReservation page.
 * Only customers who booked reservation at a particular restaurant can create/edite/cancell reviews.
 ![Screen Shot 2022-10-17 at 1 39 39 PM](https://user-images.githubusercontent.com/93701088/196278941-8a3fea81-00f1-4d11-adc0-af0dbefe0ed9.png)
-
-## Looking for a specific one? -- Search for it!
-* Anyone could utilize the Search fearture and navigate the site with key words.
-* Sorting and Filters are available to funnel down the result.
-![Screen Shot 2022-10-17 at 1 42 02 PM](https://user-images.githubusercontent.com/93701088/196279589-f7b35499-7e27-4db2-9897-06c5f74d7346.png)
 
 
 ## Running it locally
