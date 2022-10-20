@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .home-all-container {
-    padding: 0 10px;
+    /* padding: 0 10px; */
     display: grid;
     /* grid-template-columns: repeat(5, 16%); */
     grid-template-columns: repeat(4, 16%);
@@ -10,9 +10,9 @@
     margin: auto;
     gap: 20px;
     justify-content: center;
-    padding-bottom: 60px;
+    padding-bottom: 90px;
     /* min-width: 1556px; */
-    font-size: 18px;
+    font-size: 16px;
     /* width: 100%; */
 }
 
@@ -145,7 +145,12 @@ div .home-restaurants:hover {
     padding: 5px 9px;
     border-radius: 10%;
     margin-bottom: 5px;
+    box-shadow: 2px 2px 6px rgba(104, 104, 104, .7);
 }
+
+/* .home-res-timeslots>button:active:hover{
+    background-color: #db0101;
+} */
 
 .home-res-timeslots>button:disabled {
     cursor: not-allowed;

@@ -245,6 +245,41 @@ div .home-search-container {
 
 }
 
+.home-search-indicate {
+    background-color: white;
+    text-align: left;
+    z-index: 999999999 !important;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0px 40px 15px 20px rgba(104, 104, 104, .6);
+    border-radius: 2px;
+}
+
+.home-search-indicate>a {
+    text-decoration: none;
+    color: black;
+    padding-left: 10px;
+    margin: 10px 0px;
+    width: 369px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.home-search-indicate>a:hover {
+    font-size: 20px;
+    color: #c00000;
+}
+
+.gray-in-search{
+    color: lightgrey;
+    font-size: 16px;
+}
+
 .home-search-dattimeppl {
     width: 130px;
     margin: 0px;
