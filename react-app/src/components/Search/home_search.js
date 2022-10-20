@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 
 export default function HomeSearch() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const restaurants = useSelector(state => state.restaurant.restaurants)
     // to get today's dates
     let d = new Date()
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
@@ -18,6 +19,7 @@ export default function HomeSearch() {
     // const [searchTime, setSearchTime] = useState(('0' + (nowHour + 1)).slice(-2) + ':00');
     const [searchDate, setSearchDate] = useState(todayString);
     const [keyWord, setKeyWord] = useState()
+    const [searchIn, setSearchIn] = useState('')
 
     const availableHour_count = []
     for (let i = 0; i < 24; i++) {
@@ -34,9 +36,17 @@ export default function HomeSearch() {
     const handleHomeSearch = async e => {
         e.preventDefault();
         history.push(`/search?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}&sorting=default&page=1`)
-        
+
         // console.log(`?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}`)
     }
+
+    const indicativeSearch = restaurants.filter(each => {
+        return each.name.toLowerCase().includes(searchIn.toLowerCase().split(''))
+        // return each.name.length ==8
+    })
+
+    console.log('what is irrrrr', restaurants)
+    console.log('what is irrrrr', indicativeSearch)
 
 
     return (
@@ -72,14 +82,18 @@ export default function HomeSearch() {
                 <input
                     type='text'
                     placeholder='  🔎 Location, Restaurant, or Cuisine'
-                    onChange={e => setKeyWord(e.target.value)}
+                    onChange={e => { setKeyWord(e.target.value); setSearchIn(e.target.value) }}
                     value={keyWord}
                     maxLength={50}
                     className='home-search-input-bar'
                     required
                 ></input>
             </div>
+            <div>
+             -- ? -> {searchIn}
+
+            </div>
             <button className='home-search-button' onClick={handleHomeSearch}>Let's go</button>
-        </div>
+        </div >
     )
 }
