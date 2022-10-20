@@ -58,7 +58,7 @@ function BusinessReviews() {
     let avgValue = (sumValue / reviews?.length).toFixed(1);
     let avgForAll = ((sumFood + sumService + sumAmbience + sumValue) / reviews?.length / 4).toFixed(1)
 
-    const stars = [0, '⭑☆☆☆☆', '⭑⭑☆☆☆', '⭑⭑⭑☆', '⭑⭑⭑⭑☆', '⭑⭑⭑⭑⭑']
+    const stars = [0, '★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
 
     console.log('waht is the avg for all', avgForAll)
 
@@ -82,7 +82,7 @@ function BusinessReviews() {
                     Overall ratings and reviews
                     <div style={{ color: "silver" }}>Reviews can only be made by diners who have reserved at this restaurant</div>
                     <br></br>
-                    <div>{(reviews.length > 0) ? (avgForAll + ' ' + ' stars based on recent ratings :') : 'No scores available yet.'}</div>
+                    <div>{(reviews.length > 0) ? (avgForAll + '  ' + ' stars based on recent ratings :') : 'No scores available yet.'}</div>
                     <div className='all-cate-avg'>
                         <div className='each-cate-avg'>
                             <div><span class="redword">{(reviews.length > 0) ? avgValue : '-'}</span></div>

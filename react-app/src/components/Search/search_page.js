@@ -250,6 +250,7 @@ export default function SearchPage() {
                                             <NavLink className='search-res-nav' to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                                         </div>
                                         <div className='search-res-dcl'>{dollarSigns[restaurant.price_range]} · {restaurant.cuisine} · {restaurant.city}</div>
+                                    </div>
                                         <div className='search-res-timeslots'>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={searchT} >Reserve Now</button>
                                             {/* 
@@ -266,7 +267,6 @@ export default function SearchPage() {
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 2) + ',45'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 2}:45</button>
                                             <button onClick={e => handleHomeReserve(e, restaurant.id)} value={String(getHours(restaurant) - 1) + ',00'} disabled={e => validateSearchDate(e)}>{getHours(restaurant) - 1}:00</button> */}
                                         </div>
-                                    </div>
                                 </NavLink>
                             </div >)
                         }
