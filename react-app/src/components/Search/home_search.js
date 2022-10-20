@@ -40,13 +40,15 @@ export default function HomeSearch() {
         // console.log(`?dateTime=${encodeURIComponent(searchDate)}T${encodeURIComponent(searchTime)}&covers=${encodeURIComponent(partySize)}&term=${encodeURIComponent(keyWord)}`)
     }
 
-    const indicativeSearch = restaurants.filter(each => {
-        return each.name.toLowerCase().includes(searchIn.toLowerCase().split(''))
-        // return each.name.length ==8
+    let keywords = new RegExp(searchIn.toLowerCase())
+
+    const indicativeSearchList = restaurants.filter(each => {
+        return each.name.toLowerCase().match(keywords)
     })
 
-    console.log('what is irrrrr', restaurants)
-    console.log('what is irrrrr', indicativeSearch)
+    // console.log('what is irrrrr1', restaurants)
+    // console.log('what is irrrrr2', keywords)
+    // console.log('what is irrrrr3', indicativeSearch)
 
 
     return (
@@ -88,10 +90,11 @@ export default function HomeSearch() {
                     className='home-search-input-bar'
                     required
                 ></input>
-            </div>
-            <div>
-             -- ? -> {searchIn}
-
+                {searchIn.length > 0 && indicativeSearchList.length > 0 && <div className='home-search-indicate'>
+                    {indicativeSearchList.map(each => {
+                        return <NavLink to={`/restaurants/${each.id}`} className='home-search-indicate-each'>{each.name} <span class="gray-in-search">  ·  {each.cuisine}  ·  {each.city}, {each.state}</span></NavLink>
+                    })}
+                </div>}
             </div>
             <button className='home-search-button' onClick={handleHomeSearch}>Let's go</button>
         </div >
