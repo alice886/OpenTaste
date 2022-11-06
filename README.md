@@ -43,6 +43,8 @@
 * Clicking on each restaurant will direct to the Restaurant Detail Page.
 ![Screen Shot 2022-09-22 at 2 45 44 PM](https://user-images.githubusercontent.com/93701088/191857227-f68b433d-1519-452a-affc-b4074b6a40be.png)
 ![Screen Shot 2022-09-22 at 2 48 12 PM](https://user-images.githubusercontent.com/93701088/191857483-ff5333ed-f22d-471d-baa8-162240b21f78.png)
+![1](./readmegif/mainpage.gif)
+
 
 ## Looking for a specific one? -- Search for it!
 * Anyone could utilize the Search fearture and navigate the site with key words.
