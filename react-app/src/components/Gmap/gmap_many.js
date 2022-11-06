@@ -10,6 +10,7 @@ function GoogleMapAPIMany({ searchRes }) {
 
     let center;
     const formattedAddress = 'CA, 94401, USA';
+    const formattedAddress2 = 'CA, 94403, USA';
     // require("dotenv").config();
 
     var allAddresses = [];
@@ -21,16 +22,50 @@ function GoogleMapAPIMany({ searchRes }) {
 
     var geocoder = new window.google.maps.Geocoder();
 
-    let count;
+    let count = 0;
     let geoCodeAddressees = [];
-    // for (count = 0; count < allAddresses.length; count++) {
+
+    // if (allAddresses) {
+    //     geocoder.geocode({ 'address': formattedAddress }, function (results, status) {
+    //         if (status === 'OK') {
+
+    //             var marker = new window.google.maps.Marker({
+    //                 map: map,
+    //                 position: results[0].geometry.location
+    //             });
+
+    //         } else {
+    //             alert('Geocode was not successful for the following reason: ' + status);
+    //         }
+    //     })
+    // }
+
+
+
+    // allAddresses?.map(each => {
+    //     geocoder.geocode({ 'address': each }, function (results, status) {
+    //         if (status === 'OK') {
+    //             var marker = new window.google.maps.Marker({
+    //                 map: map,
+    //                 position: results[0].geometry.location
+    //             });
+    //         }
+    //         else {
+    //             console.log('cannot find', each)
+    //         }
+    //     })
+    // })
+    // for (count; count < allAddresses.length; count++) {
     //     geocoder.geocode({ 'address': allAddresses[count] }, function (results, status) {
     //         if (status === 'OK') {
-    //             // var marker = new window.google.maps.Marker({
-    //             //     map: map,
-    //             //     position: results[0].geometry.location
-    //             // });
+    //             var marker = new window.google.maps.Marker({
+    //                 map: map,
+    //                 position: results[0].geometry.location
+    //             });
     //             geoCodeAddressees.push(results[0].geometry.location)
+    //         }
+    //         else {
+    //             console.log('cannot find', allAddresses[count])
     //         }
     //     })
     // }

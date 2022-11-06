@@ -89,7 +89,7 @@ export default function MyProfile() {
                         <h2>{sessionUser.first_name} {sessionUser.last_name}</h2>
                     </div>
                     <div>👤 {sessionUser.username}</div>
-                    <div>📧 {sessionUser.email}</div>
+                    {/* <div>📧 {sessionUser.email}</div> */}
                     <br></br>
                     <div className='summary-details'>
                         <div>You have listed {myRestaurants?.length} restaurants</div>
