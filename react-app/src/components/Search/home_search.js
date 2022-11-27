@@ -46,9 +46,6 @@ export default function HomeSearch() {
         return each.name.toLowerCase().match(keywords)
     })
 
-    // console.log('what is irrrrr1', restaurants)
-    console.log('what is irrrrr2', keywords)
-    // console.log('what is irrrrr3', indicativeSearch)
 
     return (
         <div className='home-search-container'>
@@ -89,9 +86,10 @@ export default function HomeSearch() {
                     className='home-search-input-bar'
                     required
                 ></input>
-                <button className='cancel-search-butt' onClick={()=> {
+                {keyWord?.length > 0 && <button className='cancel-search-butt' onClick={() => {
                     setKeyWord('');
-                    setSearchIn('');}}>x</button>
+                    setSearchIn('');
+                }}>x</button>}
                 {searchIn.length > 0 && indicativeSearchList.length > 0 && <div className='home-search-indicate'>
                     {indicativeSearchList.map(each => {
                         return <NavLink to={`/restaurants/${each.id}`} className='home-search-indicate-each'>{each.name} <span class="gray-in-search">  ·  {each.cuisine}  ·  {each.city}, {each.state}</span></NavLink>

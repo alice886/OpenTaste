@@ -215,7 +215,6 @@ div .home-search-container {
     background-color: white;
     /* background-color: #0070d2; */
     height: 46px;
-    width: fit-content;
     border-radius: 5px;
     margin: 1px 0px;
     font-size: 18px;
@@ -245,6 +244,10 @@ div .home-search-container {
     font-size: 18px;
     padding-left: 15px;
 
+}
+
+.home-search-input-bar:focus {
+    outline: none;
 }
 
 .cancel-search-butt {
