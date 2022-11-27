@@ -40,17 +40,25 @@ export default function MyReservations() {
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
+    const todayYear = d.getFullYear()
 
     const monthNames = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     const validatePastReservations = time => {
         const resMonth = monthNames.indexOf(time.slice(8, 11));
         const resDate = time.slice(5, 8);
-        if (resMonth < todayMonth) {
+        const resYear = time.slice(12,16)
+        if (resYear - todayYear < 0){
             return false;
         }
-        if (resDate < todayDate && resMonth === todayMonth) {
-            return false;
+        else{
+            if (resMonth < todayMonth) {
+                return false;
+            }
+            if (resDate < todayDate && resMonth === todayMonth) {
+                return false;
+            }
+            return true;
         }
         return true;
 

@@ -40,6 +40,7 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
     const todayDate = d.getDate()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
+    const todayYear = d.getFullYear()
     // to get available hours
     const availableHour_count = []
     // for (let i = nowHour + 1; i < therestaurant.close_time.slice(0, 2); i++) {
@@ -103,10 +104,10 @@ export default function MakeReservationModal({ resId, resTime, setShowHomeReserv
             if (reserveTime === undefined) {
                 newErrors.push('Please select a time')
             }
-            if (reserveDate?.slice(0, 4) !== '2022') {
-                newErrors.push('You may only reserve dates in the year of 2022')
+            if (reserveDate?.slice(0, 4) - todayYear < 0) {
+                newErrors.push('You may only reserve dates in the futrue')
             }
-            if (reserveDate?.slice(5, 7) - todayMonth < 0) {
+            if ((reserveDate?.slice(0, 4) == todayYear) && (reserveDate?.slice(5, 7) - todayMonth < 0)) {
                 newErrors.push('You may not select dates from previous months')
             }
             if (reserveDate?.slice(5, 7) - todayMonth == 0) {

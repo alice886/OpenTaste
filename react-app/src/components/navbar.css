@@ -240,6 +240,7 @@ div .home-search-container {
     width: 380px;
     border-radius: 0px 3px 5px 0px;
     border: .5px solid #F1F1F1;
+    border-right: white;
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
     padding-left: 15px;

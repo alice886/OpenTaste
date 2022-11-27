@@ -16,6 +16,7 @@ export default function MakeReservation({ therestaurant }) {
     // d = new Date(d.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
+    const todayYear = d.getFullYear()
     const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
     const nowHour = d.getHours();
     // to get available hours
@@ -91,10 +92,10 @@ export default function MakeReservation({ therestaurant }) {
             if (availableHour_count.length <= 0) {
                 newErrors.push('No available timeslots on selected date.')
             }
-            if (reserveDate?.slice(0, 4) !== '2022') {
-                newErrors.push('You may only reserve dates in the year of 2022')
+            if (reserveDate?.slice(0, 4) - todayYear < 0) {
+                newErrors.push('You may only reserve dates in the futrue')
             }
-            if (reserveDate?.slice(5, 7) - todayMonth < 0) {
+            if ((reserveDate?.slice(0, 4) == todayYear) && (reserveDate?.slice(5, 7) - todayMonth < 0)) {
                 newErrors.push('You may not select dates from previous months')
             }
             if (reserveDate?.slice(5, 7) - todayMonth === 0) {
