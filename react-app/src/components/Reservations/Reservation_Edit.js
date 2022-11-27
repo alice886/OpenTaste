@@ -29,7 +29,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const openHour = Number(theReservation.restaurant.open_time.slice(0, 2))
     let maydate = new Date(theReservation.reserve_datetime)
 
-    const parsedDate = maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + maydate.getDate()
+    const parsedDate = maydate.getFullYear() + '-' + ('0' + (maydate.getMonth() + 1)).slice(-2) + '-' + ('0'+maydate.getDate())
     const parsedTime = (maydate.getHours() + 7) + ':' + maydate.getMinutes() + 0
 
     const str1 = theReservation.reserve_datetime
@@ -46,7 +46,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
     const todayMonth = d.getMonth() + 1
     const todayDate = d.getDate()
     const todayYear = d.getFullYear()
-    const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + d.getDate()).slice(-2)].join('-')
+    const todayString = [d.getFullYear(), ('0' + todayMonth).slice(-2), ('0' + todayDate).slice(-2)].join('-')
     const nowHour = d.getHours();
     // to get available hours
     const availableHour_count = []
@@ -198,7 +198,7 @@ export default function EditReservation({ resId, showEditReser, setShowEditReser
                         type='date'
                         value={reserveDate}
                         min={todayString}
-                        max='2023-12-31'
+                        // max='2023-12-31'
                         onChange={e => setReserveDate(e.target.value)}
                     // onKeyDown="event.preventDefault()"
                     ></input>

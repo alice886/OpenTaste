@@ -48,7 +48,6 @@ export default function MyReservations() {
         const resMonth = monthNames.indexOf(time.slice(8, 11));
         const resDate = time.slice(5, 8);
         const resYear = time.slice(12, 16)
-        console.log('what is rese year t/f', resYear < todayYear)
         if (resYear < todayYear) {
             return false;
         }
