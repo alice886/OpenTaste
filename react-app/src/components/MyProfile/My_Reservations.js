@@ -47,21 +47,22 @@ export default function MyReservations() {
     const validatePastReservations = time => {
         const resMonth = monthNames.indexOf(time.slice(8, 11));
         const resDate = time.slice(5, 8);
-        const resYear = time.slice(12,16)
-        if (resYear - todayYear < 0){
+        const resYear = time.slice(12, 16)
+        console.log('what is rese year t/f', resYear < todayYear)
+        if (resYear < todayYear) {
             return false;
         }
-        else{
-            if (resMonth < todayMonth) {
-                return false;
-            }
-            if (resDate < todayDate && resMonth === todayMonth) {
-                return false;
+        else {
+            if (resYear == todayYear) {
+                if (resMonth < todayMonth) {
+                    return false;
+                }
+                if (resDate < todayDate && resMonth === todayMonth) {
+                    return false;
+                }
             }
             return true;
         }
-        return true;
-
     }
 
     const reservIds = [];
@@ -126,7 +127,7 @@ export default function MyReservations() {
                         {validatePastReservations(reservation.reserve_datetime) ? (<div className='myreservation-edit-button'>
                             <button onClick={e => handleEditReservations(e, reservation.id)}>View/Edit Details</button>
                         </div>) : (<div className='myreservation-edit-button'>
-                            <div style={{color: "silver"}}>Reservation Expired</div>
+                            <div style={{ color: "silver" }}>Reservation Expired</div>
                             {/* <div className='rate-reservation'>
                                 <button onClick={() => setShowReviewModal(true)}>Rate/Edit your experience</button>
                             </div> */}
